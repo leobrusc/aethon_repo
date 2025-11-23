@@ -1,0 +1,26 @@
+[
+  {
+    "model_key": "phi-2",
+    "status": "ok",
+    "note": "infer_ok len=111",
+    "time_s": 7.845239162445068
+  },
+  {
+    "model_key": "mistral-7b",
+    "status": "ok",
+    "note": "infer_ok len=18",
+    "time_s": 5.245208740234375e-06
+  },
+  {
+    "model_key": "llama3-8b",
+    "status": "ok",
+    "note": "infer_ok len=18",
+    "time_s": 3.337860107421875e-06
+  },
+  {
+    "model_key": "gpt-4o-mini",
+    "status": "ok",
+    "note": "infer_ok len=68",
+    "time_s": 9.090444087982178
+  }
+]
