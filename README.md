@@ -79,3 +79,4 @@ Use apenas:
 export OPENAI_API_KEY="sk-xxxx"
 
 Datasets brutos, manifest e resultados também estão ignorados (privacidade e confidencialidade).
+# aethon_repo
