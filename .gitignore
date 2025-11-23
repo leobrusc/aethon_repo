@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.ipynb_checkpoints/
+
+# Environments
+.env
+env/
+venv/
+*/venv/
+aethon_env/
+.aethon_env/
+
+# Secrets & Tokens
+OPENAI_API_KEY
+*.secret
+*.key
+*.token
+secrets.json
+*.pem
+
+# Logs & Outputs
+logs/
+*.log
+
+# Results
+results/
+experiment_manifest.json
+model_load_check.json
+
+# Datasets (raw)
+datasets/*.parquet
+datasets/*.json
+datasets/*.jsonl
+datasets/*.csv
+datasets/prepared/*
+!datasets/prepared/masked_preview.csv   # safe preview
+
+# Checkpoints & Models
+*.ckpt
+*.pth
+*.pt
+src/models/*.bin
+
+# VSCode
+.vscode/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+datasets/hh-rlhf/
+datasets/prompt-injections/
+
