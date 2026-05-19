@@ -16,8 +16,9 @@ from aethon_heuristic import is_adversarial_heuristic
 from aethon_full_pipeline import AethonFull
 from model_registry import get_model_driver
 
-RESULTS_ROOT = Path("/home/leonardo/Documentos/aethon_repo/results")
-MANIFEST_PATH = Path("/home/leonardo/Documentos/aethon_repo/experiment_manifest.json")
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+RESULTS_ROOT = PROJECT_ROOT / "results"
+MANIFEST_PATH = PROJECT_ROOT / "experiment_manifest.json"
 
 def log_manifest(entry: dict):
     if MANIFEST_PATH.exists():
@@ -39,8 +40,10 @@ def run_experiment(model_name: str, dataset_name: str, temp: float = 0.2, seed: 
     if limit:
         df = df.head(limit)
 
-    # instantiate model driver
-    model_driver = get_model_driver(model_name, model_name=openai_model_override) if model_name.startswith("gpt") else get_model_driver(model_name)
+    # instantiate model driver only when inference is needed
+    model_driver = None
+    if not dry_run:
+        model_driver = get_model_driver(model_name, model_name=openai_model_override) if model_name.startswith("gpt") else get_model_driver(model_name)
 
     # aethon full object (for mitigation/audit)
     aethon = AethonFull(ml_model_path=None, epsilon=aethon_epsilon)

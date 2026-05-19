@@ -1,146 +1,194 @@
 """
 dataset_loader.py
-------------------
-Carrega, normaliza e padroniza datasets adversariais e benignos para o pipeline AETHON.
+-----------------
+Carrega, normaliza e padroniza datasets adversariais e benignos para o
+pipeline AETHON.
 
-Origem dos datasets (conforme arquivos enviados pelo autor):
-- hf_prompt-injections_train.parquet   (HuggingFace - Prompt Injection Dataset)
-- hf_prompt-injections_test.parquet    (HuggingFace - Prompt Injection Dataset)
-- hf_red_team_attempts.jsonl           (HuggingFace - Red Team Attempts / RLHF style)
-- kaggle_red_team_prompts.json         (Kaggle - Red Teaming Prompts Collection)
+Datasets canonicos:
+- prompt_injections_train
+- prompt_injections_test
+- red_team_attempts
+- kaggle_redteam
 
-Todos os arquivos estão no diretório:
-    /home/leonardo/Documentos/aethon_repo/datasets/
-
-Este módulo fornece:
-- load_dataset(name)
-- normalize_dataframe(df)
-- map_columns(df)
+Tambem aceita "all" ou "all_datasets" para concatenar todos os datasets
+canonicos sem incluir backups locais ou copias auxiliares.
 """
 
-import json
-import pandas as pd
 from pathlib import Path
+import json
+
+import pandas as pd
 
 
-DATA_DIR = Path("/home/leonardo/Documentos/aethon_repo/datasets")
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DATA_DIR = PROJECT_ROOT / "datasets"
+
+DATASET_FILES = {
+    "prompt_injections_train": "hf_prompt-injections_train.parquet",
+    "prompt_injections_test": "hf_prompt-injections_test.parquet",
+    "red_team_attempts": "hf_red_team_attempts.jsonl",
+    "kaggle_redteam": "kaggle_red_team_prompts.json",
+    "advbench_harmful": "advbench_harmful_behaviors.csv",
+    "jailbreakbench_behaviors": "jailbreakbench_behaviors.jsonl",
+    "wildjailbreak_eval": "wildjailbreak_eval.jsonl",
+    "prompt_injection_core": "neuralchemy_prompt_injection_core.jsonl",
+    "notinject": "notinject.jsonl",
+    "cyberseceval_prompt_injection": "cyberseceval_prompt_injection.json",
+}
+
+ALL_DATASETS = tuple(DATASET_FILES.keys())
 
 
-# ------------------------------------------------------------
-# 1) Função principal de carregamento
-# ------------------------------------------------------------
 def load_dataset(name: str) -> pd.DataFrame:
     """
-    Carrega um dataset pelo nome padrão do projeto.
-    O nome deve corresponder a um dos seguintes casos:
+    Carrega um dataset pelo nome padrao do projeto.
 
-    - "prompt_injections_train"
-    - "prompt_injections_test"
-    - "red_team_attempts"
-    - "kaggle_redteam"
+    Retorna sempre as colunas:
+    - prompt_id
+    - prompt_text
+    - label (0 = benigno, 1 = adversarial)
+    - source
     """
-    path = None
+    if name in {"all", "all_datasets"}:
+        frames = [load_dataset(dataset_name) for dataset_name in ALL_DATASETS]
+        df = pd.concat(frames, ignore_index=True)
+        print(f"[LOAD] Todos os datasets combinados -> shape={df.shape}")
+        return df
 
-    if name == "prompt_injections_train":
-        path = DATA_DIR / "hf_prompt-injections_train.parquet"
+    if name not in DATASET_FILES:
+        available = list(DATASET_FILES.keys()) + ["all", "all_datasets"]
+        raise ValueError(f"[ERRO] Dataset '{name}' nao reconhecido. Disponiveis: {available}")
 
-    elif name == "prompt_injections_test":
-        path = DATA_DIR / "hf_prompt-injections_test.parquet"
-
-    elif name == "red_team_attempts":
-        path = DATA_DIR / "hf_red_team_attempts.jsonl"
-
-    elif name == "kaggle_redteam":
-        path = DATA_DIR / "kaggle_red_team_prompts.json"
-
-    else:
-        raise ValueError(f"[ERRO] Dataset '{name}' não reconhecido.")
-
+    path = DATA_DIR / DATASET_FILES[name]
     if not path.exists():
-        raise FileNotFoundError(f"[ERRO] Caminho não encontrado: {path}")
+        raise FileNotFoundError(f"[ERRO] Caminho nao encontrado: {path}")
 
     print(f"[LOAD] Carregando dataset: {path}")
 
-    # --- parquet ---
     if path.suffix == ".parquet":
         df = pd.read_parquet(path)
-        return normalize_dataframe(df, source=name)
+    elif path.suffix == ".csv":
+        df = pd.read_csv(path)
+    elif path.suffix in {".json", ".jsonl"}:
+        df = read_json_or_jsonl(path)
+    else:
+        raise ValueError(f"[ERRO] Tipo de arquivo nao suportado: {path}")
 
-    # --- jsonl ---
-    if path.suffix == ".jsonl":
-        df = pd.read_json(path, lines=True)
-        return normalize_dataframe(df, source=name)
+    return normalize_dataframe(df, source=name)
 
-    # --- json ---
-    if path.suffix == ".json":
-        with open(path, "r", encoding="utf-8") as f:
+
+def read_json_or_jsonl(path: Path) -> pd.DataFrame:
+    """
+    Le JSONL verdadeiro ou JSON array.
+
+    O dataset oficial Anthropic red-team-attempts e publicado como .jsonl.gz,
+    mas o conteudo descompactado e um array JSON, nao JSON por linha.
+    """
+    with path.open("r", encoding="utf-8") as f:
+        first_char = ""
+        while not first_char:
+            char = f.read(1)
+            if not char:
+                raise ValueError(f"[ERRO] Arquivo JSON vazio: {path}")
+            first_char = char.strip()
+
+    if path.suffix == ".jsonl" and first_char != "[":
+        return pd.read_json(path, lines=True)
+
+    if first_char in {"[", "{"}:
+        with path.open("r", encoding="utf-8") as f:
             data = json.load(f)
-        df = pd.DataFrame(data)
-        return normalize_dataframe(df, source=name)
 
-    raise ValueError(f"[ERRO] Tipo de arquivo não suportado: {path}")
-    
+        if isinstance(data, list):
+            return pd.DataFrame(data)
+        if isinstance(data, dict):
+            if all(isinstance(value, dict) for value in data.values()):
+                return pd.DataFrame(data)
+            return pd.DataFrame([data])
 
-# ------------------------------------------------------------
-# 2) Normalização de dataframes
-# ------------------------------------------------------------
+        raise ValueError(f"[ERRO] Estrutura JSON nao suportada em: {path}")
+
+    return pd.read_json(path, lines=True)
+
+
 def normalize_dataframe(df: pd.DataFrame, source: str) -> pd.DataFrame:
     """
     Normaliza dataframes vindos de diferentes formatos/origens.
-    Cria colunas padronizadas:
-        - prompt_id
-        - prompt_text
-        - label (0 = benigno, 1 = adversarial)
-        - source
     """
-
     df = df.copy()
     df["source"] = source
-
-    # mapeamento heurístico com base nas colunas encontradas
-    df = map_columns(df)
-
-    # remover linhas inválidas
+    df = map_columns(df, source=source)
     df = df.dropna(subset=["prompt_text"])
+    df["prompt_text"] = df["prompt_text"].astype(str)
+    df = df[df["prompt_text"].str.len() > 0]
     df = df.reset_index(drop=True)
 
-    print(f"[NORMALIZE] '{source}' → shape={df.shape}")
+    print(f"[NORMALIZE] '{source}' -> shape={df.shape}")
     return df
 
 
-# ------------------------------------------------------------
-# 3) Mapeamento automático de colunas
-# ------------------------------------------------------------
-def map_columns(df: pd.DataFrame) -> pd.DataFrame:
+def map_columns(df: pd.DataFrame, source: str) -> pd.DataFrame:
     """
     Detecta automaticamente as colunas relevantes para o prompt.
-    Este método foi criado após análise dos arquivos enviados
-    e cobre todos os formatos atuais.
+    Cobre os formatos atuais do repositorio.
     """
+    if source == "cyberseceval_prompt_injection" and {"test_case_prompt", "user_input"}.issubset(df.columns):
+        df["prompt_text"] = df["test_case_prompt"].astype(str) + "\n\n" + df["user_input"].astype(str)
 
-    # compatibilidade parquet (HuggingFace Prompt Injections)
-    if "text" in df.columns:
-        df["prompt_text"] = df["text"]
+    prompt_candidates = [
+        "prompt_text",
+        "text",
+        "prompt",
+        "user_input",
+        "test_case_prompt",
+        "transcript",
+        "task_description",
+        "goal",
+        "Goal",
+        "Behavior",
+        "instruction",
+        "query",
+    ]
+    for col in prompt_candidates:
+        if col in df.columns:
+            df["prompt_text"] = df[col]
+            break
 
-    if "prompt" in df.columns:
-        df["prompt_text"] = df["prompt"]
+    if "prompt_text" not in df.columns:
+        raise ValueError(f"[ERRO] Nenhuma coluna de prompt encontrada. Colunas: {list(df.columns)}")
 
-    # compatibilidade Kaggle red-team
-    if "prompt_text" not in df.columns and "prompt" in df.columns:
-        df["prompt_text"] = df["prompt"]
-
-    # alguns arquivos têm "id", outros não
     if "id" in df.columns:
         df["prompt_id"] = df["id"].astype(str)
     else:
         df["prompt_id"] = df.index.astype(str)
 
-    # criar coluna de rótulo (se não existir)
-    if "label" not in df.columns:
-        # Se o dataset não tiver label, consideramos ADVERSARIAL
+    if source == "notinject":
+        df["label"] = 0
+    elif source == "cyberseceval_prompt_injection":
         df["label"] = 1
+    elif "label" in df.columns:
+        df["label"] = normalize_label_series(df["label"])
+    elif "answer" in df.columns:
+        df["label"] = normalize_label_series(df["answer"])
+    elif "split" in df.columns:
+        df["label"] = normalize_label_series(df["split"])
     else:
-        # garantir formatação binária
-        df["label"] = df["label"].astype(int).clip(0, 1)
+        # Red-team datasets sem label binario sao tratados como adversariais.
+        df["label"] = 1
 
     return df[["prompt_id", "prompt_text", "label", "source"]]
+
+
+def normalize_label_series(series: pd.Series) -> pd.Series:
+    """
+    Converte labels numericos ou textuais para binario.
+    Textos contendo benign/safe viram 0; harmful/adversarial/jailbreak/malicious viram 1.
+    """
+    if pd.api.types.is_numeric_dtype(series):
+        return series.astype(int).clip(0, 1)
+
+    labels = series.astype(str).str.lower()
+    mapped = pd.Series(1, index=series.index)
+    mapped[labels.str.contains("harmful|adversarial|jailbreak|malicious|attack", regex=True, na=False)] = 1
+    mapped[labels.str.contains("benign|safe|harmless", regex=True, na=False)] = 0
+    return mapped.astype(int)
