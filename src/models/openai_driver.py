@@ -5,8 +5,10 @@ Usa o método chat.completions para consistência com o orquestrador.
 Observação: a chave API deve ser fornecida via variável de ambiente OPENAI_API_KEY.
 """
 from openai import OpenAI
-import os
-import time
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 class OpenAIDriver:
     NAME = "gpt-4o-mini"
@@ -14,7 +16,7 @@ class OpenAIDriver:
 
     def __init__(self, model_name: str = "gpt-4o-mini"):
         self.client = OpenAI()
-        self.model_name = model_name
+        self.model_name = model_name or "gpt-4o-mini"
 
     def infer(self, prompt: str, max_tokens: int = 256, temperature: float = 0.2):
         try:
@@ -29,11 +31,15 @@ class OpenAIDriver:
             )
             # SDK returns choices list; handle safely
             if hasattr(resp, "choices") and len(resp.choices) > 0:
-                # Support older/varied response shapes
                 choice = resp.choices[0]
                 if hasattr(choice, "message"):
-                    return choice.message.get("content", "")
-                return choice.get("text", "")
+                    content = getattr(choice.message, "content", None)
+                    if content is not None:
+                        return content
+                    if isinstance(choice.message, dict):
+                        return choice.message.get("content", "")
+                if isinstance(choice, dict):
+                    return choice.get("text", "")
             return ""
         except Exception as e:
             return f"[OPENAI_ERROR] {e}"
