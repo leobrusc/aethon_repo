@@ -1,0 +1,43 @@
+{
+  "models": [
+    "llama-2-7b-chat",
+    "llama-3.2-1b-instruct",
+    "llama-3.2-3b-instruct",
+    "qwen2.5-3b-instruct",
+    "qwen2.5-7b-instruct",
+    "phi-3-mini-4k-instruct"
+  ],
+  "datasets": [
+    "prompt_injections_train",
+    "prompt_injections_test",
+    "red_team_attempts",
+    "kaggle_redteam",
+    "advbench_harmful",
+    "jailbreakbench_behaviors",
+    "wildjailbreak_eval",
+    "prompt_injection_core",
+    "notinject",
+    "cyberseceval_prompt_injection"
+  ],
+  "conditions": [
+    "B0",
+    "B1",
+    "B2",
+    "B3",
+    "B4"
+  ],
+  "seed": 42,
+  "temperature": 0.2,
+  "epsilon": 1.2,
+  "max_tokens": 256,
+  "limit": null,
+  "random_sample": false,
+  "dry_run": false,
+  "ml_model_path": "src/models/aethon_tfidf_lr.pkl",
+  "output_root": "results",
+  "run_id": null,
+  "resume": false,
+  "generate_tables": true,
+  "asr_judge_type": "rule",
+  "asr_judge_model": null
+}

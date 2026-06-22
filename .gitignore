@@ -1,26 +1,82 @@
-# Python cache
+# Python runtime artifacts
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 
-# Ambientes virtuais (não precisa subir)
-aethon_env/
+# Virtual environments
+.venv/
 venv/
-.env
+aethon_env/
 
-# Segredos e tokens (segurança)
+# Secrets and local environment
+.env
+.env.*
+!.env.example
 *.secret
 *.key
 *.token
 *.pem
 secrets.json
 
-# Logs e temporários
+# Logs and temporary files
 *.log
+logs/
+log/
 *.tmp
+*.temp
+tmp/
+temp/
 
-# Ferramentas locais
+# Generated benchmark and experiment artifacts
+results/
+examples/sample_results/
+progress.json
+**/progress.json
+model_load_check.json
+**/model_load_check.json
+benchmark_manifest.jsonl
+**/benchmark_manifest.jsonl
+experiment_manifest.json
+**/experiment_manifest.json
+*_manifest.json
+*_manifest.jsonl
+
+# Generated benchmark summaries and checkpoints
+master_results.csv
+failures.csv
+metrics_summary_*.csv
+metrics_summary_*.json
+*.checkpoint.csv
+
+# Trained local models and derived detector artifacts
+*.pkl
+*.joblib
+src/models/aethon_*.json
+src/models/aethon_*.pkl
+
+# Local dataset verification/download artifacts
+datasets/*.official.jsonl
+datasets/*.official.jsonl.gz
+datasets/*.local_backup_*.json
+
+# Local editor, OS, and notebook metadata
 .vscode/
+.idea/
 .ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+.Rhistory
+.history
 
+# Accidental scratch files
+json
+pd
+test_llamas.py
+package-lock.json
+scratch/
+local_*.py

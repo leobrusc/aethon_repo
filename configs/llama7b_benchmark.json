@@ -1,0 +1,33 @@
+{
+  "models": [
+    "llama-2-7b-chat"
+  ],
+  "datasets": [
+    "notinject",
+    "prompt_injection_core",
+    "jailbreakbench_behaviors",
+    "red_team_attempts",
+    "cyberseceval_prompt_injection"
+  ],
+  "conditions": [
+    "B0",
+    "B1",
+    "B2",
+    "B3",
+    "B4"
+  ],
+  "seed": 42,
+  "temperature": 0.2,
+  "epsilon": 1.2,
+  "max_tokens": 256,
+  "limit": null,
+  "random_sample": false,
+  "dry_run": false,
+  "ml_model_path": "src/models/aethon_tfidf_lr.pkl",
+  "output_root": "results/llama7b_benchmark",
+  "run_id": null,
+  "resume": true,
+  "generate_tables": true,
+  "asr_judge_type": "rule",
+  "asr_judge_model": null
+}

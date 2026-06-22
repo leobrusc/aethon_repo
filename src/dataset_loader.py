@@ -16,8 +16,10 @@ canonicos sem incluir backups locais ou copias auxiliares.
 
 from pathlib import Path
 import json
+import hashlib
 
 import pandas as pd
+from loaders import SOURCE_NORMALIZERS
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -37,6 +39,32 @@ DATASET_FILES = {
 }
 
 ALL_DATASETS = tuple(DATASET_FILES.keys())
+
+
+def get_dataset_path(name: str) -> Path:
+    if name not in DATASET_FILES:
+        raise ValueError(f"[ERRO] Dataset '{name}' nao reconhecido.")
+    return DATA_DIR / DATASET_FILES[name]
+
+
+def get_dataset_metadata(name: str) -> dict:
+    """Return source-file metadata used in reproducible benchmark manifests."""
+    if name in {"all", "all_datasets"}:
+        return {
+            "name": name,
+            "members": [get_dataset_metadata(member) for member in ALL_DATASETS],
+        }
+    path = get_dataset_path(name)
+    digest = hashlib.sha256()
+    with path.open("rb") as dataset_file:
+        for chunk in iter(lambda: dataset_file.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return {
+        "name": name,
+        "file": path.name,
+        "sha256": digest.hexdigest(),
+        "bytes": path.stat().st_size,
+    }
 
 
 def load_dataset(name: str) -> pd.DataFrame:
@@ -59,7 +87,7 @@ def load_dataset(name: str) -> pd.DataFrame:
         available = list(DATASET_FILES.keys()) + ["all", "all_datasets"]
         raise ValueError(f"[ERRO] Dataset '{name}' nao reconhecido. Disponiveis: {available}")
 
-    path = DATA_DIR / DATASET_FILES[name]
+    path = get_dataset_path(name)
     if not path.exists():
         raise FileNotFoundError(f"[ERRO] Caminho nao encontrado: {path}")
 
@@ -116,6 +144,13 @@ def normalize_dataframe(df: pd.DataFrame, source: str) -> pd.DataFrame:
     Normaliza dataframes vindos de diferentes formatos/origens.
     """
     df = df.copy()
+    if source in SOURCE_NORMALIZERS:
+        normalized = SOURCE_NORMALIZERS[source](df)
+        normalized["source"] = source
+        normalized = normalized.dropna(subset=["prompt_text"]).reset_index(drop=True)
+        print(f"[NORMALIZE] '{source}' -> shape={normalized.shape}")
+        return normalized[["prompt_id", "prompt_text", "label", "source"]]
+
     df["source"] = source
     df = map_columns(df, source=source)
     df = df.dropna(subset=["prompt_text"])

@@ -66,6 +66,26 @@ class Llama2_7BChatDriver(HuggingFaceCausalLMDriver):
     HF_MODEL = "meta-llama/Llama-2-7b-chat-hf"
 
 
+class Phi3Mini4KInstructDriver(HuggingFaceCausalLMDriver):
+    NAME = "phi-3-mini-4k-instruct"
+    HF_MODEL = "microsoft/Phi-3-mini-4k-instruct"
+
+
+class Qwen25_3BInstructDriver(HuggingFaceCausalLMDriver):
+    NAME = "qwen2.5-3b-instruct"
+    HF_MODEL = "Qwen/Qwen2.5-3B-Instruct"
+
+
+class Qwen25_7BInstructDriver(HuggingFaceCausalLMDriver):
+    NAME = "qwen2.5-7b-instruct"
+    HF_MODEL = "Qwen/Qwen2.5-7B-Instruct"
+
+
+class TinyLlama_11BChatDriver(HuggingFaceCausalLMDriver):
+    NAME = "tinyllama-1.1b-chat"
+    HF_MODEL = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+
+
 class Llama32_1BInstructDriver(HuggingFaceCausalLMDriver):
     NAME = "llama-3.2-1b-instruct"
     HF_MODEL = "meta-llama/Llama-3.2-1B-Instruct"

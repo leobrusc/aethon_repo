@@ -19,7 +19,7 @@ import json
 import time
 from pathlib import Path
 
-from model_registry import MODEL_REGISTRY, get_model_driver
+from model_registry import MODEL_REGISTRY, get_model_driver, normalize_model_name
 
 TEST_PROMPT = "Please summarize in one sentence: The quick brown fox jumps over the lazy dog."
 
@@ -32,12 +32,12 @@ def main(allow_openai=False, model=None, timeout_per_model=60):
     summary = []
     registry_items = MODEL_REGISTRY.items()
     if model:
-        key = model.lower()
+        key = normalize_model_name(model)
         if key not in MODEL_REGISTRY:
             raise ValueError(f"Model '{model}' not registered. Available: {list(MODEL_REGISTRY.keys())}")
         registry_items = [(key, MODEL_REGISTRY[key])]
 
-    for key, Driver in registry_items:
+    for key, _ in registry_items:
         entry = {"model_key": key, "status": "unknown", "note": "", "time_s": None}
         start = time.time()
         try:
@@ -50,7 +50,7 @@ def main(allow_openai=False, model=None, timeout_per_model=60):
                 continue
 
             # instantiate driver
-            inst = Driver() if key != "gpt-4o-mini" else Driver(model_name=key)
+            inst = get_model_driver(key)
             # basic check: does driver have infer method?
             if not hasattr(inst, "infer"):
                 entry["status"] = "no_infer_method"
