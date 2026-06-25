@@ -23,10 +23,11 @@ class HuggingFaceCausalLMDriver:
         if device is None:
             device = "cuda" if torch.cuda.is_available() else "cpu"
         self.device = device
+        self._use_device_map = self.device == "cuda"
 
         try:
             self.tokenizer = AutoTokenizer.from_pretrained(self.HF_MODEL, use_fast=True)
-            if self.device == "cuda":
+            if self._use_device_map:
                 self.model = AutoModelForCausalLM.from_pretrained(
                     self.HF_MODEL,
                     device_map="auto",
@@ -34,17 +35,24 @@ class HuggingFaceCausalLMDriver:
                 )
             else:
                 self.model = AutoModelForCausalLM.from_pretrained(self.HF_MODEL)
-            self.gen = pipeline(
-                "text-generation",
-                model=self.model,
-                tokenizer=self.tokenizer,
-                device=0 if self.device == "cuda" else -1,
-            )
+
+            pipe_kwargs = {
+                "task": "text-generation",
+                "model": self.model,
+                "tokenizer": self.tokenizer,
+            }
+            if not self._use_device_map:
+                pipe_kwargs["device"] = -1
+            self.gen = pipeline(**pipe_kwargs)
         except Exception as e:
             warnings.warn(f"{self.NAME}: problema ao carregar pesos: {e}")
             self.tokenizer = None
             self.model = None
             self.gen = None
+
+    @property
+    def available(self):
+        return self.gen is not None
 
     def infer(self, prompt: str, max_tokens: int = 256, temperature: float = 0.2):
         if self.gen is None:
