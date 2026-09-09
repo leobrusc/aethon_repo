@@ -1,0 +1,6 @@
+training_dataset,evaluation_dataset,evaluation_rows,exact_duplicate_count,exact_duplicate_percentage,normalized_exact_duplicate_count,normalized_exact_duplicate_percentage,approximate_method_used
+prompt_injections_train,prompt_injections_test,116,0,0.0,0,0.0,False
+prompt_injections_train,prompt_injection_core,6274,0,0.0,0,0.0,False
+prompt_injections_train,jailbreakbench_behaviors,200,0,0.0,0,0.0,False
+prompt_injections_train,wildjailbreak_eval,2210,0,0.0,0,0.0,False
+prompt_injections_train,notinject,339,0,0.0,0,0.0,False
