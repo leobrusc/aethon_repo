@@ -34,6 +34,8 @@ temp/
 
 # Generated benchmark and experiment artifacts
 results/
+# Local diagnostic text may contain sensitive/adversarial prompts. Never commit it.
+results/revision/error_analysis/private_false_positive_text.csv
 examples/sample_results/
 progress.json
 **/progress.json

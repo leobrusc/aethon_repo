@@ -260,7 +260,9 @@ def write_detection_artifacts(frame: pd.DataFrame, config: DetectionConfig, proj
     if not output.is_absolute():
         output = project_root / output
     output.mkdir(parents=True, exist_ok=True)
-    tables = project_root / "results" / "revision" / "tables"
+    # Keep canonical Phase 1 tables beside its `detection/` directory, while
+    # isolating arbitrary/test output roots so they cannot overwrite them.
+    tables = output.parent / "tables" if output.name == "detection" else output / "tables"
     tables.mkdir(parents=True, exist_ok=True)
     frame.to_csv(output / "per_prompt_results.csv", index=False)
     by_dataset = summarize_by(frame, ["dataset", "condition"], config.bootstrap_seed, config.bootstrap_iterations)

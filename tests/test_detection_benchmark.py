@@ -116,6 +116,7 @@ def test_outputs_include_latency_and_dataset_condition_grouping(tmp_path):
     assert {"dataset", "condition", "tp", "tn", "fp", "fn"}.issubset(metrics.columns)
     assert {"mean_latency_ms", "median_latency_ms", "p95_latency_ms", "p99_latency_ms"}.issubset(latency.columns)
     assert "model_name" not in metrics.columns
+    assert (tmp_path / "tables" / "ablation_comparison.csv").exists()
 
 
 def test_revision_training_metadata_and_no_evaluation_leakage(tmp_path):
