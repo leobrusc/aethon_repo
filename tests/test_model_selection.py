@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import copy
 
 from model_selection import (
     FINAL_DATASETS,
@@ -9,6 +10,7 @@ from model_selection import (
     load_training_only,
     metric,
 )
+from aethon_heuristic import PATTERNS
 
 
 def test_selection_training_source_is_single_locked_dataset(monkeypatch):
@@ -43,3 +45,27 @@ def test_metric_confusions_are_correct_without_evaluation_data():
     result = metric(np.array([0, 0, 1, 1]), np.array([0, 1, 1, 0]), np.array([.1, .6, .8, .2]))
     assert result["tp"] == result["tn"] == result["fp"] == result["fn"] == 1
     assert result["f1"] == 0.5
+
+
+def test_final_evaluation_does_not_mutate_frozen_model(monkeypatch):
+    import model_selection
+    model = build_pipeline("word_unigram", "logistic_regression")
+    training = load_training_only()
+    model.fit(training.prompt_text, training.label)
+    before = copy.deepcopy(model.named_steps["classifier"].coef_)
+    monkeypatch.setattr(model_selection, "FINAL_DATASETS", ("prompt_injections_test",))
+    model_selection.final_evaluation(model, 0.5)
+    assert np.array_equal(before, model.named_steps["classifier"].coef_)
+
+
+def test_heuristic_rules_are_unchanged():
+    assert PATTERNS == [
+        r"ignore previous instructions",
+        r"ignore (the )?previous",
+        r"system override",
+        r"as an? jailbroken",
+        r"reset your instructions",
+        r"do not follow previous",
+        r"disregard previous",
+        r"follow the instructions below",
+    ]
