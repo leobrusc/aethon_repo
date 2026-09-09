@@ -52,6 +52,13 @@ def build_pipeline(rep, classifier):
     else: raise ValueError(classifier)
     return Pipeline([("features",features),("classifier",est)])
 
+def classifier_parameters(classifier):
+    base={"C":1.0,"penalty":"l2","loss":"squared_hinge","dual":"auto","max_iter":1000,"random_state":42,"fit_intercept":True,"class_weight":None,"tol":1e-4}
+    if classifier=="logistic_regression": return {"C":1.0,"penalty":"l2","solver":"lbfgs","max_iter":1000,"random_state":42,"fit_intercept":True,"class_weight":None,"tol":1e-4}
+    if classifier=="linear_svm": return base
+    if classifier=="calibrated_linear_svm": return {"base_estimator":base,"method":"sigmoid","cv":3,"n_jobs":1}
+    raise ValueError(classifier)
+
 def score_model(model, texts):
     return model.predict_proba(texts)[:,1] if hasattr(model.named_steps["classifier"],"predict_proba") else model.decision_function(texts)
 
@@ -76,7 +83,7 @@ def cross_validate(training, seed=42, folds=5):
             for fold,(tr,va) in enumerate(splitter.split(texts,labels),1):
                 model=build_pipeline(rep,classifier); model.fit(texts[tr],labels[tr]); started=time.perf_counter(); s=score_model(model,texts[va]); elapsed=(time.perf_counter()-started)*1000; scores[va]=s; latencies.append(elapsed/len(va)); fold_indices.append((fold,va))
             threshold,selected=choose_threshold(labels,scores,.10); cap_results={str(cap):choose_threshold(labels,scores,cap)[1] for cap in FPR_CAPS}; preds=(scores>=threshold).astype(int) if np.isfinite(threshold) else np.zeros(len(labels),int); values=metric(labels,preds,scores)
-            row={"candidate":name,"representation":rep,"analyzer":REPRESENTATIONS[rep].get("analyzer","FeatureUnion"),"ngram_range":str(REPRESENTATIONS[rep].get("ngram_range",(REPRESENTATIONS[rep].get("word_ngram_range"),REPRESENTATIONS[rep].get("char_ngram_range")))),"max_features":5000,"classifier":classifier,"classifier_parameters":json.dumps(build_pipeline(rep,classifier).named_steps["classifier"].get_params(deep=False),default=str,sort_keys=True),"threshold":threshold,"selection_criterion":"maximize OOF F1 subject to OOF FPR <= 0.10","fpr_cap_analyses":json.dumps(cap_results,default=str),"mean_latency_ms":float(np.mean(latencies)),"median_latency_ms":float(np.median(latencies)),"p95_latency_ms":float(np.quantile(latencies,.95)),**values}
+            row={"candidate":name,"representation":rep,"analyzer":REPRESENTATIONS[rep].get("analyzer","FeatureUnion"),"ngram_range":str(REPRESENTATIONS[rep].get("ngram_range",(REPRESENTATIONS[rep].get("word_ngram_range"),REPRESENTATIONS[rep].get("char_ngram_range")))),"max_features":5000,"classifier":classifier,"classifier_parameters":json.dumps(classifier_parameters(classifier),default=str,sort_keys=True),"threshold":threshold,"selection_criterion":"maximize OOF F1 subject to OOF FPR <= 0.10","fpr_cap_analyses":json.dumps(cap_results,default=str),"mean_latency_ms":float(np.mean(latencies)),"median_latency_ms":float(np.median(latencies)),"p95_latency_ms":float(np.quantile(latencies,.95)),**values}
             fold_metrics=[]
             for fold,va in fold_indices:
                 fv=metric(labels[va],(scores[va]>=threshold).astype(int) if np.isfinite(threshold) else np.zeros(len(va),int),scores[va]); fv.update({"candidate":name,"representation":rep,"classifier":classifier,"fold":fold}); fold_metrics.append(fv); fold_rows.append(fv)
