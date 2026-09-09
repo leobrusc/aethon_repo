@@ -1,0 +1,8 @@
+| dataset | rows | benign | adversarial | class_status | label_provenance | used_for_training | used_for_evaluation | auroc_valid | auprc_valid | fpr_valid | source_file | sha256 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| prompt_injections_train | 546 | 343 | 203 | mixed | source_ground_truth | True | False | True | True | True | hf_prompt-injections_train.parquet | 2e10bc7ab30f542c97e4e83e2a5683000b5057d25ec10908784c631d44124c04 |
+| prompt_injections_test | 116 | 56 | 60 | mixed | source_ground_truth | False | True | True | True | True | hf_prompt-injections_test.parquet | 39ac797cabc157eeed58435a08593b2952bb6cb16fc394a2d383f447cc7b246e |
+| prompt_injection_core | 6274 | 2538 | 3736 | mixed | source_ground_truth | False | True | True | True | True | neuralchemy_prompt_injection_core.jsonl | e7a1b0b9a21032df8b3ffcac1605841324d1266f30fb4d70e6d058af0cde685f |
+| jailbreakbench_behaviors | 200 | 100 | 100 | mixed | source_ground_truth | False | True | True | True | True | jailbreakbench_behaviors.jsonl | 4f3a40e85e5be7314ae8e6cb5dc73f4197eca0e691b67d6a25a915b1a934a850 |
+| wildjailbreak_eval | 2210 | 210 | 2000 | mixed | source_ground_truth | False | True | True | True | True | wildjailbreak_eval.jsonl | 2e74645416c7daa3b30ae11cb845a50cc9fe5d0b147e4ddc2ef5b0af23ec88a5 |
+| notinject | 339 | 339 | 0 | benign_only | benchmark_policy_label | False | True | False | False | True | notinject.jsonl | e41959c6cd149a4f921cb70deff86f9aab10bfede0894b958e99980bf71349b8 |

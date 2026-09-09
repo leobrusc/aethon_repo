@@ -1,0 +1,145 @@
+{
+  "experiment_type": "detection_only",
+  "scientific_pipeline": "prompt -> detector -> prediction/score -> prompt-level metrics",
+  "target_llm_initialized": false,
+  "metric_grouping": [
+    "dataset",
+    "condition"
+  ],
+  "conditions": {
+    "B1": "heuristic only (binary operating-point score)",
+    "B2": "TF-IDF + Logistic Regression only",
+    "B3": "heuristic OR ML deterministic cascade",
+    "B4": "B3 detector plus differentially private audit telemetry"
+  },
+  "aggregation": {
+    "micro": "pool all fixed evaluation rows, retaining each dataset row once per condition",
+    "macro": "unweighted arithmetic mean across dataset-level metrics; undefined values excluded"
+  },
+  "bootstrap": {
+    "method": "stratified percentile",
+    "confidence": 0.95,
+    "seed": 2026,
+    "iterations": 1000
+  },
+  "config": {
+    "datasets": [
+      "prompt_injections_test",
+      "prompt_injection_core",
+      "jailbreakbench_behaviors",
+      "wildjailbreak_eval",
+      "notinject"
+    ],
+    "conditions": [
+      "B1",
+      "B2",
+      "B3",
+      "B4"
+    ],
+    "ml_model_path": "src/models/aethon_tfidf_lr_revision.pkl",
+    "seed": 42,
+    "limit": null,
+    "random_sample": false,
+    "output_root": "results/revision/detection",
+    "epsilon": 1.2,
+    "bootstrap_seed": 2026,
+    "bootstrap_iterations": 1000
+  },
+  "datasets": [
+    {
+      "dataset": "prompt_injections_train",
+      "rows": 546,
+      "benign": 343,
+      "adversarial": 203,
+      "class_status": "mixed",
+      "label_provenance": "source_ground_truth",
+      "used_for_training": true,
+      "used_for_evaluation": false,
+      "auroc_valid": true,
+      "auprc_valid": true,
+      "fpr_valid": true,
+      "source_file": "hf_prompt-injections_train.parquet",
+      "sha256": "2e10bc7ab30f542c97e4e83e2a5683000b5057d25ec10908784c631d44124c04"
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "rows": 116,
+      "benign": 56,
+      "adversarial": 60,
+      "class_status": "mixed",
+      "label_provenance": "source_ground_truth",
+      "used_for_training": false,
+      "used_for_evaluation": true,
+      "auroc_valid": true,
+      "auprc_valid": true,
+      "fpr_valid": true,
+      "source_file": "hf_prompt-injections_test.parquet",
+      "sha256": "39ac797cabc157eeed58435a08593b2952bb6cb16fc394a2d383f447cc7b246e"
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "rows": 6274,
+      "benign": 2538,
+      "adversarial": 3736,
+      "class_status": "mixed",
+      "label_provenance": "source_ground_truth",
+      "used_for_training": false,
+      "used_for_evaluation": true,
+      "auroc_valid": true,
+      "auprc_valid": true,
+      "fpr_valid": true,
+      "source_file": "neuralchemy_prompt_injection_core.jsonl",
+      "sha256": "e7a1b0b9a21032df8b3ffcac1605841324d1266f30fb4d70e6d058af0cde685f"
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "rows": 200,
+      "benign": 100,
+      "adversarial": 100,
+      "class_status": "mixed",
+      "label_provenance": "source_ground_truth",
+      "used_for_training": false,
+      "used_for_evaluation": true,
+      "auroc_valid": true,
+      "auprc_valid": true,
+      "fpr_valid": true,
+      "source_file": "jailbreakbench_behaviors.jsonl",
+      "sha256": "4f3a40e85e5be7314ae8e6cb5dc73f4197eca0e691b67d6a25a915b1a934a850"
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "rows": 2210,
+      "benign": 210,
+      "adversarial": 2000,
+      "class_status": "mixed",
+      "label_provenance": "source_ground_truth",
+      "used_for_training": false,
+      "used_for_evaluation": true,
+      "auroc_valid": true,
+      "auprc_valid": true,
+      "fpr_valid": true,
+      "source_file": "wildjailbreak_eval.jsonl",
+      "sha256": "2e74645416c7daa3b30ae11cb845a50cc9fe5d0b147e4ddc2ef5b0af23ec88a5"
+    },
+    {
+      "dataset": "notinject",
+      "rows": 339,
+      "benign": 339,
+      "adversarial": 0,
+      "class_status": "benign_only",
+      "label_provenance": "benchmark_policy_label",
+      "used_for_training": false,
+      "used_for_evaluation": true,
+      "auroc_valid": false,
+      "auprc_valid": false,
+      "fpr_valid": true,
+      "source_file": "notinject.jsonl",
+      "sha256": "e41959c6cd149a4f921cb70deff86f9aab10bfede0894b958e99980bf71349b8"
+    }
+  ],
+  "model_metadata_file": "src\\models\\aethon_tfidf_lr_revision.metadata.json",
+  "git_commit": "abe9e757bbb7112a68e25bbef872e88d7ddbe96a",
+  "python_version": "3.10.11",
+  "sklearn_version": "1.7.2",
+  "timestamp_utc": "2026-09-09T18:29:30.384854+00:00"
+}
