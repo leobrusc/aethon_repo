@@ -19,6 +19,7 @@ class MissingClassifierError(RuntimeError):
 class MiddlewareResult:
     heuristic_flag: Optional[bool]
     ml_prediction: Optional[int]
+    ml_score: Optional[float]
     detection_score: Optional[float]
     final_decision: str
     blocked: bool
@@ -50,6 +51,7 @@ class BenchmarkMiddleware:
         started = time.perf_counter()
         heuristic_flag: Optional[bool] = None
         ml_prediction: Optional[int] = None
+        ml_score: Optional[float] = None
         detection_score: Optional[float] = None
         noisy_count: Optional[float] = None
 
@@ -60,7 +62,8 @@ class BenchmarkMiddleware:
             blocked = heuristic_flag
             detection_score = float(heuristic_flag)
         elif condition == "B2":
-            ml_prediction, detection_score = self._predict_ml(prompt)
+            ml_prediction, ml_score = self._predict_ml(prompt)
+            detection_score = ml_score if ml_score is not None else float(ml_prediction)
             blocked = ml_prediction == 1
         elif condition in {"B3", "B4"}:
             heuristic_flag = is_adversarial_heuristic(prompt)
@@ -75,6 +78,7 @@ class BenchmarkMiddleware:
         return MiddlewareResult(
             heuristic_flag=heuristic_flag,
             ml_prediction=ml_prediction,
+            ml_score=ml_score,
             detection_score=detection_score,
             final_decision="mitigate" if blocked else "allow",
             blocked=bool(blocked),

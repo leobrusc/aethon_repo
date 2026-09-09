@@ -9,13 +9,13 @@
 
 | # | Arquivo | Tamanho | Formato | Rows | Label | Alias no Loader |
 |---|---------|---------|---------|------|-------|-----------------|
-| 1 | `hf_prompt-injections_train.parquet` | 40 KB | Parquet | ~662 | 0/1 | `prompt_injections_train` |
-| 2 | `hf_prompt-injections_test.parquet` | 11 KB | Parquet | ~165 | 0/1 | `prompt_injections_test` |
+| 1 | `hf_prompt-injections_train.parquet` | 40 KB | Parquet | 546 | 0/1 (203+343) | `prompt_injections_train` |
+| 2 | `hf_prompt-injections_test.parquet` | 11 KB | Parquet | 116 | 0/1 (60+56) | `prompt_injections_test` |
 | 3 | `hf_red_team_attempts.jsonl` | 55 MB | JSONL (JSON-array) | 38,961 | 1 (adversarial) | `red_team_attempts` |
-| 4 | `kaggle_red_team_prompts.json` | 160 KB | JSON | ~500 | 1 (adversarial) | `kaggle_redteam` |
-| 5 | `advbench_harmful_behaviors.csv` | 83 KB | CSV | ~520 | 1 (adversarial) | `advbench_harmful` |
+| 4 | `kaggle_red_team_prompts.json` | 160 KB | JSON | 99 | 1 (adversarial) | `kaggle_redteam` |
+| 5 | `advbench_harmful_behaviors.csv` | 83 KB | CSV | 520 | 1 (adversarial) | `advbench_harmful` |
 | 6 | `jailbreakbench_behaviors.jsonl` | 60 KB | JSONL | 200 | 0/1 (100+100) | `jailbreakbench_behaviors` |
-| 7 | `wildjailbreak_eval.jsonl` | 1.8 MB | JSONL | ~1,800 | 1 (adversarial) | `wildjailbreak_eval` |
+| 7 | `wildjailbreak_eval.jsonl` | 1.8 MB | JSONL | 2,210 | 0/1 (2000+210) | `wildjailbreak_eval` |
 | 8 | `neuralchemy_prompt_injection_core.jsonl` | 2.2 MB | JSONL | 6,274 | 0/1 (3736+2538) | `prompt_injection_core` |
 | 9 | `notinject.jsonl` | 67 KB | JSONL | 339 | 0 (benign-only) | `notinject` |
 | 10 | `cyberseceval_prompt_injection.json` | 199 KB | JSON | 251 | 1 (adversarial) | `cyberseceval_prompt_injection` |
