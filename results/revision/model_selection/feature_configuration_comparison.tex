@@ -2,20 +2,20 @@
 \toprule
 candidate & representation & classifier & threshold & auroc & auprc & precision & recall & f1 & fpr & median_latency_ms & p95_latency_ms \\
 \midrule
-word_unigram__logistic_regression & word_unigram & logistic_regression & 0.410000 & 0.946222 & 0.922401 & 0.906077 & 0.807882 & 0.854167 & 0.049563 & 0.012338 & 0.015269 \\
-word_unigram__linear_svm & word_unigram & linear_svm & 0.060000 & 0.954279 & 0.939097 & 0.948276 & 0.812808 & 0.875332 & 0.026239 & 0.011433 & 0.015361 \\
-word_unigram__calibrated_linear_svm & word_unigram & calibrated_linear_svm & 0.420000 & 0.953030 & 0.930107 & 0.879397 & 0.862069 & 0.870647 & 0.069971 & 0.019961 & 0.027842 \\
-word_bigram__logistic_regression & word_bigram & logistic_regression & 0.420000 & 0.945834 & 0.915463 & 0.934911 & 0.778325 & 0.849462 & 0.032070 & 0.022929 & 0.027403 \\
-word_bigram__linear_svm & word_bigram & linear_svm & 0.050000 & 0.955687 & 0.931343 & 0.942197 & 0.802956 & 0.867021 & 0.029155 & 0.019652 & 0.023039 \\
-word_bigram__calibrated_linear_svm & word_bigram & calibrated_linear_svm & 0.510000 & 0.952268 & 0.921649 & 0.926966 & 0.812808 & 0.866142 & 0.037901 & 0.026527 & 0.029653 \\
-char_3_5__logistic_regression & char_3_5 & logistic_regression & 0.390000 & 0.967427 & 0.956307 & 0.925926 & 0.862069 & 0.892857 & 0.040816 & 0.081747 & 0.091792 \\
-char_3_5__linear_svm & char_3_5 & linear_svm & 0.080000 & 0.972224 & 0.963970 & 0.971429 & 0.837438 & 0.899471 & 0.014577 & 0.082491 & 0.097224 \\
-char_3_5__calibrated_linear_svm & char_3_5 & calibrated_linear_svm & 0.480000 & 0.969697 & 0.957061 & 0.956757 & 0.871921 & 0.912371 & 0.023324 & 0.086697 & 0.098036 \\
-char_3_6__logistic_regression & char_3_6 & logistic_regression & 0.380000 & 0.966637 & 0.956108 & 0.912371 & 0.871921 & 0.891688 & 0.049563 & 0.086432 & 0.106965 \\
-char_3_6__linear_svm & char_3_6 & linear_svm & 0.050000 & 0.970960 & 0.963266 & 0.966102 & 0.842365 & 0.900000 & 0.017493 & 0.091814 & 0.104981 \\
-char_3_6__calibrated_linear_svm & char_3_6 & calibrated_linear_svm & 0.460000 & 0.969352 & 0.957718 & 0.951613 & 0.871921 & 0.910026 & 0.026239 & 0.106013 & 0.113119 \\
-word_char_union__logistic_regression & word_char_union & logistic_regression & 0.430000 & 0.967427 & 0.952297 & 0.960452 & 0.837438 & 0.894737 & 0.020408 & 0.110706 & 0.130999 \\
-word_char_union__linear_svm & word_char_union & linear_svm & 0.050000 & 0.971980 & 0.957867 & 0.955801 & 0.852217 & 0.901042 & 0.023324 & 0.105153 & 0.129720 \\
-word_char_union__calibrated_linear_svm & word_char_union & calibrated_linear_svm & 0.500000 & 0.970170 & 0.951137 & 0.951087 & 0.862069 & 0.904393 & 0.026239 & 0.114548 & 0.144556 \\
+word_unigram__logistic_regression & word_unigram & logistic_regression & 0.410000 & 0.946222 & 0.922401 & 0.906077 & 0.807882 & 0.854167 & 0.049563 & 0.012395 & 0.013595 \\
+word_unigram__linear_svm & word_unigram & linear_svm & 0.060000 & 0.954279 & 0.939097 & 0.948276 & 0.812808 & 0.875332 & 0.026239 & 0.012736 & 0.014325 \\
+word_unigram__calibrated_linear_svm & word_unigram & calibrated_linear_svm & 0.420000 & 0.953030 & 0.930107 & 0.879397 & 0.862069 & 0.870647 & 0.069971 & 0.021483 & 0.029150 \\
+word_bigram__logistic_regression & word_bigram & logistic_regression & 0.420000 & 0.945834 & 0.915463 & 0.934911 & 0.778325 & 0.849462 & 0.032070 & 0.022038 & 0.023528 \\
+word_bigram__linear_svm & word_bigram & linear_svm & 0.050000 & 0.955687 & 0.931343 & 0.942197 & 0.802956 & 0.867021 & 0.029155 & 0.021486 & 0.025851 \\
+word_bigram__calibrated_linear_svm & word_bigram & calibrated_linear_svm & 0.510000 & 0.952268 & 0.921649 & 0.926966 & 0.812808 & 0.866142 & 0.037901 & 0.027591 & 0.031731 \\
+char_3_5__logistic_regression & char_3_5 & logistic_regression & 0.390000 & 0.967427 & 0.956307 & 0.925926 & 0.862069 & 0.892857 & 0.040816 & 0.079718 & 0.097406 \\
+char_3_5__linear_svm & char_3_5 & linear_svm & 0.080000 & 0.972224 & 0.963970 & 0.971429 & 0.837438 & 0.899471 & 0.014577 & 0.084803 & 0.095012 \\
+char_3_5__calibrated_linear_svm & char_3_5 & calibrated_linear_svm & 0.480000 & 0.969697 & 0.957061 & 0.956757 & 0.871921 & 0.912371 & 0.023324 & 0.100413 & 0.105282 \\
+char_3_6__logistic_regression & char_3_6 & logistic_regression & 0.380000 & 0.966637 & 0.956108 & 0.912371 & 0.871921 & 0.891688 & 0.049563 & 0.096915 & 0.105863 \\
+char_3_6__linear_svm & char_3_6 & linear_svm & 0.050000 & 0.970960 & 0.963266 & 0.966102 & 0.842365 & 0.900000 & 0.017493 & 0.090676 & 0.104708 \\
+char_3_6__calibrated_linear_svm & char_3_6 & calibrated_linear_svm & 0.460000 & 0.969352 & 0.957718 & 0.951613 & 0.871921 & 0.910026 & 0.026239 & 0.098172 & 0.129385 \\
+word_char_union__logistic_regression & word_char_union & logistic_regression & 0.430000 & 0.967427 & 0.952297 & 0.960452 & 0.837438 & 0.894737 & 0.020408 & 0.117650 & 0.140204 \\
+word_char_union__linear_svm & word_char_union & linear_svm & 0.050000 & 0.971980 & 0.957867 & 0.955801 & 0.852217 & 0.901042 & 0.023324 & 0.105270 & 0.120986 \\
+word_char_union__calibrated_linear_svm & word_char_union & calibrated_linear_svm & 0.500000 & 0.970170 & 0.951137 & 0.951087 & 0.862069 & 0.904393 & 0.026239 & 0.111840 & 0.126254 \\
 \bottomrule
 \end{tabular}

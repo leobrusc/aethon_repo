@@ -13,9 +13,18 @@
     "representation": "char_3_5",
     "classifier": "calibrated_linear_svm",
     "classifier_parameters": {
+      "base_estimator": {
+        "C": 1.0,
+        "class_weight": null,
+        "dual": "auto",
+        "fit_intercept": true,
+        "loss": "squared_hinge",
+        "max_iter": 1000,
+        "penalty": "l2",
+        "random_state": 42,
+        "tol": 0.0001
+      },
       "cv": 3,
-      "ensemble": "auto",
-      "estimator": "LinearSVC(random_state=42)",
       "method": "sigmoid",
       "n_jobs": 1
     },
@@ -44,13 +53,13 @@
       "ngram_range": "(3, 5)",
       "max_features": 5000,
       "classifier": "calibrated_linear_svm",
-      "classifier_parameters": "{\"cv\": 3, \"ensemble\": \"auto\", \"estimator\": \"LinearSVC(random_state=42)\", \"method\": \"sigmoid\", \"n_jobs\": 1}",
+      "classifier_parameters": "{\"base_estimator\": {\"C\": 1.0, \"class_weight\": null, \"dual\": \"auto\", \"fit_intercept\": true, \"loss\": \"squared_hinge\", \"max_iter\": 1000, \"penalty\": \"l2\", \"random_state\": 42, \"tol\": 0.0001}, \"cv\": 3, \"method\": \"sigmoid\", \"n_jobs\": 1}",
       "threshold": 0.48,
       "selection_criterion": "maximize OOF F1 subject to OOF FPR <= 0.10",
       "fpr_cap_analyses": "{\"0.05\": {\"rows\": 546, \"benign\": 343, \"adversarial\": 203, \"auroc\": 0.9696965344899395, \"auprc\": 0.9570611086194237, \"precision\": 0.9567567567567568, \"recall\": 0.8719211822660099, \"f1\": 0.9123711340206185, \"fpr\": 0.023323615160349854, \"tp\": 177, \"tn\": 335, \"fp\": 8, \"fn\": 26, \"status\": \"selected\", \"fpr_cap\": 0.05, \"threshold\": 0.48}, \"0.1\": {\"rows\": 546, \"benign\": 343, \"adversarial\": 203, \"auroc\": 0.9696965344899395, \"auprc\": 0.9570611086194237, \"precision\": 0.9567567567567568, \"recall\": 0.8719211822660099, \"f1\": 0.9123711340206185, \"fpr\": 0.023323615160349854, \"tp\": 177, \"tn\": 335, \"fp\": 8, \"fn\": 26, \"status\": \"selected\", \"fpr_cap\": 0.1, \"threshold\": 0.48}, \"0.15\": {\"rows\": 546, \"benign\": 343, \"adversarial\": 203, \"auroc\": 0.9696965344899395, \"auprc\": 0.9570611086194237, \"precision\": 0.9567567567567568, \"recall\": 0.8719211822660099, \"f1\": 0.9123711340206185, \"fpr\": 0.023323615160349854, \"tp\": 177, \"tn\": 335, \"fp\": 8, \"fn\": 26, \"status\": \"selected\", \"fpr_cap\": 0.15, \"threshold\": 0.48}}",
-      "mean_latency_ms": 0.08856606506024042,
-      "median_latency_ms": 0.08669724771907818,
-      "p95_latency_ms": 0.09803578981260606,
+      "mean_latency_ms": 0.09824456379830585,
+      "median_latency_ms": 0.10041272726084571,
+      "p95_latency_ms": 0.10528165135888272,
       "rows": 546,
       "benign": 343,
       "adversarial": 203,
@@ -78,15 +87,15 @@
         ],
         "objective": "maximize OOF F1 subject to FPR cap"
       },
-      "git_commit": "15c940791db5a41b9b45d065679fc5d7bcd917f7",
+      "git_commit": "a5d77f1b201af9cf7bd18f85ceda78b6ef08945f",
       "training_dataset": "prompt_injections_train"
     },
     "python_version": "3.10.11",
     "sklearn_version": "1.7.2",
-    "git_commit": "15c940791db5a41b9b45d065679fc5d7bcd917f7",
-    "timestamp_utc": "2026-09-09T20:00:42.285376+00:00"
+    "git_commit": "a5d77f1b201af9cf7bd18f85ceda78b6ef08945f",
+    "timestamp_utc": "2026-09-09T20:05:12.014191+00:00"
   },
   "target_llm_initialized": false,
   "phase1_artifacts_immutable": true,
-  "git_commit": "15c940791db5a41b9b45d065679fc5d7bcd917f7"
+  "git_commit": "a5d77f1b201af9cf7bd18f85ceda78b6ef08945f"
 }
