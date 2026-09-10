@@ -55,6 +55,14 @@ def main():
   if not (run/'manifest.json').exists(): raise SystemExit('--resume requires existing run-id')
   old=json.loads((run/'manifest.json').read_text());
   if old.get('fingerprint')!=fp: raise SystemExit('incompatible scientific fingerprint; refusing resume')
+  existing=load_checkpoint(run/'checkpoint'/'predictions.jsonl')
+  if len(existing)==len(df):
+   keys=set(existing)
+   if len(keys)!=len(df): raise SystemExit('checkpoint contains duplicate keys')
+   atomic_write(run/'final'/'baseline_per_prompt.csv',pd.DataFrame(existing.values()).to_csv(index=False))
+   write_state(run/'state.json',{'run_id':a.run_id,'status':'COMPLETE','expected_unique_records':len(df),'completed_unique_records':len(existing),'remaining_records':0,'duplicates':0,'fingerprint':fp,'last_checkpoint':str(run/'checkpoint'/'predictions.jsonl')})
+   print('[RESUME] checkpoint complete; finalized without detector initialization')
+   return
  elif (run/'manifest.json').exists(): raise SystemExit('run-id exists; use --resume')
  else: (run/'manifest.json').write_text(json.dumps({**cfg,'run_id':a.run_id,'fingerprint':fp},indent=2)); write_state(run/'state.json',{'run_id':a.run_id,'status':'CREATED','expected_unique_records':len(df),'completed_unique_records':0,'remaining_records':len(df),'duplicates':0,'fingerprint':fp,'last_checkpoint':None})
  signal.signal(signal.SIGINT,_signal); signal.signal(signal.SIGTERM,_signal)
