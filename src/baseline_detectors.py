@@ -15,10 +15,14 @@ class Prediction:
     token_count: int
 
 class TransformerDetector:
-    def __init__(self, model_id: str, malicious_labels=("malicious", "injection", "1"), max_length=512):
+    def __init__(self, model_id: str, malicious_labels=("malicious", "injection", "1"), max_length=512, device="auto", dtype="float32"):
         self.model_id, self.max_length = model_id, max_length
+        if device == "auto": device = "cuda" if torch.cuda.is_available() else "cpu"
+        if device == "cuda" and not torch.cuda.is_available(): raise RuntimeError("CUDA requested but unavailable")
+        if device not in {"cpu", "cuda"}: raise ValueError("device must be auto, cpu, or cuda")
+        self.device, self.dtype = torch.device(device), dtype
         self.tokenizer = AutoTokenizer.from_pretrained(model_id)
-        self.model = AutoModelForSequenceClassification.from_pretrained(model_id).to("cpu").eval()
+        self.model = AutoModelForSequenceClassification.from_pretrained(model_id).to(self.device).eval()
         self.malicious_labels = {str(x).lower() for x in malicious_labels}
         self.malicious_index = self._find_index()
         self.warmup_count = 0
@@ -35,21 +39,25 @@ class TransformerDetector:
     def _infer(self, prompt, timed=True):
         raw = self.tokenizer(prompt, return_tensors="pt", truncation=True, max_length=self.max_length)
         length = int(raw["input_ids"].shape[1])
+        raw = {k:v.to(self.device) for k,v in raw.items()}
+        if self.device.type == "cuda": torch.cuda.synchronize()
         with torch.inference_mode():
-            start = time.perf_counter(); out = self.model(**raw); elapsed = (time.perf_counter()-start)*1000 if timed else 0.0
+            start = time.perf_counter(); out = self.model(**raw)
+            if self.device.type == "cuda": torch.cuda.synchronize()
+            elapsed = (time.perf_counter()-start)*1000 if timed else 0.0
         probs = torch.softmax(out.logits, dim=-1)[0].cpu().numpy()
         return Prediction(float(probs[self.malicious_index]), int(np.argmax(probs) == self.malicious_index), elapsed, length >= self.max_length, length)
     def predict(self, prompt): return self._infer(prompt, timed=True)
     def predict_batch(self, prompts):
         raw = self.tokenizer(list(prompts), return_tensors="pt", truncation=True, max_length=self.max_length, padding=True)
         lengths = raw["attention_mask"].sum(dim=1).tolist()
-        with torch.inference_mode():
-            out = self.model(**raw)
+        raw = {k:v.to(self.device) for k,v in raw.items()}
+        with torch.inference_mode(): out = self.model(**raw)
         probs = torch.softmax(out.logits, dim=-1).cpu().numpy()
         return [(float(p[self.malicious_index]), int(np.argmax(p)==self.malicious_index), int(l>=self.max_length), int(l)) for p,l in zip(probs,lengths)]
 
 class PromptGuard22M(TransformerDetector):
-    def __init__(self): super().__init__("meta-llama/Llama-Prompt-Guard-2-22M", ("malicious",))
+    def __init__(self, device="auto"): super().__init__("meta-llama/Llama-Prompt-Guard-2-22M", ("malicious",), device=device)
 
 class ProtectAIV2(TransformerDetector):
-    def __init__(self): super().__init__("protectai/deberta-v3-base-prompt-injection-v2", ("1", "injection"))
+    def __init__(self, device="auto"): super().__init__("protectai/deberta-v3-base-prompt-injection-v2", ("1", "injection"), device=device)

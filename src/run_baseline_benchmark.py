@@ -8,8 +8,8 @@ from baseline_detectors import ProtectAIV2
 from dataset_loader import load_dataset
 DS=['prompt_injections_test','prompt_injection_core','jailbreakbench_behaviors','wildjailbreak_eval','notinject']; PROV={d:'source_ground_truth' for d in DS}; PROV['notinject']='benchmark_policy_label'
 def main():
- p=argparse.ArgumentParser();p.add_argument('--output-root',default='results/revision/baselines');p.add_argument('--smoke',action='store_true');a=p.parse_args();o=Path(a.output_root);o.mkdir(parents=True,exist_ok=True)
- try:d=ProtectAIV2()
+ p=argparse.ArgumentParser();p.add_argument('--output-root',default='results/revision/baselines');p.add_argument('--smoke',action='store_true');p.add_argument('--device',choices=['auto','cpu','cuda'],default='auto');p.add_argument('--auto-batch',action='store_true');p.add_argument('--resume',action='store_true');p.add_argument('--checkpoint-every',type=int,default=500);p.add_argument('--run-id',default='protectai');a=p.parse_args();o=Path(a.output_root);o.mkdir(parents=True,exist_ok=True)
+ try:d=ProtectAIV2(device=a.device)
  except Exception as e:(o/'baseline_manifest.json').write_text(json.dumps({'failures':[{'detector':'ProtectAI v2','error':f'{type(e).__name__}: {e}'}]},indent=2));return 2
  fs={x:load_dataset(x) for x in DS}; allf=pd.concat([fs[x] for x in DS],ignore_index=True); d.warmup(fs['prompt_injections_test'].prompt_text.head(20).tolist()); sub=allf.head(100); base=d.predict_batch(sub.prompt_text.tolist()); inv=[]
  for bs in [1,4,8,16]:
