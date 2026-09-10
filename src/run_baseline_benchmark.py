@@ -35,7 +35,7 @@ def run_records(df,detector,run,run_id,fp,batch_size,checkpoint_every,smoke=Fals
   for i in range(0,len(missing),batch_size):
    if STOP: flush(); return False
    batch=missing[i:i+batch_size]; vals=detector.predict_batch([str(x[0].prompt_text) for x in batch])
-   for (r,h),v in zip(batch,vals): pending.append({'run_id':run_id,'dataset':ds,'prompt_id':str(r.prompt_id),'prompt_sha256':h,'true_label':int(r.label),'label_provenance':PROV[ds],'detector':'ProtectAI v2','score':v[0],'prediction':v[1],'binary_decision_method':'argmax_softmax','token_count':v[3],'truncated':bool(v[2]),'device':str(detector.device),'dtype':'float32','batch_size':batch_size})
+   for (r,h),v in zip(batch,vals): pending.append({'run_id':run_id,'dataset':ds,'prompt_id':str(r.prompt_id),'prompt_sha256':h,'true_label':int(r.label),'label_provenance':PROV.get(ds,'source_ground_truth'),'detector':'ProtectAI v2','score':v[0],'prediction':v[1],'binary_decision_method':'argmax_softmax','token_count':v[3],'truncated':bool(v[2]),'device':str(detector.device),'dtype':'float32','batch_size':batch_size})
    if len(pending)>=checkpoint_every: flush()
   flush()
  return True
