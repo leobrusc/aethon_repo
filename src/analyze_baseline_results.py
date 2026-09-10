@@ -5,7 +5,13 @@ from pathlib import Path
 import pandas as pd
 from sklearn.metrics import *
 def main():
- p=argparse.ArgumentParser();p.add_argument('predictions');p.add_argument('--output-root',required=True);a=p.parse_args(); df=pd.read_csv(a.predictions); out=Path(a.output_root);out.mkdir(parents=True,exist_ok=True)
+ p=argparse.ArgumentParser();p.add_argument('predictions',nargs='?');p.add_argument('--run-id');p.add_argument('--output-root',required=True);a=p.parse_args(); out=Path(a.output_root);out.mkdir(parents=True,exist_ok=True)
+ if a.run_id:
+  run=out/'runs'/a.run_id; st=__import__('json').loads((run/'state.json').read_text());
+  if st.get('status')!='COMPLETE': raise SystemExit('Refusing analysis: run is not COMPLETE')
+  a.predictions=str(run/'final'/'baseline_per_prompt.csv')
+ if not a.predictions: raise SystemExit('provide predictions or --run-id')
+ df=pd.read_csv(a.predictions)
  if 'run_status' in df.columns and (df.run_status=='PARTIAL').any(): raise SystemExit('Refusing publication analysis for PARTIAL run')
  rows=[]
  for (det,ds),g in df.groupby(['detector','dataset']):
