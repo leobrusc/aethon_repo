@@ -40,6 +40,13 @@ class TransformerDetector:
         probs = torch.softmax(out.logits, dim=-1)[0].cpu().numpy()
         return Prediction(float(probs[self.malicious_index]), int(np.argmax(probs) == self.malicious_index), elapsed, length >= self.max_length, length)
     def predict(self, prompt): return self._infer(prompt, timed=True)
+    def predict_batch(self, prompts):
+        raw = self.tokenizer(list(prompts), return_tensors="pt", truncation=True, max_length=self.max_length, padding=True)
+        lengths = raw["attention_mask"].sum(dim=1).tolist()
+        with torch.inference_mode():
+            out = self.model(**raw)
+        probs = torch.softmax(out.logits, dim=-1).cpu().numpy()
+        return [(float(p[self.malicious_index]), int(np.argmax(p)==self.malicious_index), int(l>=self.max_length), int(l)) for p,l in zip(probs,lengths)]
 
 class PromptGuard22M(TransformerDetector):
     def __init__(self): super().__init__("meta-llama/Llama-Prompt-Guard-2-22M", ("malicious",))
