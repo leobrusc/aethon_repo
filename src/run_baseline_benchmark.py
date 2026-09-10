@@ -8,6 +8,17 @@ from baseline_reliability import fingerprint,append_checkpoint,load_checkpoint,w
 from dataset_loader import load_dataset
 DS=['prompt_injections_test','prompt_injection_core','jailbreakbench_behaviors','wildjailbreak_eval','notinject'];PROV={d:'source_ground_truth' for d in DS};PROV['notinject']='benchmark_policy_label'
 STOP=False
+def select_batch_size(probe, candidates):
+    """Return highest-throughput successful candidate; probe(batch)->seconds."""
+    import torch
+    results=[]
+    for size in candidates:
+        try:
+            elapsed=float(probe(size)); results.append((size,elapsed))
+        except (torch.cuda.OutOfMemoryError, MemoryError):
+            if torch.cuda.is_available(): torch.cuda.empty_cache()
+    if not results: raise RuntimeError('no auto-batch candidate succeeded')
+    return max(results,key=lambda x:x[0]/x[1])[0], results
 def _signal(*_):
  global STOP; STOP=True
 def run_records(df,detector,run,run_id,fp,batch_size,checkpoint_every,smoke=False):
