@@ -8,6 +8,29 @@ from sklearn.neighbors import NearestNeighbors
 from unified_detector_benchmark import DATASET_ROLES
 from dataset_loader import load_dataset
 def norm(x):return re.sub(r'\s+',' ',unicodedata.normalize('NFKC',str(x)).lower().strip())
+def build_near_duplicate_summary(csv_path,output_json_path,threshold=.98):
+ d=pd.read_csv(csv_path); d=d[d.cosine_similarity>=threshold]; out={'threshold':threshold,'pair_rows':len(d),'unique_prompt_pairs':len(d.drop_duplicates(['split_a','prompt_id_a','split_b','prompt_id_b'])),'train_validation_pairs':int(((d.split_a=='train')&(d.split_b=='validation')).sum()),'train_final_pairs':int(((d.split_a=='train')&(d.split_b=='final_test')).sum()),'validation_final_pairs':int(((d.split_a=='validation')&(d.split_b=='final_test')).sum()),'max_similarity':float(d.cosine_similarity.max()) if len(d) else None,'exact_duplicates_excluded':False,'requires_scientific_review':bool((((d.split_a=='train')&(d.split_b=='final_test'))|((d.split_a=='validation')&(d.split_b=='final_test'))).any())};json.dump(out,open(output_json_path,'w'),indent=2);return out
+def build_layer_overlap_summary(path,out):
+ d=pd.read_csv(path)
+ for _,r in d.iterrows(): assert int(r.L1_only_hits+r.L2_only_hits+r.both_hit+r.both_miss)==int(r.adversarial_n)
+ z={'total_L1_only_hits':int(d.L1_only_hits.sum()),'total_L2_only_hits':int(d.L2_only_hits.sum()),'total_both_hit':int(d.both_hit.sum()),'total_both_miss':int(d.both_miss.sum()),'total_L1_only_fp':int(d.L1_only_fp.sum()),'total_L2_only_fp':int(d.L2_only_fp.sum()),'total_both_fp':int(d.both_fp.sum()),'L1_adds_unique_true_positives':bool(d.L1_only_hits.sum()>0),'L1_adds_unique_false_positives':bool(d.L1_only_fp.sum()>0)};json.dump(z,open(out,'w'),indent=2);return z
+def build_false_positive_summary(path,out):
+ d=pd.read_csv(path);r=d.loc[d.B3_fpr.idxmax()];z={'highest_B3_FPR_dataset':r.dataset,'highest_B3_FPR':float(r.B3_fpr)};json.dump(z,open(out,'w'),indent=2);return z
+def validate_latency_summary(path):
+ d=pd.read_csv(path);assert set(['B1','B2','B3','B4'])<=set(d.condition);cols=['n','mean_ms','std_ms','p50_ms','p95_ms','p99_ms'];assert all(np.isfinite(d[cols].to_numpy()).ravel());assert (d.n>0).all();assert (d.p50_ms<=d.p95_ms).all() and (d.p95_ms<=d.p99_ms).all();return True
+def validate_telemetry_overhead(path,per_prompt_path=None):
+ d=json.load(open(path));assert abs(d['delta_p50_ms']-(d['B4_p50_ms']-d['B3_p50_ms']))<1e-9;assert abs(d['delta_p99_ms']-(d['B4_p99_ms']-d['B3_p99_ms']))<1e-9;return True
+def compute_harness_readiness(flags,out):
+ z=dict(flags);z['publication_ready']=False;z['full_dataset_run']=False;z['no_row_limit']=False;z['harness_ready_for_full_benchmark']=all(flags.values());json.dump(z,open(out,'w'),indent=2);return z
+def build_layer_overlap_from_per_prompt(per_prompt_path,output_csv_path,output_summary_path):
+ d=pd.read_csv(per_prompt_path); rows=[]
+ for ds,g in d.groupby('dataset'):
+  piv=g.pivot_table(index=['prompt_id','ground_truth'],columns='condition',values=['heuristic_H','calibrated_probability_p','threshold_tau'],aggfunc='first').reset_index();
+  h=piv[('heuristic_H','B3')].fillna(0).astype(int).to_numpy(); p=piv[('calibrated_probability_p','B2')].to_numpy(); tau=piv[('threshold_tau','B2')].to_numpy(); y=piv['ground_truth'].to_numpy(); l2=p>=tau; adv=y==1;ben=~adv
+  l1only=int((adv&(h==1)&~l2).sum());l2only=int((adv&(h==0)&l2).sum());both=int((adv&(h==1)&l2).sum());miss=int((adv&(h==0)&~l2).sum());a_n=int(adv.sum());assert l1only+l2only+both+miss==a_n
+  l1f=int((ben&(h==1)&~l2).sum());l2f=int((ben&(h==0)&l2).sum());bf=int((ben&(h==1)&l2).sum());b_n=int(ben.sum());
+  rows.append({'dataset':ds,'adversarial_n':a_n,'L1_only_hits':l1only,'L2_only_hits':l2only,'both_hit':both,'both_miss':miss,'benign_n':b_n,'L1_only_fp':l1f,'L2_only_fp':l2f,'both_fp':bf,'delta_tp_B3_vs_B2':l1only,'delta_tpr_B3_vs_B2':l1only/a_n if a_n else None,'delta_fp_B3_vs_B2':l1f,'delta_fpr_B3_vs_B2':l1f/b_n if b_n else None})
+ out=pd.DataFrame(rows);out.to_csv(output_csv_path,index=False);summary={'total_adversarial_n':int(out.adversarial_n.sum()),'total_benign_n':int(out.benign_n.sum()),'total_L1_only_hits':int(out.L1_only_hits.sum()),'total_L2_only_hits':int(out.L2_only_hits.sum()),'total_both_hit':int(out.both_hit.sum()),'total_both_miss':int(out.both_miss.sum()),'total_L1_only_fp':int(out.L1_only_fp.sum()),'total_L2_only_fp':int(out.L2_only_fp.sum()),'total_both_fp':int(out.both_fp.sum()),'delta_tp_B3_vs_B2':int(out.delta_tp_B3_vs_B2.sum()),'delta_fp_B3_vs_B2':int(out.delta_fp_B3_vs_B2.sum()),'L1_adds_unique_true_positives':bool(out.L1_only_hits.sum()>0),'L1_adds_unique_false_positives':bool(out.L1_only_fp.sum()>0)};json.dump(summary,open(output_summary_path,'w'),indent=2);return out,summary
 def main():
  root=Path('results'); tab=root/'tables'/'smoke_complete';diag=root/'diagnostics';tab.mkdir(parents=True,exist_ok=True);diag.mkdir(parents=True,exist_ok=True); src=pd.read_csv(root/'tables'/'smoke_diagnostic_complete'/'per_dataset_metrics.csv') if (root/'tables'/'smoke_diagnostic_complete'/'per_dataset_metrics.csv').exists() else pd.DataFrame()
  # canonical metrics from existing smoke evaluator when available

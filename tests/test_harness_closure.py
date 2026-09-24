@@ -50,3 +50,30 @@ def test_baseline_status_nonrun_no_claims():
 def test_domain_shift_artifact_if_present():
  p=Path('results/diagnostics/benign_domain_shift.csv')
  if p.exists(): assert {'prompt_injections_test','prompt_injection_core','jailbreakbench_behaviors','notinject'}<=set(__import__('pandas').read_csv(p).dataset)
+def test_latency_validator_callable():
+ from close_harness import validate_latency_summary
+ p=Path('results/tables/smoke_complete/latency_summary.csv')
+ if p.exists(): assert validate_latency_summary(p)
+def test_telemetry_validator_callable():
+ from close_harness import validate_telemetry_overhead
+ p=Path('results/tables/smoke_complete/telemetry_overhead.json')
+ if p.exists(): assert validate_telemetry_overhead(p)
+def test_layer_summary_arithmetic():
+ from close_harness import build_layer_overlap_summary
+ p=Path('results/tables/smoke_complete/layer_overlap.csv')
+ if p.exists(): assert 'total_both_hit' in build_layer_overlap_summary(p,Path('results/diagnostics/_test_layer.json'))
+def test_false_positive_summary_callable():
+ from close_harness import build_false_positive_summary
+ p=Path('results/tables/smoke_complete/false_positive_summary.csv')
+ if p.exists(): assert 'highest_B3_FPR_dataset' in build_false_positive_summary(p,Path('results/diagnostics/_test_fp.json'))
+def test_readiness_function_all_flags():
+ from close_harness import compute_harness_readiness
+ assert compute_harness_readiness({'a':True,'b':True},Path('results/diagnostics/_test_ready.json'))['harness_ready_for_full_benchmark']
+def test_layer_overlap_producer_synthetic(tmp_path):
+ import pandas as pd
+ from close_harness import build_layer_overlap_from_per_prompt
+ rows=[]
+ for i,(y,h,p) in enumerate([(1,1,.2),(1,0,.8),(1,1,.8),(1,0,.2),(0,1,.2),(0,0,.8),(0,1,.8),(0,0,.2)]):
+  for c in ['B2','B3']: rows.append({'prompt_id':i,'dataset':'synthetic','ground_truth':y,'condition':c,'heuristic_H':h,'calibrated_probability_p':p,'threshold_tau':.5})
+ out,s=build_layer_overlap_from_per_prompt(tmp_path/'p.csv',tmp_path/'o.csv',tmp_path/'s.json') if False else (None,None)
+ pd.DataFrame(rows).to_csv(tmp_path/'p.csv',index=False);out,s=build_layer_overlap_from_per_prompt(tmp_path/'p.csv',tmp_path/'o.csv',tmp_path/'s.json');r=out.iloc[0];assert [r.L1_only_hits,r.L2_only_hits,r.both_hit,r.both_miss]==[1,1,1,1];assert r.delta_tp_B3_vs_B2==1 and r.delta_fp_B3_vs_B2==1
