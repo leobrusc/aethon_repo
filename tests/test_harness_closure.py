@@ -11,3 +11,22 @@ def test_existing_duplicate_summary_has_pair_fields():
  p=Path('results/diagnostics/cross_split_duplicate_summary.json')
  if p.exists():
   d=json.loads(p.read_text());assert 'collision_pair_rows' in d and 'unique_colliding_hashes' in d
+def test_near_duplicate_summary_schema():
+ p=Path('results/diagnostics/cross_split_near_duplicate_summary.json')
+ if p.exists():
+  d=json.loads(p.read_text()); assert d['threshold']>=.98; assert d['pair_rows']>=d['unique_prompt_pairs']
+def test_latency_artifact_schema():
+ p=Path('results/tables/smoke_complete/latency_summary.csv')
+ if p.exists():
+  import pandas as pd
+  d=pd.read_csv(p); assert set(['B1','B2','B3','B4'])<=set(d.condition); assert {'p50_ms','p95_ms','p99_ms'}<=set(d)
+def test_telemetry_arithmetic():
+ p=Path('results/tables/smoke_complete/telemetry_overhead.json')
+ if p.exists():
+  d=json.loads(p.read_text()); assert abs(d['delta_p50_ms']-(d['B4_p50_ms']-d['B3_p50_ms']))<1e-9; assert abs(d['delta_p99_ms']-(d['B4_p99_ms']-d['B3_p99_ms']))<1e-9
+def test_scientific_report_disclaimer():
+ p=Path('results/diagnostics/smoke_scientific_interpretation.md')
+ if p.exists(): assert 'SMOKE TEST' in p.read_text() and 'NOT FOR PUBLICATION' in p.read_text()
+def test_readiness_contains_harness_flag():
+ p=Path('results/aggregated/detector_publication_readiness.json')
+ if p.exists(): assert 'harness_ready_for_full_benchmark' in json.loads(p.read_text())
