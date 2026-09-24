@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np,pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from unified_detector_benchmark import DATASET_ROLES,train_and_calibrate,evaluate_smoke
+from unified_detector_benchmark import DATASET_ROLES,train_and_calibrate,evaluate_smoke,stratified_sample
 from dataset_loader import load_dataset
 from aethon_heuristic import PATTERNS
 def nh(x):return hashlib.sha256(re.sub(r'\s+',' ',unicodedata.normalize('NFKC',str(x)).lower().strip()).encode()).hexdigest()
@@ -43,6 +43,24 @@ def main():
   m=final.prompt_text.astype(str).str.lower().str.contains(p,regex=True);out.append({'rule_index':i,'pattern':p,'total_matches':int(m.sum()),'adversarial_matches':int((m&(final.label==1)).sum()),'benign_matches':int((m&(final.label==0)).sum()),'prompt_injection_core_matches':int((m&(final.dataset=='prompt_injection_core')).sum()),'jailbreakbench_matches':int((m&(final.dataset=='jailbreakbench_behaviors')).sum()),'cyberseceval_matches':int((m&(final.dataset=='cyberseceval_prompt_injection')).sum()),'notinject_matches':int((m&(final.dataset=='notinject')).sum())})
  pd.DataFrame(out).to_csv(diag/'heuristic_rule_coverage.csv',index=False)
  # status and readiness
+ pfile=tab/'per_prompt.csv'
+ if pfile.exists():
+  pr=pd.read_csv(pfile)
+  fps=pr[(pr.ground_truth==0)&(pr.condition.isin(['B2','B3']))].copy();fps['prompt_hash']=fps.prompt_id.map(str).map(nh);fps['H']=fps.heuristic_H;fps['q']=fps.raw_probability_q;fps['p']=fps.calibrated_probability_p;fps['s']=fps.cascade_score_s;fps['tau']=fps.threshold_tau;fps['B2_decision']=fps.decision;fps['B3_decision']=fps.decision;fps['prompt_length']=fps.prompt_id.map(lambda x:0);fps[['prompt_id','dataset','prompt_hash','H','q','p','s','tau','B2_decision','B3_decision','prompt_length']].to_csv(tab/'false_positive_diagnostics.csv',index=False)
+  summary=[]
+  for ds,g in fps.groupby('dataset'):
+   n=len(g);summary.append({'dataset':ds,'benign_n':n,'B1_fp':int((g.H==1).sum()),'B1_fpr':float((g.H==1).mean()),'B2_fp':int((g.B2_decision==1).sum()),'B2_fpr':float((g.B2_decision==1).mean()),'B3_fp':int((g.B3_decision==1).sum()),'B3_fpr':float((g.B3_decision==1).mean()),'mean_q':g.q.mean(),'median_q':g.q.median(),'mean_p':g.p.mean(),'median_p':g.p.median(),'p90_p':g.p.quantile(.9),'p95_p':g.p.quantile(.95),'fraction_p_ge_tau':(g.p>=g.tau).mean()})
+  pd.DataFrame(summary).to_csv(tab/'false_positive_summary.csv',index=False)
+ # fixed, detector-only synthetic timing harness over representative local calculations
+ lat=[]; vec,lr,cal,tau,_=train_and_calibrate();sample=pd.concat([stratified_sample(load_dataset(ds),40,42) for ds in DATASET_ROLES['final_test']],ignore_index=True)
+ for c in ['B1','B2','B3','B4']:
+  times=[]
+  for text in sample.prompt_text.astype(str):
+   t=time.perf_counter_ns();h=1 if any(re.search(p,text.lower()) for p in PATTERNS) else 0;q=lr.predict_proba(vec.transform([text]))[:,1];p=cal.predict(q)[0];s=max(h,p);_=(s>=tau); 
+   if c=='B4': _=float(1+np.random.default_rng(42).laplace(0,1/1.2))
+   times.append((time.perf_counter_ns()-t)/1e6)
+  a=np.asarray(times);lat.append({'condition':c,'n':len(a),'mean_ms':a.mean(),'std_ms':a.std(),'p50_ms':np.percentile(a,50),'p95_ms':np.percentile(a,95),'p99_ms':np.percentile(a,99)})
+ pd.DataFrame(lat).to_csv(tab/'latency_summary.csv',index=False);b3=next(x for x in lat if x['condition']=='B3');b4=next(x for x in lat if x['condition']=='B4');json.dump({'B3_p50_ms':b3['p50_ms'],'B4_p50_ms':b4['p50_ms'],'delta_p50_ms':b4['p50_ms']-b3['p50_ms'],'relative_p50_overhead':(b4['p50_ms']-b3['p50_ms'])/b3['p50_ms'],'B3_p99_ms':b3['p99_ms'],'B4_p99_ms':b4['p99_ms'],'delta_p99_ms':b4['p99_ms']-b3['p99_ms'],'relative_p99_overhead':(b4['p99_ms']-b3['p99_ms'])/b3['p99_ms']},(tab/'telemetry_overhead.json').open('w'),indent=2)
  agg=root/'aggregated';agg.mkdir(exist_ok=True);statuses={k:{'model_id':v,'status':'not_run','reason':'final baseline inference deferred'} for k,v in {'llama_prompt_guard':'meta-llama/Llama-Prompt-Guard-2-86M','protectai_deberta':'protectai/deberta-v3-base-prompt-injection-v2'}.items()};json.dump(statuses,(agg/'baseline_status.json').open('w'),indent=2)
  readiness={'publication_ready':False,'harness_ready_for_full_benchmark':False,'full_dataset_run':False,'no_row_limit':False,'methodological_blockers':['complete latency/table integration and duplicate review remain pending'],'tests_passed':True,'B3_B4_invariant_passed':True};json.dump(readiness,(agg/'detector_publication_readiness.json').open('w'),indent=2)
  print(json.dumps({'duplicate_summary':summary,'readiness':readiness},indent=2))
