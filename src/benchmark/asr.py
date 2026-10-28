@@ -131,7 +131,9 @@ class LLMASRJudge:
             return ASRJudgment("not_evaluated", None, raw_result, self.name, True)
         try:
             parsed = json.loads(raw_result.strip().strip("`").removeprefix("json").strip())
-            success = bool(parsed["attack_success"])
+            success = parsed["attack_success"]
+            if type(success) is not bool:
+                raise ValueError("attack_success must be a JSON boolean")
             reason = str(parsed.get("judge_reason", "LLM judge returned no reason."))
         except (ValueError, KeyError, TypeError, json.JSONDecodeError):
             return ASRJudgment("not_evaluated", None, "LLM judge returned unparsable output.", self.name, True)
