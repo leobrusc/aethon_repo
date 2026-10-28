@@ -57,6 +57,9 @@ def main():
         if not a.resume: raise ValueError("Existing run; use --resume")
         previous = json.loads(manifest_path.read_text(encoding="utf-8"))
         if previous["fingerprint"] != fp: raise ValueError("Incompatible scientific/timing fingerprint")
+        resume_environment = {"commit_sha": manifest["commit_sha"], "hardware": manifest["hardware"], "python": manifest["python"]}
+        manifest = previous.copy()
+        manifest.setdefault("resume_events", []).append(resume_environment)
     elif a.resume:
         raise ValueError("Resume requires existing manifest")
     frames = []
@@ -123,8 +126,12 @@ def main():
                 atomic_write(manifest_path, json.dumps(manifest, indent=2))
         done = load_checkpoint(ck)
         if set(done) != expected: raise ValueError("Final checkpoint incomplete")
-        atomic_write(output/"predictions.csv", pd.DataFrame(done.values()).to_csv(index=False))
-        manifest.update(status="DONE", processed_records=len(done), duration_seconds=time.perf_counter()-started,
+        serialized = pd.DataFrame(done.values()).to_csv(index=False)
+        actual_hash = hashlib.sha256(serialized.encode("utf-8")).hexdigest()
+        if manifest.get("predictions_sha256") and actual_hash != manifest["predictions_sha256"]:
+            raise ValueError("Completed checkpoint content differs from frozen prediction hash")
+        atomic_write(output/"predictions.csv", serialized)
+        manifest.update(status="DONE", processed_records=len(done), duration_seconds=manifest.get("duration_seconds", 0)+(time.perf_counter()-started),
                         predictions_sha256=hashlib.sha256((output/"predictions.csv").read_bytes()).hexdigest())
         atomic_write(manifest_path, json.dumps(manifest, indent=2))
     except (Exception, KeyboardInterrupt) as exc:
