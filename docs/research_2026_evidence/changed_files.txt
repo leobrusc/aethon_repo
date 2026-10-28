@@ -1,3 +1,4 @@
+.gitattributes
 BENCHMARK_STATUS.md
 configs/research_2026/baselines.json
 configs/research_2026/prospective_targets.json
@@ -47,6 +48,7 @@ scripts/compare_research_smoke.py
 scripts/export_research_evidence.py
 scripts/validate_historical_decisions.py
 scripts/validate_research_baseline.py
+scripts/verify_research_evidence.py
 src/analysis_utils.py
 src/baseline_detectors.py
 src/benchmark/asr.py

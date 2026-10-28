@@ -54,6 +54,10 @@ O inventário completo está em
 Evidências públicas sem textos estão em
 [`research_2026_evidence/index.json`](research_2026_evidence/index.json), com hashes.
 Os diretórios completos locais ficam em `results/research_2026/`, ignorados pelo Git.
+`.gitattributes` preserva os bytes das evidências entre Windows/Linux sem alterar
+as regras LFS existentes. `scripts/verify_research_evidence.py --git-tree HEAD`
+verifica hashes do checkout e dos blobs commitados. Espaços válidos gerados pelo
+Matplotlib no SVG são preservados para manter a identidade do artefato.
 O inventário de versões observado está em `local-environment.txt`; não é um lock
 portável para GPU. Ambiente: Windows, Python 3.10.11, NumPy 2.2.6, pandas 2.3.3,
 scikit-learn 1.7.2, transformers 4.46.3 e torch 2.12.0; CPU/hardware nos manifests.

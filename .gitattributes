@@ -1,1 +1,5 @@
 *.jsonl filter=lfs diff=lfs merge=lfs -text
+# Preserve scientific evidence hashes across Windows/Linux checkouts.
+docs/research_2026_evidence/** -text whitespace=cr-at-eol
+# Matplotlib path elements contain valid trailing spaces; retain original bytes.
+docs/research_2026_evidence/nested/diagnostic_curves.svg whitespace=cr-at-eol,-blank-at-eol

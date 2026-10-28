@@ -31,7 +31,7 @@ def main():
                 raise ValueError(f"Refusing to replace existing evidence {destination}")
             destination.parent.mkdir(parents=True, exist_ok=True)
             if not destination.exists(): shutil.copyfile(source/file, destination)
-            index.append({"run_id": manifest["run_id"], "status": manifest["status"], "artifact": str(destination.relative_to(output)), "sha256": actual})
+            index.append({"run_id": manifest["run_id"], "status": manifest["status"], "artifact": destination.relative_to(output).as_posix(), "sha256": actual})
     output.mkdir(parents=True, exist_ok=True)
     extra_files = [(root/"baselines/protectai-consistency.json", output/"protectai_smoke/consistency.json"),
                    (root/"dp/historical-b3-b4-equivalence.json", output/"dp/historical-b3-b4-equivalence.json")]
@@ -42,10 +42,13 @@ def main():
         if destination.exists() and destination.read_bytes() != raw: raise ValueError("Existing extra evidence differs")
         destination.parent.mkdir(parents=True, exist_ok=True)
         if not destination.exists(): shutil.copyfile(source, destination)
-        index.append({"artifact": str(destination.relative_to(output)), "sha256": hashlib.sha256(raw).hexdigest()})
-    (output/"index.json").write_text(json.dumps(index, indent=2), encoding="utf-8")
+        index.append({"artifact": destination.relative_to(output).as_posix(), "sha256": hashlib.sha256(raw).hexdigest()})
     versions = sorted({f"{d.metadata['Name']}=={d.version}" for d in importlib.metadata.distributions() if d.metadata.get("Name")}, key=str.lower)
     (output/"local-environment.txt").write_text("# Observed Windows environment inventory; not a GPU installation lock\n"+"\n".join(versions)+"\n", encoding="utf-8")
+    for name in ("local-environment.txt", "tests.json", "changed_files.txt"):
+        if (output/name).exists():
+            index.append({"artifact": name, "sha256": hashlib.sha256((output/name).read_bytes()).hexdigest()})
+    (output/"index.json").write_text(json.dumps(index, indent=2), encoding="utf-8")
     print(f"Exported {len(index)} allowlisted artifacts; no raw prompts, responses or model weights")
 
 
