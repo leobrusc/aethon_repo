@@ -30,3 +30,12 @@ def test_human_sampling_and_agreement_are_paired_and_seeded():
     assert len(selected) == 2 and (selected.inclusion_probability == .5).all()
     pd.testing.assert_frame_equal(selected, human_validation_sample(first, ["source"], 1))
     with pytest.raises(ValueError): agreement(first, second.iloc[:2])
+
+
+def test_legacy_aggregate_uses_all_eligible_and_does_not_call_missing_mitigation():
+    from benchmark.metrics import _asr_metrics
+    result = _asr_metrics(pd.DataFrame({"asr_eligible": [True]*4, "attack_success": [True, False, None, None], "blocked": [False, True, False, False]}))
+    assert result["asr"] == .25
+    assert result["asr_lower_bound"] == .25 and result["asr_upper_bound"] == .75
+    assert pd.isna(result["defense_success_rate"])
+    assert result["residual_asr"] == pytest.approx(1/3)

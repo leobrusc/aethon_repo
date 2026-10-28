@@ -3,6 +3,7 @@
 Synthetic draws assess the noise mechanism, not a privacy audit of stored text.
 """
 import argparse
+import hashlib
 import json
 import platform
 import subprocess
@@ -44,14 +45,27 @@ def main():
     p.add_argument("--output", default="results/research_2026/dp"); p.add_argument("--draws", type=int, default=10000)
     p.add_argument("--seed", type=int, default=2026); a = p.parse_args()
     output = Path(a.output)/a.run_id
-    if output.exists(): raise ValueError("Refusing to overwrite existing timing study; use a new run ID")
+    configuration = {"draws": a.draws, "seed": a.seed, "epsilon": [.5, 1.2, 2.5],
+                     "implementation_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "numpy": np.__version__}
+    fp = hashlib.sha256(json.dumps(configuration, sort_keys=True).encode()).hexdigest()
+    manifest_path = output/"manifest.json"
+    if manifest_path.exists():
+        old = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if old.get("fingerprint") != fp: raise ValueError("Existing timing study has different parameters or implementation")
+        if old["status"] == "DONE":
+            for name, sha in old["artifact_hashes"].items():
+                if hashlib.sha256((output/name).read_bytes()).hexdigest() != sha: raise ValueError("Artifact hash mismatch")
+            print(json.dumps(old, indent=2)); return
+    atomic_write(manifest_path, json.dumps({"run_id": a.run_id, "status": "RUNNING", "configuration": configuration,
+                                            "fingerprint": fp, "checkpoint": "restart deterministic simulation on interruption"}, indent=2))
     started = time.perf_counter()
     rows = [utility(e, draws=a.draws, seed=a.seed) for e in (.5, 1.2, 2.5)]
     f = pd.DataFrame(rows)
     for name, value in (("utility.csv", f.to_csv(index=False)), ("utility.json", json.dumps(rows, indent=2)),
                         ("utility.tex", f.to_latex(index=False)), ("utility.md", "# Synthetic DP utility\n\n"+f.to_string(index=False))):
         atomic_write(output/name, value)
-    atomic_write(output/"manifest.json", json.dumps({"run_id": a.run_id, "status": "DONE",
+    atomic_write(output/"manifest.json", json.dumps({"run_id": a.run_id, "status": "DONE", "fingerprint": fp, "configuration": configuration,
+        "artifact_hashes": {n: hashlib.sha256((output/n).read_bytes()).hexdigest() for n in ("utility.csv", "utility.json", "utility.tex", "utility.md")},
         "experiment": "synthetic noise Monte Carlo, no model inference or private dataset",
         "commit_sha": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
         "git_dirty": bool(subprocess.check_output(["git", "status", "--porcelain"], text=True)),

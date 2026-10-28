@@ -18,6 +18,7 @@ class Prediction:
 class TransformerDetector:
     def __init__(self, model_id: str, malicious_labels=("malicious", "injection", "1"), max_length=512, device="auto", dtype="float32", revision=None, local_files_only=False):
         self.model_id, self.max_length = model_id, max_length
+        if dtype != "float32": raise ValueError("Only verified float32 inference is supported")
         if device == "auto": device = "cuda" if torch.cuda.is_available() else "cpu"
         if device == "cuda" and not torch.cuda.is_available(): raise RuntimeError("CUDA requested but unavailable")
         if device not in {"cpu", "cuda"}: raise ValueError("device must be auto, cpu, or cuda")

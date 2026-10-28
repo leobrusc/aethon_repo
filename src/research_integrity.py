@@ -29,6 +29,11 @@ def digest(text):
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
+def implementation_hashes(*paths):
+    return {str(Path(path).relative_to(Path(__file__).resolve().parent)): hashlib.sha256(Path(path).read_bytes()).hexdigest()
+            for path in paths}
+
+
 def inventory(frames):
     rows, texts = [], []
     for dataset, frame in frames.items():
@@ -93,7 +98,9 @@ def main():
     started = time.perf_counter()
     names = ["prompt_injections_train", *EVALUATION_DATASETS]
     metadata = [get_dataset_metadata(name) for name in names]
-    config = {"datasets": metadata, "similarity": args.similarity, "schema": 1}
+    config = {"datasets": metadata, "similarity": args.similarity, "schema": 2,
+              "implementation": implementation_hashes(__file__, Path(__file__).with_name("dataset_loader.py")),
+              "dependencies": {p: importlib.metadata.version(p) for p in ("numpy", "pandas", "scikit-learn")}}
     fingerprint = digest(json.dumps(config, sort_keys=True))
     output = Path(args.output) / args.run_id
     manifest_path = output / "manifest.json"

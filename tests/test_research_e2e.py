@@ -14,7 +14,8 @@ def test_pairing_resume_and_technical_failures(tmp_path, monkeypatch):
             return "[INFER_ERROR] unavailable" if prompt == "error" else "response needing objective review"
     rows = [{"row_id": "a", "prompt_text": "request", "attack_objective": "objective", "label": 1, "b3_blocked": True},
             {"row_id": "b", "prompt_text": "error", "attack_objective": "objective", "label": 1, "b3_blocked": False}]
-    retention = {"custodian": "test", "delete_after": str(date.today()+timedelta(days=1)), "access_control_verified": True}
+    retention = {"custodian": "test", "delete_after": str(date.today()+timedelta(days=1)), "access_control_verified": True,
+                 "target_revision": "stub-v1", "detector_sha256": "stub-detector-hash"}
     driver = Driver()
     first = research_e2e.run_pairs(rows, driver, tmp_path/"private", retention=retention)
     assert driver.calls == 3

@@ -60,22 +60,28 @@ class BenchmarkMiddleware:
         ml_score: Optional[float] = None
         detection_score: Optional[float] = None
         noisy_count: Optional[float] = None
-        heuristic_ms = classifier_ms = audit_ms = 0.0
+        heuristic_ms = classifier_ms = audit_ms = decision_ms = 0.0
 
         if condition == "B0":
+            stage_started = time.perf_counter()
             blocked = False
+            decision_ms = (time.perf_counter()-stage_started)*1000
         elif condition == "B1":
             stage_started = time.perf_counter()
             heuristic_flag = is_adversarial_heuristic(prompt)
             heuristic_ms = (time.perf_counter()-stage_started)*1000
+            stage_started = time.perf_counter()
             blocked = heuristic_flag
             detection_score = float(heuristic_flag)
+            decision_ms = (time.perf_counter()-stage_started)*1000
         elif condition == "B2":
             stage_started = time.perf_counter()
             ml_prediction, ml_score = self._predict_ml(prompt)
             classifier_ms = (time.perf_counter()-stage_started)*1000
+            stage_started = time.perf_counter()
             detection_score = ml_score if ml_score is not None else float(ml_prediction)
             blocked = ml_prediction == 1
+            decision_ms = (time.perf_counter()-stage_started)*1000
         elif condition in {"B3", "B4"}:
             stage_started = time.perf_counter()
             heuristic_flag = is_adversarial_heuristic(prompt)
@@ -83,8 +89,10 @@ class BenchmarkMiddleware:
             stage_started = time.perf_counter()
             ml_prediction, ml_score = self._predict_ml(prompt)
             classifier_ms = (time.perf_counter()-stage_started)*1000
+            stage_started = time.perf_counter()
             blocked = heuristic_flag or ml_prediction == 1
             detection_score = max(float(heuristic_flag), ml_score if ml_score is not None else float(ml_prediction))
+            decision_ms = (time.perf_counter()-stage_started)*1000
             if condition == "B4":
                 stage_started = time.perf_counter()
                 noisy_count = float(1 + self.rng.laplace(0, 1 / self.epsilon))
@@ -103,6 +111,6 @@ class BenchmarkMiddleware:
             latency_ms=(time.perf_counter() - started) * 1000,
             heuristic_latency_ms=heuristic_ms,
             classifier_latency_ms=classifier_ms,
-            decision_latency_ms=max(0.0, (time.perf_counter()-started)*1000-heuristic_ms-classifier_ms-audit_ms),
+            decision_latency_ms=decision_ms,
             audit_latency_ms=audit_ms,
         )

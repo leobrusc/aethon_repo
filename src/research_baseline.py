@@ -17,6 +17,7 @@ from baseline_detectors import TransformerDetector
 from baseline_reliability import atomic_write, append_checkpoint, fingerprint, load_checkpoint
 from benchmark.detection import EVALUATION_DATASETS, LABEL_PROVENANCE
 from dataset_loader import get_dataset_metadata, load_dataset
+from research_integrity import implementation_hashes
 
 MODELS = {"protectai": ("protectai/deberta-v3-base-prompt-injection-v2", ("INJECTION",)),
           "promptguard": ("meta-llama/Llama-Prompt-Guard-2-22M", ("MALICIOUS",))}
@@ -40,7 +41,9 @@ def main():
     cfg = {"model": model_id, "model_revision": a.revision, "tokenizer_revision": a.revision,
            "datasets": data_metadata, "threshold": a.threshold, "max_length": 512,
            "smoke": a.smoke, "dtype": "float32", "labels": labels,
-           "device": a.device, "batch_size": a.batch_size, "decision": "p(malicious) >= threshold"}
+           "device": a.device, "batch_size": a.batch_size, "decision": "p(malicious) >= threshold",
+           "implementation": implementation_hashes(__file__, Path(__file__).with_name("baseline_detectors.py")),
+           "dependencies": {p: importlib.metadata.version(p) for p in ("torch", "transformers", "numpy", "pandas")}}
     # Unlike the legacy fingerprint, preserve device/batch to keep timing comparisons coherent.
     fp = hashlib.sha256(json.dumps(cfg, sort_keys=True).encode()).hexdigest()
     manifest = {"run_id": a.run_id, "fingerprint": fp, "configuration": cfg,
@@ -81,12 +84,17 @@ def main():
             model_files = list(snapshot.glob("*.safetensors")) + list(snapshot.glob("*.bin"))
             if not model_files: raise ValueError("Pinned snapshot has no local model weights")
             hashes = {}
-            for path in model_files + [snapshot/"config.json"]:
+            tokenizer_files = [p for p in snapshot.iterdir() if p.is_file() and (p.name.startswith("tokenizer") or p.name in {"special_tokens_map.json", "spm.model", "sentencepiece.bpe.model"})]
+            for path in model_files + [snapshot/"config.json"] + tokenizer_files:
                 h = hashlib.sha256()
                 with path.open("rb") as stream:
                     for chunk in iter(lambda: stream.read(1024*1024), b""): h.update(chunk)
                 hashes[path.name] = h.hexdigest()
             detector = TransformerDetector(model_id, labels, device=a.device, revision=a.revision, local_files_only=True)
+            resolved = getattr(detector.model.config, "_commit_hash", None)
+            if resolved != a.revision: raise ValueError("Resolved model revision does not match pinned revision")
+            if a.model == "protectai" and detector.model.config.id2label != {0: "SAFE", 1: "INJECTION"}:
+                raise ValueError("ProtectAI class semantics changed")
             detector.warmup(["ordinary benign request", "simple text"])
             manifest.update(status="RUNNING", model_hashes=hashes,
                             resolved_model_revision=getattr(detector.model.config, "_commit_hash", None),

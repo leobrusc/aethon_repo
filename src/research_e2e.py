@@ -39,6 +39,8 @@ def run_pairs(rows, driver, private_output, *, retention, temperature=0., max_to
     if max_tokens < 1 or temperature != 0:
         raise ValueError("Current paired protocol requires temperature zero and positive token limit")
     if len({r["row_id"] for r in rows}) != len(rows): raise ValueError("Duplicate row identity")
+    if not retention.get("target_revision") or not retention.get("detector_sha256"):
+        raise ValueError("Pinned target revision and frozen detector hash required for safe resume")
     configuration = {"temperature": temperature, "max_tokens": max_tokens,
                      "driver": getattr(driver, "NAME", type(driver).__name__),
                      "retention": retention, "rows": rows}

@@ -21,7 +21,7 @@ from aethon_heuristic import is_adversarial_heuristic
 from baseline_reliability import atomic_write
 from dataset_loader import get_dataset_metadata, load_dataset
 from model_selection import build_pipeline, metric
-from research_integrity import digest, normalize
+from research_integrity import digest, normalize, implementation_hashes
 
 CANDIDATES = (("word_bigram", "logistic_regression"),
               ("char_3_5", "logistic_regression"),
@@ -151,7 +151,10 @@ def main():
     p.add_argument("--fpr-cap", type=float, default=.10)
     p.add_argument("--smoke", action="store_true", help="Two candidates and two outer folds, not a publication estimate")
     a = p.parse_args(); output = Path(a.output)/a.run_id
-    config = vars(a) | {"dataset": get_dataset_metadata("prompt_injections_train"), "candidates": CANDIDATES}
+    config = vars(a) | {"dataset": get_dataset_metadata("prompt_injections_train"), "candidates": CANDIDATES,
+                       "implementation": implementation_hashes(__file__, Path(__file__).with_name("model_selection.py"),
+                                                                Path(__file__).with_name("aethon_heuristic.py"), Path(__file__).with_name("research_integrity.py")),
+                       "dependencies": {p: importlib.metadata.version(p) for p in ("numpy", "pandas", "scikit-learn", "joblib")}}
     fingerprint = digest(json.dumps(config, sort_keys=True))
     manifest_path = output/"manifest.json"
     if manifest_path.exists():
@@ -229,6 +232,19 @@ def main():
         artifacts["frozen_selection.json"] = json.dumps({"selected": selected, "candidates": choices, "not_promoted_over_historical_B3": True}, indent=2)
         artifacts["selection_oof.csv"] = pd.DataFrame(oof).to_csv(index=False)
         for name, content in artifacts.items(): atomic_write(output/name, content)
+        if selected is not None:
+            import os
+            final_model = fit_model(selected["candidate"], texts, labels, a.seed)
+            temporary_model = output/"detector.joblib.tmp"
+            joblib.dump(final_model, temporary_model)
+            os.replace(temporary_model, output/"detector.joblib")
+            manifest["model"] = {"path": "detector.joblib", "variant": "research_margin_or_v2026" if selected["candidate"][1] == "linear_svm" else "research_probability_or_v2026",
+                                 "representation": selected["candidate"][0], "classifier": selected["candidate"][1],
+                                 "score_semantics": "uncalibrated margin" if selected["candidate"][1] == "linear_svm" else "positive probability",
+                                 "threshold": selected["threshold"], "smoke_only": a.smoke,
+                                 "sha256": hashlib.sha256((output/"detector.joblib").read_bytes()).hexdigest()}
+            # Binary model is hash-validated on idempotent restarts too.
+            artifacts["detector.joblib"] = None
         manifest.update(status="DONE", duration_seconds=time.perf_counter()-started, expected_records=len(training), processed_records=len(frame),
                         errors=[], exclusions=[], artifact_hashes={n: hashlib.sha256((output/n).read_bytes()).hexdigest() for n in artifacts})
         atomic_write(manifest_path, json.dumps(manifest, indent=2)); print(json.dumps(summary, indent=2))

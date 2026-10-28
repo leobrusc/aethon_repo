@@ -117,10 +117,17 @@ def final_evaluation(model,threshold):
     per=pd.DataFrame(per); macro=per.groupby("condition",as_index=False)[["auroc","auprc","precision","recall","f1","fpr","median_latency_ms","p95_latency_ms"]].mean(numeric_only=True); return result,per,pd.DataFrame(micro),macro
 
 def mcnemar(new_result):
-    old=pd.read_csv(PROJECT_ROOT/"results/revision/detection/per_prompt_results.csv"); old=old[old.condition=="B3"][["dataset","prompt_sha256","final_prediction"]].rename(columns={"final_prediction":"old_prediction"}); new=new_result[new_result.condition=="V2"][["dataset","prompt_sha256","true_label","final_prediction"]].rename(columns={"final_prediction":"new_prediction"}); merged=new.merge(old,on=["dataset","prompt_sha256"],how="inner"); rows=[]
-    from math import comb
+    from research_paired import align
+    from scipy.stats import binomtest
+    old = pd.read_csv(PROJECT_ROOT/"results/revision/detection/per_prompt_results.csv", dtype={"prompt_id": str})
+    columns = ["dataset", "prompt_id", "prompt_sha256", "true_label", "final_prediction"]
+    old = old[old.condition == "B3"][columns].rename(columns={"final_prediction": "prediction"})
+    new = new_result[new_result.condition == "V2"][columns].rename(columns={"final_prediction": "prediction"}).copy()
+    new["prompt_id"] = new.prompt_id.astype(str)
+    merged = align(old, new)
+    rows=[]
     for dataset,g in merged.groupby("dataset",sort=False):
-        oe=g.old_prediction.to_numpy()!=g.true_label.to_numpy(); ne=g.new_prediction.to_numpy()!=g.true_label.to_numpy(); b=int((oe&~ne).sum()); c=int((~oe&ne).sum()); n=b+c; p=min(1.,2*sum(comb(n,k) for k in range(min(b,c)+1))/(2**n)) if n else 1.; rows.append({"dataset":dataset,"n_paired":len(g),"old_only_errors_b":b,"new_only_errors_c":c,"discordant":n,"mcnemar_p_two_sided":p})
+        oe=g.prediction_x.to_numpy()!=g.true_label_x.to_numpy(); ne=g.prediction_y.to_numpy()!=g.true_label_y.to_numpy(); b=int((oe&~ne).sum()); c=int((~oe&ne).sum()); n=b+c; p=float(binomtest(b,n,.5).pvalue) if n else 1.; rows.append({"dataset":dataset,"n_paired":len(g),"old_only_errors_b":b,"new_only_errors_c":c,"discordant":n,"mcnemar_p_two_sided":p})
     return pd.DataFrame(rows)
 
 def run_phase2(output_root="results/revision/model_selection",seed=42):

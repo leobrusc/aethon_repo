@@ -125,6 +125,10 @@ def evaluate_prompts(config: DetectionConfig) -> pd.DataFrame:
                     "detector_score": decision.detection_score,
                     "final_prediction": int(decision.blocked),
                     "detection_latency_ms": decision.latency_ms,
+                    "heuristic_latency_ms": decision.heuristic_latency_ms,
+                    "classifier_latency_ms": decision.classifier_latency_ms,
+                    "decision_latency_ms": decision.decision_latency_ms,
+                    "audit_latency_ms": decision.audit_latency_ms,
                     "noisy_audit_count": decision.noisy_audit_count,
                     "seed": config.seed,
                 })
