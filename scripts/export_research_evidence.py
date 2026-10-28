@@ -33,7 +33,8 @@ def main():
             if not destination.exists(): shutil.copyfile(source/file, destination)
             index.append({"run_id": manifest["run_id"], "status": manifest["status"], "artifact": str(destination.relative_to(output)), "sha256": actual})
     output.mkdir(parents=True, exist_ok=True)
-    extra_files = [(root/"baselines/protectai-consistency.json", output/"protectai_smoke/consistency.json")]
+    extra_files = [(root/"baselines/protectai-consistency.json", output/"protectai_smoke/consistency.json"),
+                   (root/"dp/historical-b3-b4-equivalence.json", output/"dp/historical-b3-b4-equivalence.json")]
     extra_files.extend((root/"paired/historical-b3-protectai-validated-smoke"/n, output/"paired_smoke"/n)
                        for n in ("comparison.json", "comparison.csv", "comparison.tex", "comparison.md"))
     for source, destination in extra_files:

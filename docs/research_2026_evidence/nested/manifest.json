@@ -1,0 +1,105 @@
+{
+  "run_id": "nested-final-2026-10-28",
+  "fingerprint": "f872ab08dae99e41c2dac6b0ffde95367483506146bd10dafbbc0dfe196ecb61",
+  "config": {
+    "run_id": "nested-final-2026-10-28",
+    "output": "results/research_2026/generalization",
+    "outer_folds": 5,
+    "inner_folds": 3,
+    "seed": 2026,
+    "fpr_cap": 0.1,
+    "smoke": false,
+    "dataset": {
+      "name": "prompt_injections_train",
+      "file": "hf_prompt-injections_train.parquet",
+      "sha256": "2e10bc7ab30f542c97e4e83e2a5683000b5057d25ec10908784c631d44124c04",
+      "bytes": 40323
+    },
+    "candidates": [
+      [
+        "word_bigram",
+        "logistic_regression"
+      ],
+      [
+        "char_3_5",
+        "logistic_regression"
+      ],
+      [
+        "char_3_5",
+        "linear_svm"
+      ],
+      [
+        "char_3_5",
+        "calibrated_linear_svm"
+      ],
+      [
+        "word_char_union",
+        "logistic_regression"
+      ]
+    ],
+    "implementation": {
+      "research_generalization.py": "b25c356df4577267de80ecc665a92fccd0a0f5df661892ddbf6815b89a1213b4",
+      "model_selection.py": "9031f7873e20e628d014e5bc5a5634bed339a4262047e5b2fb5c19a6968ee4da",
+      "aethon_heuristic.py": "c116a5306bbd3f64bb3b84dfe74a19342f26a20e1b792aecea49477539b7c79d",
+      "research_integrity.py": "346c6458415d50c5e32a55487df8cd1f336eaf6e05eb87b9b9abcb8ee5ae0026"
+    },
+    "dependencies": {
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "scikit-learn": "1.7.2",
+      "joblib": "1.5.3"
+    }
+  },
+  "commit_sha": "ccd069d2800ede8293aba519f02b9da7fdea85ff",
+  "git_dirty": true,
+  "environment": "Windows-10-10.0.26300-SP0",
+  "python": "3.10.11",
+  "hardware": {
+    "system": "Windows",
+    "node": "CPQDGNR2JG4",
+    "release": "10",
+    "version": "10.0.26300",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 181 Stepping 0, GenuineIntel"
+  },
+  "dependencies": {
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "joblib": "1.5.3"
+  },
+  "status": "DONE",
+  "model": {
+    "path": "detector.joblib",
+    "variant": "research_margin_or_v2026",
+    "representation": "char_3_5",
+    "classifier": "linear_svm",
+    "score_semantics": "uncalibrated margin",
+    "threshold": -0.09982680741311112,
+    "smoke_only": false,
+    "sha256": "4572551cbeb80b0d2e2a8dc0511652fc349459918c49d8cc4d85f11456864787"
+  },
+  "temperature": null,
+  "token_limit": null,
+  "checkpoint": "deterministic restart; no partial model reuse",
+  "seed": 2026,
+  "duration_seconds": 58.60580010000558,
+  "expected_records": 546,
+  "processed_records": 546,
+  "errors": [],
+  "exclusions": [],
+  "artifact_hashes": {
+    "outer_predictions.csv": "6dc86912f2dfcba29af26717b3ad58fd121977332998a98314b6707049129f5b",
+    "nested_selection.json": "ca0cb7b73c57fc683847097b0cee1f0f467dae637a7629b4da0ff2d232f4017c",
+    "summary.json": "694364ecf69786eec1e1bc86a248d43f56a2b17633c14bc9f4b7bf9061e37888",
+    "summary.md": "eba3d40ff2fbdba0734185b049943756a7604f8c94e108982776f9a635e4274a",
+    "summary.tex": "692224178178130fe7e8b284043999b2fddae16d08df3b42d0bf6d4f4dfbf4a6",
+    "curves.csv": "99126f6f0416d972095b69285f33828c490bb50e0766d92182b9f875c77119ce",
+    "reliability.csv": "106b28da0581ae2723a7d140ea7cb3fbadedbcef1694f61a9a004089865b81ba",
+    "fold_metrics.csv": "d89e8fc63ef3a7d3df5cf3c8f754a0be09f0d98bec119e44b942a76f63ed612d",
+    "diagnostic_curves.svg": "2083f54083dfca7013aa2e7ed9c8adbd700d2445acff1504f3ffd3a2b196148a",
+    "frozen_selection.json": "fa44f0a6c476610ff9c343ea8159b24d31b6588986ba1391331ddb168184724c",
+    "selection_oof.csv": "9d16f434e96f6a6e5f116f716f86d53215ea1457f4a9efd9efc2f5d23b21656f",
+    "detector.joblib": "4572551cbeb80b0d2e2a8dc0511652fc349459918c49d8cc4d85f11456864787"
+  }
+}

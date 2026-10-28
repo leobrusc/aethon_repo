@@ -1,0 +1,11 @@
+{
+  "command": "python -m pytest -q",
+  "passed": 106,
+  "warnings": 1,
+  "duration_seconds": 16.03,
+  "warning": "Expected mocked HF causal-driver download failure",
+  "execution_base_commit": "ccd069d2800ede8293aba519f02b9da7fdea85ff",
+  "working_tree_dirty": true,
+  "tested_baseline_resume_changes_subsequently_committed_as": "528a3734dd3376c63a4678d3e9c9a0a65d2b6bad",
+  "note": "Includes preserved preexisting harness edits; not an independent target-LLM evaluation"
+}

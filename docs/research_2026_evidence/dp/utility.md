@@ -1,0 +1,6 @@
+# Synthetic DP utility
+
+ epsilon_per_release  sensitivity  synthetic_count  draws  seed  warmup  releases  basic_composition_epsilon  mean_absolute_error  mean_relative_error  empirical_bias  empirical_variance  theoretical_variance  audit_draw_p50_ms  audit_draw_p95_ms  audit_draw_p99_ms                                                      privacy_scope
+                 0.5            1              100  10000  2026     100         1                        0.5             1.991440             0.019914        0.076258            7.836613              8.000000             0.0004             0.0005             0.0005 bounded counter releases only; not raw text or per-record identity
+                 1.2            1              100  10000  2026     100         1                        1.2             0.829767             0.008298        0.031774            1.360523              1.388889             0.0004             0.0005             0.0005 bounded counter releases only; not raw text or per-record identity
+                 2.5            1              100  10000  2026     100         1                        2.5             0.398288             0.003983        0.015252            0.313465              0.320000             0.0004             0.0005             0.0019 bounded counter releases only; not raw text or per-record identity

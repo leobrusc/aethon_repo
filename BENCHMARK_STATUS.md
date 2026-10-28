@@ -1,5 +1,15 @@
 # BENCHMARK STATUS — AETHON
 
+## 2026-10-28 research consolidation
+
+See [the 2026 execution report](docs/RESEARCH_2026_REPORT.md) and
+[protocol](docs/EXPERIMENT_PROTOCOL_2026.md). Local validation: **106 passed**.
+The historical 9,139-row reference pool is preserved and previously inspected.
+New evidence covers dataset overlap audit, training-only nested selection,
+18-prompt cached-weight ProtectAI smoke, paired tooling smoke and synthetic DP.
+No target LLM evaluation, cloud provisioning or full modern baseline run occurred.
+The status below is retained as historical context.
+
 **Updated:** 2026-09-10  
 **Scope:** local revision experiments for the BRACIS reviewer response.
 

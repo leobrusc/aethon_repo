@@ -1,0 +1,89 @@
+{
+  "run_id": "promptguard-offline-smoke-2026-10-28",
+  "fingerprint": "832ca0100a4e16de3a57b0ee0738b29aed2973c10526e6fbb3eedcfcfabd8043",
+  "configuration": {
+    "model": "meta-llama/Llama-Prompt-Guard-2-22M",
+    "model_revision": "11614a155199674a0a95e6602d6ab0417b790ed0",
+    "tokenizer_revision": "11614a155199674a0a95e6602d6ab0417b790ed0",
+    "datasets": [
+      {
+        "name": "prompt_injections_test",
+        "file": "hf_prompt-injections_test.parquet",
+        "sha256": "39ac797cabc157eeed58435a08593b2952bb6cb16fc394a2d383f447cc7b246e",
+        "bytes": 10892
+      },
+      {
+        "name": "prompt_injection_core",
+        "file": "neuralchemy_prompt_injection_core.jsonl",
+        "sha256": "e7a1b0b9a21032df8b3ffcac1605841324d1266f30fb4d70e6d058af0cde685f",
+        "bytes": 2165752
+      },
+      {
+        "name": "jailbreakbench_behaviors",
+        "file": "jailbreakbench_behaviors.jsonl",
+        "sha256": "4f3a40e85e5be7314ae8e6cb5dc73f4197eca0e691b67d6a25a915b1a934a850",
+        "bytes": 60175
+      },
+      {
+        "name": "wildjailbreak_eval",
+        "file": "wildjailbreak_eval.jsonl",
+        "sha256": "2e74645416c7daa3b30ae11cb845a50cc9fe5d0b147e4ddc2ef5b0af23ec88a5",
+        "bytes": 1825386
+      },
+      {
+        "name": "notinject",
+        "file": "notinject.jsonl",
+        "sha256": "e41959c6cd149a4f921cb70deff86f9aab10bfede0894b958e99980bf71349b8",
+        "bytes": 67357
+      }
+    ],
+    "threshold": 0.5,
+    "max_length": 512,
+    "smoke": true,
+    "dtype": "float32",
+    "labels": [
+      "MALICIOUS"
+    ],
+    "device": "cpu",
+    "batch_size": 4,
+    "decision": "p(malicious) >= threshold",
+    "implementation": {
+      "research_baseline.py": "36326fae22d3e8dbf016cf132fa58791e14dc43461e5044e3fc231598bec6c2c",
+      "baseline_detectors.py": "e115462e9d67c896c652c39d12788855608ae1383b91cd4f0b80e055e0aafdcb"
+    },
+    "dependencies": {
+      "torch": "2.12.0",
+      "transformers": "4.46.3",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3"
+    }
+  },
+  "commit_sha": "14a9234ba33d77c1c406646de73d8dedc8b2ca26",
+  "git_dirty": true,
+  "python": "3.10.11",
+  "hardware": {
+    "system": "Windows",
+    "node": "CPQDGNR2JG4",
+    "release": "10",
+    "version": "10.0.26300",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 181 Stepping 0, GenuineIntel"
+  },
+  "dependencies": {
+    "torch": "2.12.0",
+    "transformers": "4.46.3",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3"
+  },
+  "seed": 2026,
+  "temperature": null,
+  "token_limit": 512,
+  "status": "NOT_RUN",
+  "warmup": 2,
+  "checkpoint": "checkpoint.jsonl",
+  "errors": [],
+  "exclusions": [],
+  "expected_records": 18,
+  "processed_records": 0,
+  "reason": "Pinned weights unavailable: LocalEntryNotFoundError: Cannot find an appropriate cached snapshot folder for the specified revision on the local disk and outgoing traffic has been disabled. To enable repo look-ups and downloads online, pass 'local_files_only=False' as input."
+}
