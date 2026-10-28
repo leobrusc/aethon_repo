@@ -12,9 +12,12 @@ from dataset_loader import load_dataset
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Train an AETHON ML detector for B2-B4 benchmark conditions.")
-    parser.add_argument("--datasets", nargs="+", default=["prompt_injections_train", "prompt_injection_core"])
+    parser.add_argument("--datasets", nargs="+", default=["prompt_injections_train"])
     parser.add_argument("--save-name", default="aethon_tfidf_lr.pkl")
     args = parser.parse_args()
+
+    if set(args.datasets) != {"prompt_injections_train"}:
+        parser.error("Only prompt_injections_train is authorized for selection; reference evaluation sources are excluded.")
 
     frames = [load_dataset(name) for name in args.datasets]
     training = pd.concat(frames, ignore_index=True).drop_duplicates(subset=["prompt_text", "label"])

@@ -289,7 +289,7 @@ Train the lightweight classifier required for `B2`-`B4`:
 
 ```bash
 python src/train_detector.py \
-  --datasets prompt_injections_train prompt_injection_core \
+  --datasets prompt_injections_train \
   --save-name aethon_tfidf_lr.pkl
 ```
 
