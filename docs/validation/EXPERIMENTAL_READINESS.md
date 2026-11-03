@@ -54,7 +54,10 @@ machine image or a secure general-purpose environment.
 The deterministic replay uses the exact maintainer-trained TF-IDF/LR model,
 threshold 0.5, epsilon 1.2 and seed 42. It verifies normalized prompt hashes and
 labels, keeps compound `(dataset, prompt_id, prompt_sha256)` identities, and
-compares scores/metrics with fixed absolute tolerance 1e-12. JailbreakBench has
+compares scores/metrics with fixed absolute tolerance 1e-12.
+An additional independent check compares 80 point-metric values directly with
+the versioned `metrics_by_dataset.csv`; all match at the same tolerance.
+JailbreakBench has
 200 rows but only 100 original prompt IDs; neither IDs nor rows were changed.
 Undefined single-class metrics stay undefined. Reference outputs are never
 overwritten; all replay products are under a separate validation run.

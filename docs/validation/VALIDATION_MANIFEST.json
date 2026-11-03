@@ -84,6 +84,13 @@
       "status": "PASS",
       "rows_each": 2,
       "real_inference": false
+    },
+    "frozen_published_point_metrics": {
+      "status": "PASS",
+      "values_compared": 80,
+      "atol": 1e-12,
+      "source": "results/revision/detection/metrics_by_dataset.csv",
+      "source_sha256": "e2b9746d98d3645668969c6eed881844b66bd82673f702bd6f3bd157638b7f34"
     }
   },
   "profiles": [
@@ -549,6 +556,13 @@
       "bytes": 367,
       "source_sha256": "670fd0add0f7151b84f5647006760db3bfa099ad524da5212274875a643d6f3c",
       "scope": "Actual parameter dtype inspected with current local safetensors loader"
+    },
+    {
+      "file": "docs/validation/evidence/frozen-metrics-comparison.json",
+      "sha256": "e0338d633ae1c9d28855107d43ec4e85286c5afc78e023d2d06a3de3cac8adb5",
+      "source_sha256": "e0338d633ae1c9d28855107d43ec4e85286c5afc78e023d2d06a3de3cac8adb5",
+      "bytes": 387,
+      "scope": "Independent comparison with actual versioned metric output"
     }
   ],
   "frozen_protocols": {
