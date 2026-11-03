@@ -1,0 +1,26 @@
+[
+  {
+    "exit_code": 0,
+    "profile": "cpu-windows"
+  },
+  {
+    "exit_code": 0,
+    "profile": "research-windows"
+  },
+  {
+    "exit_code": 0,
+    "profile": "cpu-linux"
+  },
+  {
+    "exit_code": 0,
+    "profile": "dev-linux"
+  },
+  {
+    "exit_code": 0,
+    "profile": "research-linux"
+  },
+  {
+    "exit_code": 0,
+    "profile": "gpu-linux"
+  }
+]

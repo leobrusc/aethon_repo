@@ -1,5 +1,43 @@
 # Experimental readiness — 2026-11-03
 
+## Current assessment after explicit contracts
+
+**Engineering: PASS for scoped CPU integration of generation.v1.**
+New local registry runs use explicit CPU/FP32 unless another supported precision
+is requested. Historical drivers remain byte-identical and require explicit
+`legacy-v1` opt-in. ASR execution paths consume the token-derived continuation;
+ambiguous full-text drivers are rejected. Legacy `.infer()` strings remain
+available separately. See [GENERATION_CONTRACT.md](GENERATION_CONTRACT.md).
+
+**Scientific: NOT_RUN for final prospective campaigns.** Operational execution
+and bounded output agreement do not establish statistical or scientific
+equivalence. No historical scientific outputs, thresholds, labels or locks changed.
+
+Final new validation: 141 maintained tests, 18 contract tests on the historical
+stack, Ruff, pip check, isolated code installation, wheel and seven CLI checks
+PASS. All 127 scientific files, 31 evidence files and six historical manifests
+PASS integrity; B0–B4 replays PASS in both stacks (9,139 prompts and 25 comparisons
+each). Seven strict upstream audits PASS; exact binary catalog NOT_AUDITED.
+
+Real final inference used the existing Intel CPU and cached safetensors:
+Llama-3.2-1B FP32 in both stacks, Qwen2.5-3B BF16 in the maintained stack.
+Each run made three frozen chat calls and two raw-interface calls, seed 2026,
+greedy decoding, four CPU threads, max 16 tokens. All three Llama chat cases have
+identical observed input IDs, generated IDs, continuation and stop reason across
+stacks. These are controlled new protocol executions on both library stacks,
+not a rerun or replacement of published scientific results.
+
+Fifteen final real calls are recorded; five preliminary real calls are also
+preserved separately. Initial PR #4 evidence and the prior manifest are retained
+with their original hashes. The refreshed [manifest](VALIDATION_MANIFEST.json)
+lists 29 individual controls and 62 new evidence files. No CUDA execution,
+independent ASR campaign or statistical equivalence study was performed.
+
+## Initial PR #4 assessment — historical record before contract remediation
+
+The following assessment concerns the preserved legacy defaults. Current
+decisions and controls are above; earlier failures have not been erased.
+
 Base: `security/dependency-hardening-2026` at `3ca7eaf`. Worktree:
 `.worktrees/validation`, branch `validation/experimental-readiness-2026`.
 PR dependencies are #1 (`544c363`, scientific revision) -> #2 (`a6090ae`,

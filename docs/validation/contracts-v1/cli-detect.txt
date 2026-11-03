@@ -1,0 +1,23 @@
+usage: run_detection_benchmark [-h] [--datasets DATASETS [DATASETS ...] |
+                               --all-evaluation-datasets]
+                               [--conditions {B1,B2,B3,B4} [{B1,B2,B3,B4} ...]]
+                               [--ml-model-path ML_MODEL_PATH] [--seed SEED]
+                               [--limit LIMIT] [--random-sample]
+                               [--output-root OUTPUT_ROOT]
+                               [--bootstrap-seed BOOTSTRAP_SEED]
+                               [--bootstrap-iterations BOOTSTRAP_ITERATIONS]
+
+Run detection only; no target LLM is initialized.
+
+options:
+  -h, --help            show this help message and exit
+  --datasets DATASETS [DATASETS ...]
+  --all-evaluation-datasets
+  --conditions {B1,B2,B3,B4} [{B1,B2,B3,B4} ...]
+  --ml-model-path ML_MODEL_PATH
+  --seed SEED
+  --limit LIMIT
+  --random-sample
+  --output-root OUTPUT_ROOT
+  --bootstrap-seed BOOTSTRAP_SEED
+  --bootstrap-iterations BOOTSTRAP_ITERATIONS

@@ -1,0 +1,169 @@
+* Getting build dependencies for wheel...
+running egg_info
+writing src\aethon_research.egg-info\PKG-INFO
+writing dependency_links to src\aethon_research.egg-info\dependency_links.txt
+writing entry points to src\aethon_research.egg-info\entry_points.txt
+writing requirements to src\aethon_research.egg-info\requires.txt
+writing top-level names to src\aethon_research.egg-info\top_level.txt
+reading manifest file 'src\aethon_research.egg-info\SOURCES.txt'
+writing manifest file 'src\aethon_research.egg-info\SOURCES.txt'
+* Building wheel...
+running bdist_wheel
+running build
+running build_py
+copying src\model_registry.py -> build\lib
+copying src\research_e2e.py -> build\lib
+copying src\aethon\generation.py -> build\lib\aethon
+copying src\benchmark\asr.py -> build\lib\benchmark
+copying src\benchmark\runner.py -> build\lib\benchmark
+installing to build\bdist.win-amd64\wheel
+running install
+running install_lib
+creating build\bdist.win-amd64\wheel
+creating build\bdist.win-amd64\wheel\aethon
+copying build\lib\aethon\generation.py -> build\bdist.win-amd64\wheel\.\aethon
+copying build\lib\aethon\__init__.py -> build\bdist.win-amd64\wheel\.\aethon
+copying build\lib\aethon\__main__.py -> build\bdist.win-amd64\wheel\.\aethon
+copying build\lib\aethon_calibrated_cascade.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\aethon_full_pipeline.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\aethon_heuristic.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\aethon_ml_pipeline.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\analysis_utils.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\analyze_baseline_results.py -> build\bdist.win-amd64\wheel\.
+creating build\bdist.win-amd64\wheel\baselines
+copying build\lib\baselines\base.py -> build\bdist.win-amd64\wheel\.\baselines
+copying build\lib\baselines\llama_prompt_guard.py -> build\bdist.win-amd64\wheel\.\baselines
+copying build\lib\baselines\protectai_deberta.py -> build\bdist.win-amd64\wheel\.\baselines
+copying build\lib\baselines\__init__.py -> build\bdist.win-amd64\wheel\.\baselines
+copying build\lib\baseline_detectors.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\baseline_reliability.py -> build\bdist.win-amd64\wheel\.
+creating build\bdist.win-amd64\wheel\benchmark
+copying build\lib\benchmark\asr.py -> build\bdist.win-amd64\wheel\.\benchmark
+copying build\lib\benchmark\config.py -> build\bdist.win-amd64\wheel\.\benchmark
+copying build\lib\benchmark\detection.py -> build\bdist.win-amd64\wheel\.\benchmark
+copying build\lib\benchmark\metadata.py -> build\bdist.win-amd64\wheel\.\benchmark
+copying build\lib\benchmark\metrics.py -> build\bdist.win-amd64\wheel\.\benchmark
+copying build\lib\benchmark\middleware.py -> build\bdist.win-amd64\wheel\.\benchmark
+copying build\lib\benchmark\results.py -> build\bdist.win-amd64\wheel\.\benchmark
+copying build\lib\benchmark\runner.py -> build\bdist.win-amd64\wheel\.\benchmark
+copying build\lib\benchmark\tables.py -> build\bdist.win-amd64\wheel\.\benchmark
+copying build\lib\benchmark\__init__.py -> build\bdist.win-amd64\wheel\.\benchmark
+copying build\lib\close_harness.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\complete_smoke_diagnostics.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\dataset_loader.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\final_harness_diagnostics.py -> build\bdist.win-amd64\wheel\.
+creating build\bdist.win-amd64\wheel\loaders
+copying build\lib\loaders\cyberseceval.py -> build\bdist.win-amd64\wheel\.\loaders
+copying build\lib\loaders\jailbreakbench.py -> build\bdist.win-amd64\wheel\.\loaders
+copying build\lib\loaders\notinject.py -> build\bdist.win-amd64\wheel\.\loaders
+copying build\lib\loaders\__init__.py -> build\bdist.win-amd64\wheel\.\loaders
+creating build\bdist.win-amd64\wheel\models
+copying build\lib\models\deepseek_driver.py -> build\bdist.win-amd64\wheel\.\models
+copying build\lib\models\hf_causal_driver.py -> build\bdist.win-amd64\wheel\.\models
+copying build\lib\models\llama3_8b_driver.py -> build\bdist.win-amd64\wheel\.\models
+copying build\lib\models\mistral_driver.py -> build\bdist.win-amd64\wheel\.\models
+copying build\lib\models\openai_driver.py -> build\bdist.win-amd64\wheel\.\models
+copying build\lib\models\phi2_driver.py -> build\bdist.win-amd64\wheel\.\models
+copying build\lib\model_registry.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\model_selection.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\prepare_datasets.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\research_baseline.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\research_dp.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\research_e2e.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\research_generalization.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\research_integrity.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\research_paired.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\research_response.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\run_baseline_benchmark.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\run_benchmark.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\run_detection_benchmark.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\run_error_analysis.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\run_experiment.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\run_model_selection.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\run_smoke_diagnostics.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\test_model_loading.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\test_openai.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\train_detector.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\train_revision_detector.py -> build\bdist.win-amd64\wheel\.
+copying build\lib\unified_detector_benchmark.py -> build\bdist.win-amd64\wheel\.
+running install_egg_info
+running egg_info
+writing src\aethon_research.egg-info\PKG-INFO
+writing dependency_links to src\aethon_research.egg-info\dependency_links.txt
+writing entry points to src\aethon_research.egg-info\entry_points.txt
+writing requirements to src\aethon_research.egg-info\requires.txt
+writing top-level names to src\aethon_research.egg-info\top_level.txt
+reading manifest file 'src\aethon_research.egg-info\SOURCES.txt'
+writing manifest file 'src\aethon_research.egg-info\SOURCES.txt'
+Copying src\aethon_research.egg-info to build\bdist.win-amd64\wheel\.\aethon_research-0.1.0-py3.12.egg-info
+running install_scripts
+creating build\bdist.win-amd64\wheel\aethon_research-0.1.0.dist-info\WHEEL
+creating 'C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\validation\\results\\validation\\contracts-v1\\dist\\.tmp-njc7xy85\\aethon_research-0.1.0-py3-none-any.whl' and adding 'build\\bdist.win-amd64\\wheel' to it
+adding 'aethon_calibrated_cascade.py'
+adding 'aethon_full_pipeline.py'
+adding 'aethon_heuristic.py'
+adding 'aethon_ml_pipeline.py'
+adding 'analysis_utils.py'
+adding 'analyze_baseline_results.py'
+adding 'baseline_detectors.py'
+adding 'baseline_reliability.py'
+adding 'close_harness.py'
+adding 'complete_smoke_diagnostics.py'
+adding 'dataset_loader.py'
+adding 'final_harness_diagnostics.py'
+adding 'model_registry.py'
+adding 'model_selection.py'
+adding 'prepare_datasets.py'
+adding 'research_baseline.py'
+adding 'research_dp.py'
+adding 'research_e2e.py'
+adding 'research_generalization.py'
+adding 'research_integrity.py'
+adding 'research_paired.py'
+adding 'research_response.py'
+adding 'run_baseline_benchmark.py'
+adding 'run_benchmark.py'
+adding 'run_detection_benchmark.py'
+adding 'run_error_analysis.py'
+adding 'run_experiment.py'
+adding 'run_model_selection.py'
+adding 'run_smoke_diagnostics.py'
+adding 'test_model_loading.py'
+adding 'test_openai.py'
+adding 'train_detector.py'
+adding 'train_revision_detector.py'
+adding 'unified_detector_benchmark.py'
+adding 'aethon/__init__.py'
+adding 'aethon/__main__.py'
+adding 'aethon/generation.py'
+adding 'baselines/__init__.py'
+adding 'baselines/base.py'
+adding 'baselines/llama_prompt_guard.py'
+adding 'baselines/protectai_deberta.py'
+adding 'benchmark/__init__.py'
+adding 'benchmark/asr.py'
+adding 'benchmark/config.py'
+adding 'benchmark/detection.py'
+adding 'benchmark/metadata.py'
+adding 'benchmark/metrics.py'
+adding 'benchmark/middleware.py'
+adding 'benchmark/results.py'
+adding 'benchmark/runner.py'
+adding 'benchmark/tables.py'
+adding 'loaders/__init__.py'
+adding 'loaders/cyberseceval.py'
+adding 'loaders/jailbreakbench.py'
+adding 'loaders/notinject.py'
+adding 'models/deepseek_driver.py'
+adding 'models/hf_causal_driver.py'
+adding 'models/llama3_8b_driver.py'
+adding 'models/mistral_driver.py'
+adding 'models/openai_driver.py'
+adding 'models/phi2_driver.py'
+adding 'aethon_research-0.1.0.dist-info/METADATA'
+adding 'aethon_research-0.1.0.dist-info/WHEEL'
+adding 'aethon_research-0.1.0.dist-info/entry_points.txt'
+adding 'aethon_research-0.1.0.dist-info/top_level.txt'
+adding 'aethon_research-0.1.0.dist-info/RECORD'
+removing build\bdist.win-amd64\wheel
+Successfully built aethon_research-0.1.0-py3-none-any.whl

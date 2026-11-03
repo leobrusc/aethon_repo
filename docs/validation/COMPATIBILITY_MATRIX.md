@@ -1,4 +1,36 @@
-# Compatibility matrix
+# Compatibility matrix — explicit contracts update
+
+Current code: `5b44560`. Contracts: `aethon.precision.v1` and
+`aethon.generation.v1`. New evidence: [contracts-v1/](contracts-v1/).
+
+| Control | Status | Evidence / scope |
+| --- | --- | --- |
+| Llama explicit FP32, historical and maintained libraries | PASS | Same reviewed weights; three real chats and two raw calls per environment |
+| Llama bounded contract comparison | PASS | All three input/generated-ID sequences, continuations and stop reasons match; no statistical equivalence claim |
+| Qwen 3B explicit BF16 CPU | PASS | Real load, three chats and two raw calls; parameters/buffers/forward observations recorded |
+| FP32 default, supported BF16, incompatible precision, parameter drift | PASS | 18 synthetic regression tests in both environments; BF16 also exercised by real Qwen |
+| Templates, token boundaries, prompt echo, EOS-only empty generation | PASS | Structured result and safe evaluation routing; ambiguous legacy text rejected |
+| Legacy string interface and structured serialization | PASS | Full text retained separately; generation.v1 round-trip |
+| Full maintained suite / Ruff / pip check | PASS | 141 tests; no dependency conflicts |
+| Scientific integrity and historical dependency manifests | PASS | 127 files, 31 evidence files, six manifests; all original locks unchanged |
+| B0–B4 replay, both environments | PASS | 9,139 prompts, 25 condition/dataset comparisons each, zero mismatches |
+| Installation and CLI | PASS | Code-only target install, wheel, seven help commands, two-row dry-run |
+| Seven locked upstream security queries | PASS | Zero matched advisories; no suppressions |
+| Exact PyTorch binary catalog / universal model trust | NOT_AUDITED | Scanner skips retained; receipt/hash is not a safety audit |
+| Historical stack for unrestricted untrusted use | FAIL | Existing vulnerable stack retained only for controlled reproduction |
+| Actual CUDA FP16/BF16 execution | NOT_RUN | No NVIDIA GPU accessible; policy unit tests are synthetic |
+| Qwen historical comparison / prospective ASR / statistical equivalence | NOT_RUN | No expanded scientific campaign |
+
+Engineering decision: **PASS for scoped CPU integration of the explicit
+contracts**, subject to review of dependent PRs. Scientific readiness for final
+campaigns: **NOT_RUN**. The legacy default discrepancy remains a historical
+fact; new registry executions no longer use it. See
+[GENERATION_CONTRACT.md](GENERATION_CONTRACT.md) and the validation manifest.
+
+## Initial PR #4 matrix — preserved assessment of legacy defaults
+
+The following rows describe the earlier implementation before the explicit
+contracts. Its FAIL/NOT_AUDITED evidence is retained, not relabeled retrospectively.
 
 PASS is scoped to the executed check. FAIL, NOT_RUN and NOT_AUDITED are retained;
 passing hash checks does not certify safety or scientific equivalence.

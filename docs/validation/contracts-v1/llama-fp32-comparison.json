@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "scope": "Observed bounded deterministic contract comparison; not statistical/scientific equivalence",
+  "model_revision": "9213176726f574b556790deb65791e0c5aa438b6",
+  "same_artifact_hashes": true,
+  "dtype_requested_both": "float32",
+  "records": [
+    {
+      "id": "compat-001",
+      "input_ids_equal": true,
+      "generated_ids_equal": true,
+      "continuation_equal": true,
+      "stop_reason_equal": true,
+      "precision_parameters_equal": true
+    },
+    {
+      "id": "compat-002",
+      "input_ids_equal": true,
+      "generated_ids_equal": true,
+      "continuation_equal": true,
+      "stop_reason_equal": true,
+      "precision_parameters_equal": true
+    },
+    {
+      "id": "compat-003",
+      "input_ids_equal": true,
+      "generated_ids_equal": true,
+      "continuation_equal": true,
+      "stop_reason_equal": true,
+      "precision_parameters_equal": true
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+usage: research_dp [-h] --run-id RUN_ID [--output OUTPUT] [--draws DRAWS]
+                   [--seed SEED]
+
+options:
+  -h, --help       show this help message and exit
+  --run-id RUN_ID
+  --output OUTPUT
+  --draws DRAWS
+  --seed SEED

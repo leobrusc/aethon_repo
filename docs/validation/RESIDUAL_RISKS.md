@@ -1,5 +1,33 @@
 # Residual risks and operational limits
 
+## Current disposition after generation.v1
+
+| Finding | Status | Disposition |
+| --- | --- | --- |
+| Implicit Llama BF16 in new executions | PASS remediation | Registry now uses explicit precision.v1 CPU/FP32; both-stack real comparison passed. Legacy default behavior remains only behind explicit opt-in |
+| Prompt-prefix contamination in ASR paths | PASS remediation | Continuation extracted by token boundary; full text kept separately; ambiguous legacy outputs rejected. Direct judge strings must already be response-only |
+| Parameter precision drift | PASS control | Every floating parameter checked before/after generation; buffers and exposed forward/cache dtypes inventoried separately |
+| Uniform internal arithmetic precision | NOT_AUDITED | No claim about every accumulation/kernel/hidden execution state; forward hooks observe exposed tensors only |
+| Generation configuration beyond precision | PASS recorded, protocol-dependent | Greedy/sampling choice and token budget explicit; complete model generation config recorded. Future scientific campaigns must freeze remaining parameters and seed policy |
+| Model/adapter trust and license | NOT_AUDITED universally | Local reviewed safetensors, no remote code; hashes and adapter continuation declarations do not certify safety or legal compliance |
+| Exact torch CPU/CUDA catalog | NOT_AUDITED | Official receipts and seven upstream advisory queries PASS; native skips retained |
+| Historical environment vulnerabilities | FAIL for unrestricted use | Retained for reproduction; existing offline benign controlled smoke only, no in-place upgrade |
+| CUDA FP16/BF16 and other architectures | NOT_RUN | No accessible NVIDIA GPU; encoder-decoder explicitly rejected by generation.v1; no multi-device/quantized guarantee |
+| Qwen historical/FP32 compatibility | NOT_RUN | Only current BF16 CPU tested within available resources |
+| Independent dataset, semantic overlap review, response ASR and statistical equivalence | NOT_RUN | Existing prospective launch gates unchanged; tiny benign smoke cannot establish effectiveness |
+| Legacy full-text reproduction | PASS preservation | Original drivers and raw evidence unchanged. `.infer()` remains a string/full-text interface; decoder cleanup is explicitly versioned in new runs, not claimed identical to every old default |
+
+Recommended integration: approve the scoped engineering changes after reviewing
+the dependent PR chain and CI; keep scientific campaign gates open. No universal
+security approval, risk waiver, automatic merge or production authorization is
+implied. The prior manifest is preserved at
+[evidence/validation-pre-contract-v1.json](evidence/validation-pre-contract-v1.json).
+
+## Initial PR #4 risks — preserved pre-remediation assessment
+
+Rows below describe the earlier legacy-driver assessment. Current remediation
+and residual status are above; historical failures are not retroactively PASS.
+
 | Finding | Status | Disposition |
 | --- | --- | --- |
 | Llama registry default precision changed FP32 -> BF16 | FAIL for default parity | Retained as a real compatibility difference; use a reviewed explicit precision contract before unconditional integration/campaigns |

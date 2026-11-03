@@ -1,0 +1,35 @@
+{
+  "cli": [
+    {
+      "entry": "benchmark",
+      "exit_code": 0
+    },
+    {
+      "entry": "detect",
+      "exit_code": 0
+    },
+    {
+      "entry": "train",
+      "exit_code": 0
+    },
+    {
+      "entry": "integrity",
+      "exit_code": 0
+    },
+    {
+      "entry": "generalization",
+      "exit_code": 0
+    },
+    {
+      "entry": "baseline",
+      "exit_code": 0
+    },
+    {
+      "entry": "dp",
+      "exit_code": 0
+    }
+  ],
+  "build": 0,
+  "install": 0,
+  "dry_run": 0
+}
