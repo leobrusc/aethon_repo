@@ -1,0 +1,53 @@
+usage: run_benchmark [-h] [--config CONFIG] [--models MODELS [MODELS ...]]
+                     [--all-models] [--llama-only] [--open-models-only]
+                     [--datasets DATASETS [DATASETS ...]] [--all-datasets]
+                     [--conditions {B0,B1,B2,B3,B4} [{B0,B1,B2,B3,B4} ...]]
+                     [--condition-filter {B0,B1,B2,B3,B4} [{B0,B1,B2,B3,B4} ...]]
+                     [--seed SEED] [--temperature TEMPERATURE]
+                     [--epsilon EPSILON] [--max-tokens MAX_TOKENS]
+                     [--limit LIMIT] [--dataset-limit DATASET_LIMIT]
+                     [--fast-validation] [--random-sample] [--dry-run]
+                     [--ml-model-path ML_MODEL_PATH]
+                     [--output-root OUTPUT_ROOT] [--run-id RUN_ID] [--resume]
+                     [--no-tables] [--asr-judge-type {none,rule,llm}]
+                     [--asr-judge-model ASR_JUDGE_MODEL]
+
+Run the AETHON reproducible benchmark pipeline.
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG       JSON benchmark configuration file.
+  --models MODELS [MODELS ...]
+                        Model registry keys to evaluate.
+  --all-models          Evaluate all registered models.
+  --llama-only          Evaluate only the validated Meta Llama benchmark
+                        models.
+  --open-models-only    Evaluate only the prioritized non-API benchmark
+                        models.
+  --datasets DATASETS [DATASETS ...]
+                        Dataset aliases to evaluate.
+  --all-datasets        Evaluate all canonical datasets.
+  --conditions {B0,B1,B2,B3,B4} [{B0,B1,B2,B3,B4} ...]
+                        Ablation conditions.
+  --condition-filter {B0,B1,B2,B3,B4} [{B0,B1,B2,B3,B4} ...]
+                        Alias for selecting a subset of ablation conditions.
+  --seed SEED
+  --temperature TEMPERATURE
+  --epsilon EPSILON
+  --max-tokens MAX_TOKENS
+  --limit LIMIT         Optional deterministic sample size; omitted means full
+                        dataset.
+  --dataset-limit DATASET_LIMIT
+                        Limit rows loaded per dataset.
+  --fast-validation     Run first model, first dataset, B0 only, limit 5.
+  --random-sample
+  --dry-run
+  --ml-model-path ML_MODEL_PATH
+  --output-root OUTPUT_ROOT
+  --run-id RUN_ID       Explicit run id, required to resume an earlier run.
+  --resume
+  --no-tables
+  --asr-judge-type {none,rule,llm}
+                        ASR judging protocol.
+  --asr-judge-model ASR_JUDGE_MODEL
+                        Registered model key for optional LLM judging.

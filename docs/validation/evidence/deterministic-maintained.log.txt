@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+[LOAD] Carregando dataset: C:\Users\leolima\Documents\aethon_repo\.worktrees\validation\datasets\hf_prompt-injections_test.parquet
+[NORMALIZE] 'prompt_injections_test' -> shape=(116, 4)
+[LOAD] Carregando dataset: C:\Users\leolima\Documents\aethon_repo\.worktrees\validation\datasets\neuralchemy_prompt_injection_core.jsonl
+[NORMALIZE] 'prompt_injection_core' -> shape=(6274, 4)
+[LOAD] Carregando dataset: C:\Users\leolima\Documents\aethon_repo\.worktrees\validation\datasets\jailbreakbench_behaviors.jsonl
+[NORMALIZE] 'jailbreakbench_behaviors' -> shape=(200, 4)
+  File "C:\Users\leolima\Documents\aethon_repo\.worktrees\validation\scripts\validate_deterministic_readiness.py", line 115, in <module>
+    main()
+  File "C:\Users\leolima\Documents\aethon_repo\.worktrees\validation\scripts\validate_deterministic_readiness.py", line 55, in main
+    raise ValueError("Dataset cardinality or identity changed")
+ValueError: Dataset cardinality or identity changed

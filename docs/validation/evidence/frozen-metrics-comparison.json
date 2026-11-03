@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "scope": "Independent comparison with versioned historical metric output, not metrics recomputed only from historical predictions",
+  "source": "results/revision/detection/metrics_by_dataset.csv",
+  "source_sha256": "e2b9746d98d3645668969c6eed881844b66bd82673f702bd6f3bd157638b7f34",
+  "metric_values_compared": 80,
+  "atol": 1e-12,
+  "mismatches": []
+}

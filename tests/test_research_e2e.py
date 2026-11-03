@@ -7,6 +7,7 @@ def test_pairing_resume_and_technical_failures(tmp_path, monkeypatch):
     # Make temporary repository boundary explicit so private test data stay in tmp.
     monkeypatch.setattr(research_e2e, "ROOT", tmp_path/"repository")
     class Driver:
+        response_contract = "continuation-v1"
         NAME = "stub"
         calls = 0
         def infer(self, prompt, **kwargs):

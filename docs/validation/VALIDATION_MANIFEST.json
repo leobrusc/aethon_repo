@@ -1,0 +1,912 @@
+{
+  "schema_version": 2,
+  "generated_utc": "2026-11-03T19:41:45.841667+00:00",
+  "validation_code_commit": "5b445608e55a88e5e1a13d2a6785acc36720413b",
+  "prior_manifest": {
+    "file": "docs/validation/evidence/validation-pre-contract-v1.json",
+    "sha256": "e9b0b5cab8e4068fd45e17e721b22bb6acc2d215a4bf6760290a5c9d88538d10"
+  },
+  "base_commit": "3ca7eaff5dc91701ecf7ea0dabdf7f185700a035",
+  "pr_chain": [
+    {
+      "number": 1,
+      "head": "544c363",
+      "base": "revision/bracis-reviewer-experiments"
+    },
+    {
+      "number": 2,
+      "head": "a6090ae",
+      "base": "research/jorge-2026-experimental-upgrade"
+    },
+    {
+      "number": 3,
+      "head": "3ca7eaf",
+      "base": "refactor/repository-modernization-2026"
+    }
+  ],
+  "hardware": {
+    "cpu": {
+      "Name": "Intel(R) Core(TM) Ultra 7 265U",
+      "NumberOfCores": 12,
+      "NumberOfLogicalProcessors": 14
+    },
+    "graphics": {
+      "Name": "Intel(R) Graphics",
+      "AdapterRAM": 2147479552,
+      "DriverVersion": "32.0.101.8132"
+    },
+    "total_ram_gib": 31.457717895507812,
+    "initial_available_ram_gib": 14.642021179199219,
+    "torch_cuda_available": false,
+    "nvidia_smi_available": false,
+    "gpu_execution": "NOT_RUN",
+    "note": "Intel AdapterRAM is not NVIDIA VRAM; no accessible NVIDIA device was found"
+  },
+  "contracts": {
+    "precision": "aethon.precision.v1",
+    "output": "aethon.generation.v1",
+    "historical_opt_in": "legacy-v1",
+    "default_new": {
+      "device": "cpu",
+      "dtype": "float32"
+    }
+  },
+  "engineering_decision": {
+    "status": "PASS",
+    "scope": "Scoped CPU integration of explicit contracts and deterministic detection; review dependent PR chain. No universal/GPU approval."
+  },
+  "scientific_decision": {
+    "status": "NOT_RUN",
+    "scope": "Prospective final campaign gates remain open; no scientific/statistical equivalence claim."
+  },
+  "controls": [
+    {
+      "control": "maintained_pytest",
+      "status": "PASS",
+      "detail": "141 tests; one expected mocked download-failure warning"
+    },
+    {
+      "control": "historical_contract_pytest",
+      "status": "PASS",
+      "detail": "18 tests, existing environment unchanged"
+    },
+    {
+      "control": "ruff",
+      "status": "PASS",
+      "detail": "All checks passed"
+    },
+    {
+      "control": "pip_check",
+      "status": "PASS",
+      "detail": "No broken requirements found"
+    },
+    {
+      "control": "scientific_files",
+      "status": "PASS",
+      "detail": "127 scientific working/tree hashes unchanged"
+    },
+    {
+      "control": "research_evidence",
+      "status": "PASS",
+      "detail": "31 scientific evidence files unchanged"
+    },
+    {
+      "control": "historical_manifests",
+      "status": "PASS",
+      "detail": "Six original dependency manifests unchanged"
+    },
+    {
+      "control": "prior_validation_evidence",
+      "status": "PASS",
+      "detail": "All 41 previously exported evidence hashes unchanged"
+    },
+    {
+      "control": "locks",
+      "status": "PASS",
+      "detail": "All eight environment/bootstrap lock hashes unchanged"
+    },
+    {
+      "control": "original_dirty_checkout",
+      "status": "PASS",
+      "detail": "All five original user-file hashes unchanged"
+    },
+    {
+      "control": "historical_paired_replay",
+      "status": "PASS",
+      "detail": "9139 B3/B4 pairs, no differences"
+    },
+    {
+      "control": "deterministic_maintained",
+      "status": "PASS",
+      "detail": "25 B0-B4/dataset comparisons; decisions, scores, prompt metrics; deterministic and statistical DP checks separated"
+    },
+    {
+      "control": "deterministic_historical",
+      "status": "PASS",
+      "detail": "25 B0-B4/dataset comparisons; decisions, scores, prompt metrics; deterministic and statistical DP checks separated"
+    },
+    {
+      "control": "llama_explicit_fp32_both",
+      "status": "PASS",
+      "detail": "Real generation.v1 on identical local weights in both stacks; three frozen chats and two raw calls per stack"
+    },
+    {
+      "control": "llama_observed_contract_comparison",
+      "status": "PASS",
+      "detail": "Three cases have identical input/generated IDs, continuation and stop reason; bounded observation only"
+    },
+    {
+      "control": "qwen_explicit_cpu_bf16",
+      "status": "PASS",
+      "detail": "Real generation.v1; three frozen chats and two raw calls; actual BF16 forward/parameter observations"
+    },
+    {
+      "control": "unsupported_precision_and_mismatch",
+      "status": "PASS",
+      "detail": "Unit tests reject unsupported dtype/device and parameter drift; no fallback"
+    },
+    {
+      "control": "asr_prompt_echo_boundary",
+      "status": "PASS",
+      "detail": "Token-derived continuation, EOS-only empty response excluded; ambiguous legacy drivers rejected; synthetic ASR tests"
+    },
+    {
+      "control": "serialization_and_legacy_string",
+      "status": "PASS",
+      "detail": "Versioned round-trip and separate full-text legacy .infer interface"
+    },
+    {
+      "control": "build_install_seven_clis",
+      "status": "PASS",
+      "detail": "Code-only isolated target installation, wheel build, seven --help commands and two-row dry-run"
+    },
+    {
+      "control": "locked_upstream_audits",
+      "status": "PASS",
+      "detail": "Seven strict public-version/dependency queries, zero matched advisories; no scanner suppressions"
+    },
+    {
+      "control": "windows_installed_provenance",
+      "status": "PASS",
+      "detail": "CPU/dev/research inventories and official torch receipt checks"
+    },
+    {
+      "control": "exact_torch_binary_catalog",
+      "status": "NOT_AUDITED",
+      "detail": "Local-build scanner skips retained; identity is not security certification"
+    },
+    {
+      "control": "historical_stack_general_untrusted_use",
+      "status": "FAIL",
+      "detail": "Known historical vulnerabilities retained for reproduction, restricted offline reviewed smoke only"
+    },
+    {
+      "control": "cuda_fp16_bf16_real_execution",
+      "status": "NOT_RUN",
+      "detail": "No accessible NVIDIA GPU; policy mocks are not GPU execution"
+    },
+    {
+      "control": "qwen_historical_comparison",
+      "status": "NOT_RUN",
+      "detail": "No additional historical 3B execution within bounded scope"
+    },
+    {
+      "control": "independent_asr_campaign",
+      "status": "NOT_RUN",
+      "detail": "Benign smoke and lexical unit tests are not scientific ASR"
+    },
+    {
+      "control": "scientific_statistical_equivalence",
+      "status": "NOT_RUN",
+      "detail": "No powered equivalence study, sealed independent dataset or final campaign"
+    },
+    {
+      "control": "universal_model_safety_license",
+      "status": "NOT_AUDITED",
+      "detail": "Reviewed local safetensors and hashes are not a universal safety/license audit"
+    }
+  ],
+  "profiles": [
+    {
+      "lock": "cpu-linux-py312.lock",
+      "upstream": "PASS",
+      "installation": "NOT_RUN",
+      "torch_provenance": "NOT_RUN",
+      "native_catalog": "NOT_RUN",
+      "exact_binary_catalog": "NOT_AUDITED"
+    },
+    {
+      "lock": "cpu-windows-py312.lock",
+      "upstream": "PASS",
+      "installation": "PASS",
+      "torch_provenance": "PASS",
+      "native_catalog": "NOT_AUDITED",
+      "exact_binary_catalog": "NOT_AUDITED"
+    },
+    {
+      "lock": "dev-linux-py312.lock",
+      "upstream": "PASS",
+      "installation": "NOT_RUN",
+      "torch_provenance": "NOT_RUN",
+      "native_catalog": "NOT_RUN",
+      "exact_binary_catalog": "NOT_AUDITED"
+    },
+    {
+      "lock": "dev-windows-py312.lock",
+      "upstream": "PASS",
+      "installation": "PASS",
+      "torch_provenance": "PASS",
+      "native_catalog": "NOT_AUDITED",
+      "exact_binary_catalog": "NOT_AUDITED"
+    },
+    {
+      "lock": "gpu-linux-py312.lock",
+      "upstream": "PASS",
+      "installation": "NOT_RUN",
+      "torch_provenance": "NOT_RUN",
+      "native_catalog": "NOT_RUN",
+      "exact_binary_catalog": "NOT_AUDITED"
+    },
+    {
+      "lock": "research-linux-py312.lock",
+      "upstream": "PASS",
+      "installation": "NOT_RUN",
+      "torch_provenance": "NOT_RUN",
+      "native_catalog": "NOT_RUN",
+      "exact_binary_catalog": "NOT_AUDITED"
+    },
+    {
+      "lock": "research-windows-py312.lock",
+      "upstream": "PASS",
+      "installation": "PASS",
+      "torch_provenance": "PASS",
+      "native_catalog": "NOT_AUDITED",
+      "exact_binary_catalog": "NOT_AUDITED"
+    }
+  ],
+  "evidence_files": [
+    {
+      "file": "docs/validation/contracts-v1/audit-exits.json",
+      "sha256": "a81e15898983d88087bbcabcfdd68fe27227ea587f745c516706ca3a7b336cee",
+      "bytes": 379
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/cpu-linux-py312.requirements.txt",
+      "sha256": "116f93f55a21fe529bdc49e0499d42c99df2003a021607944f3b45ea675c7fcf",
+      "bytes": 1215
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/cpu-linux-py312.summary.json",
+      "sha256": "17c03c8a7c5aacc1d053bed953357917cb1432c1df97db09d1e9f21483927873",
+      "bytes": 448
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/cpu-linux-py312.upstream.json",
+      "sha256": "3b25741151c321df551417c2ae6cfdafdb63cae0dc8a16044b91bf8b4e05bd65",
+      "bytes": 3832
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/cpu-linux-py312.upstream.log",
+      "sha256": "e82148c0c30269ca5a2c35420ece6af011a4faf5a375325d750e243ffdb10625",
+      "bytes": 268
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/cpu-windows-py312.native.json",
+      "sha256": "625d73dde17c278728b61498f8317f3d2ae87af487b49fabb942816f7088c19a",
+      "bytes": 4071
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/cpu-windows-py312.native.log",
+      "sha256": "4e4757ff226a44b5c448b1c4624619419c22d5272463dc19510b4754871a72f9",
+      "bytes": 32
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/cpu-windows-py312.requirements.txt",
+      "sha256": "7c5d2df3eb6757b599f9ee2f3171f855d2bab40557794f16d60692450bbbcca0",
+      "bytes": 1232
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/cpu-windows-py312.summary.json",
+      "sha256": "577f284285b8a02715a2f8c782b7bdaf34ab3cf6918898f5cf2e1a19b5263b09",
+      "bytes": 1520
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/cpu-windows-py312.upstream.json",
+      "sha256": "16a0cb7cc05766e0b09d2d12c3dd06a6b18f80af87493cc04c184fb5e83a0af9",
+      "bytes": 3887
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/cpu-windows-py312.upstream.log",
+      "sha256": "e82148c0c30269ca5a2c35420ece6af011a4faf5a375325d750e243ffdb10625",
+      "bytes": 268
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/dev-linux-py312.requirements.txt",
+      "sha256": "ddba90fd80e7f52f81a3ad9d900e7381d8041e89add61841acaba3b6a0b41d7b",
+      "bytes": 1879
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/dev-linux-py312.summary.json",
+      "sha256": "2f67bde9d63d4c525e2897e1aaab026af76f2871e4fea4d65459af5b8d7dbd54",
+      "bytes": 449
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/dev-linux-py312.upstream.json",
+      "sha256": "80228ba78714ce6afba73be3f2af84fc1873bb22cc5f9b61d6907d8e65293b17",
+      "bytes": 5788
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/dev-linux-py312.upstream.log",
+      "sha256": "e82148c0c30269ca5a2c35420ece6af011a4faf5a375325d750e243ffdb10625",
+      "bytes": 268
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/dev-windows-py312.native.json",
+      "sha256": "e32576a594d0f03d93857043a645f2f53d7cf62fea3efe481ef0cb4ce90a66b9",
+      "bytes": 6027
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/dev-windows-py312.native.log",
+      "sha256": "4e4757ff226a44b5c448b1c4624619419c22d5272463dc19510b4754871a72f9",
+      "bytes": 32
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/dev-windows-py312.requirements.txt",
+      "sha256": "584ee2b7f0a57eaf7311fd4da37775103da9f40343e71bb94be759cbadaad621",
+      "bytes": 1896
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/dev-windows-py312.summary.json",
+      "sha256": "26f0a88bfbf16db57c6ffb259705fe0de8d9271d1b738cff310a1e47fbe3ccf9",
+      "bytes": 1521
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/dev-windows-py312.upstream.json",
+      "sha256": "737daa7bb47abf624c9fba70103acfa4843fcc878e09d2318ada943bdfdde4aa",
+      "bytes": 5843
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/dev-windows-py312.upstream.log",
+      "sha256": "e82148c0c30269ca5a2c35420ece6af011a4faf5a375325d750e243ffdb10625",
+      "bytes": 268
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/gpu-linux-py312.requirements.txt",
+      "sha256": "9dbc776e32ae28fd277bdad50b6d7e9dab3901b1accb11befcab235272df5cb9",
+      "bytes": 2142
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/gpu-linux-py312.summary.json",
+      "sha256": "d5ace5eaedf50e9228eb2b9fcfe15d08a73aaf37434b41869c133e9dcb8b766a",
+      "bytes": 449
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/gpu-linux-py312.upstream.json",
+      "sha256": "28c94cff85911963544b0b1ef799399c82541b675665ec426ef1a2e3d88cdfb0",
+      "bytes": 6355
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/gpu-linux-py312.upstream.log",
+      "sha256": "e82148c0c30269ca5a2c35420ece6af011a4faf5a375325d750e243ffdb10625",
+      "bytes": 268
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/research-linux-py312.requirements.txt",
+      "sha256": "d2fffae853be754734f1a32ea5c45a69b3fd56aab6311117e5e38c088ae012b5",
+      "bytes": 1628
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/research-linux-py312.summary.json",
+      "sha256": "4d97a0b184028c67bb84f565fadd0a063d368818a949c376f5914c34c541abd1",
+      "bytes": 458
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/research-linux-py312.upstream.json",
+      "sha256": "e61568c45c72ffb6b626134fdc8ca42a16277d131d297de6a41ac25adcfbbba3",
+      "bytes": 5081
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/research-linux-py312.upstream.log",
+      "sha256": "e82148c0c30269ca5a2c35420ece6af011a4faf5a375325d750e243ffdb10625",
+      "bytes": 268
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/research-windows-py312.native.json",
+      "sha256": "b76fbc73327a1bef80bab4f7c2730e62eaa2c213db947a3493a0cecc49a996f1",
+      "bytes": 5320
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/research-windows-py312.native.log",
+      "sha256": "4e4757ff226a44b5c448b1c4624619419c22d5272463dc19510b4754871a72f9",
+      "bytes": 32
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/research-windows-py312.requirements.txt",
+      "sha256": "8b49002f44d3db2790a526cfcb72cc66b0912360ff4c40fb7cbc070c36f82b5e",
+      "bytes": 1645
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/research-windows-py312.summary.json",
+      "sha256": "c2fff0f90f7ef3a5d8c4c5eaa2c891fccbccd2f68842be15ce11c5bc668cee4b",
+      "bytes": 1535
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/research-windows-py312.upstream.json",
+      "sha256": "e7f388eb14c1bc383577d3b0c03efd1d725dc95a3ec344e225264e3fe9858057",
+      "bytes": 5136
+    },
+    {
+      "file": "docs/validation/contracts-v1/audits/research-windows-py312.upstream.log",
+      "sha256": "e82148c0c30269ca5a2c35420ece6af011a4faf5a375325d750e243ffdb10625",
+      "bytes": 268
+    },
+    {
+      "file": "docs/validation/contracts-v1/build.txt",
+      "sha256": "d77c92bec52eedd292065b019c9557817dcbd59d6ceec3eda170a55d24a30c4b",
+      "bytes": 9251
+    },
+    {
+      "file": "docs/validation/contracts-v1/cli-baseline.txt",
+      "sha256": "6ac6854d5e07cad3c2ce613532928124bf2ea345620294bdc2ab60669ee97c98",
+      "bytes": 666
+    },
+    {
+      "file": "docs/validation/contracts-v1/cli-benchmark.txt",
+      "sha256": "332c8661987e875065cb37abe79f20edc44f9c9f4fbd25d5719250daae533aa2",
+      "bytes": 2613
+    },
+    {
+      "file": "docs/validation/contracts-v1/cli-detect.txt",
+      "sha256": "56b9bf0c4f702235f637b1a77fbee902028f5483b2b449be15d8e341da15ecea",
+      "bytes": 997
+    },
+    {
+      "file": "docs/validation/contracts-v1/cli-dp.txt",
+      "sha256": "10bfbec9b3eb2679ae6da128b07547c1a2f94fd37d4f40a948cad4f9cd9c4e16",
+      "bytes": 243
+    },
+    {
+      "file": "docs/validation/contracts-v1/cli-dry-run.txt",
+      "sha256": "4e3c23db0e36c533129d67f833fdf29c06777d53cb7334786c3755014ce46a64",
+      "bytes": 654
+    },
+    {
+      "file": "docs/validation/contracts-v1/cli-generalization.txt",
+      "sha256": "1f05e863cc982f657696b50fd8cc7222090af58115053400348c119ad29789fd",
+      "bytes": 581
+    },
+    {
+      "file": "docs/validation/contracts-v1/cli-integrity.txt",
+      "sha256": "c8d1d85f0e3d9c0f28e4ed4ab565821a2c2a1097b731e15534818a4f5ee11612",
+      "bytes": 253
+    },
+    {
+      "file": "docs/validation/contracts-v1/cli-train.txt",
+      "sha256": "1773fabaaec722b371ad1808e42d4cef5dede497eadd0ffdfed797bbb1bfe1b6",
+      "bytes": 307
+    },
+    {
+      "file": "docs/validation/contracts-v1/deterministic-historical.json",
+      "sha256": "bcd5da17ed59624e71521c7e362faa1181b8587c9d9bf13b0a614615b47ca54a",
+      "bytes": 17893
+    },
+    {
+      "file": "docs/validation/contracts-v1/deterministic-maintained.json",
+      "sha256": "ef2b6b93a0845a5836f59938c7e1e7231f6cd0e666f5131f42721c73b227b347",
+      "bytes": 17892
+    },
+    {
+      "file": "docs/validation/contracts-v1/install-cli-exits.json",
+      "sha256": "c835711b6235be5dca6dfe914da53b88c77274b999019c260db2d0014ba95cb6",
+      "bytes": 523
+    },
+    {
+      "file": "docs/validation/contracts-v1/install.txt",
+      "sha256": "d7208423083edfe4c2e2a1489f176ccce44fc3014c9a1a5630f75b1d0f40c2f8",
+      "bytes": 795
+    },
+    {
+      "file": "docs/validation/contracts-v1/integrity-127.txt",
+      "sha256": "bf51279dccb18603a19a6b9acaa562cb92a0c43fd13539a45d05ea03b8b967af",
+      "bytes": 80
+    },
+    {
+      "file": "docs/validation/contracts-v1/integrity-31.txt",
+      "sha256": "6a25bb6808d75c6ff79d3c78d06d19943829cd8269833288b5f96173a6b54b38",
+      "bytes": 54
+    },
+    {
+      "file": "docs/validation/contracts-v1/integrity-6.txt",
+      "sha256": "0c31ace07d18bc1d6474a15a91f0586b217320cb7be6b1b5772ff66df9f6a2d4",
+      "bytes": 86
+    },
+    {
+      "file": "docs/validation/contracts-v1/integrity-exits.json",
+      "sha256": "8e9bdb6a87a38515a584e9175b389d8c28f20037ff7b90a6e8ba5b82219e7b87",
+      "bytes": 110
+    },
+    {
+      "file": "docs/validation/contracts-v1/llama-fp32-comparison.json",
+      "sha256": "0f2377078f6300a891cd26efea9c061d6f771e8f3215389df7317def059a4137",
+      "bytes": 952
+    },
+    {
+      "file": "docs/validation/contracts-v1/llama-fp32-historical.json",
+      "sha256": "be0f4af625db39fca79453b3a2dc6f9f4bdf7d2f9b8dbf59fb90fef2a6a89db5",
+      "bytes": 46555
+    },
+    {
+      "file": "docs/validation/contracts-v1/llama-fp32-maintained-final.json",
+      "sha256": "5b4c50e0b2836893f49564575a848295fb1a998a552625923a265fd5fbf73b4c",
+      "bytes": 28292
+    },
+    {
+      "file": "docs/validation/contracts-v1/llama-fp32-maintained.json",
+      "sha256": "1a9ecd3b319895c0296aa335e839ddbf562a2aecf3ab6407055acba5465d20f9",
+      "bytes": 27522
+    },
+    {
+      "file": "docs/validation/contracts-v1/pip-check.txt",
+      "sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf",
+      "bytes": 31
+    },
+    {
+      "file": "docs/validation/contracts-v1/pytest-final.txt",
+      "sha256": "d8714f295f79816902cf129f73ef175cfd85497c8f0c5a6dfc83ab8074ee8a12",
+      "bytes": 658
+    },
+    {
+      "file": "docs/validation/contracts-v1/pytest-historical-contract.txt",
+      "sha256": "8bb1875f67618f3df32f0c305214b9fbdc48a93c85a31edf14938e50017e28e2",
+      "bytes": 102
+    },
+    {
+      "file": "docs/validation/contracts-v1/qwen-bf16-maintained.json",
+      "sha256": "4e0606f3ddcceb273abc6023b3efc119f99c43e31581a83cfe02598b8bb8f580",
+      "bytes": 26692
+    },
+    {
+      "file": "docs/validation/contracts-v1/replay-b3-b4.txt",
+      "sha256": "d967d1975a9aa781657fd6a5f4e86f1d0c3eff1b16ec438a26f36b5e738564f1",
+      "bytes": 234
+    },
+    {
+      "file": "docs/validation/contracts-v1/ruff-final.txt",
+      "sha256": "a4443afdcfb6d7363adb285762515ccf7cf50473b1a05c20c1a50f6bed4d26b0",
+      "bytes": 20
+    }
+  ],
+  "lock_sha256": {
+    "requirements/environments/bootstrap.lock": "707c2e6ea3b9c6007524359d2b15cc07c7cba2f741494b59f1a96135cdfa8ec6",
+    "requirements/environments/cpu-linux-py312.lock": "5c72d0cff5286f9a29b591bbee8348327f4b7862b0ebd391a75cf1a9f960b994",
+    "requirements/environments/cpu-windows-py312.lock": "2561644b048a7de7fe812a7a97d4cd5a7f4e67dab19a54e7125474a5c252b4e6",
+    "requirements/environments/dev-linux-py312.lock": "bd2c013cb3910c34571b009854ef83ae375e4cba2ee2b6dcea93cd799ebd7a9e",
+    "requirements/environments/dev-windows-py312.lock": "35d615c038e4fd5e5ec690e8d6d2c60acd03a45e4ba78cdb210e2969f3708850",
+    "requirements/environments/gpu-linux-py312.lock": "c3549c0f3ce5c9ca1e22001eff14ecd8ff7eb46fb655780ef16a9edbe0ed8eba",
+    "requirements/environments/research-linux-py312.lock": "c2639a3273e6b6fb65dbfdba9c8be6263e14c381dc2b1f97d94e2ab56b877a1d",
+    "requirements/environments/research-windows-py312.lock": "8505e39c9c706bb8f14fb3e66c2ccf7f248c1d3482b4e50d8242cb0fb6aca3d1"
+  },
+  "frozen_protocols": {
+    "tests/fixtures/readiness_smoke.json": {
+      "sha256": "d0635ab5c14aa1a8452898302a198563203cb8c45dee40e3f51780708ec46631",
+      "status": "PASS"
+    },
+    "tests/fixtures/readiness_deterministic.json": {
+      "sha256": "01b6627d1c76c92a1b222ad424d5a9078565f41a74a51cc2c3a03feb5336b7a6",
+      "status": "PASS"
+    },
+    "docs/validation/PROSPECTIVE_PROTOCOL.md": {
+      "sha256": "e3d31f94a53f1a204bfb41d8a5eb88f1e91829617f09eb8ae94b434f14529668",
+      "status": "PASS"
+    },
+    "docs/validation/GPU_PROTOCOL.md": {
+      "sha256": "2189ee15bffb69cd176c8d8e05e8040d49415f111cd0e8c1f336f07869266c6d",
+      "status": "NOT_RUN"
+    }
+  },
+  "preserved_local_state": {
+    "src/close_harness.py": "a8b05c3cdd3ab563e6b36f4a8bfd024671f4ebc8251330d5e039d022b19e8b65",
+    "tests/test_harness_closure.py": "bca2d16e3347259ad3a1574bbb84c7269d0e77796db18286c16a4c54d0ce9416",
+    "close_harness.validated.backup.py": "a8b05c3cdd3ab563e6b36f4a8bfd024671f4ebc8251330d5e039d022b19e8b65",
+    "test_harness_closure.validated.backup.py": "bca2d16e3347259ad3a1574bbb84c7269d0e77796db18286c16a4c54d0ce9416",
+    "validated_tpr_auroc_closure.patch": "7827ae8ba281a24df7476c93f47a189a329883aaadb5b7fb85c23f5b344a1e98"
+  },
+  "prior_evidence_files": [
+    {
+      "file": "docs/validation/evidence/llama-maintained-r2.json",
+      "sha256": "06d29b2c61cdc614e0b8751b5f4a167f3ef84d3fd11fe584a991b2b8db3e8562",
+      "bytes": 7153,
+      "source_sha256": "06d29b2c61cdc614e0b8751b5f4a167f3ef84d3fd11fe584a991b2b8db3e8562",
+      "scope": "Actual local cached-weight inference, not mocks or ASR"
+    },
+    {
+      "file": "docs/validation/evidence/llama-historical.json",
+      "sha256": "fa52ccf27de1e192f8458c9e664f5d53c698f8cc9d15aa1617fba7f4b597ce7d",
+      "bytes": 7147,
+      "source_sha256": "fa52ccf27de1e192f8458c9e664f5d53c698f8cc9d15aa1617fba7f4b597ce7d",
+      "scope": "Actual local cached-weight inference, not mocks or ASR"
+    },
+    {
+      "file": "docs/validation/evidence/llama-native-fp32-maintained.json",
+      "sha256": "7c53a64c1b6d007951fabc29e78ddddbbe8e027a2d95d6d1dede2a2a06d80ed2",
+      "bytes": 8581,
+      "source_sha256": "7c53a64c1b6d007951fabc29e78ddddbbe8e027a2d95d6d1dede2a2a06d80ed2",
+      "scope": "Actual local cached-weight inference, not mocks or ASR"
+    },
+    {
+      "file": "docs/validation/evidence/llama-native-fp32-historical.json",
+      "sha256": "13d84fc965a82d33b11779854681098e472f5a8f2bfd5a78acf585759c7a93d0",
+      "bytes": 8578,
+      "source_sha256": "13d84fc965a82d33b11779854681098e472f5a8f2bfd5a78acf585759c7a93d0",
+      "scope": "Actual local cached-weight inference, not mocks or ASR"
+    },
+    {
+      "file": "docs/validation/evidence/qwen-maintained.json",
+      "sha256": "fef89707ecce7250856e949ab0bad442382c0802caeb37c8b886aae1ab1a4802",
+      "bytes": 6908,
+      "source_sha256": "fef89707ecce7250856e949ab0bad442382c0802caeb37c8b886aae1ab1a4802",
+      "scope": "Actual local cached-weight inference, not mocks or ASR"
+    },
+    {
+      "file": "docs/validation/evidence/qwen-registry-maintained.json",
+      "sha256": "e7ef3ae45d958bc4b3d07b1266452cf11801b340fa608cc925e2e28f8448dc44",
+      "bytes": 6582,
+      "source_sha256": "e7ef3ae45d958bc4b3d07b1266452cf11801b340fa608cc925e2e28f8448dc44",
+      "scope": "Actual local cached-weight inference, not mocks or ASR"
+    },
+    {
+      "file": "docs/validation/evidence/llama-initial-harness-failure.json",
+      "sha256": "3b4aa604ab8adbc01ce782133f51e3c814f99894f50d838681683065c1939021",
+      "bytes": 2545,
+      "source_sha256": "3b4aa604ab8adbc01ce782133f51e3c814f99894f50d838681683065c1939021",
+      "scope": "FAIL before generation; implicit tokenizer return-contract assumption, retained"
+    },
+    {
+      "file": "docs/validation/evidence/llama-access.json",
+      "sha256": "049ef0e5d65c2b5acac5627ac18e7a00added001a861192fda6c3ea54d62e406",
+      "bytes": 247,
+      "source_sha256": "049ef0e5d65c2b5acac5627ac18e7a00added001a861192fda6c3ea54d62e406",
+      "scope": "Repository access verified, not legal/license safety certification"
+    },
+    {
+      "file": "docs/validation/evidence/llama-comparison.json",
+      "sha256": "2d13c8edf603ab22e326fae829dad5202bc569a567b054cf4d00fb41c10a9726",
+      "bytes": 1337,
+      "source_sha256": "2d13c8edf603ab22e326fae829dad5202bc569a567b054cf4d00fb41c10a9726",
+      "scope": "Explicit native FP32 comparison plus FAIL for registry default precision parity"
+    },
+    {
+      "file": "docs/validation/evidence/protectai-comparison.json",
+      "sha256": "eb952666a06a87a2432d5a5c86f495d801fd3cfc487383ba41d88f46d652c4b5",
+      "bytes": 292,
+      "source_sha256": "eb952666a06a87a2432d5a5c86f495d801fd3cfc487383ba41d88f46d652c4b5",
+      "scope": "18-row curated historical smoke comparison; no performance estimate"
+    },
+    {
+      "file": "docs/validation/evidence/deterministic-maintained-r3.json",
+      "sha256": "791747ab23d33eed64d1c9c9df8493d5719d6520be477c784370bab89be6afb1",
+      "bytes": 17892,
+      "source_sha256": "791747ab23d33eed64d1c9c9df8493d5719d6520be477c784370bab89be6afb1",
+      "scope": "Immutable reference replay, not a new benchmark"
+    },
+    {
+      "file": "docs/validation/evidence/deterministic-historical-r3.json",
+      "sha256": "54a56c95fed3f60adf47f0a62863425a83eefa90ba254135cfade8c06b969706",
+      "bytes": 17893,
+      "source_sha256": "54a56c95fed3f60adf47f0a62863425a83eefa90ba254135cfade8c06b969706",
+      "scope": "Immutable reference replay, not a new benchmark"
+    },
+    {
+      "file": "docs/validation/evidence/deterministic-maintained.log.txt",
+      "sha256": "528737240ebe9b5ab1d2a5e510e6b9298b9ead8c8974bc776c9d9ecaa9453c8b",
+      "bytes": 1006,
+      "source_sha256": "528737240ebe9b5ab1d2a5e510e6b9298b9ead8c8974bc776c9d9ecaa9453c8b",
+      "scope": "Retained failed harness attempt; no scientific fixture was modified"
+    },
+    {
+      "file": "docs/validation/evidence/deterministic-maintained-r2.log.txt",
+      "sha256": "d04c4afb8a81fd7b10188fc7d5c307335ea4f0fd1e612175be974b747b0a5d8f",
+      "bytes": 1046,
+      "source_sha256": "d04c4afb8a81fd7b10188fc7d5c307335ea4f0fd1e612175be974b747b0a5d8f",
+      "scope": "Retained failed harness attempt; no scientific fixture was modified"
+    },
+    {
+      "file": "docs/validation/evidence/protectai-initial-failure.json",
+      "sha256": "e2dd80b59199869f3b60579ca3635f18ac1c3a82ed804035a59f2c4190006f30",
+      "bytes": 2909,
+      "source_sha256": "118dd51529157b191f8f4b33eef5b7a5cd76d7151c093305f4f44718a159a70f",
+      "scope": "Curated export of actual run manifest; explicit hardware omission, not fabricated raw data"
+    },
+    {
+      "file": "docs/validation/evidence/protectai-current-manifest.json",
+      "sha256": "68b6ee149bf42703c4b597353000f6dd2badd32a037bcbb23b6a3630fc1244b5",
+      "bytes": 3889,
+      "source_sha256": "05fd404f6749c15c1bb97fa028742b99885493794643ce0c3cbfed9bd2b2824f",
+      "scope": "Curated export of actual run manifest; explicit hardware omission, not fabricated raw data"
+    },
+    {
+      "file": "docs/validation/evidence/protectai-predictions.csv",
+      "sha256": "ef7cbd63cff0b48ed66ff8f00ebf524fa712895a35ae7597362d33edb13c771e",
+      "bytes": 3945,
+      "source_sha256": "ef7cbd63cff0b48ed66ff8f00ebf524fa712895a35ae7597362d33edb13c771e",
+      "scope": "Actual 18-row classifier outputs without prompt text"
+    },
+    {
+      "file": "docs/validation/evidence/cpu-linux-py312.summary.json",
+      "sha256": "4eb58f65b3859814134b2c9fbc6e1bd1983f0b9e3bdf5b968faebb837327f594",
+      "bytes": 434,
+      "source_sha256": "4eb58f65b3859814134b2c9fbc6e1bd1983f0b9e3bdf5b968faebb837327f594",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/cpu-linux-py312.upstream.json",
+      "sha256": "3b25741151c321df551417c2ae6cfdafdb63cae0dc8a16044b91bf8b4e05bd65",
+      "bytes": 3832,
+      "source_sha256": "3b25741151c321df551417c2ae6cfdafdb63cae0dc8a16044b91bf8b4e05bd65",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/cpu-windows-py312.native.json",
+      "sha256": "625d73dde17c278728b61498f8317f3d2ae87af487b49fabb942816f7088c19a",
+      "bytes": 4071,
+      "source_sha256": "625d73dde17c278728b61498f8317f3d2ae87af487b49fabb942816f7088c19a",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/cpu-windows-py312.summary.json",
+      "sha256": "a6c4adb6d2e9d4e4c2903fbaf9bbe282c79ea42cd85e1c1d1b83eb6821e3c7bf",
+      "bytes": 1492,
+      "source_sha256": "a6c4adb6d2e9d4e4c2903fbaf9bbe282c79ea42cd85e1c1d1b83eb6821e3c7bf",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/cpu-windows-py312.upstream.json",
+      "sha256": "16a0cb7cc05766e0b09d2d12c3dd06a6b18f80af87493cc04c184fb5e83a0af9",
+      "bytes": 3887,
+      "source_sha256": "16a0cb7cc05766e0b09d2d12c3dd06a6b18f80af87493cc04c184fb5e83a0af9",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/dev-linux-py312.summary.json",
+      "sha256": "27ad38b9a3d9f50f030857a9d65f98defe94f04cf175df9d581cef2da1875b45",
+      "bytes": 435,
+      "source_sha256": "27ad38b9a3d9f50f030857a9d65f98defe94f04cf175df9d581cef2da1875b45",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/dev-linux-py312.upstream.json",
+      "sha256": "80228ba78714ce6afba73be3f2af84fc1873bb22cc5f9b61d6907d8e65293b17",
+      "bytes": 5788,
+      "source_sha256": "80228ba78714ce6afba73be3f2af84fc1873bb22cc5f9b61d6907d8e65293b17",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/dev-windows-py312.native.json",
+      "sha256": "e32576a594d0f03d93857043a645f2f53d7cf62fea3efe481ef0cb4ce90a66b9",
+      "bytes": 6027,
+      "source_sha256": "e32576a594d0f03d93857043a645f2f53d7cf62fea3efe481ef0cb4ce90a66b9",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/dev-windows-py312.summary.json",
+      "sha256": "9fe6f25f98f29ff468b910761ba5db2ac6e998e76ec68021704e1213d27a597e",
+      "bytes": 1493,
+      "source_sha256": "9fe6f25f98f29ff468b910761ba5db2ac6e998e76ec68021704e1213d27a597e",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/dev-windows-py312.upstream.json",
+      "sha256": "737daa7bb47abf624c9fba70103acfa4843fcc878e09d2318ada943bdfdde4aa",
+      "bytes": 5843,
+      "source_sha256": "737daa7bb47abf624c9fba70103acfa4843fcc878e09d2318ada943bdfdde4aa",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/gpu-linux-py312.summary.json",
+      "sha256": "e842737cf391dc2970fd05e587fc84611b8ae0ce082a74110cee2cacd743ce0c",
+      "bytes": 435,
+      "source_sha256": "e842737cf391dc2970fd05e587fc84611b8ae0ce082a74110cee2cacd743ce0c",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/gpu-linux-py312.upstream.json",
+      "sha256": "28c94cff85911963544b0b1ef799399c82541b675665ec426ef1a2e3d88cdfb0",
+      "bytes": 6355,
+      "source_sha256": "28c94cff85911963544b0b1ef799399c82541b675665ec426ef1a2e3d88cdfb0",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/research-linux-py312.summary.json",
+      "sha256": "f85fdbe535b8e8c6569147b6fc89afcc48a65f9be0c8cc9d64bfa63a46e6ba49",
+      "bytes": 444,
+      "source_sha256": "f85fdbe535b8e8c6569147b6fc89afcc48a65f9be0c8cc9d64bfa63a46e6ba49",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/research-linux-py312.upstream.json",
+      "sha256": "e61568c45c72ffb6b626134fdc8ca42a16277d131d297de6a41ac25adcfbbba3",
+      "bytes": 5081,
+      "source_sha256": "e61568c45c72ffb6b626134fdc8ca42a16277d131d297de6a41ac25adcfbbba3",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/research-windows-py312.native.json",
+      "sha256": "b76fbc73327a1bef80bab4f7c2730e62eaa2c213db947a3493a0cecc49a996f1",
+      "bytes": 5320,
+      "source_sha256": "b76fbc73327a1bef80bab4f7c2730e62eaa2c213db947a3493a0cecc49a996f1",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/research-windows-py312.summary.json",
+      "sha256": "09f3fe94956835f5d2cafb32702ce45d39f749ce7f9525294c17ec83d276b97f",
+      "bytes": 1507,
+      "source_sha256": "09f3fe94956835f5d2cafb32702ce45d39f749ce7f9525294c17ec83d276b97f",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/research-windows-py312.upstream.json",
+      "sha256": "e7f388eb14c1bc383577d3b0c03efd1d725dc95a3ec344e225264e3fe9858057",
+      "bytes": 5136,
+      "source_sha256": "e7f388eb14c1bc383577d3b0c03efd1d725dc95a3ec344e225264e3fe9858057",
+      "scope": "Raw native/upstream scanner or audit summary, no suppressions"
+    },
+    {
+      "file": "docs/validation/evidence/pytest-final.txt",
+      "sha256": "17aa8001e280f9230cfc8b835e2b32b0a6f3d84608ba2673a6a947ca000205b8",
+      "bytes": 658,
+      "source_sha256": "17aa8001e280f9230cfc8b835e2b32b0a6f3d84608ba2673a6a947ca000205b8",
+      "scope": "Actual final suite output"
+    },
+    {
+      "file": "docs/validation/evidence/ruff-final.txt.txt",
+      "sha256": "a4443afdcfb6d7363adb285762515ccf7cf50473b1a05c20c1a50f6bed4d26b0",
+      "bytes": 20,
+      "source_sha256": "a4443afdcfb6d7363adb285762515ccf7cf50473b1a05c20c1a50f6bed4d26b0",
+      "scope": "Actual tooling/installation output; no dependency update"
+    },
+    {
+      "file": "docs/validation/evidence/build-final.log.txt",
+      "sha256": "f667a1532e22ec2c46ecb1a390539066981117d7f267ac50791748742ebb893b",
+      "bytes": 20564,
+      "source_sha256": "f667a1532e22ec2c46ecb1a390539066981117d7f267ac50791748742ebb893b",
+      "scope": "Actual tooling/installation output; no dependency update"
+    },
+    {
+      "file": "docs/validation/evidence/install-final.log.txt",
+      "sha256": "27d5a29a9d6434ff7d7f85d0d46dde60fe806fb183965ef1f64832d09ba368d3",
+      "bytes": 795,
+      "source_sha256": "27d5a29a9d6434ff7d7f85d0d46dde60fe806fb183965ef1f64832d09ba368d3",
+      "scope": "Actual tooling/installation output; no dependency update"
+    },
+    {
+      "file": "docs/validation/evidence/installed-cli-final.txt.txt",
+      "sha256": "6ac6854d5e07cad3c2ce613532928124bf2ea345620294bdc2ab60669ee97c98",
+      "bytes": 666,
+      "source_sha256": "6ac6854d5e07cad3c2ce613532928124bf2ea345620294bdc2ab60669ee97c98",
+      "scope": "Actual tooling/installation output; no dependency update"
+    },
+    {
+      "file": "docs/validation/evidence/protectai-dtype.json",
+      "sha256": "670fd0add0f7151b84f5647006760db3bfa099ad524da5212274875a643d6f3c",
+      "bytes": 367,
+      "source_sha256": "670fd0add0f7151b84f5647006760db3bfa099ad524da5212274875a643d6f3c",
+      "scope": "Actual parameter dtype inspected with current local safetensors loader"
+    },
+    {
+      "file": "docs/validation/evidence/frozen-metrics-comparison.json",
+      "sha256": "e0338d633ae1c9d28855107d43ec4e85286c5afc78e023d2d06a3de3cac8adb5",
+      "source_sha256": "e0338d633ae1c9d28855107d43ec4e85286c5afc78e023d2d06a3de3cac8adb5",
+      "bytes": 387,
+      "scope": "Independent comparison with actual versioned metric output"
+    }
+  ],
+  "new_final_real_calls": 15,
+  "additional_pre_final_real_calls_retained": 5,
+  "implementation_sha256": {
+    "src/aethon/generation.py": "3d19e3df1ec11a2419614a8c8912fee50793247e45cbfdcb04ee171fe6f89574",
+    "src/model_registry.py": "5a2d537730f8e6780931e6eb4dd60eb94c886979976057531d2e5d9aa4d6a6a2",
+    "scripts/validate_generation_contract.py": "3da1d9815c7ec95b573e7886579c50af5c448f70844f699585a29f40a4c852d2",
+    "scripts/validate_real_inference.py": "9b25350d00dece0a29212dee51401fae06e43098d9a3960c2f9606b4a3009f8d",
+    "src/models/hf_causal_driver.py": "caeb197115c1473decc6cfa01936ee31f57aa309d842908f2d75c2ba6b45f412"
+  }
+}

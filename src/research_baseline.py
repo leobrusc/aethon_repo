@@ -23,6 +23,24 @@ MODELS = {"protectai": ("protectai/deberta-v3-base-prompt-injection-v2", ("INJEC
           "promptguard": ("meta-llama/Llama-Prompt-Guard-2-22M", ("MALICIOUS",))}
 
 
+def verified_snapshot_revision(snapshot, model_id, requested, reported):
+    """Verify the immutable HF cache location even when HF 5 omits _commit_hash.
+
+    A missing config field is not evidence of a revision match. The independently
+    resolved snapshot must identify the requested repo and full revision, and any
+    reported config hash must agree. The caller hashes and loads these same files.
+    """
+    snapshot = Path(snapshot).resolve()
+    expected_repo = "models--" + model_id.replace("/", "--")
+    if (not re.fullmatch(r"[0-9a-f]{40}", requested) or snapshot.name != requested
+            or snapshot.parent.name != "snapshots" or snapshot.parent.parent.name != expected_repo):
+        raise ValueError("Snapshot path does not prove the pinned repository/revision")
+    if reported is not None and reported != requested:
+        raise ValueError("Resolved model revision does not match pinned revision")
+    return {"revision": requested, "config_commit_hash": reported,
+            "evidence": "Exact HF repository cache + immutable snapshot directory + hashed loaded artifacts"}
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--model", choices=MODELS, default="protectai")
@@ -93,14 +111,15 @@ def main():
                 with path.open("rb") as stream:
                     for chunk in iter(lambda: stream.read(1024*1024), b""): h.update(chunk)
                 hashes[path.name] = h.hexdigest()
-            detector = TransformerDetector(model_id, labels, device=a.device, revision=a.revision, local_files_only=True)
+            # Load exactly the local files whose hashes were recorded above.
+            detector = TransformerDetector(str(snapshot), labels, device=a.device, revision=a.revision, local_files_only=True)
             resolved = getattr(detector.model.config, "_commit_hash", None)
-            if resolved != a.revision: raise ValueError("Resolved model revision does not match pinned revision")
+            proof = verified_snapshot_revision(snapshot, model_id, a.revision, resolved)
             if a.model == "protectai" and detector.model.config.id2label != {0: "SAFE", 1: "INJECTION"}:
                 raise ValueError("ProtectAI class semantics changed")
             detector.warmup(["ordinary benign request", "simple text"])
             manifest.update(status="RUNNING", model_hashes=hashes,
-                            resolved_model_revision=getattr(detector.model.config, "_commit_hash", None),
+                            resolved_model_revision=proof["revision"], revision_proof=proof,
                             id2label=detector.model.config.id2label,
                             gpu_name=__import__("torch").cuda.get_device_name() if a.device == "cuda" else None)
             atomic_write(manifest_path, json.dumps(manifest, indent=2))

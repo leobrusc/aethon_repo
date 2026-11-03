@@ -1,0 +1,90 @@
+{
+  "run_id": "readiness-protectai-v1",
+  "fingerprint": "d81b5d1d626dfcfa773219ef526c34fafde8c4bf89f9b8b44662febca11170e6",
+  "configuration": {
+    "model": "protectai/deberta-v3-base-prompt-injection-v2",
+    "model_revision": "90c9989b1a342275dd0d1a95aad283c04e075671",
+    "tokenizer_revision": "90c9989b1a342275dd0d1a95aad283c04e075671",
+    "datasets": [
+      {
+        "name": "prompt_injections_test",
+        "file": "hf_prompt-injections_test.parquet",
+        "sha256": "39ac797cabc157eeed58435a08593b2952bb6cb16fc394a2d383f447cc7b246e",
+        "bytes": 10892
+      },
+      {
+        "name": "prompt_injection_core",
+        "file": "neuralchemy_prompt_injection_core.jsonl",
+        "sha256": "e7a1b0b9a21032df8b3ffcac1605841324d1266f30fb4d70e6d058af0cde685f",
+        "bytes": 2165752
+      },
+      {
+        "name": "jailbreakbench_behaviors",
+        "file": "jailbreakbench_behaviors.jsonl",
+        "sha256": "4f3a40e85e5be7314ae8e6cb5dc73f4197eca0e691b67d6a25a915b1a934a850",
+        "bytes": 60175
+      },
+      {
+        "name": "wildjailbreak_eval",
+        "file": "wildjailbreak_eval.jsonl",
+        "sha256": "2e74645416c7daa3b30ae11cb845a50cc9fe5d0b147e4ddc2ef5b0af23ec88a5",
+        "bytes": 1825386
+      },
+      {
+        "name": "notinject",
+        "file": "notinject.jsonl",
+        "sha256": "e41959c6cd149a4f921cb70deff86f9aab10bfede0894b958e99980bf71349b8",
+        "bytes": 67357
+      }
+    ],
+    "threshold": 0.5,
+    "max_length": 512,
+    "smoke": true,
+    "dtype": "float32",
+    "labels": [
+      "INJECTION"
+    ],
+    "device": "cpu",
+    "batch_size": 4,
+    "decision": "p(malicious) >= threshold",
+    "implementation": {
+      "research_baseline.py": "2fd53232d45e62561155fa3ca84178347900af52ef3f979af2396166747f2488",
+      "baseline_detectors.py": "94f1676dfcca71d6e4a59bfe1b86d3a5ea733fec8e612427b2de37c857868b3e"
+    },
+    "dependencies": {
+      "torch": "2.15.0+cpu",
+      "transformers": "5.22.1",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3"
+    }
+  },
+  "commit_sha": "037f80bb15d3987d62fafdc8138235259dc5845f",
+  "git_dirty": true,
+  "python": "3.12.13",
+  "dependencies": {
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3"
+  },
+  "seed": 2026,
+  "temperature": null,
+  "token_limit": 512,
+  "status": "FAILED",
+  "warmup": 2,
+  "checkpoint": "checkpoint.jsonl",
+  "errors": [
+    "ValueError: Resolved model revision does not match pinned revision"
+  ],
+  "exclusions": [],
+  "expected_records": 18,
+  "processed_records": 0,
+  "duration_seconds": 12.918439900036901,
+  "public_export": {
+    "omitted_fields": [
+      "hardware (hostname omitted)"
+    ],
+    "raw_source_sha256": "118dd51529157b191f8f4b33eef5b7a5cd76d7151c093305f4f44718a159a70f",
+    "raw_source_retained_locally": true
+  }
+}

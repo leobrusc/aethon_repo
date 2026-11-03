@@ -1,0 +1,18 @@
+{
+  "cpu": {
+    "Name": "Intel(R) Core(TM) Ultra 7 265U",
+    "NumberOfCores": 12,
+    "NumberOfLogicalProcessors": 14
+  },
+  "graphics": {
+    "Name": "Intel(R) Graphics",
+    "AdapterRAM": 2147479552,
+    "DriverVersion": "32.0.101.8132"
+  },
+  "total_ram_gib": 31.457717895507812,
+  "initial_available_ram_gib": 14.642021179199219,
+  "torch_cuda_available": false,
+  "nvidia_smi_available": false,
+  "gpu_execution": "NOT_RUN",
+  "note": "Intel AdapterRAM is not NVIDIA VRAM; no accessible NVIDIA device was found"
+}

@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "dtype_observed": "torch.float32",
+  "device_observed": "cpu",
+  "revision": "90c9989b1a342275dd0d1a95aad283c04e075671",
+  "id2label": {
+    "0": "SAFE",
+    "1": "INJECTION"
+  },
+  "remote_code": false,
+  "format": "safetensors",
+  "scope": "Actual current loader parameter inspection, separate from the 18-row classifier run"
+}
