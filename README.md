@@ -177,19 +177,19 @@ cd aethon_repo
 ### Windows PowerShell
 
 ```powershell
-python -m venv venv
-.\venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-pip install -r requirements.txt
+# Run with a Python 3.12.13 controller; see docs/security/REPORT.md.
+python -m pip install --isolated --require-hashes --only-binary=:all: -r requirements/environments/bootstrap.lock
+python scripts/install_security_environment.py requirements/environments/dev-windows-py312.lock .venv-dev
+.\.venv-dev\Scripts\Activate.ps1
 ```
 
-### Linux / macOS
+### Linux
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
-python -m pip install --upgrade pip
-pip install -r requirements.txt
+# Run with a Python 3.12.13 controller; macOS has no validated lock yet.
+python -m pip install --isolated --require-hashes --only-binary=:all: -r requirements/environments/bootstrap.lock
+python scripts/install_security_environment.py requirements/environments/dev-linux-py312.lock .venv-dev
+source .venv-dev/bin/activate
 ```
 
 Some Hugging Face models require model-license acceptance and an authenticated token. Hosted APIs require provider credentials. Credentials must be supplied through environment variables or a local `.env` file and must never be committed.
@@ -527,7 +527,9 @@ python -m ruff check src tests
 python -m mypy src
 ```
 
-`pytest` and `pytest-cov` are declared in `requirements-dev.txt`; linting and typing tools remain recommended future CI additions.
+`pytest`, `pytest-cov` and Ruff are installed by the hashed development profile;
+CI executes regression, integrity and security checks. Static typing remains
+optional and is not reported as an executed gate.
 
 ### Why Testing Matters in Cybersecurity and AI Engineering
 

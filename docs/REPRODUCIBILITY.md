@@ -44,7 +44,8 @@ The benchmark manifest at `results/aggregated/benchmark_manifest.jsonl` records 
 ### 1. Install Development Dependencies
 
 ```bash
-pip install -r requirements-dev.txt
+# Activate a maintained hashed development environment from docs/security/REPORT.md.
+# Original dependencies for historical runs: requirements/historical/pr2/.
 ```
 
 ### 2. Run Unit and Integration Tests
