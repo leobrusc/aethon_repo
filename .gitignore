@@ -83,4 +83,9 @@ package-lock.json
 scratch/
 local_*.py
 .hf_cache/
+.worktrees/
+build/
+dist/
+*.egg-info/
+.pre-commit-cache/
 results/revision/baselines/private_*

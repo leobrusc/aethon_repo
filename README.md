@@ -2,6 +2,28 @@
 
 **Adaptive Ethical Threat Observatory for Networks**
 
+Repository modernization: see the [audit and validation report](docs/modernization/REPORT.md),
+[architecture and CLI migration](docs/ARCHITECTURE.md),
+[contribution guide](CONTRIBUTING.md) and [security policy](SECURITY.md).
+The June inventory/cleanup plans are archived; their history-rewrite instructions
+are superseded.
+
+For CPU development and offline regression checks, install Git LFS and run from
+the repository root in an activated Python 3.10+ virtual environment:
+
+```bash
+git lfs pull
+python -m pip install -e '.[dev]'
+python -m aethon benchmark --help
+python -m pytest -q
+python scripts/repository_inventory.py verify
+```
+
+Existing `python src/...` commands remain supported. `pip install -r requirements.txt`
+retains the full optional research/GPU dependency set; choose a PyTorch build for
+your actual CUDA environment. See [environment scope](docs/modernization/DEPENDENCIES.md)
+before reproducing old studies. Package installation does not download model weights.
+
 Aethon is an experimental cybersecurity and AI engineering framework for studying how large language models (LLMs) respond to adversarial prompts, especially prompt injection, jailbreak, and red-team inputs. The repository provides a reproducible pipeline for loading security-oriented datasets, applying detection and mitigation logic, executing selected model backends, and recording results for later analysis.
 
 ---

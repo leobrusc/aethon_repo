@@ -1,0 +1,708 @@
+{
+  "scripts/compare_research_smoke.py": [
+    "baseline_reliability",
+    "hashlib",
+    "json",
+    "pandas",
+    "pathlib",
+    "research_paired",
+    "sys"
+  ],
+  "scripts/export_research_evidence.py": [
+    "argparse",
+    "hashlib",
+    "importlib.metadata",
+    "json",
+    "pathlib",
+    "shutil"
+  ],
+  "scripts/validate_historical_decisions.py": [
+    "baseline_reliability",
+    "hashlib",
+    "json",
+    "pandas",
+    "pathlib",
+    "sys"
+  ],
+  "scripts/validate_research_baseline.py": [
+    "baseline_detectors",
+    "baseline_reliability",
+    "hashlib",
+    "json",
+    "numpy",
+    "pathlib",
+    "sys"
+  ],
+  "scripts/verify_research_evidence.py": [
+    "argparse",
+    "hashlib",
+    "json",
+    "pathlib",
+    "subprocess"
+  ],
+  "src/aethon_calibrated_cascade.py": [
+    "__future__",
+    "dataclasses",
+    "numpy",
+    "sklearn.isotonic",
+    "sklearn.linear_model",
+    "sklearn.metrics"
+  ],
+  "src/aethon_full_pipeline.py": [
+    "aethon_heuristic",
+    "aethon_ml_pipeline",
+    "numpy",
+    "time"
+  ],
+  "src/aethon_heuristic.py": [
+    "re",
+    "typing"
+  ],
+  "src/aethon_ml_pipeline.py": [
+    "joblib",
+    "os",
+    "sklearn.feature_extraction.text",
+    "sklearn.linear_model",
+    "sklearn.model_selection",
+    "sklearn.pipeline",
+    "typing"
+  ],
+  "src/analysis_utils.py": [
+    "numpy",
+    "statsmodels.stats.contingency_tables"
+  ],
+  "src/analyze_baseline_results.py": [
+    "__future__",
+    "argparse",
+    "pandas",
+    "pathlib",
+    "sklearn.metrics"
+  ],
+  "src/baseline_detectors.py": [
+    "__future__",
+    "dataclasses",
+    "numpy",
+    "scipy.special",
+    "time",
+    "torch",
+    "transformers"
+  ],
+  "src/baseline_reliability.py": [
+    "__future__",
+    "hashlib",
+    "json",
+    "os",
+    "pathlib",
+    "tempfile"
+  ],
+  "src/baselines/__init__.py": [
+    "llama_prompt_guard",
+    "protectai_deberta"
+  ],
+  "src/baselines/base.py": [
+    "__future__",
+    "torch",
+    "transformers"
+  ],
+  "src/baselines/llama_prompt_guard.py": [
+    "base"
+  ],
+  "src/baselines/protectai_deberta.py": [
+    "base"
+  ],
+  "src/benchmark/__init__.py": [
+    "benchmark.config",
+    "benchmark.runner"
+  ],
+  "src/benchmark/asr.py": [
+    "dataclasses",
+    "json",
+    "model_registry",
+    "re",
+    "typing"
+  ],
+  "src/benchmark/config.py": [
+    "dataclasses",
+    "json",
+    "pathlib",
+    "typing"
+  ],
+  "src/benchmark/detection.py": [
+    "__future__",
+    "benchmark.middleware",
+    "dataclasses",
+    "dataset_loader",
+    "datetime",
+    "hashlib",
+    "json",
+    "numpy",
+    "pandas",
+    "pathlib",
+    "platform",
+    "sklearn",
+    "sklearn.metrics",
+    "subprocess",
+    "time",
+    "typing"
+  ],
+  "src/benchmark/metadata.py": [
+    "importlib.metadata",
+    "pathlib",
+    "platform",
+    "socket",
+    "subprocess",
+    "sys",
+    "typing"
+  ],
+  "src/benchmark/metrics.py": [
+    "json",
+    "numpy",
+    "pandas",
+    "pathlib",
+    "sklearn.metrics",
+    "typing"
+  ],
+  "src/benchmark/middleware.py": [
+    "aethon_heuristic",
+    "aethon_ml_pipeline",
+    "dataclasses",
+    "numpy",
+    "pathlib",
+    "time",
+    "typing"
+  ],
+  "src/benchmark/results.py": [
+    "csv",
+    "json",
+    "pandas",
+    "pathlib",
+    "typing"
+  ],
+  "src/benchmark/runner.py": [
+    "benchmark.asr",
+    "benchmark.config",
+    "benchmark.metadata",
+    "benchmark.metrics",
+    "benchmark.middleware",
+    "benchmark.results",
+    "benchmark.tables",
+    "dataset_loader",
+    "datetime",
+    "gc",
+    "hashlib",
+    "json",
+    "logging",
+    "model_registry",
+    "numpy",
+    "os",
+    "pandas",
+    "pathlib",
+    "random",
+    "time",
+    "typing"
+  ],
+  "src/benchmark/tables.py": [
+    "pandas",
+    "pathlib",
+    "typing"
+  ],
+  "src/close_harness.py": [
+    "__future__",
+    "dataset_loader",
+    "hashlib",
+    "json",
+    "numpy",
+    "pandas",
+    "pathlib",
+    "re",
+    "sklearn.feature_extraction.text",
+    "sklearn.neighbors",
+    "unicodedata",
+    "unified_detector_benchmark"
+  ],
+  "src/complete_smoke_diagnostics.py": [
+    "__future__",
+    "dataset_loader",
+    "hashlib",
+    "json",
+    "numpy",
+    "pandas",
+    "pathlib",
+    "re",
+    "sklearn.feature_extraction.text",
+    "sklearn.metrics.pairwise",
+    "time",
+    "unicodedata",
+    "unified_detector_benchmark"
+  ],
+  "src/dataset_loader.py": [
+    "hashlib",
+    "json",
+    "loaders",
+    "pandas",
+    "pathlib"
+  ],
+  "src/final_harness_diagnostics.py": [
+    "__future__",
+    "aethon_heuristic",
+    "dataset_loader",
+    "hashlib",
+    "json",
+    "numpy",
+    "pandas",
+    "pathlib",
+    "re",
+    "sklearn.feature_extraction.text",
+    "sklearn.metrics.pairwise",
+    "time",
+    "unicodedata",
+    "unified_detector_benchmark"
+  ],
+  "src/loaders/__init__.py": [
+    "loaders.cyberseceval",
+    "loaders.jailbreakbench",
+    "loaders.notinject"
+  ],
+  "src/loaders/cyberseceval.py": [
+    "pandas"
+  ],
+  "src/loaders/jailbreakbench.py": [
+    "pandas"
+  ],
+  "src/loaders/notinject.py": [
+    "pandas"
+  ],
+  "src/model_registry.py": [
+    "dataclasses",
+    "importlib",
+    "os",
+    "typing"
+  ],
+  "src/model_selection.py": [
+    "__future__",
+    "aethon_heuristic",
+    "benchmark.detection",
+    "dataset_loader",
+    "datetime",
+    "hashlib",
+    "joblib",
+    "json",
+    "numpy",
+    "pandas",
+    "pathlib",
+    "platform",
+    "research_paired",
+    "scipy.stats",
+    "sklearn",
+    "sklearn.calibration",
+    "sklearn.feature_extraction.text",
+    "sklearn.linear_model",
+    "sklearn.metrics",
+    "sklearn.model_selection",
+    "sklearn.pipeline",
+    "sklearn.svm",
+    "subprocess",
+    "time"
+  ],
+  "src/models/deepseek_driver.py": [
+    "dotenv",
+    "openai",
+    "os"
+  ],
+  "src/models/hf_causal_driver.py": [
+    "torch",
+    "transformers",
+    "warnings"
+  ],
+  "src/models/llama3_8b_driver.py": [
+    "torch",
+    "transformers",
+    "warnings"
+  ],
+  "src/models/mistral_driver.py": [
+    "torch",
+    "transformers",
+    "warnings"
+  ],
+  "src/models/openai_driver.py": [
+    "dotenv",
+    "openai"
+  ],
+  "src/models/phi2_driver.py": [
+    "torch",
+    "transformers",
+    "warnings"
+  ],
+  "src/prepare_datasets.py": [
+    "os",
+    "pandas",
+    "pathlib"
+  ],
+  "src/research_baseline.py": [
+    "__future__",
+    "argparse",
+    "baseline_detectors",
+    "baseline_reliability",
+    "benchmark.detection",
+    "dataset_loader",
+    "hashlib",
+    "huggingface_hub",
+    "importlib.metadata",
+    "json",
+    "pandas",
+    "pathlib",
+    "platform",
+    "re",
+    "research_integrity",
+    "subprocess",
+    "time"
+  ],
+  "src/research_dp.py": [
+    "argparse",
+    "baseline_reliability",
+    "hashlib",
+    "json",
+    "numpy",
+    "pandas",
+    "pathlib",
+    "platform",
+    "subprocess",
+    "time"
+  ],
+  "src/research_e2e.py": [
+    "__future__",
+    "baseline_reliability",
+    "benchmark.asr",
+    "datetime",
+    "hashlib",
+    "json",
+    "pathlib",
+    "re"
+  ],
+  "src/research_generalization.py": [
+    "__future__",
+    "aethon_heuristic",
+    "argparse",
+    "baseline_reliability",
+    "dataset_loader",
+    "hashlib",
+    "importlib.metadata",
+    "io",
+    "joblib",
+    "json",
+    "matplotlib",
+    "matplotlib.pyplot",
+    "model_selection",
+    "numpy",
+    "os",
+    "pandas",
+    "pathlib",
+    "platform",
+    "research_integrity",
+    "sklearn.calibration",
+    "sklearn.metrics",
+    "sklearn.model_selection",
+    "sklearn.pipeline",
+    "subprocess",
+    "time"
+  ],
+  "src/research_integrity.py": [
+    "__future__",
+    "argparse",
+    "baseline_reliability",
+    "benchmark.detection",
+    "dataset_loader",
+    "hashlib",
+    "importlib.metadata",
+    "json",
+    "numpy",
+    "pandas",
+    "pathlib",
+    "platform",
+    "sklearn.feature_extraction.text",
+    "subprocess",
+    "time",
+    "unicodedata"
+  ],
+  "src/research_paired.py": [
+    "analysis_utils",
+    "argparse",
+    "baseline_reliability",
+    "json",
+    "pandas",
+    "pathlib",
+    "sklearn.metrics"
+  ],
+  "src/research_response.py": [
+    "__future__",
+    "argparse",
+    "baseline_reliability",
+    "json",
+    "numpy",
+    "pandas",
+    "pathlib",
+    "sklearn.metrics"
+  ],
+  "src/run_baseline_benchmark.py": [
+    "__future__",
+    "argparse",
+    "baseline_detectors",
+    "baseline_reliability",
+    "dataset_loader",
+    "hashlib",
+    "json",
+    "pandas",
+    "pathlib",
+    "signal",
+    "sys",
+    "torch"
+  ],
+  "src/run_benchmark.py": [
+    "argparse",
+    "benchmark.config",
+    "benchmark.runner",
+    "dataset_loader",
+    "json",
+    "logging",
+    "model_registry"
+  ],
+  "src/run_detection_benchmark.py": [
+    "argparse",
+    "benchmark.detection",
+    "json"
+  ],
+  "src/run_error_analysis.py": [
+    "__future__",
+    "aethon_heuristic",
+    "argparse",
+    "benchmark.detection",
+    "dataset_loader",
+    "hashlib",
+    "joblib",
+    "json",
+    "numpy",
+    "pandas",
+    "pathlib",
+    "re",
+    "scipy.stats",
+    "sklearn.feature_extraction.text",
+    "sklearn.linear_model",
+    "sklearn.metrics",
+    "sklearn.pipeline",
+    "sklearn.svm",
+    "time",
+    "unicodedata"
+  ],
+  "src/run_experiment.py": [
+    "aethon_full_pipeline",
+    "aethon_heuristic",
+    "argparse",
+    "dataset_loader",
+    "datetime",
+    "json",
+    "model_registry",
+    "os",
+    "pathlib",
+    "time"
+  ],
+  "src/run_model_selection.py": [
+    "argparse",
+    "json",
+    "model_selection"
+  ],
+  "src/run_smoke_diagnostics.py": [
+    "__future__",
+    "dataset_loader",
+    "hashlib",
+    "json",
+    "numpy",
+    "pandas",
+    "pathlib",
+    "sklearn.feature_extraction.text",
+    "sklearn.metrics",
+    "time",
+    "unified_detector_benchmark"
+  ],
+  "src/test_model_loading.py": [
+    "argparse",
+    "json",
+    "model_registry",
+    "pathlib",
+    "time"
+  ],
+  "src/test_openai.py": [
+    "openai",
+    "os"
+  ],
+  "src/train_detector.py": [
+    "aethon_ml_pipeline",
+    "argparse",
+    "dataset_loader",
+    "json",
+    "pandas",
+    "pathlib"
+  ],
+  "src/train_revision_detector.py": [
+    "dataset_loader",
+    "datetime",
+    "joblib",
+    "json",
+    "pathlib",
+    "platform",
+    "sklearn",
+    "sklearn.feature_extraction.text",
+    "sklearn.linear_model",
+    "sklearn.pipeline",
+    "subprocess"
+  ],
+  "src/unified_detector_benchmark.py": [
+    "__future__",
+    "aethon_calibrated_cascade",
+    "aethon_heuristic",
+    "dataset_loader",
+    "hashlib",
+    "joblib",
+    "json",
+    "numpy",
+    "pandas",
+    "pathlib",
+    "platform",
+    "sklearn",
+    "sklearn.feature_extraction.text",
+    "sklearn.linear_model",
+    "sklearn.metrics",
+    "subprocess",
+    "time"
+  ],
+  "tests/conftest.py": [
+    "pathlib",
+    "sys"
+  ],
+  "tests/test_asr.py": [
+    "benchmark.asr",
+    "benchmark.metrics",
+    "pandas",
+    "pathlib"
+  ],
+  "tests/test_baseline_reliability.py": [
+    "baseline_reliability",
+    "json",
+    "pathlib",
+    "pytest",
+    "run_baseline_benchmark",
+    "torch"
+  ],
+  "tests/test_benchmark_runner.py": [
+    "benchmark.config",
+    "benchmark.results",
+    "benchmark.runner",
+    "json",
+    "model_registry",
+    "pandas",
+    "run_benchmark"
+  ],
+  "tests/test_calibrated_cascade.py": [
+    "aethon_calibrated_cascade",
+    "numpy"
+  ],
+  "tests/test_dataset_loader.py": [
+    "dataset_loader"
+  ],
+  "tests/test_detection_benchmark.py": [
+    "benchmark.detection",
+    "joblib",
+    "json",
+    "numpy",
+    "pandas",
+    "sklearn.feature_extraction.text",
+    "sklearn.linear_model",
+    "sklearn.pipeline",
+    "train_revision_detector"
+  ],
+  "tests/test_error_analysis.py": [
+    "hashlib",
+    "numpy",
+    "pandas",
+    "run_error_analysis",
+    "sklearn.feature_extraction.text",
+    "sklearn.linear_model",
+    "sklearn.pipeline"
+  ],
+  "tests/test_harness_closure.py": [
+    "close_harness",
+    "json",
+    "pandas",
+    "pathlib"
+  ],
+  "tests/test_hf_causal_driver.py": [
+    "models.hf_causal_driver",
+    "pytest",
+    "unittest.mock"
+  ],
+  "tests/test_middleware.py": [
+    "benchmark.middleware",
+    "joblib",
+    "sklearn.feature_extraction.text",
+    "sklearn.linear_model",
+    "sklearn.pipeline"
+  ],
+  "tests/test_model_selection.py": [
+    "aethon_heuristic",
+    "copy",
+    "model_selection",
+    "numpy",
+    "pandas"
+  ],
+  "tests/test_research_baseline.py": [
+    "baseline_detectors",
+    "json",
+    "numpy",
+    "pandas",
+    "pytest",
+    "research_baseline",
+    "torch",
+    "types"
+  ],
+  "tests/test_research_dp.py": [
+    "benchmark.middleware",
+    "pytest",
+    "research_dp"
+  ],
+  "tests/test_research_e2e.py": [
+    "datetime",
+    "pytest",
+    "research_e2e"
+  ],
+  "tests/test_research_generalization.py": [
+    "numpy",
+    "pytest",
+    "research_generalization"
+  ],
+  "tests/test_research_integrity.py": [
+    "pandas",
+    "pytest",
+    "research_integrity"
+  ],
+  "tests/test_research_paired.py": [
+    "pandas",
+    "pytest",
+    "research_paired"
+  ],
+  "tests/test_research_response.py": [
+    "benchmark.metrics",
+    "pandas",
+    "pytest",
+    "research_response"
+  ],
+  "tests/test_research_statistics.py": [
+    "analysis_utils",
+    "pytest",
+    "sklearn.metrics"
+  ],
+  "tests/test_runner_recovery.py": [
+    "baseline_reliability",
+    "pandas",
+    "pathlib",
+    "run_baseline_benchmark"
+  ]
+}

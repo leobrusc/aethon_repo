@@ -1,0 +1,15 @@
+# CPU detection, scientific analysis and offline baseline regression tests.
+numpy
+pandas
+scipy
+scikit-learn
+matplotlib
+transformers>=4.40.0
+tokenizers==0.20.0
+torch
+huggingface-hub
+pyarrow
+openai>=1.40.0
+python-dotenv
+joblib
+statsmodels

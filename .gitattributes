@@ -3,3 +3,5 @@
 docs/research_2026_evidence/** -text whitespace=cr-at-eol
 # Matplotlib path elements contain valid trailing spaces; retain original bytes.
 docs/research_2026_evidence/nested/diagnostic_curves.svg whitespace=cr-at-eol,-blank-at-eol
+# Archived originals preserve existing Markdown hard breaks and historical bytes.
+docs/archive/2026-06/** whitespace=-blank-at-eol

@@ -66,9 +66,9 @@ def test_false_positive_summary_callable():
  from close_harness import build_false_positive_summary
  p=Path('results/tables/smoke_complete/false_positive_summary.csv')
  if p.exists(): assert 'highest_B3_FPR_dataset' in build_false_positive_summary(p,Path('results/diagnostics/_test_fp.json'))
-def test_readiness_function_all_flags():
+def test_readiness_function_all_flags(tmp_path):
  from close_harness import compute_harness_readiness
- assert compute_harness_readiness({'a':True,'b':True},Path('results/diagnostics/_test_ready.json'))['harness_ready_for_full_benchmark']
+ assert compute_harness_readiness({'a':True,'b':True},tmp_path/'ready.json')['harness_ready_for_full_benchmark']
 def test_layer_overlap_producer_synthetic(tmp_path):
  import pandas as pd
  from close_harness import build_layer_overlap_from_per_prompt
