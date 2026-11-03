@@ -1,0 +1,22 @@
+[
+  {
+    "file": "package-build.txt",
+    "sha256": "488d79ed639511046a08ced56fff6f5ac94af65e6ed1bb8a52e6f5d76cdee1e2",
+    "bytes": 20466
+  },
+  {
+    "file": "editable-install.txt",
+    "sha256": "0df567ab5225e53c2a1d58a4b1dd9e862674ce82068af8e9a12d8945d1b3cdd9",
+    "bytes": 1246
+  },
+  {
+    "file": "full-install-resolution.txt",
+    "sha256": "6d0d21e1a8ebd2fb8ab7152cfacde10a521df0ae036ceeb1f01d33c0f83e5229",
+    "bytes": 19927
+  },
+  {
+    "file": "cli-smoke.txt",
+    "sha256": "332c8661987e875065cb37abe79f20edc44f9c9f4fbd25d5719250daae533aa2",
+    "bytes": 2613
+  }
+]
