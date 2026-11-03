@@ -55,7 +55,8 @@ def test_offline_unavailable_model_records_not_run(tmp_path, monkeypatch):
 
 def test_completed_resume_preserves_provenance_without_loading_model(tmp_path, monkeypatch):
     revision = "a"*40
-    snapshot = tmp_path/"snapshot"; snapshot.mkdir()
+    snapshot = tmp_path/"models--protectai--deberta-v3-base-prompt-injection-v2"/"snapshots"/revision
+    snapshot.mkdir(parents=True)
     (snapshot/"model.safetensors").write_bytes(b"stub weights")
     (snapshot/"config.json").write_text("{}")
     monkeypatch.setattr(research_baseline, "EVALUATION_DATASETS", ["notinject"])
@@ -83,3 +84,23 @@ def test_completed_resume_preserves_provenance_without_loading_model(tmp_path, m
     assert resumed["model_hashes"] == original["model_hashes"]
     assert resumed["id2label"] == original["id2label"]
     assert resumed["status"] == "DONE" and len(resumed["resume_events"]) == 1
+
+
+def test_missing_config_hash_requires_verified_cache_snapshot(tmp_path):
+    revision = "a" * 40
+    snapshot = tmp_path/"models--protectai--deberta-v3-base-prompt-injection-v2"/"snapshots"/revision
+    proof = research_baseline.verified_snapshot_revision(snapshot, "protectai/deberta-v3-base-prompt-injection-v2", revision, None)
+    assert proof["revision"] == revision and proof["config_commit_hash"] is None
+
+
+def test_config_revision_mismatch_fails_even_for_matching_snapshot(tmp_path):
+    revision = "a" * 40
+    snapshot = tmp_path/"models--protectai--deberta-v3-base-prompt-injection-v2"/"snapshots"/revision
+    with pytest.raises(ValueError, match="does not match"):
+        research_baseline.verified_snapshot_revision(snapshot, "protectai/deberta-v3-base-prompt-injection-v2", revision, "b" * 40)
+
+
+def test_missing_hash_cannot_authorize_arbitrary_or_wrong_repo_path(tmp_path):
+    revision = "a" * 40
+    with pytest.raises(ValueError, match="does not prove"):
+        research_baseline.verified_snapshot_revision(tmp_path/revision, "protectai/deberta-v3-base-prompt-injection-v2", revision, None)
