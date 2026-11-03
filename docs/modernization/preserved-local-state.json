@@ -1,0 +1,7 @@
+{
+  "src/close_harness.py": "a8b05c3cdd3ab563e6b36f4a8bfd024671f4ebc8251330d5e039d022b19e8b65",
+  "tests/test_harness_closure.py": "bca2d16e3347259ad3a1574bbb84c7269d0e77796db18286c16a4c54d0ce9416",
+  "close_harness.validated.backup.py": "a8b05c3cdd3ab563e6b36f4a8bfd024671f4ebc8251330d5e039d022b19e8b65",
+  "test_harness_closure.validated.backup.py": "bca2d16e3347259ad3a1574bbb84c7269d0e77796db18286c16a4c54d0ce9416",
+  "validated_tpr_auroc_closure.patch": "7827ae8ba281a24df7476c93f47a189a329883aaadb5b7fb85c23f5b344a1e98"
+}
