@@ -10,3 +10,6 @@ requirements/historical/** -text whitespace=cr-at-eol
 requirements/environments/*.lock -text whitespace=cr-at-eol
 docs/security/*.json -text whitespace=cr-at-eol
 docs/security/evidence/** -text whitespace=cr-at-eol
+# Frozen validation inputs and evidence retain their recorded bytes across OSes.
+tests/fixtures/readiness*.json -text whitespace=cr-at-eol
+docs/validation/** -text whitespace=cr-at-eol

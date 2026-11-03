@@ -69,6 +69,8 @@ def main():
     parser.add_argument("--environment", choices=["maintained", "historical"], required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
+    if args.output.exists():
+        parser.error("Evidence exists; choose a new output path to preserve previous attempts")
     if args.mode == "registry" and args.dtype != "float32":
         parser.error("Unchanged CPU registry driver uses float32")
     # Applied before importing HF libraries; authorization checks happen separately.
@@ -132,7 +134,7 @@ def main():
         for row in protocol["inputs"]:
             messages = [{"role": "system", "content": protocol["system"]}, {"role": "user", "content": row["text"]}]
             rendered = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-            template_ids = tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True)
+            template_ids = tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True, return_dict=False)
             if template_ids != tokenizer(rendered, add_special_tokens=False)["input_ids"]:
                 raise ValueError("Chat-template tokenization contract differs")
             mode = "registry_raw" if args.mode == "registry" else "native_chat"

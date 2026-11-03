@@ -5,6 +5,7 @@ name: Quality and dependency hardening
     - main
     - refactor/repository-modernization-2026
     - security/dependency-hardening-2026
+    - validation/experimental-readiness-2026
   pull_request: null
   workflow_dispatch: null
 permissions:
@@ -76,6 +77,9 @@ jobs:
 
         ${{ matrix.python }} src/run_benchmark.py --models gpt-4o-mini --datasets prompt_injections_test --conditions
         B0 --dataset-limit 2 --dry-run --output-root results/security/legacy-smoke --run-id security-legacy'
+    - name: Immutable deterministic reference replay
+      run: ${{ matrix.python }} scripts/validate_deterministic_readiness.py --environment maintained --output results/validation/deterministic-${{
+        matrix.platform }}.json
     - name: Audit development and PyTorch receipt
       run: ${{ matrix.python }} scripts/audit_security_environment.py requirements/environments/dev-${{ matrix.platform
         }}-py312.lock --installed
@@ -100,6 +104,14 @@ jobs:
       with:
         name: security-${{ matrix.platform }}
         path: results/security/audits/
+        retention-days: 14
+        if-no-files-found: warn
+    - name: Publish non-text validation replay
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: validation-${{ matrix.platform }}
+        path: results/validation/deterministic-*.json
         retention-days: 14
         if-no-files-found: warn
     name: cpu-development (${{ matrix.platform }})
