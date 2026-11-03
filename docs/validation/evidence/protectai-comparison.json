@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "n": 18,
+  "decision_differences": 0,
+  "max_score_absolute_difference": 0.0,
+  "score_comparison": "Descriptive float32 cross-stack comparison; no threshold retuning or superiority claim",
+  "threshold": 0.5,
+  "purpose": "18-row compatibility smoke only"
+}

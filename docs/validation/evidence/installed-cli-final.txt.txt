@@ -1,0 +1,18 @@
+usage: research_baseline [-h] [--model {protectai,promptguard}] --revision
+                         REVISION --run-id RUN_ID [--output OUTPUT]
+                         [--device {cpu,cuda}] [--batch-size BATCH_SIZE]
+                         [--smoke] [--threshold THRESHOLD] [--allow-download]
+                         [--resume]
+
+options:
+  -h, --help            show this help message and exit
+  --model {protectai,promptguard}
+  --revision REVISION   Immutable 40-character model/tokenizer commit
+  --run-id RUN_ID
+  --output OUTPUT
+  --device {cpu,cuda}
+  --batch-size BATCH_SIZE
+  --smoke
+  --threshold THRESHOLD
+  --allow-download
+  --resume

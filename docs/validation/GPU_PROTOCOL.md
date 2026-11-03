@@ -12,10 +12,12 @@ support, driver/runtime, selected device and the three inputs from
 operator approval and validate the cache using `review_snapshot` below.
 
 ```bash
+set -euo pipefail
 nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv
 .venv-dev/bin/python scripts/install_security_environment.py requirements/environments/gpu-linux-py312.lock .venv-gpu
 .venv-dev/bin/python scripts/audit_security_environment.py requirements/environments/gpu-linux-py312.lock --installed --target-python .venv-gpu/bin/python --output results/validation/gpu-audits
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_IMPLICIT_TOKEN=1
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
 export AETHON_MODEL_SNAPSHOT=/approved/local/cache/models--meta-llama--Llama-3.2-1B-Instruct/snapshots/9213176726f574b556790deb65791e0c5aa438b6
 .venv-gpu/bin/python - <<'PY'
 import hashlib, json, os, platform, sys, time
@@ -31,7 +33,10 @@ report = {'status':'NOT_RUN', 'real_inference':False, 'python':platform.python_v
           'torch':torch.__version__, 'cuda_runtime':torch.version.cuda,
           'binary_catalog':'NOT_AUDITED', 'records':[]}
 try:
-    if not torch.cuda.is_available(): raise RuntimeError('No accessible CUDA device')
+    if not torch.cuda.is_available():
+        report['reason'] = 'No accessible CUDA device'
+        output.write_text(json.dumps(report, indent=2) + '\n')
+        print('NOT_RUN'); raise SystemExit(0)
     if not torch.cuda.is_bf16_supported(): raise RuntimeError('Frozen BF16 mode unavailable')
     report['gpu'] = torch.cuda.get_device_name(0)
     report['total_memory_bytes'] = torch.cuda.get_device_properties(0).total_memory

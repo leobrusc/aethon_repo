@@ -48,6 +48,7 @@ experiment_manifest.json
 **/experiment_manifest.json
 *_manifest.json
 *_manifest.jsonl
+!docs/validation/VALIDATION_MANIFEST.json
 
 # Generated benchmark summaries and checkpoints
 master_results.csv
