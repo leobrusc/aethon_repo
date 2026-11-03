@@ -21,6 +21,8 @@ GitHub and GPU experiments.
 | Build | PASS: sdist and wheel built with setuptools 81 and wheel 0.48; no scientific data bundled |
 | Editable installation | PASS: installed in separate `.venv` with original scientific runtime reused via a local `.pth`; no research-runtime upgrade |
 | Existing full requirements resolution | PASS: pip dry-run resolves against installed full environment; not a clean GPU install |
+| Fresh CPU resolution | PASS: `pip install --dry-run --ignore-installed -e '.[dev]'` resolved 99 install candidates; no fresh GPU installation claimed |
+| LFS objects and upload | PASS: `git lfs fsck`; new 55,487,878-byte object uploaded and pointer published |
 | Installed/legacy CLI | PASS: help plus two-row B0 dry-runs, zero failures, equal outputs on 19 semantic columns; timing/run IDs excluded |
 | Dependency consistency | PASS: `pip check`, no broken requirements |
 | YAML and citation parsing | PASS: workflow, Dependabot, pre-commit and CFF parse |
@@ -45,5 +47,33 @@ The first tooling install chose setuptools 84, conflicting with torch's `<82`;
 setuptools was corrected to 81 and `pip check` passed. These infrastructure/tool
 incidents are not reported as scientific test successes.
 
-GitHub publication and remote CI observations are recorded separately below
-after the branch is pushed. No CI result is inferred from these local checks.
+## Publication and remote checks
+
+Published branch: `refactor/repository-modernization-2026`.
+[Draft PR #2](https://github.com/leobrusc/aethon_repo/pull/2) targets
+`research/jorge-2026-experimental-upgrade`, explicitly depending on draft #1.
+The original checkout stays on the scientific branch with its five files intact;
+only the generated worktree path was added to the repository-local exclude file.
+
+Code commit `ed64d78` was actually validated on GitHub Ubuntu/Python 3.10:
+
+- [Push run 41669660401](https://github.com/leobrusc/aethon_repo/actions/runs/41669660401):
+  `offline-tests` SUCCESS: **111 passed**, expected warning, 9.20 s; Ruff,
+  127 scientific hashes, 31 curated evidence hashes, CLI help and Git-blob guard
+  all succeeded. `dependency-audit` FAILURE: **102 advisory entries in four
+  resolved CPU packages**. Installation succeeded; this was not an infrastructure
+  or test failure.
+- [PR run 41669838427](https://github.com/leobrusc/aethon_repo/actions/runs/41669838427):
+  `offline-tests` SUCCESS; `dependency-audit` FAILURE on known advisories.
+
+The remote scanner explicitly skipped the unpublished `aethon-research` package
+and `torch 2.14.1+cpu`, whose exact build version was not found on PyPI. These are
+NOT_AUDITED by that check, not implicitly safe. A separate upstream-version/build
+provenance review is needed for CPU/CUDA distributions. The local full environment
+audit did check its PyPI torch version and reports findings separately.
+
+The 168 local and 102 remote counts are scanner advisory entries, potentially
+including aliases/duplicates, not asserted counts of distinct exploitable flaws.
+No security gate was bypassed. Final documentation-only publication updates may
+trigger new CI runs; the completed runs above identify the exact code SHA tested.
+Raw remote logs remain ignored under `results/modernization/`.

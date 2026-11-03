@@ -43,6 +43,13 @@ Known vulnerabilities from the actual environment are recorded in
 check is evidence requiring review, not permission to change historical runtime
 constraints without a validated migration. There are no blanket advisory ignores.
 
+GitHub's clean CPU environment independently reported 102 advisory entries in
+four packages; offline tests passed. The scanner skipped the local project and
+the exact `torch 2.14.1+cpu` build because they were not catalogued on PyPI.
+That build remains NOT_AUDITED by pip-audit; a separate upstream-version and
+binary provenance review is pending. Counts can include duplicate advisory IDs
+or aliases and are not claims of distinct exploitable vulnerabilities.
+
 Packaging follows [setuptools' pyproject configuration](https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html).
 Workflows use read-only tokens and full Action SHAs as described in
 [GitHub's secure use reference](https://docs.github.com/en/actions/reference/security/secure-use).

@@ -141,7 +141,8 @@ The existing full Windows environment audit found **168 advisories in 14 package
 `dependency-audit.json` keeps IDs, versions, aliases and fixes; the verbose raw
 response remains ignored under `results/modernization/`, with its hash recorded.
 No vulnerable dependency was silently ignored or scientific runtime upgraded.
-CI may remain red on these findings; addressing them needs a separately validated
+CI is red on dependency findings (102 entries in four resolved CPU packages),
+while offline quality/integrity passes on GitHub. Addressing them needs a separately validated
 runtime/model compatibility migration. A clean security bill is not claimed.
 
 ## Validation record and limits
@@ -158,6 +159,12 @@ verification passed for all 31 artifacts. Build, installed entry points, full
 dependency resolution, publication and final checks are recorded in
 `VALIDATION.md` after execution. The observed dependency environment is archived
 in `validation-environment.txt`; it is not a portable GPU lock.
+
+Publication completed in [draft PR #2](https://github.com/leobrusc/aethon_repo/pull/2).
+Both GitHub push/PR runs at code commit `ed64d78` passed all 111 offline tests,
+Ruff, CLI and hash guards. Full remote outcomes and scanner coverage limitations
+are recorded in `VALIDATION.md`. Fresh CPU dependency dry resolution succeeded
+with 99 install candidates. Git LFS fsck and upload succeeded.
 
 The local installation smoke uses a separate editable environment reusing the
 existing scientific site-packages. A complete clean GPU environment, real model
