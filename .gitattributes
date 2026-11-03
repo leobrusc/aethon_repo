@@ -5,3 +5,7 @@ docs/research_2026_evidence/** -text whitespace=cr-at-eol
 docs/research_2026_evidence/nested/diagnostic_curves.svg whitespace=cr-at-eol,-blank-at-eol
 # Archived originals preserve existing Markdown hard breaks and historical bytes.
 docs/archive/2026-06/** whitespace=-blank-at-eol
+# Security locks and archived dependency snapshots have portable byte hashes.
+requirements/historical/** -text whitespace=cr-at-eol
+requirements/environments/*.lock -text whitespace=cr-at-eol
+docs/security/*.json -text whitespace=cr-at-eol

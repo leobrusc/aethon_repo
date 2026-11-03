@@ -1,0 +1,11 @@
+{
+  "commit": "a6090ae3030ef52f333fe14380839df4a7d879eb",
+  "files": {
+    "requirements.txt": "862e66fde2ad1bf7a32c98cedd99286b8c9d64964258affb8c6e068672489105",
+    "requirements-dev.txt": "d86443f6a9082dfb94523a58c8aae070ebd7ef7ae5754033e3086c633b9dda97",
+    "requirements-core.txt": "9cc5505c170cc129a6fd46317e2379b54cf5cb3e1832b186031d8ce05ba36736",
+    "requirements-research.txt": "f1a91e532331447105b27174cd0146bf8e6a5e2aca69522302b1d18e533039ab",
+    "requirements-tools.txt": "7526093e28cf2d51126ffd5a6dfbdb1b10e62a40a3575c1f5c7268cabc0820d8",
+    "pyproject.toml": "7c15f8eda078ea99f20cf891eb3be1289ee253226dde7b08529a9704696e2e2b"
+  }
+}
