@@ -1,64 +1,127 @@
-name: Quality and scientific integrity
-on:
+name: Quality and dependency hardening
+'on':
   push:
-    branches: [main, refactor/repository-modernization-2026]
-  pull_request:
-  workflow_dispatch:
-
+    branches:
+    - main
+    - refactor/repository-modernization-2026
+    - security/dependency-hardening-2026
+  pull_request: null
+  workflow_dispatch: null
 permissions:
   contents: read
-
 jobs:
-  offline-tests:
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
+  cpu-development:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - os: ubuntu-latest
+          platform: linux
+          python: .venv-dev/bin/python
+          cpu_python: .venv-cpu/bin/python
+        - os: windows-latest
+          platform: windows
+          python: .venv-dev/Scripts/python.exe
+          cpu_python: .venv-cpu/Scripts/python.exe
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
     env:
       HF_HUB_OFFLINE: '1'
       TRANSFORMERS_OFFLINE: '1'
       MPLBACKEND: Agg
+      PRE_COMMIT_HOME: .pre-commit-cache
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
-        with:
-          lfs: true
-          fetch-depth: 0
-          persist-credentials: false
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
-        with:
-          python-version: '3.10'
-      - name: Install CPU tooling and project
-        run: |
-          python -m pip install 'setuptools>=68,<82' wheel
-          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
-          python -m pip install -e '.[dev]'
-      - run: python -m ruff check src scripts tests
-      - run: python -m pytest -q
-      - run: python scripts/repository_inventory.py verify
-      - run: python scripts/verify_research_evidence.py --git-tree HEAD
-      - run: python -m aethon benchmark --help
-      - name: Check changed Git blobs
-        env:
-          PR_BASE: ${{ github.event.pull_request.base.sha }}
-          PUSH_BASE: ${{ github.event.before }}
-        run: |
-          base="${PR_BASE:-$PUSH_BASE}"
-          if [ -z "$base" ] || ! git cat-file -e "$base^{commit}" 2>/dev/null; then
-            base=$(git rev-parse HEAD^)
-          fi
-          python scripts/repository_guard.py --base "$base"
+    - &id001
+      uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      with:
+        lfs: true
+        fetch-depth: 0
+        persist-credentials: false
+    - &id002
+      uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      with:
+        python-version: 3.12.13
+    - name: Bootstrap pinned installer
+      run: 'python -m pip install --isolated --require-hashes --only-binary=:all: -r requirements/environments/bootstrap.lock'
+    - name: Install isolated development profile
+      run: python scripts/install_security_environment.py requirements/environments/dev-${{ matrix.platform }}-py312.lock
+        .venv-dev
+    - name: Correctness and all regression tests
+      run: '${{ matrix.python }} -m ruff check src scripts tests
 
-  dependency-audit:
+        ${{ matrix.python }} -m pytest -q
+
+        ${{ matrix.python }} -m pip check'
+    - name: Scientific preservation and legacy compatibility
+      run: '${{ matrix.python }} scripts/repository_inventory.py verify
+
+        ${{ matrix.python }} scripts/verify_research_evidence.py --git-tree HEAD
+
+        ${{ matrix.python }} scripts/validate_historical_decisions.py
+
+        ${{ matrix.python }} scripts/verify_historical_dependencies.py
+
+        ${{ matrix.python }} -m aethon benchmark --help
+
+        ${{ matrix.python }} src/run_benchmark.py --models gpt-4o-mini --datasets prompt_injections_test --conditions
+        B0 --dataset-limit 2 --dry-run --output-root results/security/legacy-smoke --run-id security-legacy'
+    - name: Audit development and PyTorch receipt
+      run: ${{ matrix.python }} scripts/audit_security_environment.py requirements/environments/dev-${{ matrix.platform
+        }}-py312.lock --installed
+    - name: Install and audit independent CPU profile
+      run: '${{ matrix.python }} scripts/install_security_environment.py requirements/environments/cpu-${{ matrix.platform
+        }}-py312.lock .venv-cpu
+
+        ${{ matrix.cpu_python }} -m aethon benchmark --models gpt-4o-mini --datasets prompt_injections_test --conditions
+        B0 --dataset-limit 2 --dry-run --output-root results/security/cpu-smoke --run-id security-cpu
+
+        ${{ matrix.python }} scripts/audit_security_environment.py requirements/environments/cpu-${{ matrix.platform
+        }}-py312.lock --installed --target-python ${{ matrix.cpu_python }}'
+    - name: Check complete publication diff
+      run: 'base="${PR_BASE:-a6090ae3030ef52f333fe14380839df4a7d879eb}"
+
+        ${{ matrix.python }} scripts/repository_guard.py --base "$base"'
+      env:
+        PR_BASE: ${{ github.event.pull_request.base.sha }}
+    - name: Publish scoped audit evidence
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: security-${{ matrix.platform }}
+        path: results/security/audits/
+        retention-days: 14
+        if-no-files-found: warn
+  research-and-gpu-audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
+    env:
+      HF_HUB_OFFLINE: '1'
+      TRANSFORMERS_OFFLINE: '1'
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
-        with:
-          persist-credentials: false
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
-        with:
-          python-version: '3.10'
-      - name: Install CPU research environment
-        run: |
-          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
-          python -m pip install -e '.[dev]'
-      - name: Audit resolved dependencies (fail on known vulnerabilities)
-        run: python -m pip_audit --progress-spinner off
+    - *id001
+    - *id002
+    - name: Bootstrap isolated audit tools
+      run: 'python -m pip install --isolated --require-hashes --only-binary=:all: -r requirements/environments/bootstrap.lock
+
+        python scripts/install_security_environment.py requirements/environments/dev-linux-py312.lock .venv-dev'
+    - name: Install and verify research CPU profile
+      run: '.venv-dev/bin/python scripts/install_security_environment.py requirements/environments/research-linux-py312.lock
+        .venv-research
+
+        .venv-research/bin/python -m aethon baseline --help
+
+        .venv-dev/bin/python scripts/audit_security_environment.py requirements/environments/research-linux-py312.lock
+        --installed --target-python .venv-research/bin/python'
+    - name: Audit CUDA lock and upstream torch; GPU execution NOT_RUN
+      run: .venv-dev/bin/python scripts/audit_security_environment.py requirements/environments/gpu-linux-py312.lock
+    - name: Publish scoped audit evidence
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: security-research-cuda
+        path: results/security/audits/
+        retention-days: 14
+        if-no-files-found: warn

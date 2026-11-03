@@ -19,3 +19,9 @@
 - Do not rewrite history, force push, merge PRs, delete remote branches, or migrate
   LFS history. Incremental LFS pointers must preserve hydrated dataset hashes.
 - Keep REVIEW items. No blanket cache, checkpoint, backup or results deletion.
+- Use maintained hashed Python 3.12 profiles in `docs/security/REPORT.md` for new
+  work. Never upgrade historical environments in place or edit their snapshots.
+- Regenerate locks with uv 0.13.7; install binary-only with hashes and verify
+  official torch receipts. Preserve scanner findings and unknown-build skips;
+  distinguish upstream advisory PASS from binary catalog NOT_AUDITED and GPU
+  execution NOT_RUN. Run `scripts/verify_historical_dependencies.py` as well.

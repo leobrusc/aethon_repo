@@ -1,5 +1,11 @@
 # Security policy
 
+Current dependency status, normalized CVE/GHSA matrix, isolated hashed profiles,
+PyTorch provenance and explicit PASS/FAIL/NOT_RUN/NOT_AUDITED coverage are in
+`docs/security/REPORT.md`. Earlier modernization audit counts remain historical
+evidence. Native scanner skips are retained; querying a public upstream version
+does not establish an audit of a CPU/CUDA binary build.
+
 AETHON is experimental research software. It is not a production security
 boundary. L1 rules, L2 classification and L3 noisy audit counts do not establish
 end-to-end prevention or differential privacy for prompt text. See the limitations

@@ -8,21 +8,28 @@ Repository modernization: see the [audit and validation report](docs/modernizati
 The June inventory/cleanup plans are archived; their history-rewrite instructions
 are superseded.
 
-For CPU development and offline regression checks, install Git LFS and run from
-the repository root in an activated Python 3.10+ virtual environment:
+For maintained CPU development, use Python 3.12.13 and the hashed environment
+instructions in [the security remediation report](docs/security/REPORT.md).
+Historical Python 3.10/tokenizers pins remain in `requirements/historical/pr2/`;
+they are not the default for processing new untrusted inputs.
+
+After installing the appropriate lock and editable package, run from the
+repository root:
 
 ```bash
 git lfs pull
-python -m pip install -e '.[dev]'
 python -m aethon benchmark --help
 python -m pytest -q
 python scripts/repository_inventory.py verify
 ```
 
-Existing `python src/...` commands remain supported. `pip install -r requirements.txt`
-retains the full optional research/GPU dependency set; choose a PyTorch build for
-your actual CUDA environment. See [environment scope](docs/modernization/DEPENDENCIES.md)
-before reproducing old studies. Package installation does not download model weights.
+Existing `python src/...` commands remain supported. The maintained profiles split
+CPU, development, research CPU and Linux CUDA, with exact hashes and official
+PyTorch wheel URLs. `requirements.txt` contains CPU/research declarations;
+reproducible installations use the locks instead. See the
+[security report](docs/security/REPORT.md) for current results and the
+[modernization dependency audit](docs/modernization/DEPENDENCIES.md) for historical
+context. Package installation does not download model weights.
 
 Aethon is an experimental cybersecurity and AI engineering framework for studying how large language models (LLMs) respond to adversarial prompts, especially prompt injection, jailbreak, and red-team inputs. The repository provides a reproducible pipeline for loading security-oriented datasets, applying detection and mitigation logic, executing selected model backends, and recording results for later analysis.
 
