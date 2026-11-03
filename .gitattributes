@@ -9,3 +9,4 @@ docs/archive/2026-06/** whitespace=-blank-at-eol
 requirements/historical/** -text whitespace=cr-at-eol
 requirements/environments/*.lock -text whitespace=cr-at-eol
 docs/security/*.json -text whitespace=cr-at-eol
+docs/security/evidence/** -text whitespace=cr-at-eol

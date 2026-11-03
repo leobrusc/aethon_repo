@@ -15,7 +15,8 @@ to conceal findings. `scripts/security_matrix.py` uses transitive alias componen
 across PYSEC/CVE/GHSA identifiers; it never supplies exclusions to a scanner.
 
 The original **168 Windows + 102 Linux CI occurrences = 270 entries** normalize
-to **132 package/vulnerability groups (132 distinct identities)**. Every scanner
+to **132 package/vulnerability alias groups**. These are connected identifier
+groups, not an asserted count of distinct exploitable bugs. Every scanner
 ID, version and source occurrence is retained in the JSON. Original-input hashes
 are recorded, and enrichment comes from OSV records plus the GitHub Advisory API
 when a CVE is only an alias. No occurrence is discarded from scanner evidence.
@@ -28,6 +29,11 @@ when a CVE is only an alias. No occurrence is discarded from scanner evidence.
 - [Prioritized remediation](REMEDIATION_PLAN.md): P0 model/serialization/file/build
   paths precede P1 network, image and cache processing.
 
+Primary GHSA records supply qualitative severity where PYSEC only supplies a
+vector. Eight rows still have UNKNOWN qualitative severity and nine lack an
+explicit fixed-version event. No severity or fix was invented. CVSS vectors and
+all provider labels remain available for review, without downgrading P0 exposure.
+
 Potential reachability was checked against actual imports, dynamic driver loading,
 model `from_pretrained`, snapshot downloads, optional research packages, and
 trusted pickle/joblib use. A package-level path is not proof that every reported
@@ -37,6 +43,10 @@ dependencies were upgraded rather than suppressing alerts based on that uncertai
 ## Maintained environment boundaries
 
 Maintained profiles use Python **3.12.13** and uv **0.13.7** for resolution.
+CI uses setup-python 3.12.10 only to bootstrap the hashed installer, then uv
+provisions the pinned 3.12.13 controller used to create all tested environments.
+This avoids the missing setup-python 3.12.13 Windows distribution; it does not
+silently substitute the tested interpreter with an older patch version.
 The old Python 3.10/tokenizers 0.20 environment is retained separately, not
 advertised as a safe default. Existing commands and scientific algorithms remain
 unchanged; only dependency declarations, tooling, tests and controls change.
@@ -131,7 +141,34 @@ the CUDA dependency lock without pretending to execute GPU inference. Actions
 retain read-only permissions, pinned SHAs, offline model mode and scoped audit
 artifacts; private prompts/responses are never uploaded as evidence.
 
+| Executed check | Final observation |
+| --- | --- |
+| Full maintained-stack suite | PASS: 115 tests locally and on Windows/Linux CI; expected mock-download warning |
+| Seven locked dependency/upstream queries | PASS: zero known matches and no skipped version queries |
+| Separate local CPU/development/research installations | PASS: exact versions, no undeclared distributions, verified official torch receipts |
+| Ruff, pre-commit, pip check, sdist/wheel, editable install | PASS |
+| Scientific preservation | PASS: 127 scientific files, 31 curated artifacts, six historical dependency snapshots, five original user files |
+| Historical B3/B4 and CLI compatibility | PASS: 9,139 pairs with zero differences; both two-row dry-runs match on 19 semantic columns |
+| Exact binary catalog identities | NOT_AUDITED: native skips remain in unmodified scanner JSON |
+| Real new-stack model/GPU inference and full historical experiment reruns | NOT_RUN |
+
+`validation.json` indexes 34 raw/summary evidence files and 13 local/CI profile
+observations, including source hashes and interpreter versions. It records
+successful named checks separately from NOT_RUN/NOT_AUDITED gaps.
+
 Status meanings:
+
+At core commit `ac1e2c2`, both the
+[push run 41679899780](https://github.com/leobrusc/aethon_repo/actions/runs/41679899780)
+and [PR run 41679911344](https://github.com/leobrusc/aethon_repo/actions/runs/41679911344)
+completed with all three jobs SUCCESS: Windows CPU/development, Linux
+CPU/development, and research CPU/CUDA dependency audit. Windows and Linux ran
+all 115 tests. The earlier run's Windows setup failure is retained as an
+infrastructure FAIL; it was not misreported as test validation.
+
+Later analysis/documentation-only commits retain these exact-run references;
+their public native/upstream audit evidence is under `evidence/`. No GPU
+execution is inferred from successful dependency-audit jobs.
 
 - **PASS:** the named check actually ran and met its criteria.
 - **FAIL:** known findings, dependency incompatibility, drift or a failed check.

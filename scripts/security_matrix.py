@@ -72,6 +72,8 @@ PATHS = {
 
 
 def enrich(identifier, cache):
+    if not re.fullmatch(r"(?:CVE-\d{4}-\d+|GHSA-[a-z0-9-]+|PYSEC-\d{4}-\d+)", identifier):
+        return {"id": identifier, "retrieval_status": "NOT_AUDITED", "reason": "Invalid advisory identifier"}
     path = cache / f"{identifier}.json"
     if path.exists():
         previous = json.loads(path.read_text(encoding="utf-8"))
@@ -133,7 +135,12 @@ def main():
         details = dict(zip(sorted(identifiers), pool.map(lambda value: enrich(value, cache), sorted(identifiers))))
     enriched = [{**row, "aliases": sorted(set(row.get("aliases", [])) |
                  set(details[row["id"]].get("aliases", [])))} for row in rows]
-    groups = components(enriched)
+    # PYSEC records often provide vectors but no qualitative severity; obtain
+    # the primary GHSA label without inventing a severity from a package name.
+    ghsa_ids = sorted({alias for row in enriched for alias in row["aliases"] if alias.startswith("GHSA-")})
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        supplemental = dict(zip(ghsa_ids, pool.map(lambda value: enrich(value, cache), ghsa_ids)))
+    groups = components([*enriched, *supplemental.values()])
     merged = {}
     for row in enriched:
         identity = canonical(groups[row["id"]])
@@ -143,10 +150,18 @@ def main():
         item["occurrences"].append({"source": row["source"], "version": row["version"], "scanner_id": row["id"]})
         item["records"].append(details[row["id"]])
     matrix = []
+    from audit_security_environment import locked_packages
+    ledger = json.loads((ROOT / "docs/security/torch-artifacts.json").read_text(encoding="utf-8"))
+    resolutions = {}
+    for lock_name, artifact in ledger.items():
+        for name, version in locked_packages(ROOT / "requirements/environments" / lock_name, artifact).items():
+            resolutions.setdefault(name, {}).setdefault(version, []).append(lock_name)
     for item in sorted(merged.values(), key=lambda value: (PATHS.get(value["package"], ("P2",))[0], value["package"], value["vulnerability"])):
         records = item.pop("records")
+        records.extend(supplemental[value] for value in item["aliases"] if value in supplemental)
         priority, vector, paths = PATHS.get(item["package"], ("P2", "REVIEW", "REVIEW"))
-        severity = sorted({r.get("database_specific", {}).get("severity", "UNKNOWN") for r in records})
+        severity = sorted({r["database_specific"]["severity"] for r in records
+                           if (r.get("database_specific") or {}).get("severity")}) or ["UNKNOWN"]
         vectors = sorted({s["score"] for r in records for s in r.get("severity", []) if "score" in s})
         fixes = set()
         for r in records:
@@ -158,8 +173,11 @@ def main():
                     exploitation_vector=vector, affected_code_paths=paths,
                     reachability="Potential path, not proof of exploitability; per-advisory details require operator review",
                     fixed_versions=sorted(fixes),
+                    maintained_versions=[{"version": version, "profiles": sorted(profiles)}
+                                         for version, profiles in sorted(resolutions.get(item["package"], {}).items())],
                     compatibility="Updated profile requires Python 3.12; historical profiles remain unchanged; validation in REPORT.md",
-                    decision="Upgrade maintained profile; historical environment isolated and retains FAIL findings",
+                    decision="Upgrade maintained profile; historical environment isolated and retains FAIL findings"
+                    + ("; no explicit upstream fixed-version event, see residual risk and current-version query" if not fixes else ""),
                     summaries=sorted({r.get("summary", "Metadata not supplied") for r in records}),
                     enrichment_status="PASS" if all(r.get("retrieval_status") == "PASS" for r in records) else "NOT_AUDITED",
                     metadata_sources=sorted({r["retrieval_url"] for r in records if r.get("retrieval_url")}),
@@ -175,7 +193,7 @@ def main():
               "matrix": matrix}
     (output / "vulnerability-matrix.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     fields = ["package", "versions", "vulnerability", "aliases", "severity", "cvss_vectors", "priority",
-              "summaries", "exploitation_vector", "affected_code_paths", "reachability", "fixed_versions", "compatibility", "decision", "enrichment_status", "sources", "metadata_sources"]
+              "summaries", "exploitation_vector", "affected_code_paths", "reachability", "fixed_versions", "maintained_versions", "compatibility", "decision", "enrichment_status", "sources", "metadata_sources"]
     with (output / "vulnerability-matrix.csv").open("w", encoding="utf-8", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=fields)
         writer.writeheader()
