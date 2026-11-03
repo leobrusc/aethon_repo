@@ -1,0 +1,13 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff
+        name: Ruff correctness checks
+        entry: python -m ruff check
+        language: system
+        types: [python]
+      - id: repository-guard
+        name: Staged secrets and large Git blobs
+        entry: python scripts/repository_guard.py --staged
+        language: system
+        pass_filenames: false

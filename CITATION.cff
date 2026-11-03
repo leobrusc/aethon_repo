@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Please cite the repository revision and experiment manifests used in your study."
+type: software
+title: "AETHON: Adaptive Ethical Threat Observatory for Networks"
+authors:
+  - family-names: Bruscagini
+    given-names: Leonardo
+repository-code: "https://github.com/leobrusc/aethon_repo"
+url: "https://github.com/leobrusc/aethon_repo"
+abstract: "Research framework for adversarial prompt detection and LLM security evaluation."
