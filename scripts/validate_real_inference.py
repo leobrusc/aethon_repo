@@ -104,7 +104,7 @@ def main():
         started = time.perf_counter()
         if args.mode == "registry":
             from model_registry import get_model_driver
-            driver = get_model_driver(args.model, model_id=str(args.snapshot.resolve()), device="cpu")
+            driver = get_model_driver(args.model, model_id=str(args.snapshot.resolve()), device="cpu", contract_version="legacy-v1")
             if not driver.available:
                 raise RuntimeError("Actual registry driver failed to load")
             model, tokenizer = driver.model, driver.tokenizer

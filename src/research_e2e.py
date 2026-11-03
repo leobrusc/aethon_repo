@@ -68,7 +68,8 @@ def run_pairs(rows, driver, private_output, *, retention, temperature=0., max_to
             response, technical_error = "", False
             if not blocked:
                 try:
-                    response = driver.infer(row["prompt_text"], max_tokens=max_tokens, temperature=temperature)
+                    from aethon.generation import evaluation_response
+                    response = evaluation_response(driver, row["prompt_text"], max_tokens=max_tokens, temperature=temperature)
                     technical_error = not isinstance(response, str) or not response or response.startswith(NON_RESPONSE_PREFIXES)
                 except Exception:
                     response, technical_error = "", True

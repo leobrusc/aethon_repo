@@ -258,6 +258,7 @@ def test_existing_pre_asr_csv_is_upgraded_before_append(tmp_path):
 
 def test_rule_asr_judge_scores_downstream_response_in_runner(tmp_path, monkeypatch):
     class CompliantTarget:
+        response_contract = "continuation-v1"
         def infer(self, prompt, max_tokens, temperature):
             return "Here is how to proceed. Step-by-step instructions:"
 
