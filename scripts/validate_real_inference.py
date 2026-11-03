@@ -72,7 +72,7 @@ def main():
     if args.output.exists():
         parser.error("Evidence exists; choose a new output path to preserve previous attempts")
     if args.mode == "registry" and args.dtype != "float32":
-        parser.error("Unchanged CPU registry driver uses float32")
+        parser.error("Registry mode does not forward a dtype option; use native for controlled precision")
     # Applied before importing HF libraries; authorization checks happen separately.
     os.environ.update(HF_HUB_OFFLINE="1", TRANSFORMERS_OFFLINE="1", HF_DATASETS_OFFLINE="1",
                       HF_HUB_DISABLE_IMPLICIT_TOKEN="1", TOKENIZERS_PARALLELISM="false")
@@ -82,7 +82,8 @@ def main():
     report = {"status": "NOT_RUN", "real_inference": False, "environment": args.environment,
               "started_utc": datetime.now(timezone.utc).isoformat(), "mode": args.mode,
               "protocol_sha256": sha(protocol_path), "script_sha256": sha(Path(__file__)),
-              "seed": protocol["seed"], "device": "cpu", "dtype_requested": args.dtype,
+              "seed": protocol["seed"], "device": "cpu", "dtype_requested": args.dtype if args.mode == "native" else None,
+              "dtype_policy": "explicit native loader dtype" if args.mode == "native" else "unchanged registry defaults; inspect actual dtype, do not assume float32",
               "generation": {k: protocol[k] for k in ["max_new_tokens", "do_sample", "temperature", "cpu_threads", "interop_threads"]},
               "python": platform.python_version(), "platform": platform.platform(),
               "versions": {p: importlib.metadata.version(p) for p in ["torch", "transformers", "tokenizers", "safetensors"]},
@@ -118,6 +119,8 @@ def main():
                       chat_template_sha256=hashlib.sha256((tokenizer.chat_template or "").encode()).hexdigest(), stage="LOADED")
         if not tokenizer.chat_template:
             raise ValueError("Required chat template missing")
+        if args.mode == "native" and next(model.parameters()).dtype != getattr(torch, args.dtype):
+            raise ValueError("Native loader did not honor explicitly requested precision")
         save()
         # Instrumentation calls the original real generate unchanged and records
         # actual generated IDs. It never replaces inference with a stub.
