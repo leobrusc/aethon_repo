@@ -1,0 +1,11 @@
+# Optional legacy research/GPU stack. Existing constraints are preserved.
+seaborn
+datasets>=2.19.0
+accelerate>=0.30.0
+bitsandbytes>=0.43.0
+sentence-transformers>=3.0.0
+sentencepiece==0.2.2
+tiktoken>=0.7.0
+opacus>=1.4.0
+pyyaml
+tqdm

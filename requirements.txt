@@ -1,21 +1,3 @@
-numpy
-pandas
-scipy
-scikit-learn
-matplotlib
-seaborn
-transformers>=4.40.0
-tokenizers==0.20.0
-datasets>=2.19.0
-accelerate>=0.30.0
-bitsandbytes>=0.43.0
-sentence-transformers>=3.0.0
-sentencepiece==0.2.2
-openai>=1.40.0
-tiktoken>=0.7.0
-opacus>=1.4.0
-python-dotenv
-pyyaml
-tqdm
-joblib
-statsmodels
+# Backwards-compatible full installation, including optional GPU/research tools.
+-r requirements-core.txt
+-r requirements-research.txt
