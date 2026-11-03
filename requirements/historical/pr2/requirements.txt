@@ -1,0 +1,3 @@
+# Backwards-compatible full installation, including optional GPU/research tools.
+-r requirements-core.txt
+-r requirements-research.txt

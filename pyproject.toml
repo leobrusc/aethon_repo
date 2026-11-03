@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68,<82", "wheel"]
+requires = ["setuptools>=84.2.1", "wheel>=0.48"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,7 +7,7 @@ name = "aethon-research"
 version = "0.1.0"
 description = "Reproducible adversarial prompt detection and LLM security research"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dynamic = ["dependencies", "optional-dependencies"]
 
 [project.urls]
@@ -31,6 +31,7 @@ dependencies = {file = ["requirements-core.txt"]}
 
 [tool.setuptools.dynamic.optional-dependencies]
 research = {file = ["requirements-research.txt"]}
+gpu = {file = ["requirements-research.txt", "requirements-gpu.txt"]}
 dev = {file = ["requirements-tools.txt"]}
 
 [tool.ruff]

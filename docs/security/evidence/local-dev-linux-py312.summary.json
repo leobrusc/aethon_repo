@@ -1,0 +1,14 @@
+{
+  "lock": "dev-linux-py312.lock",
+  "package_count": 102,
+  "platform_installation": "NOT_RUN",
+  "torch_binary_catalog": "NOT_AUDITED",
+  "upstream_and_dependency_audit": {
+    "status": "PASS",
+    "exit_code": 0,
+    "skipped": [],
+    "findings": [],
+    "raw": "results\\security\\audits\\dev-linux-py312.upstream.json",
+    "raw_sha256": "80228ba78714ce6afba73be3f2af84fc1873bb22cc5f9b61d6907d8e65293b17"
+  }
+}

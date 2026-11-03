@@ -4,11 +4,12 @@ Start from the scientific branch required by your study. Repository modernizatio
 is stacked on `research/jorge-2026-experimental-upgrade` (draft PR #1); keep that
 dependency visible when choosing the base of a pull request.
 
-Install Git LFS, run `git lfs pull`, and use Python 3.10 or newer. From the
-repository root, create a virtual environment and run:
+Install Git LFS, run `git lfs pull`, and use maintained Python 3.12.13 profiles
+from `docs/security/REPORT.md`. Historical 3.10 environments are isolated under
+the documented reproduction procedure. After activating the hashed development
+environment, run:
 
 ```bash
-python -m pip install -e '.[dev]'
 python -m pre_commit install
 python -m ruff check src scripts tests
 python -m pytest -q
@@ -18,8 +19,9 @@ python scripts/verify_research_evidence.py --git-tree HEAD
 
 Run experiments from the repository root with an editable installation. Datasets
 and historical evidence stay outside the Python distribution. Use
-`pip install -r requirements.txt` for the legacy full research/GPU environment;
-select the PyTorch build appropriate for the actual CUDA hardware first.
+the dedicated Linux GPU lock for CUDA. `requirements/historical/pr2/` preserves
+the original full environment, including known vulnerabilities; do not reuse it
+for new untrusted-input processing. Do not combine CPU and CUDA wheel profiles.
 
 Use semantic, focused commits. Document changes to scientific methods, data,
 labels, thresholds, seeds and evaluation populations explicitly. Historical inputs

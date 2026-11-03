@@ -1,3 +1,4 @@
-# Backwards-compatible full installation, including optional GPU/research tools.
+# Maintained CPU + research declarations. For exact resolution use a hashed lock.
+# GPU uses the separate Linux CUDA lock; historical reproduction is archived.
 -r requirements-core.txt
 -r requirements-research.txt

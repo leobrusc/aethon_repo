@@ -1,0 +1,2 @@
+# Linux CUDA additions; install the dedicated GPU lock, never mix CPU/CUDA wheels.
+bitsandbytes>=0.50.2

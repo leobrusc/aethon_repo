@@ -1,0 +1,14 @@
+{
+  "lock": "research-linux-py312.lock",
+  "package_count": 90,
+  "platform_installation": "NOT_RUN",
+  "torch_binary_catalog": "NOT_AUDITED",
+  "upstream_and_dependency_audit": {
+    "status": "PASS",
+    "exit_code": 0,
+    "skipped": [],
+    "findings": [],
+    "raw": "results\\security\\audits\\research-linux-py312.upstream.json",
+    "raw_sha256": "e61568c45c72ffb6b626134fdc8ca42a16277d131d297de6a41ac25adcfbbba3"
+  }
+}

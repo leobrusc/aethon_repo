@@ -1,0 +1,2 @@
+-r cpu.in
+-r ../../requirements-research.txt
