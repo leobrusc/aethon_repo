@@ -1,0 +1,26 @@
+{
+  "scope": "read-only existing environment inventory; no prototype, installations or native guarantee",
+  "windows": {
+    "runtime": "maintained hashed Python 3.12 security environment",
+    "cryptography_installed": false,
+    "pynacl_installed": false,
+    "approved_locks_include_crypto_library": false
+  },
+  "linux_wsl": {
+    "distribution": "Ubuntu",
+    "system": "Linux",
+    "kernel": "6.18.33.2-microsoft-standard-WSL2",
+    "python": "3.14.4",
+    "cryptography_distro_package_present": true,
+    "pytest": false,
+    "numpy": false,
+    "pandas": false,
+    "sklearn": false,
+    "O_NOFOLLOW": true,
+    "dir_fd_available": true,
+    "approved_research_profile": false
+  },
+  "native_backend_prototype": "NOT_RUN",
+  "production_deployment": "NOT_RUN",
+  "local_linux_scientific_suite": "NOT_RUN"
+}

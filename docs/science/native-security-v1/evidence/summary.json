@@ -1,0 +1,15 @@
+{
+  "validation_status": "PASS",
+  "operational_classification": "PILOT_BLOCKED",
+  "reviewed_head": "be5827af4345f44e6083ed3b7c84692a7772f113",
+  "historical_head": "355e07d9bb20200df953628d49f20368d6439e54",
+  "historical_pairs": 9139,
+  "decision_mismatches": 0,
+  "historical_metrics": 80,
+  "five_local_files_preserved": true,
+  "five_LFS_payloads_verified": true,
+  "pilot_executed": false,
+  "real_inference": "NOT_RUN",
+  "native_backend_prototype": "NOT_RUN",
+  "all_eight_gates": "PENDING"
+}
