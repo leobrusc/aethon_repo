@@ -1,0 +1,19 @@
+{
+  "classification": "PILOT_BLOCKED",
+  "blockers": [
+    "execution_authorization",
+    "hardware_check",
+    "independent_inventory",
+    "model_assets",
+    "private_destination",
+    "private_storage",
+    "retention",
+    "reviewer_assignment",
+    "rubric_review",
+    "semantic_review"
+  ],
+  "campaign_executed": false,
+  "manifest_sha256": "92e1385cd9c5660c0ecca68a879ddf1ef99f1001d0ecdba2cb3b3671bf11f2de",
+  "note": "Receipt hashes establish identity, not independent approval or permission to execute.",
+  "synthetic_fixture_count": 4
+}

@@ -33,28 +33,40 @@
   "detector_sha256": "21b715a1f1522475c6d20463bffaba21b853f1260159718d0a00f90efaf58080",
   "implementation_files": {
     "src/aethon/pilot_collector.py": [
-      "5cf75ec479afe2c1db9d6e976e2526111beb5ef1c42537d813de92b720df1acd"
+      "35eda66418ebe695b2ed8b055dc5dd3e79550111093ac64058ce67c503b27c71"
     ],
     "src/aethon/pilot_governance.py": [
-      "3c7df10b1ea1249fd6040feb2a39afc34d75f4fbe2883b779667c29f60e2c375"
+      "4d1d13371c604c6b6cceac9d8847817e8a3a9f9e62b3f3c69d2a8c92cac4f094"
     ],
     "src/aethon/pilot_local.py": [
       "ddbe1c057acf545f151a26cabff8f3cf7790e554f3de9695a160baaa4bddac21"
     ],
     "src/aethon/pilot_runtime.py": [
-      "441b0568cd20e4369c85f93563d46097d5959505f90ab9a8548d2c92312d1164"
+      "ceb3ce73e0043bdce36d55436c15fd01109b8f3758475b7341aef4fbde04173d"
     ],
     "src/aethon/pilot_storage.py": [
-      "efb92b8902bfcf5732e43b7c7f43f74f17ca755af08212e37daffb0736eb0518"
+      "dfe7f3aacb51aeacf62f82f97e03fc1e783b620092fb0022a1e1246bc21b7f7c"
     ],
     "scripts/prospective_collector.py": [
       "3bb318171c1307fb8a3f82e52d983d23042455097b877b2d9bfcb24ed84d6345"
     ],
     "tests/test_pilot_collector.py": [
-      "c747d64d87d67826c9bcb3ad0ab7d48878ad0f673d176a1587993fc187e54825"
+      "b9fbeaa0ee8bd15905789b4f6b2b5fe10d5faae97ae0c34892ff1912a17656a3"
     ],
     "tests/pilot_network_guard.py": [
       "818024308128f1bcf700ce81056a41c59c0842335ffc91fb6a4ba5d33889cf39"
+    ],
+    "src/aethon/pilot_identity.py": [
+      "0005c3cdb2d21ccb8c61d29075757ea927a890f08c904db52ad4a10eabf970e3"
+    ],
+    "src/aethon/pilot_review.py": [
+      "8dea4b3abd8700b0b54cdd812b2a739e9a320393028ff5bba47b01e8af54f03c"
+    ],
+    "tests/test_pilot_remediation.py": [
+      "286549150b8ab29494fe5d9633205e8a34756c8e3bb5f3cac40b26d952daf597"
+    ],
+    "tests/test_independent_security_review.py": [
+      "b8fe52627003801e0942a2a2c22a4634093885f043d4a614df1856183ba4e074"
     ]
   },
   "gate_receipts": {
@@ -71,5 +83,8 @@
   "trust_policy": null,
   "independent_trust_policy_sha256": null,
   "production_directory_created": false,
-  "pilot_executed": false
+  "pilot_executed": false,
+  "remediation_parent": "355e07d9bb20200df953628d49f20368d6439e54",
+  "native_execution": "DISABLED_PENDING_OBJECT_BOUND_BACKEND",
+  "native_storage": "DISABLED_PENDING_CONFINEMENT_BACKEND"
 }

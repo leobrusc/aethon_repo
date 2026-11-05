@@ -85,7 +85,7 @@ def inspect_runtime(root, *, inventory_path=None, private_root=None, run_id=None
             receipt = authority.verify(envelope_data[gate], gate, subject)
             claims = receipt["claims"]
             if gate == "private_storage":
-                observation = probe_storage(private_root, forbidden)
+                observation = probe_storage(private_root, forbidden, subject)
                 if not claims["custodian"] or date.fromisoformat(claims["delete_after"]) <= date.today(): raise ValueError("Retention pending")
                 technical[gate] = observation
             elif gate == "model_assets":

@@ -8,8 +8,6 @@ import hashlib
 import json
 from pathlib import Path
 import re
-import subprocess
-import tempfile
 
 from aethon.prospective import GATES, fingerprint
 
@@ -92,29 +90,32 @@ def read_external(path, forbidden):
 
 
 class OpenSSLVerifier:
-    """Pinned local OpenSSL, Ed25519 only. Never downloads a verifier/key."""
-    def __init__(self, executable, expected_sha256):
+    """Fail closed: pathname invocation cannot bind executable AND loader closure.
+
+    Identity checks diagnose drift; they DO NOT close the check/use window.
+    There is no approved native execution backend on Windows or Linux yet.
+    """
+    def __init__(self, executable, expected_sha256, dependencies=None):
+        from aethon.pilot_identity import path_identity
         self.executable = Path(executable)
-        if not self.executable.is_absolute() or digest(self.executable.read_bytes()) != expected_sha256:
+        self.identities = {self.executable: path_identity(self.executable, file=True)}
+        if self.identities[self.executable]["sha256"] != expected_sha256:
             raise ValueError("Unpinned signature verifier")
+        for name, expected in (dependencies or {}).items():
+            dependency = Path(name)
+            if dependency in self.identities: raise ValueError("Duplicate tool dependency")
+            identity = path_identity(dependency, file=True)
+            if identity["sha256"] != expected: raise ValueError("Unpinned verifier dependency")
+            self.identities[dependency] = identity
 
     def __call__(self, public_key, payload, signature):
+        from aethon.pilot_identity import path_identity
+        for path, identity in self.identities.items():
+            if path_identity(path, file=True) != identity:
+                raise PermissionError("Verifier or dependency identity changed")
         if len(signature) != 64:
             return False
-        # Only receipt metadata and public keys, never responses, enter temp files.
-        with tempfile.TemporaryDirectory(prefix="aethon-receipt-") as directory:
-            root = Path(directory)
-            for name, raw in [("key.pem", public_key), ("payload.json", payload), ("signature.bin", signature)]:
-                path = root/name
-                with path.open("xb") as stream:
-                    stream.write(raw)
-            common = dict(capture_output=True, timeout=15)
-            kind = subprocess.run([str(self.executable), "pkey", "-pubin", "-in", str(root/"key.pem"), "-outform", "DER"], **common)
-            if kind.returncode or len(kind.stdout) != 44 or not kind.stdout.startswith(bytes.fromhex("302a300506032b6570032100")):
-                return False
-            result = subprocess.run([str(self.executable), "pkeyutl", "-verify", "-pubin", "-rawin", "-inkey", str(root/"key.pem"),
-                                     "-in", str(root/"payload.json"), "-sigfile", str(root/"signature.bin")], **common)
-            return result.returncode == 0
+        raise PermissionError("Native object-bound verifier/loader deployment NOT_AUDITED; execution disabled")
 
 
 class ReceiptAuthority:
@@ -193,6 +194,8 @@ class ReceiptAuthority:
                 raise ValueError("Independent reviewers and adjudicator required")
             if not all("evaluator" in self.policy["authorities"].get(i, {}).get("roles", []) for i in reviewers + [claims["adjudicator_id"]]):
                 raise ValueError("Unrecognized evaluator assignment")
+            assigned_keys = [self.evaluator_key(i)[1] for i in reviewers + [claims["adjudicator_id"]]]
+            if len(set(assigned_keys)) != 3: raise ValueError("Evaluator key aliases are not independent")
         if gate == "private_storage":
             plan = json.loads(evidence_bytes[claims["retention_plan_sha256"]])
             if (plan.get("schema") != "aethon.retention-plan.v1" or not plan.get("policy_version")
@@ -204,6 +207,13 @@ class ReceiptAuthority:
         return {"status": "VERIFIED", "kind": kind, "signers": sorted(signers), "key_fingerprints": sorted(key_fingerprints),
                 "receipt_sha256": digest(canonical(envelope)), "expires_at": payload["expires_at"], "claims": claims}
 
+    def evaluator_key(self, identity):
+        key = self.policy["authorities"].get(identity, {})
+        if "evaluator" not in key.get("roles", []): raise ValueError("Unassigned evaluator role")
+        public = read_external(key["public_key_path"], self.forbidden)
+        if digest(public) != key["public_key_sha256"]: raise ValueError("Evaluator key drift")
+        return public, key_identity(public)
+
 
 @dataclass(frozen=True)
 class Authorization:
@@ -212,6 +222,12 @@ class Authorization:
     receipts_sha256: str
     expires_at: str
     launch_sha256: str
+    review_assignment_sha256: str = ""
+    rubric_bundle_sha256: str = ""
+    reviewer_ids: tuple = ()
+    adjudicator_id: str = ""
+    evaluator_keys: tuple = ()
+    storage_probe_fingerprint: str = ""
 
     def check(self, subject):
         if self not in _ISSUED_AUTHORIZATIONS or self.subject_sha256 != fingerprint(subject) or datetime.now(timezone.utc) >= utc(self.expires_at):
@@ -254,6 +270,13 @@ def authorize(authority, envelopes, subject, launch, technical):
     reviewer_keys = set(report["gates"]["semantic_review"]["key_fingerprints"] + report["gates"]["rubric_review"]["key_fingerprints"])
     if operator_keys & reviewer_keys: raise PermissionError("Operational/scientific key aliases are not independent")
     expires = min([v["expires_at"] for v in report["gates"].values()] + [intent["expires_at"]], key=utc)
-    permission = Authorization(fingerprint(subject), authority.policy_sha256, fingerprint(report["gates"]), expires, intent["receipt_sha256"])
+    assignment = report["gates"]["reviewer_assignment"]
+    claims = assignment["claims"]
+    identities = claims["reviewer_ids"] + [claims["adjudicator_id"]]
+    permission = Authorization(fingerprint(subject), authority.policy_sha256, fingerprint(report["gates"]), expires, intent["receipt_sha256"],
+                               assignment["receipt_sha256"], report["gates"]["rubric_review"]["claims"]["rubric_bundle_sha256"],
+                               tuple(claims["reviewer_ids"]), claims["adjudicator_id"],
+                               tuple((i, authority.evaluator_key(i)[1]) for i in identities),
+                               report["gates"]["private_storage"]["claims"]["probe_fingerprint"])
     _ISSUED_AUTHORIZATIONS.add(permission)
     return permission
