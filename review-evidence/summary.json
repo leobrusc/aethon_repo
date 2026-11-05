@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "classification": "PILOT_BLOCKED",
+  "target_model_inference": "NOT_RUN",
+  "pilot_executed": false,
+  "historical_pairs": 9139,
+  "decision_mismatches": 0,
+  "historical_metrics_checked": 80,
+  "original_five_files_preserved": true,
+  "locks_and_historical_results_unchanged": true,
+  "native_crypto": "tested_with_ephemeral_synthetic_keys",
+  "gates": {
+    "independent_inventory": "PENDING",
+    "semantic_review": "PENDING",
+    "rubric_review": "PENDING",
+    "reviewer_assignment": "PENDING",
+    "private_storage": "PENDING",
+    "model_assets": "PENDING",
+    "hardware_check": "PENDING",
+    "execution_authorization": "PENDING"
+  }
+}

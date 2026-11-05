@@ -1,0 +1,176 @@
+[
+  {
+    "name": "pytest",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "-p",
+      "pilot_network_guard",
+      "--basetemp",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\independent-collector-review\\results\\audit\\independent-review-20261105T175758Z\\synthetic-temp"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\independent-collector-review",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "cff3a47749345b66333197864d6736aeb7bd9aa2367e2fdb7cb446f44ca6a448"
+  },
+  {
+    "name": "ruff",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "check",
+      "src",
+      "tests",
+      "scripts"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\independent-collector-review",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  {
+    "name": "preflight",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/prospective_collector.py",
+      "preflight"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\independent-collector-review",
+    "exit_code": 2,
+    "expected_exit_code": 2,
+    "status": "PASS",
+    "sha256": "24371b3acfd26ef838daf33c4bce03a0ce645941a90fc074876fd24cdcced133"
+  },
+  {
+    "name": "unauthorized-collect",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/prospective_collector.py",
+      "collect"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\independent-collector-review",
+    "exit_code": 2,
+    "expected_exit_code": 2,
+    "status": "PASS",
+    "sha256": "89854f4961d04fe03b4fc2b27e84411e1fcfe61a37e48ba8ab6a54318d0facb4"
+  },
+  {
+    "name": "original-preflight",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/prepare_prospective_pilot.py",
+      "--manifest",
+      "configs/science/pilot_v1.json",
+      "--fixtures",
+      "tests/fixtures/prospective_pilot_v1.json",
+      "--output",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\independent-collector-review\\results\\audit\\independent-review-20261105T175758Z\\parent-preflight"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\independent-collector-review",
+    "exit_code": 2,
+    "expected_exit_code": 2,
+    "status": "PASS",
+    "sha256": "f2e10d6cd45be449ae365dca35e1a065a0f848e4ced4cc2f0e73358b471e2fdc"
+  },
+  {
+    "name": "integrity-127",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/repository_inventory.py",
+      "verify"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\independent-collector-review",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "bf51279dccb18603a19a6b9acaa562cb92a0c43fd13539a45d05ea03b8b967af"
+  },
+  {
+    "name": "integrity-31",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/verify_research_evidence.py",
+      "--git-tree",
+      "HEAD"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\independent-collector-review",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "6a25bb6808d75c6ff79d3c78d06d19943829cd8269833288b5f96173a6b54b38"
+  },
+  {
+    "name": "integrity-six",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/verify_historical_dependencies.py"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\independent-collector-review",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "0c31ace07d18bc1d6474a15a91f0586b217320cb7be6b1b5772ff66df9f6a2d4"
+  },
+  {
+    "name": "pip-check",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\independent-collector-review",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
+  },
+  {
+    "name": "lfs-fsck",
+    "command": [
+      "git",
+      "lfs",
+      "fsck"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\independent-collector-review",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "81f6819612dfaf9af7854c05c501e2a69e3852e47f0bfb0a82dfce8f3f6c5db9"
+  },
+  {
+    "name": "lfs-files",
+    "command": [
+      "git",
+      "lfs",
+      "ls-files",
+      "--long"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\independent-collector-review",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "d66941b9ad03fcef639df7bfe219c7378d587ae9632d7ceb8179a3272e32a227"
+  },
+  {
+    "name": "diff-check",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\independent-collector-review",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]
