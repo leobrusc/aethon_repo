@@ -1,0 +1,122 @@
+[
+  {
+    "name": "science-targeted",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_prospective_preparation.py",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\science-prospective",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "a24ee67707a0e38fc7ce8f4543b421a56d24515f3f8d8998d314f6d318cda598"
+  },
+  {
+    "name": "science-pytest",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\science-prospective",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "16509a0cd79b646045f34f4e6d9d6c18b3015a410fca20207f497ae917d00a8e"
+  },
+  {
+    "name": "science-ruff",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "check",
+      "src",
+      "tests",
+      "scripts"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\science-prospective",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  {
+    "name": "science-preflight",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/prepare_prospective_pilot.py",
+      "--manifest",
+      "configs/science/pilot_v1.json",
+      "--fixtures",
+      "tests/fixtures/prospective_pilot_v1.json",
+      "--output",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\science-prospective\\results\\audit\\prospective-preparation-20261105T153754Z\\preflight"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\science-prospective",
+    "exit_code": 2,
+    "expected_exit_code": 2,
+    "status": "PASS",
+    "sha256": "f2e10d6cd45be449ae365dca35e1a065a0f848e4ced4cc2f0e73358b471e2fdc"
+  },
+  {
+    "name": "science-integrity-127",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/repository_inventory.py",
+      "verify"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\science-prospective",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "bf51279dccb18603a19a6b9acaa562cb92a0c43fd13539a45d05ea03b8b967af"
+  },
+  {
+    "name": "science-integrity-31",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/verify_research_evidence.py",
+      "--git-tree",
+      "HEAD"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\science-prospective",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "6a25bb6808d75c6ff79d3c78d06d19943829cd8269833288b5f96173a6b54b38"
+  },
+  {
+    "name": "science-integrity-six",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/verify_historical_dependencies.py"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\science-prospective",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "0c31ace07d18bc1d6474a15a91f0586b217320cb7be6b1b5772ff66df9f6a2d4"
+  },
+  {
+    "name": "science-diff-check",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\science-prospective",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

@@ -1,0 +1,147 @@
+{
+  "schema": "aethon.prospective-pilot.v1",
+  "protocol_version": "1.0.0",
+  "baseline": "9ed55709add0fc45f63847a0394315863faa0876",
+  "state": "PILOT_BLOCKED",
+  "conditions": [
+    "B0",
+    "B1",
+    "B2",
+    "B3",
+    "B4"
+  ],
+  "fixture_is_evaluation_data": false,
+  "design": {
+    "attack_scenarios": 12,
+    "legitimate_scenarios": 12,
+    "replicates": 1,
+    "condition_slots": 120,
+    "max_calls_with_b4_reuse": 96,
+    "max_generated_tokens": 24576
+  },
+  "generation": {
+    "seed": 2026,
+    "temperature": 0,
+    "max_new_tokens": 256,
+    "max_input_tokens": 1024,
+    "do_sample": false,
+    "num_beams": 1,
+    "num_return_sequences": 1,
+    "pad_token_id": 128009,
+    "eos_token_ids": [
+      128001,
+      128008,
+      128009
+    ]
+  },
+  "target": "configs/science/target_v1.json",
+  "frozen_files": {
+    "docs/science/PROSPECTIVE_PROTOCOL.md": [
+      "11ef6b35d4b83c09aa77d68d95cb0029479fb1b770919d4a47a684c1a8121816"
+    ],
+    "docs/science/DATA_INDEPENDENCE_AUDIT.md": [
+      "f9e4c4d994d0d4b368ae7cc6ed01d4dd98543ed9c738493893daab5a895f0d4f"
+    ],
+    "docs/science/ASR_EVALUATION_RUBRIC.md": [
+      "8062ef31e645ae047f1d89074a3ab6e64aa11021bbcd4482fad7ef21a9f44a30"
+    ],
+    "docs/science/PILOT_EXECUTION_PLAN.md": [
+      "17a8bbd36112390ba27cbb54888a93ff3af3ee93f24c9c02315f5aa23f9e1f39"
+    ],
+    "docs/science/SCIENTIFIC_READINESS.md": [
+      "9380a2e70c7e06e858f6eecada92299aee743bd721c32f4b27a0b0dcfa1f3149"
+    ],
+    "configs/science/target_v1.json": [
+      "e30a97d4e016b92696bb8ef40d94c555a305ecb8367fcde45e731b2ed23bfa15"
+    ],
+    "tests/fixtures/prospective_pilot_v1.json": [
+      "677054f022fafd0d76482eecb7b4f6d103dec32e0150e1098dda3e7c8944ac11"
+    ],
+    "src/aethon/prospective.py": [
+      "1694f6eeef57e64872b71c37fa36035c569d83df968b7c34e0e0c9be38255373"
+    ],
+    "scripts/prepare_prospective_pilot.py": [
+      "228b21b9ecfe843c38f400bab42d85a23236ed957e23ca0aafb500faab094f88"
+    ],
+    "src/benchmark/middleware.py": [
+      "071e2fbd7bdeb912d7c8a51377c74a1f6bb8f3cba4e92335a2314306ae0e7f4e",
+      "e11f9c7833923a85a24c34cf3ead7dc7ac8e623df56407da398f0e05285dee29"
+    ],
+    "src/aethon/generation.py": [
+      "3d19e3df1ec11a2419614a8c8912fee50793247e45cbfdcb04ee171fe6f89574",
+      "7581f5b3a18c8dece0c9737314817792aff24ae48df856de938f4f7d5d1a368b"
+    ],
+    "src/dataset_loader.py": [
+      "c6d09f7a76dfb7d35caf88c3c6d8797ffb280dc48251aa017b3d31ab38695bf1",
+      "ea4696d6b7d9d93692f6f29db9b91f98e53bf2bc03dd415ff4a08cd8ef80a86c"
+    ],
+    "src/models/aethon_tfidf_lr_revision.pkl": [
+      "21b715a1f1522475c6d20463bffaba21b853f1260159718d0a00f90efaf58080"
+    ],
+    "requirements/environments/research-windows-py312.lock": [
+      "8505e39c9c706bb8f14fb3e66c2ccf7f248c1d3482b4e50d8242cb0fb6aca3d1"
+    ]
+  },
+  "gates": {
+    "independent_inventory": {
+      "status": "PENDING",
+      "receipt_path": null,
+      "receipt_sha256": null,
+      "reviewer_id": null
+    },
+    "semantic_review": {
+      "status": "PENDING",
+      "receipt_path": null,
+      "receipt_sha256": null,
+      "reviewer_id": null
+    },
+    "rubric_review": {
+      "status": "PENDING",
+      "receipt_path": null,
+      "receipt_sha256": null,
+      "reviewer_id": null
+    },
+    "reviewer_assignment": {
+      "status": "PENDING",
+      "receipt_path": null,
+      "receipt_sha256": null,
+      "reviewer_id": null
+    },
+    "private_storage": {
+      "status": "PENDING",
+      "receipt_path": null,
+      "receipt_sha256": null,
+      "reviewer_id": null
+    },
+    "hardware_check": {
+      "status": "PENDING",
+      "receipt_path": null,
+      "receipt_sha256": null,
+      "reviewer_id": null
+    },
+    "model_assets": {
+      "status": "PENDING",
+      "receipt_path": null,
+      "receipt_sha256": null,
+      "reviewer_id": null
+    },
+    "execution_authorization": {
+      "status": "PENDING",
+      "receipt_path": null,
+      "receipt_sha256": null,
+      "reviewer_id": null
+    }
+  },
+  "private_storage": {
+    "path": null,
+    "custodian": null,
+    "delete_after": null
+  },
+  "final_campaign": {
+    "authorized": false,
+    "sample_size": null,
+    "power_seal": null
+  },
+  "execution_implemented": false,
+  "scientific_campaign_executed": false
+}

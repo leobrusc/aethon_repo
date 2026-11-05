@@ -17,3 +17,9 @@ docs/validation/** -text whitespace=cr-at-eol
 results/revision/error_analysis/wildjailbreak_diagnosis.md whitespace=-blank-at-eof
 # New recovery evidence carries raw-output SHA-256 values; preserve recorded bytes.
 docs/integration/recovery-20261105/** -text whitespace=cr-at-eol
+# New prospective seals preserve bytes; historical files retain existing attributes.
+docs/science/** -text whitespace=cr-at-eol
+configs/science/** -text whitespace=cr-at-eol
+tests/fixtures/prospective_pilot_v1.json -text whitespace=cr-at-eol
+src/aethon/prospective.py text eol=lf
+scripts/prepare_prospective_pilot.py text eol=lf
