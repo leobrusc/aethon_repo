@@ -56,7 +56,7 @@ def main():
  for c in ['B1','B2','B3','B4']:
   times=[]
   for text in sample.prompt_text.astype(str):
-   t=time.perf_counter_ns();h=1 if any(re.search(p,text.lower()) for p in PATTERNS) else 0;q=lr.predict_proba(vec.transform([text]))[:,1];p=cal.predict(q)[0];s=max(h,p);_=(s>=tau); 
+   t=time.perf_counter_ns();h=1 if any(re.search(p,text.lower()) for p in PATTERNS) else 0;q=lr.predict_proba(vec.transform([text]))[:,1];p=cal.predict(q)[0];s=max(h,p);_=(s>=tau);
    if c=='B4': _=float(1+np.random.default_rng(42).laplace(0,1/1.2))
    times.append((time.perf_counter_ns()-t)/1e6)
   a=np.asarray(times);lat.append({'condition':c,'n':len(a),'mean_ms':a.mean(),'std_ms':a.std(),'p50_ms':np.percentile(a,50),'p95_ms':np.percentile(a,95),'p99_ms':np.percentile(a,99)})

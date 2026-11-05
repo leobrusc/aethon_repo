@@ -4,12 +4,19 @@ Reads Git objects, so hydrated LFS content is never mistaken for a Git blob.
 Does not print matching values. This is a scoped heuristic, not a privacy proof.
 """
 import argparse
+import hashlib
 from pathlib import Path
 import re
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 LIMIT = 5 * 1024 * 1024
+# One immutable, reviewed historical result is retained as a Git blob.
+# Any content or path change falls back to the standard large-blob rejection.
+ALLOWED_LARGE_BLOBS = {
+    "results/revision/detection/per_prompt_results.csv":
+        "66130f23a92ea05fca856c808a4049245a31d0f6c530bbba517473be389e7a15",
+}
 PATTERNS = (
     re.compile(rb"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
     re.compile(rb"\b(?:ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9]{36,}\b"),
@@ -25,7 +32,10 @@ def git(*args):
 def violations(name, raw):
     findings = []
     if len(raw) > LIMIT:
-        findings.append("Git blob exceeds 5 MiB; use LFS or a source manifest")
+        allowed_sha256 = ALLOWED_LARGE_BLOBS.get(name)
+        actual_sha256 = hashlib.sha256(raw).hexdigest()
+        if allowed_sha256 != actual_sha256:
+            findings.append("Git blob exceeds 5 MiB; use LFS or a source manifest")
     if any(pattern.search(raw) for pattern in PATTERNS):
         findings.append("Possible credential: review privately")
     if Path(name).name == ".env" or name.endswith((".pem", ".key", ".token")):
