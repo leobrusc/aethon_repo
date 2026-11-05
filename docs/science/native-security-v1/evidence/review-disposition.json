@@ -1,0 +1,20 @@
+{
+  "reviewed_head": "be5827af4345f44e6083ed3b7c84692a7772f113",
+  "historical_head": "355e07d9bb20200df953628d49f20368d6439e54",
+  "remote_refs": {
+    "origin/main": "9ed55709add0fc45f63847a0394315863faa0876",
+    "origin/science/prospective-evaluation-v1": "1c6fc01edef58cc1565a7c233c7a23722a4d72a1",
+    "origin/science/prospective-collector-v1": "aa6d171d82961aa297808c24ac602076abf47883",
+    "origin/review/independent-collector-security-v1": "355e07d9bb20200df953628d49f20368d6439e54",
+    "origin/fix/prospective-collector-security-v1": "be5827af4345f44e6083ed3b7c84692a7772f113"
+  },
+  "classification": "ARCHITECTURE_READY",
+  "operational_classification": "PILOT_BLOCKED",
+  "prototype": "NOT_RUN",
+  "current_tests_passed": 253,
+  "historical_reproductions_passed": 9,
+  "current_warnings": 1,
+  "current_skips": 0,
+  "source_implementation_unchanged": true,
+  "new_review_tests_sha256": "1405a6de0515e462ef26b811c70c8590d231132b08fe833d9a5051b2b17eba4e"
+}

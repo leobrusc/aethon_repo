@@ -1,0 +1,67 @@
+from pathlib import Path
+import os,hashlib,json,subprocess
+from datetime import datetime,timezone
+ROOT=Path(__file__).resolve().parents[3]
+WT=ROOT/'.worktrees/native-security-review'
+OLD=ROOT/'.worktrees/independent-collector-review'
+PY=str(ROOT/'.worktrees/security/.venv-security/Scripts/python.exe')
+OUT=WT/'results/audit'/('native-review-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'))
+OUT.mkdir(parents=True,exist_ok=False)
+checks=[]
+def run(name,args,cwd=WT,expected=0):
+    env=dict(os.environ,PYTHONPATH=os.pathsep.join([str(cwd/'src'),str(cwd/'tests')]),HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',HF_DATASETS_OFFLINE='1',AETHON_OFFLINE_AUDIT_OUTPUT=str(OUT/(name+'-network.json')))
+    p=subprocess.run(args,cwd=cwd,env=env,capture_output=True,timeout=900)
+    raw=p.stdout+p.stderr
+    (OUT/(name+'.txt')).write_bytes(raw)
+    checks.append({'name':name,'command':args,'cwd':str(cwd),'exit_code':p.returncode,'expected_exit_code':expected,'status':'PASS' if p.returncode==expected else 'FAIL','sha256':hashlib.sha256(raw).hexdigest()})
+    (OUT/'checks.json').write_text(json.dumps(checks,indent=2)+'\n',encoding='utf-8')
+    print(name,checks[-1]['status'],raw.decode(errors='replace')[-1200:],flush=True)
+    assert p.returncode==expected
+assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=OLD,text=True).strip()=='355e07d9bb20200df953628d49f20368d6439e54'
+assert not subprocess.check_output(['git','status','--porcelain','--untracked-files=no'],cwd=OLD)
+archive=WT/'docs/science/remediation-v1/historical'
+for name,entry in json.loads((archive/'index.json').read_text()).items():
+    original=subprocess.check_output(['git','show','355e07d:'+name],cwd=WT)
+    assert hashlib.sha256(original).hexdigest()==entry['git_sha256']
+    assert original==(archive/(Path(name).name+'.txt')).read_bytes()
+run('historical-reproductions',[PY,'-m','pytest','tests/test_independent_security_review.py','-q','-p','no:cacheprovider','-p','pilot_network_guard','--basetemp',str(OUT/'historical-synthetic')],cwd=OLD)
+run('pytest',[PY,'-m','pytest','-q','-p','no:cacheprovider','-p','pilot_network_guard','--basetemp',str(OUT/'current-synthetic')])
+run('ruff',[PY,'-m','ruff','check','src','tests','scripts'])
+run('preflight',[PY,'scripts/prospective_collector.py','preflight'],expected=2)
+run('pip-check',[PY,'-m','pip','check'])
+for name,args in [('127',['scripts/repository_inventory.py','verify']),('31',['scripts/verify_research_evidence.py','--git-tree','HEAD']),('six',['scripts/verify_historical_dependencies.py'])]: run('integrity-'+name,[PY,*args])
+run('lfs-fsck',['git','lfs','fsck'])
+run('lfs-files',['git','lfs','ls-files','--long'])
+run('diff-check',['git','diff','--check'])
+import sys
+sys.path.insert(0,str(WT/'src'))
+import pandas as pd
+import numpy as np
+from benchmark.detection import _metric_values
+name='results/revision/detection/per_prompt_results.csv'
+frame=pd.read_csv(WT/name,dtype={'prompt_id':str})
+a,b=[frame[frame.condition==c] for c in ['B3','B4']]
+paired=a.merge(b,on=['dataset','prompt_id','prompt_sha256'],how='outer',validate='one_to_one',indicator=True)
+assert len(paired)==9139 and (paired._merge=='both').all()
+assert (paired.true_label_x==paired.true_label_y).all() and (paired.final_prediction_x==paired.final_prediction_y).all()
+published=pd.read_csv(WT/'results/revision/detection/metrics_by_dataset.csv').set_index(['dataset','condition'])
+count=0
+for key,group in frame.groupby(['dataset','condition']):
+    actual=_metric_values(group)
+    for metric in ['f1','fpr','auroc','auprc']:
+        assert np.isclose(actual[metric],float(published.loc[key,metric]),atol=1e-12,rtol=0,equal_nan=True)
+        count+=1
+assert count==80
+def git(*args,cwd=WT): return subprocess.check_output(['git',*args],cwd=cwd)
+assert git('show','HEAD:'+name)==git('show','9ed55709:'+name)
+for line in git('lfs','ls-files','--long').decode().splitlines():
+    sha,marker,path=line.split(maxsplit=2)
+    assert marker=='*' and hashlib.sha256((WT/path).read_bytes()).hexdigest()==sha
+preserved=json.loads((WT/'docs/modernization/preserved-local-state.json').read_text())
+assert all(hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==sha for name,sha in preserved.items())
+for name in ['historical-reproductions','pytest']:
+    assert json.loads((OUT/(name+'-network.json')).read_text())['status']=='PASS'
+assert not git('diff','be5827a','--name-only','--','src','configs','requirements','datasets','results')
+summary={'validation_status':'PASS','operational_classification':'PILOT_BLOCKED','reviewed_head':'be5827af4345f44e6083ed3b7c84692a7772f113','historical_head':'355e07d9bb20200df953628d49f20368d6439e54','historical_pairs':9139,'decision_mismatches':0,'historical_metrics':80,'five_local_files_preserved':True,'five_LFS_payloads_verified':True,'pilot_executed':False,'real_inference':'NOT_RUN','native_backend_prototype':'NOT_RUN','all_eight_gates':'PENDING'}
+(OUT/'summary.json').write_text(json.dumps(summary,indent=2)+'\n',encoding='utf-8')
+print('REVIEW VALIDATION PASS; evidence '+str(OUT),flush=True)

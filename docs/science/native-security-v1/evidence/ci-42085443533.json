@@ -1,0 +1,38 @@
+{
+  "query_commit": "be5827af4345f44e6083ed3b7c84692a7772f113",
+  "url": "https://github.com/leobrusc/aethon_repo/actions/runs/42085443533",
+  "run": {
+    "id": 42085443533,
+    "name": "Quality and dependency hardening",
+    "status": "completed",
+    "conclusion": "success",
+    "run_number": 36,
+    "jobs_url": "https://api.github.com/repos/leobrusc/aethon_repo/actions/runs/42085443533/jobs",
+    "logs_url": "https://api.github.com/repos/leobrusc/aethon_repo/actions/runs/42085443533/logs",
+    "workflow_id": 405914296
+  },
+  "jobs": [
+    {
+      "id": 127449166279,
+      "name": "research-and-gpu-audit",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 42085443533
+    },
+    {
+      "id": 127449166597,
+      "name": "cpu-development (windows)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 42085443533
+    },
+    {
+      "id": 127449166716,
+      "name": "cpu-development (linux)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 42085443533
+    }
+  ],
+  "scope": "Existing PR #18 workflow, not a native-backend validation"
+}
