@@ -1,0 +1,22 @@
+[
+  {
+    "path": "datasets/hf_red_team_attempts.jsonl",
+    "sha256": "1b197f9c836ce9a927f7d82f8c48c27439ad713ddcf2958a87faa7f09be2effd"
+  },
+  {
+    "path": "datasets/jailbreakbench_behaviors.jsonl",
+    "sha256": "4f3a40e85e5be7314ae8e6cb5dc73f4197eca0e691b67d6a25a915b1a934a850"
+  },
+  {
+    "path": "datasets/neuralchemy_prompt_injection_core.jsonl",
+    "sha256": "e7a1b0b9a21032df8b3ffcac1605841324d1266f30fb4d70e6d058af0cde685f"
+  },
+  {
+    "path": "datasets/notinject.jsonl",
+    "sha256": "e41959c6cd149a4f921cb70deff86f9aab10bfede0894b958e99980bf71349b8"
+  },
+  {
+    "path": "datasets/wildjailbreak_eval.jsonl",
+    "sha256": "2e74645416c7daa3b30ae11cb845a50cc9fe5d0b147e4ddc2ef5b0af23ec88a5"
+  }
+]

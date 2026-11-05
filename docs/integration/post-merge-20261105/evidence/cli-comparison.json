@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "rows": 2,
+  "columns": [
+    "condition",
+    "prompt_id",
+    "ground_truth",
+    "blocked",
+    "heuristic_flag",
+    "ml_prediction",
+    "detection_score"
+  ]
+}

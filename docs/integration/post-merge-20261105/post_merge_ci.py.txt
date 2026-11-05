@@ -1,0 +1,31 @@
+import hashlib
+import json
+from pathlib import Path
+import subprocess
+ROOT=Path(__file__).resolve().parents[3]
+WT=ROOT/'.worktrees/post-merge-validation'
+OUT=WT/'results/audit/post-merge-20261105T141025Z'
+def query(name,args):
+    p=subprocess.run(args,cwd=WT,capture_output=True,timeout=180)
+    (OUT/(name+'.json')).write_bytes(p.stdout)
+    assert p.returncode==0,p.stderr.decode(errors='replace')
+    return json.loads(p.stdout)
+runs=query('ci-runs',['gh','run','list','--repo','leobrusc/aethon_repo','--commit','9ed55709add0fc45f63847a0394315863faa0876','--limit','10','--json','databaseId,headSha,headBranch,event,status,conclusion,url,workflowName'])
+run=query('ci-merge',['gh','run','view','42041263626','--repo','leobrusc/aethon_repo','--json','status,conclusion,headSha,url,jobs'])
+assert run['headSha']=='9ed55709add0fc45f63847a0394315863faa0876' and run['conclusion']=='success'
+assert len(run['jobs'])==3 and all(j['conclusion']=='success' for j in run['jobs'])
+art=query('ci-artifacts',['gh','api','repos/leobrusc/aethon_repo/actions/runs/42041263626/artifacts'])
+assert len(art['artifacts'])==5 and sum(a['size_in_bytes'] for a in art['artifacts'])<1024*1024
+assert all(not a['expired'] for a in art['artifacts'])
+p=subprocess.run(['gh','run','download','42041263626','--repo','leobrusc/aethon_repo','--dir',str(OUT/'ci-artifacts')],cwd=WT,capture_output=True,timeout=180)
+(OUT/'ci-download.txt').write_bytes(p.stdout+p.stderr)
+assert p.returncode==0,p.stderr.decode(errors='replace')
+files={p.relative_to(OUT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in (OUT/'ci-artifacts').rglob('*') if p.is_file()}
+for p in (OUT/'ci-artifacts').rglob('deterministic-*.json'):
+    data=json.loads(p.read_text()); assert data['status']=='PASS' and data['reference_rows']==9139 and not data['mismatches']
+for p in (OUT/'ci-artifacts').rglob('*.summary.json'):
+    data=json.loads(p.read_text()); assert data['upstream_and_dependency_audit']['status']=='PASS'
+    assert data.get('platform_installation')!='FAIL'
+    assert data.get('torch_provenance',{}).get('status')!='FAIL'
+(OUT/'ci-downloaded-hashes.json').write_text(json.dumps(files,indent=2)+'\n')
+print(json.dumps({'ci':'PASS','merge_jobs':[{k:j[k] for k in ['name','conclusion','url']} for j in run['jobs']],'artifacts':[{k:a[k] for k in ['id','name','digest','size_in_bytes','expired']} for a in art['artifacts']],'downloaded_file_count':len(files)},indent=2))

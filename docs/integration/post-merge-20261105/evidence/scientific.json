@@ -1,0 +1,568 @@
+{
+  "pairs": 9139,
+  "decision_mismatches": 0,
+  "metrics_compared": 80,
+  "metrics": [
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B1",
+      "metric": "f1",
+      "actual": 0.0,
+      "published": 0.0
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B1",
+      "metric": "fpr",
+      "actual": 0.0,
+      "published": 0.0
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B1",
+      "metric": "auroc",
+      "actual": 0.5,
+      "published": 0.5
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B1",
+      "metric": "auprc",
+      "actual": 0.5,
+      "published": 0.5
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B2",
+      "metric": "f1",
+      "actual": 0.33112582781456956,
+      "published": 0.3311258278145695
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B2",
+      "metric": "fpr",
+      "actual": 0.26,
+      "published": 0.26
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B2",
+      "metric": "auroc",
+      "actual": 0.5166,
+      "published": 0.5166
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B2",
+      "metric": "auprc",
+      "actual": 0.5251382647135793,
+      "published": 0.5251382647135793
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B3",
+      "metric": "f1",
+      "actual": 0.33112582781456956,
+      "published": 0.3311258278145695
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B3",
+      "metric": "fpr",
+      "actual": 0.26,
+      "published": 0.26
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B3",
+      "metric": "auroc",
+      "actual": 0.5166,
+      "published": 0.5166
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B3",
+      "metric": "auprc",
+      "actual": 0.5251382647135793,
+      "published": 0.5251382647135793
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B4",
+      "metric": "f1",
+      "actual": 0.33112582781456956,
+      "published": 0.3311258278145695
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B4",
+      "metric": "fpr",
+      "actual": 0.26,
+      "published": 0.26
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B4",
+      "metric": "auroc",
+      "actual": 0.5166,
+      "published": 0.5166
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B4",
+      "metric": "auprc",
+      "actual": 0.5251382647135793,
+      "published": 0.5251382647135793
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B1",
+      "metric": "f1",
+      "actual": null,
+      "published": null
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B1",
+      "metric": "fpr",
+      "actual": 0.0,
+      "published": 0.0
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B1",
+      "metric": "auroc",
+      "actual": null,
+      "published": null
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B1",
+      "metric": "auprc",
+      "actual": null,
+      "published": null
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B2",
+      "metric": "f1",
+      "actual": null,
+      "published": null
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B2",
+      "metric": "fpr",
+      "actual": 0.3480825958702065,
+      "published": 0.3480825958702065
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B2",
+      "metric": "auroc",
+      "actual": null,
+      "published": null
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B2",
+      "metric": "auprc",
+      "actual": null,
+      "published": null
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B3",
+      "metric": "f1",
+      "actual": null,
+      "published": null
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B3",
+      "metric": "fpr",
+      "actual": 0.3480825958702065,
+      "published": 0.3480825958702065
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B3",
+      "metric": "auroc",
+      "actual": null,
+      "published": null
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B3",
+      "metric": "auprc",
+      "actual": null,
+      "published": null
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B4",
+      "metric": "f1",
+      "actual": null,
+      "published": null
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B4",
+      "metric": "fpr",
+      "actual": 0.3480825958702065,
+      "published": 0.3480825958702065
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B4",
+      "metric": "auroc",
+      "actual": null,
+      "published": null
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B4",
+      "metric": "auprc",
+      "actual": null,
+      "published": null
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B1",
+      "metric": "f1",
+      "actual": 0.02274530547474213,
+      "published": 0.0227453054747421
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B1",
+      "metric": "fpr",
+      "actual": 0.0007880220646178094,
+      "published": 0.0007880220646178
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B1",
+      "metric": "auroc",
+      "actual": 0.5053608069548431,
+      "published": 0.5053608069548431
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B1",
+      "metric": "auprc",
+      "actual": 0.5996177969483218,
+      "published": 0.5996177969483218
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B2",
+      "metric": "f1",
+      "actual": 0.49596092429081345,
+      "published": 0.4959609242908134
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B2",
+      "metric": "fpr",
+      "actual": 0.10520094562647754,
+      "published": 0.1052009456264775
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B2",
+      "metric": "auroc",
+      "actual": 0.5830303371620744,
+      "published": 0.5830303371620744
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B2",
+      "metric": "auprc",
+      "actual": 0.7306575273999115,
+      "published": 0.7306575273999115
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B3",
+      "metric": "f1",
+      "actual": 0.49680811115283513,
+      "published": 0.4968081111528351
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B3",
+      "metric": "fpr",
+      "actual": 0.10520094562647754,
+      "published": 0.1052009456264775
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B3",
+      "metric": "auroc",
+      "actual": 0.5834914228776136,
+      "published": 0.5834914228776136
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B3",
+      "metric": "auprc",
+      "actual": 0.7320813531451451,
+      "published": 0.7320813531451451
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B4",
+      "metric": "f1",
+      "actual": 0.49680811115283513,
+      "published": 0.4968081111528351
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B4",
+      "metric": "fpr",
+      "actual": 0.10520094562647754,
+      "published": 0.1052009456264775
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B4",
+      "metric": "auroc",
+      "actual": 0.5834914228776136,
+      "published": 0.5834914228776136
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B4",
+      "metric": "auprc",
+      "actual": 0.7320813531451451,
+      "published": 0.7320813531451451
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B1",
+      "metric": "f1",
+      "actual": 0.0,
+      "published": 0.0
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B1",
+      "metric": "fpr",
+      "actual": 0.0,
+      "published": 0.0
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B1",
+      "metric": "auroc",
+      "actual": 0.5,
+      "published": 0.5
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B1",
+      "metric": "auprc",
+      "actual": 0.5172413793103449,
+      "published": 0.5172413793103449
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B2",
+      "metric": "f1",
+      "actual": 0.75,
+      "published": 0.75
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B2",
+      "metric": "fpr",
+      "actual": 0.0,
+      "published": 0.0
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B2",
+      "metric": "auroc",
+      "actual": 0.9514880952380952,
+      "published": 0.9514880952380952
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B2",
+      "metric": "auprc",
+      "actual": 0.9613248440692971,
+      "published": 0.9613248440692972
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B3",
+      "metric": "f1",
+      "actual": 0.75,
+      "published": 0.75
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B3",
+      "metric": "fpr",
+      "actual": 0.0,
+      "published": 0.0
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B3",
+      "metric": "auroc",
+      "actual": 0.9514880952380952,
+      "published": 0.9514880952380952
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B3",
+      "metric": "auprc",
+      "actual": 0.9613248440692971,
+      "published": 0.9613248440692972
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B4",
+      "metric": "f1",
+      "actual": 0.75,
+      "published": 0.75
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B4",
+      "metric": "fpr",
+      "actual": 0.0,
+      "published": 0.0
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B4",
+      "metric": "auroc",
+      "actual": 0.9514880952380952,
+      "published": 0.9514880952380952
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B4",
+      "metric": "auprc",
+      "actual": 0.9613248440692971,
+      "published": 0.9613248440692972
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B1",
+      "metric": "f1",
+      "actual": 0.0,
+      "published": 0.0
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B1",
+      "metric": "fpr",
+      "actual": 0.0,
+      "published": 0.0
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B1",
+      "metric": "auroc",
+      "actual": 0.5,
+      "published": 0.5
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B1",
+      "metric": "auprc",
+      "actual": 0.9049773755656109,
+      "published": 0.9049773755656108
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B2",
+      "metric": "f1",
+      "actual": 0.9090458488228005,
+      "published": 0.9090458488228004
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B2",
+      "metric": "fpr",
+      "actual": 0.9571428571428572,
+      "published": 0.9571428571428572
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B2",
+      "metric": "auroc",
+      "actual": 0.4681952380952381,
+      "published": 0.4681952380952381
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B2",
+      "metric": "auprc",
+      "actual": 0.9054106002611435,
+      "published": 0.9054106002611436
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B3",
+      "metric": "f1",
+      "actual": 0.9090458488228005,
+      "published": 0.9090458488228004
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B3",
+      "metric": "fpr",
+      "actual": 0.9571428571428572,
+      "published": 0.9571428571428572
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B3",
+      "metric": "auroc",
+      "actual": 0.4681952380952381,
+      "published": 0.4681952380952381
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B3",
+      "metric": "auprc",
+      "actual": 0.9054106002611435,
+      "published": 0.9054106002611436
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B4",
+      "metric": "f1",
+      "actual": 0.9090458488228005,
+      "published": 0.9090458488228004
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B4",
+      "metric": "fpr",
+      "actual": 0.9571428571428572,
+      "published": 0.9571428571428572
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B4",
+      "metric": "auroc",
+      "actual": 0.4681952380952381,
+      "published": 0.4681952380952381
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B4",
+      "metric": "auprc",
+      "actual": 0.9054106002611435,
+      "published": 0.9054106002611436
+    }
+  ],
+  "historical_blob_unchanged": true
+}

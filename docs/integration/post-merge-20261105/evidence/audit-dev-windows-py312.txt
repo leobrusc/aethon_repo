@@ -1,0 +1,42 @@
+{
+  "lock": "dev-windows-py312.lock",
+  "package_count": 103,
+  "platform_installation": "PASS",
+  "torch_binary_catalog": "NOT_AUDITED",
+  "upstream_and_dependency_audit": {
+    "status": "PASS",
+    "exit_code": 0,
+    "skipped": [],
+    "findings": [],
+    "raw": "results\\audit\\post-merge-20261105T141025Z\\security\\dev-windows-py312.upstream.json",
+    "raw_sha256": "737daa7bb47abf624c9fba70103acfa4843fcc878e09d2318ada943bdfdde4aa"
+  },
+  "version_mismatches": [],
+  "torch_provenance": {
+    "status": "PASS",
+    "url": "https://download-r2.pytorch.org/whl/cpu/torch-2.15.0%2Bcpu-cp312-cp312-win_amd64.whl",
+    "sha256": "5af9fb357790db09e62484b12032304f046c22c4b1895ca88c4cf5987ea369ca",
+    "version": "2.15.0+cpu",
+    "cuda_runtime": null,
+    "cuda_available": false,
+    "exact_binary_catalog": "NOT_AUDITED",
+    "meaning": "Verified official artifact, not a binary vulnerability proof"
+  },
+  "native_scanner": {
+    "status": "NOT_AUDITED",
+    "exit_code": 0,
+    "skipped": [
+      {
+        "name": "aethon-research",
+        "reason": "Dependency not found on PyPI and could not be audited: aethon-research (0.1.0)"
+      },
+      {
+        "name": "torch",
+        "reason": "Dependency not found on PyPI and could not be audited: torch (2.15.0+cpu)"
+      }
+    ],
+    "findings": [],
+    "raw": "results\\audit\\post-merge-20261105T141025Z\\security\\dev-windows-py312.native.json",
+    "raw_sha256": "e32576a594d0f03d93857043a645f2f53d7cf62fea3efe481ef0cb4ce90a66b9"
+  }
+}

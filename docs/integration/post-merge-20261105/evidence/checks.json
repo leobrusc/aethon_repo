@@ -1,0 +1,580 @@
+[
+  {
+    "name": "candidate-ancestry",
+    "args": [
+      "git",
+      "merge-base",
+      "--is-ancestor",
+      "52e592e0238b80536c85faee633566685d55d178",
+      "9ed55709add0fc45f63847a0394315863faa0876"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "pytest",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "d0789d6a9e046380f56866a4279f074a916f73405eb0612090d86a272ae745b2"
+  },
+  {
+    "name": "ruff",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "check",
+      "src",
+      "tests",
+      "scripts"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  {
+    "name": "pip-check",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
+  },
+  {
+    "name": "integrity-127",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/repository_inventory.py",
+      "verify"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "bf51279dccb18603a19a6b9acaa562cb92a0c43fd13539a45d05ea03b8b967af"
+  },
+  {
+    "name": "integrity-31",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/verify_research_evidence.py",
+      "--git-tree",
+      "HEAD"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "6a25bb6808d75c6ff79d3c78d06d19943829cd8269833288b5f96173a6b54b38"
+  },
+  {
+    "name": "integrity-6",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/verify_historical_dependencies.py"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "0c31ace07d18bc1d6474a15a91f0586b217320cb7be6b1b5772ff66df9f6a2d4"
+  },
+  {
+    "name": "diff-check",
+    "args": [
+      "git",
+      "diff",
+      "--check",
+      "29645563bd64a67aae2482ab6c87bd5e32fecb11",
+      "HEAD"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "guard-main",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/repository_guard.py",
+      "--base",
+      "29645563bd64a67aae2482ab6c87bd5e32fecb11"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "ead7ff6b848b89632b686439a21bd9b4760b990b0bd5c90a0ab77f85eef305e2"
+  },
+  {
+    "name": "guard-staged",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/repository_guard.py",
+      "--staged"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "ead7ff6b848b89632b686439a21bd9b4760b990b0bd5c90a0ab77f85eef305e2"
+  },
+  {
+    "name": "lfs-fsck",
+    "args": [
+      "git",
+      "lfs",
+      "fsck"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "81f6819612dfaf9af7854c05c501e2a69e3852e47f0bfb0a82dfce8f3f6c5db9"
+  },
+  {
+    "name": "lfs-files",
+    "args": [
+      "git",
+      "lfs",
+      "ls-files",
+      "--long"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "d66941b9ad03fcef639df7bfe219c7378d587ae9632d7ceb8179a3272e32a227"
+  },
+  {
+    "name": "deterministic-replay",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/validate_deterministic_readiness.py",
+      "--environment",
+      "maintained",
+      "--output",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\deterministic.json"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "bf9f79818d2458be187932f5e1ca14c7e66acf089499723e6e344f2e8f47fb4e"
+  },
+  {
+    "name": "build",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "build",
+      "--no-isolation",
+      "--outdir",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\dist"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "36b128c0dc6b95447495577bfbab98d775ff0fac23a58f36d9ed4c7f26891bc4"
+  },
+  {
+    "name": "isolated-venv",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "venv",
+      "--without-pip",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\installed-venv"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "wheel-install",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "pip",
+      "--python",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\installed-venv\\Scripts\\python.exe",
+      "install",
+      "--no-index",
+      "--no-deps",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\dist\\aethon_research-0.1.0-py3-none-any.whl"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "4643326c2b5b905a39f54c6cbadabcfa05f4a2a583dc509ab394e04307beb77f"
+  },
+  {
+    "name": "installed-import",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\installed-venv\\Scripts\\python.exe",
+      "-I",
+      "-c",
+      "import aethon,pathlib; p=pathlib.Path(aethon.__file__).resolve(); assert \"installed-venv\" in str(p); print(p)"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "FAIL",
+    "exit_code": 1,
+    "sha256": "b4d09390c1cf99bd1faa153e5503b98aa526e1882751ea52ede4552405b29b85"
+  },
+  {
+    "name": "wheel-install-retry",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "pip",
+      "--python",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\installed-venv\\Scripts\\python.exe",
+      "install",
+      "--ignore-installed",
+      "--no-index",
+      "--no-deps",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\dist\\aethon_research-0.1.0-py3-none-any.whl"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "190123b01f73dbdf105b2b58ec214bf83a54028cf0ef7444fa0fd464de6144f1"
+  },
+  {
+    "name": "installed-import-retry",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\installed-venv\\Scripts\\python.exe",
+      "-I",
+      "-c",
+      "import aethon,pathlib; p=pathlib.Path(aethon.__file__).resolve(); assert \"installed-venv\" in str(p); print(p)"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "d7184dcee9a256ef95e639da0bb3eb1896cbadd3aabe4539575a7c6df15a4d17"
+  },
+  {
+    "name": "cli-benchmark",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\installed-venv\\Scripts\\python.exe",
+      "-I",
+      "-m",
+      "aethon",
+      "benchmark",
+      "--help"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "332c8661987e875065cb37abe79f20edc44f9c9f4fbd25d5719250daae533aa2"
+  },
+  {
+    "name": "cli-detect",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\installed-venv\\Scripts\\python.exe",
+      "-I",
+      "-m",
+      "aethon",
+      "detect",
+      "--help"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "56b9bf0c4f702235f637b1a77fbee902028f5483b2b449be15d8e341da15ecea"
+  },
+  {
+    "name": "cli-train",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\installed-venv\\Scripts\\python.exe",
+      "-I",
+      "-m",
+      "aethon",
+      "train",
+      "--help"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "1773fabaaec722b371ad1808e42d4cef5dede497eadd0ffdfed797bbb1bfe1b6"
+  },
+  {
+    "name": "cli-integrity",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\installed-venv\\Scripts\\python.exe",
+      "-I",
+      "-m",
+      "aethon",
+      "integrity",
+      "--help"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "c8d1d85f0e3d9c0f28e4ed4ab565821a2c2a1097b731e15534818a4f5ee11612"
+  },
+  {
+    "name": "cli-generalization",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\installed-venv\\Scripts\\python.exe",
+      "-I",
+      "-m",
+      "aethon",
+      "generalization",
+      "--help"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "1f05e863cc982f657696b50fd8cc7222090af58115053400348c119ad29789fd"
+  },
+  {
+    "name": "cli-baseline",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\installed-venv\\Scripts\\python.exe",
+      "-I",
+      "-m",
+      "aethon",
+      "baseline",
+      "--help"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "6ac6854d5e07cad3c2ce613532928124bf2ea345620294bdc2ab60669ee97c98"
+  },
+  {
+    "name": "cli-dp",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\installed-venv\\Scripts\\python.exe",
+      "-I",
+      "-m",
+      "aethon",
+      "dp",
+      "--help"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "10bfbec9b3eb2679ae6da128b07547c1a2f94fd37d4f40a948cad4f9cd9c4e16"
+  },
+  {
+    "name": "cli-source-dry-run",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "aethon",
+      "benchmark",
+      "--models",
+      "gpt-4o-mini",
+      "--datasets",
+      "prompt_injections_test",
+      "--conditions",
+      "B0",
+      "--dataset-limit",
+      "2",
+      "--dry-run",
+      "--output-root",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\cli-source-dry-run",
+      "--run-id",
+      "post-merge-20261105T141025Z-source"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "a5cd29f7b07763764f5d6dca71fd0f43ebdc4585752d3318f3753a534dbcfd52"
+  },
+  {
+    "name": "editable-venv",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "venv",
+      "--without-pip",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\editable-venv"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "editable-install",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "pip",
+      "--python",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\editable-venv\\Scripts\\python.exe",
+      "install",
+      "--ignore-installed",
+      "--no-index",
+      "--no-deps",
+      "--no-build-isolation",
+      "--editable",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "6460b7ee7407bd78c4aafbb6da726b09c73a6c7331a2de891d6b8e5f2c201167"
+  },
+  {
+    "name": "editable-import",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\editable-venv\\Scripts\\python.exe",
+      "-I",
+      "-c",
+      "import aethon,pathlib; p=pathlib.Path(aethon.__file__).resolve(); assert \"post-merge-validation\" in str(p) and \"src\" in p.parts; print(p)"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "14886daee3c19c81b0f9aa374003c7ccaea2c4284642250f8284744e56327522"
+  },
+  {
+    "name": "cli-editable-dry-run",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\editable-venv\\Scripts\\python.exe",
+      "-I",
+      "-m",
+      "aethon",
+      "benchmark",
+      "--models",
+      "gpt-4o-mini",
+      "--datasets",
+      "prompt_injections_test",
+      "--conditions",
+      "B0",
+      "--dataset-limit",
+      "2",
+      "--dry-run",
+      "--output-root",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\cli-editable-dry-run",
+      "--run-id",
+      "post-merge-20261105T141025Z-editable"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "ab18b34bab67dd7006fc4662f6d0c76d837043a48e604fb3b14c0aa6e7c3437b"
+  },
+  {
+    "name": "audit-cpu-linux-py312",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/audit_security_environment.py",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\requirements\\environments\\cpu-linux-py312.lock",
+      "--output",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\security"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "4bb11a83e8fa90f053495d667f96163fe1de0fa45d411e6f707e84d515faaec8"
+  },
+  {
+    "name": "audit-cpu-windows-py312",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/audit_security_environment.py",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\requirements\\environments\\cpu-windows-py312.lock",
+      "--output",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\security",
+      "--installed",
+      "--target-python",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-cpu\\Scripts\\python.exe"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "7339f34ce15c92bd143e23e0dd3d7a6842677b3cbd3cd25db8161f0361e794b7"
+  },
+  {
+    "name": "audit-dev-linux-py312",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/audit_security_environment.py",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\requirements\\environments\\dev-linux-py312.lock",
+      "--output",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\security"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "b342140bef5c4d0be865b5552f8d77fa76d37af3c6f506f576654fa77746fcb8"
+  },
+  {
+    "name": "audit-dev-windows-py312",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/audit_security_environment.py",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\requirements\\environments\\dev-windows-py312.lock",
+      "--output",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\security",
+      "--installed",
+      "--target-python",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "ebd5394ac2a1bc455206eaa4128fba5c3fb0dcb851e88175a83d5d2c45ba82dc"
+  },
+  {
+    "name": "audit-gpu-linux-py312",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/audit_security_environment.py",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\requirements\\environments\\gpu-linux-py312.lock",
+      "--output",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\security"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "1590168ffdda4224f101634a343aae96db9b5b80097f334d0384c9c745b5b4c8"
+  },
+  {
+    "name": "audit-research-linux-py312",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/audit_security_environment.py",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\requirements\\environments\\research-linux-py312.lock",
+      "--output",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\security"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "f832757a1d0ef4fffce72ea2d91a36746e3bac9dd90a5b1ec5a86c057ec02e96"
+  },
+  {
+    "name": "audit-research-windows-py312",
+    "args": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/audit_security_environment.py",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\requirements\\environments\\research-windows-py312.lock",
+      "--output",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\security",
+      "--installed",
+      "--target-python",
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-research\\Scripts\\python.exe"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation",
+    "status": "PASS",
+    "exit_code": 0,
+    "sha256": "d370f679c2534dc5bdaadf07b5b8915c3eb948186d1225fc701d25c50b8587f7"
+  }
+]

@@ -1,0 +1,126 @@
+"""Bounded post-merge validation: no installation of external dependencies."""
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+from datetime import datetime, timezone
+
+ROOT=Path(__file__).resolve().parents[3]
+WT=ROOT/'.worktrees/post-merge-validation'
+MERGE='9ed55709add0fc45f63847a0394315863faa0876'
+CANDIDATE='52e592e0238b80536c85faee633566685d55d178'
+RUN='post-merge-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+OUT=WT/'results/audit'/RUN
+OUT.mkdir(parents=True,exist_ok=False)
+PY=str(ROOT/'.worktrees/security/.venv-security/Scripts/python.exe')
+ENV=dict(os.environ,HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',HF_DATASETS_OFFLINE='1',PYTHONPATH=str(WT/'src'),OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1')
+records=[]
+def git(*args,cwd=WT):
+    return subprocess.check_output(['git',*args],cwd=cwd).decode().strip()
+def save(name,data):
+    (OUT/name).write_text(json.dumps(data,indent=2)+'\n',encoding='utf-8')
+def run(name,args,env=ENV,cwd=WT):
+    try:
+        p=subprocess.run(args,cwd=cwd,env=env,capture_output=True,timeout=900)
+        raw=p.stdout+p.stderr
+        code=p.returncode
+    except Exception as exc:
+        raw=str(exc).encode(); code=-1
+    (OUT/(name+'.txt')).write_bytes(raw)
+    records.append({'name':name,'args':args,'cwd':str(cwd),'status':'PASS' if code==0 else 'FAIL','exit_code':code,'sha256':hashlib.sha256(raw).hexdigest()})
+    save('checks.json',records)
+    print(name,records[-1]['status'],raw.decode(errors='replace')[-250:],flush=True)
+    return code,raw
+def require(name,args,**kw):
+    code,raw=run(name,args,**kw)
+    if code: raise RuntimeError(name+' failed; preserved raw log')
+    return raw
+
+assert git('rev-parse','HEAD')==MERGE
+assert not git('status','--porcelain')
+assert git('rev-parse',MERGE+'^{tree}')==git('rev-parse',CANDIDATE+'^{tree}')
+require('candidate-ancestry',['git','merge-base','--is-ancestor',CANDIDATE,MERGE])
+snapshot={'run':RUN,'utc':datetime.now(timezone.utc).isoformat(),'merge':MERGE,'candidate':CANDIDATE,'tree':git('rev-parse','HEAD^{tree}'),'parents':git('show','-s','--format=%P','HEAD'),'initial_status':git('status','--porcelain'),'original_status':git('status','--porcelain',cwd=ROOT),'origin_main':git('rev-parse','origin/main')}
+preserved=json.loads((WT/'docs/modernization/preserved-local-state.json').read_text())
+assert all(hashlib.sha256((ROOT/n).read_bytes()).hexdigest()==h for n,h in preserved.items())
+requirements={p.relative_to(WT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in WT.glob('requirements/**/*.lock')}
+for p in list(WT.glob('requirements*.txt'))+list(WT.glob('requirements/historical/**/*')):
+    if p.is_file(): requirements[p.relative_to(WT).as_posix()]=hashlib.sha256(p.read_bytes()).hexdigest()
+snapshot['requirements_hashes']=requirements
+save('git-and-preservation.json',snapshot)
+require('pytest',[PY,'-m','pytest','-q','-p','no:cacheprovider'])
+require('ruff',[PY,'-m','ruff','check','src','tests','scripts'])
+require('pip-check',[PY,'-m','pip','check'])
+require('integrity-127',[PY,'scripts/repository_inventory.py','verify'])
+require('integrity-31',[PY,'scripts/verify_research_evidence.py','--git-tree','HEAD'])
+require('integrity-6',[PY,'scripts/verify_historical_dependencies.py'])
+require('diff-check',['git','diff','--check','29645563bd64a67aae2482ab6c87bd5e32fecb11','HEAD'])
+require('guard-main',[PY,'scripts/repository_guard.py','--base','29645563bd64a67aae2482ab6c87bd5e32fecb11'])
+require('guard-staged',[PY,'scripts/repository_guard.py','--staged'])
+require('lfs-fsck',['git','lfs','fsck'])
+raw=require('lfs-files',['git','lfs','ls-files','--long']).decode()
+lfs=[]
+for line in raw.splitlines():
+    digest,marker,name=line.split(maxsplit=2)
+    assert marker=='*' and hashlib.sha256((WT/name).read_bytes()).hexdigest()==digest,name
+    lfs.append({'path':name,'sha256':digest})
+assert len(lfs)==5
+save('lfs-payloads.json',lfs)
+
+# Recalculate the four point metrics for each of 20 historical groups.
+sys.path.insert(0,str(WT/'src'))
+import numpy as np
+import pandas as pd
+from benchmark.detection import _metric_values
+name='results/revision/detection/per_prompt_results.csv'
+frame=pd.read_csv(WT/name,dtype={'prompt_id':str})
+a,b=[frame[frame.condition==c] for c in ['B3','B4']]
+paired=a.merge(b,on=['dataset','prompt_id','prompt_sha256'],how='outer',validate='one_to_one',indicator=True)
+assert len(paired)==9139 and (paired._merge=='both').all()
+assert (paired.true_label_x==paired.true_label_y).all() and (paired.final_prediction_x==paired.final_prediction_y).all()
+published=pd.read_csv(WT/'results/revision/detection/metrics_by_dataset.csv').set_index(['dataset','condition'])
+metric_checks=[]
+for key,group in frame.groupby(['dataset','condition']):
+    point=_metric_values(group)
+    for metric in ['f1','fpr','auroc','auprc']:
+        expected=float(published.loc[key,metric]); actual=float(point[metric])
+        assert np.isclose(actual,expected,rtol=0,atol=1e-12,equal_nan=True),(key,metric,actual,expected)
+        metric_checks.append({'dataset':key[0],'condition':key[1],'metric':metric,'actual':None if not np.isfinite(actual) else actual,'published':None if not np.isfinite(expected) else expected})
+assert len(metric_checks)==80
+assert subprocess.check_output(['git','show','HEAD:'+name],cwd=WT)==subprocess.check_output(['git','show','544c363:'+name],cwd=WT)
+save('scientific.json',{'pairs':9139,'decision_mismatches':0,'metrics_compared':80,'metrics':metric_checks,'historical_blob_unchanged':True})
+require('deterministic-replay',[PY,'scripts/validate_deterministic_readiness.py','--environment','maintained','--output',str(OUT/'deterministic.json')])
+
+# Build without network/build-environment provisioning. New outputs only.
+require('build',[PY,'-m','build','--no-isolation','--outdir',str(OUT/'dist')])
+wheels=list((OUT/'dist').glob('*.whl')); assert len(wheels)==1
+save('build-hashes.json',{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (OUT/'dist').iterdir()})
+require('isolated-venv',[PY,'-m','venv','--without-pip',str(OUT/'installed-venv')])
+IPY=str(OUT/'installed-venv/Scripts/python.exe')
+require('wheel-install',[PY,'-m','pip','--python',IPY,'install','--no-index','--no-deps',str(wheels[0])])
+site=OUT/'installed-venv/Lib/site-packages'
+# The project wheel is isolated; third-party dependencies are shared read-only.
+(site/'maintained-dependencies.pth').write_text(str(ROOT/'.worktrees/security/.venv-security/Lib/site-packages')+'\n')
+IENV=dict(ENV); IENV.pop('PYTHONPATH',None)
+require('installed-import',[IPY,'-I','-c','import aethon,pathlib; p=pathlib.Path(aethon.__file__).resolve(); assert "installed-venv" in str(p); print(p)'],env=IENV)
+for command in ['benchmark','detect','train','integrity','generalization','baseline','dp']:
+    require('cli-'+command,[IPY,'-I','-m','aethon',command,'--help'],env=IENV)
+require('cli-dry-run',[IPY,'-I','-m','aethon','benchmark','--models','gpt-4o-mini','--datasets','prompt_injections_test','--conditions','B0','--dataset-limit','2','--dry-run','--output-root',str(OUT/'cli-dry-run'),'--run-id',RUN],env=IENV)
+
+profiles={'dev-windows-py312.lock':'.venv-security','cpu-windows-py312.lock':'.venv-cpu','research-windows-py312.lock':'.venv-research'}
+for lock in sorted((WT/'requirements/environments').glob('*-py312.lock')):
+    args=[PY,'scripts/audit_security_environment.py',str(lock),'--output',str(OUT/'security')]
+    if lock.name in profiles:
+        args+=['--installed','--target-python',str(ROOT/'.worktrees/security'/profiles[lock.name]/'Scripts/python.exe')]
+    require('audit-'+lock.stem,args)
+assert len(list((OUT/'security').glob('*.summary.json')))==7
+
+assert all(hashlib.sha256((WT/n).read_bytes()).hexdigest()==h for n,h in requirements.items())
+assert all(hashlib.sha256((ROOT/n).read_bytes()).hexdigest()==h for n,h in preserved.items())
+assert git('status','--porcelain',cwd=ROOT)==snapshot['original_status']
+assert not git('status','--porcelain')
+assert git('rev-parse','HEAD')==MERGE
+save('final-preservation.json',{'requirements_unchanged':True,'original_files_unchanged':True,'worktree_clean_before_report':True,'head_unchanged':True})
+print('ALL LOCAL CHECKS PASS; evidence: '+str(OUT),flush=True)

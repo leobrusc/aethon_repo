@@ -1,0 +1,9 @@
+usage: train_detector [-h] [--datasets DATASETS [DATASETS ...]]
+                      [--save-name SAVE_NAME]
+
+Train an AETHON ML detector for B2-B4 benchmark conditions.
+
+options:
+  -h, --help            show this help message and exit
+  --datasets DATASETS [DATASETS ...]
+  --save-name SAVE_NAME

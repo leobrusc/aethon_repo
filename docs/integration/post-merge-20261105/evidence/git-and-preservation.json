@@ -1,0 +1,33 @@
+{
+  "run": "post-merge-20261105T141025Z",
+  "utc": "2026-11-05T14:10:25.685132+00:00",
+  "merge": "9ed55709add0fc45f63847a0394315863faa0876",
+  "candidate": "52e592e0238b80536c85faee633566685d55d178",
+  "tree": "ec6a0cc85a73fd5dcad11823c9b19454a88fd245",
+  "parents": "29645563bd64a67aae2482ab6c87bd5e32fecb11 52e592e0238b80536c85faee633566685d55d178",
+  "initial_status": "",
+  "original_status": "M src/close_harness.py\n M tests/test_harness_closure.py\n?? close_harness.validated.backup.py\n?? test_harness_closure.validated.backup.py\n?? validated_tpr_auroc_closure.patch",
+  "origin_main": "9ed55709add0fc45f63847a0394315863faa0876",
+  "requirements_hashes": {
+    "requirements/environments/bootstrap.lock": "707c2e6ea3b9c6007524359d2b15cc07c7cba2f741494b59f1a96135cdfa8ec6",
+    "requirements/environments/cpu-linux-py312.lock": "5c72d0cff5286f9a29b591bbee8348327f4b7862b0ebd391a75cf1a9f960b994",
+    "requirements/environments/cpu-windows-py312.lock": "2561644b048a7de7fe812a7a97d4cd5a7f4e67dab19a54e7125474a5c252b4e6",
+    "requirements/environments/dev-linux-py312.lock": "bd2c013cb3910c34571b009854ef83ae375e4cba2ee2b6dcea93cd799ebd7a9e",
+    "requirements/environments/dev-windows-py312.lock": "35d615c038e4fd5e5ec690e8d6d2c60acd03a45e4ba78cdb210e2969f3708850",
+    "requirements/environments/gpu-linux-py312.lock": "c3549c0f3ce5c9ca1e22001eff14ecd8ff7eb46fb655780ef16a9edbe0ed8eba",
+    "requirements/environments/research-linux-py312.lock": "c2639a3273e6b6fb65dbfdba9c8be6263e14c381dc2b1f97d94e2ab56b877a1d",
+    "requirements/environments/research-windows-py312.lock": "8505e39c9c706bb8f14fb3e66c2ccf7f248c1d3482b4e50d8242cb0fb6aca3d1",
+    "requirements-core.txt": "249412f54ec072c2332c34cdab6c69b8afe81cb56f40fdfcf46894e7b1595939",
+    "requirements-dev.txt": "e839cb96ac4b013c2947b17ea6d058ea24164fbb5ecb2f480eb3214efce4701e",
+    "requirements-gpu.txt": "8089a4216477649b6ddd8d8ed5baec6d7e83b711217bf987843f1bc379356c9d",
+    "requirements-research.txt": "4a6a0cf739962da3d4738b5513bf53fb1e02da8fecd390fa34c70365db4c7b33",
+    "requirements-tools.txt": "d34f3fa25b6a55cdb9dda3559befd7e7dafc2bfbbc14204e86807cb0a6edd0fe",
+    "requirements.txt": "98c992c4924afe1e976749d68a2f39cc53c1974a4b4513be6f9e98b8bce5eccf",
+    "requirements/historical/pr2/pyproject.toml": "7c15f8eda078ea99f20cf891eb3be1289ee253226dde7b08529a9704696e2e2b",
+    "requirements/historical/pr2/requirements-core.txt": "9cc5505c170cc129a6fd46317e2379b54cf5cb3e1832b186031d8ce05ba36736",
+    "requirements/historical/pr2/requirements-dev.txt": "d86443f6a9082dfb94523a58c8aae070ebd7ef7ae5754033e3086c633b9dda97",
+    "requirements/historical/pr2/requirements-research.txt": "f1a91e532331447105b27174cd0146bf8e6a5e2aca69522302b1d18e533039ab",
+    "requirements/historical/pr2/requirements-tools.txt": "7526093e28cf2d51126ffd5a6dfbdb1b10e62a40a3575c1f5c7268cabc0820d8",
+    "requirements/historical/pr2/requirements.txt": "862e66fde2ad1bf7a32c98cedd99286b8c9d64964258affb8c6e068672489105"
+  }
+}

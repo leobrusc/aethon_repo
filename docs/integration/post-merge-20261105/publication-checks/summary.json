@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "classification": "PILOT_BLOCKED",
+  "campaign_executed": false,
+  "report_copy_byte_identical": true,
+  "archive_files_verified": 122,
+  "original_five_files_preserved": true,
+  "historical_results_dependencies_locks_unchanged": true
+}

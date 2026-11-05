@@ -1,0 +1,87 @@
+[
+  {
+    "name": "documentary-integrity-127",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/repository_inventory.py",
+      "verify"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-report",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "bf51279dccb18603a19a6b9acaa562cb92a0c43fd13539a45d05ea03b8b967af"
+  },
+  {
+    "name": "documentary-integrity-31",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/verify_research_evidence.py",
+      "--git-tree",
+      "HEAD"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-report",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "6a25bb6808d75c6ff79d3c78d06d19943829cd8269833288b5f96173a6b54b38"
+  },
+  {
+    "name": "documentary-integrity-six",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/verify_historical_dependencies.py"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-report",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "0c31ace07d18bc1d6474a15a91f0586b217320cb7be6b1b5772ff66df9f6a2d4"
+  },
+  {
+    "name": "documentary-diff-check",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-report",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "documentary-pytest",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-report",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "e2d3a64d728fff23d0fdfe6378577d8c65697389b401d251d728d172a005aa7d"
+  },
+  {
+    "name": "documentary-ruff",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "check",
+      "src",
+      "tests",
+      "scripts"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-report",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  }
+]
