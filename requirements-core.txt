@@ -10,7 +10,7 @@ tokenizers>=0.23.3
 torch>=2.14.1,<2.16
 huggingface-hub
 pyarrow
-openai>=1.40.0
+openai>=3.42.1
 python-dotenv
 joblib
 statsmodels
