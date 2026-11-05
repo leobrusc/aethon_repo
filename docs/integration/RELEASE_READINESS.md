@@ -13,13 +13,21 @@ research/CUDA audit job. Local quality, integrity and replay checks passed in
 their stated scope. The 127 scientific files, 31 evidence files, six historical
 dependency manifests and 9,139 paired B3/B4 records retain verified identities.
 
+The audit-report PR #5 head `e8942ae7adc0f37f19515b4ec2193a195a167878` also
+passed all three CI jobs: Linux CPU, Windows CPU and research/GPU audit in
+[workflow run 42019751311](https://github.com/leobrusc/aethon_repo/actions/runs/42019751311).
+Its base is validation head `147747cf855dbacbb221f2074908dde1b0c77860`;
+`main` is an ancestor, 61 commits behind, with zero divergence. GitHub reports
+PR #5 `MERGEABLE` and `CLEAN`.
+
 ## Status
 
 | Item | State | Interpretation |
 | --- | --- | --- |
-| Four PR ancestry and GitHub mergeability | PASS | Current refs form the declared 20/7/5/8 commit stack; every PR open, draft and mergeable |
-| Final branch ancestry | PASS | 60 commits ahead of main, zero behind; merge-tree found no conflicts |
-| Linux/Windows CI and research audit | PASS | Both push and PR workflows for `147747c`; all jobs successful |
+| Four PR ancestry and GitHub mergeability | PASS | At the audited snapshot refs form the 20/7/5/8 commit stack; each PR open, draft and mergeable |
+| Audit PR ancestry | PASS | PR #5 head `e8942ae` is one commit beyond PR #4 head; main is ancestor, 61 ahead and zero behind |
+| Linux/Windows CI and research audit | PASS | Push and PR workflows for `147747c`, plus all three PR #5 jobs for `e8942ae`, successful |
+| Sequential target merge commits | NOT_YET_CREATED | Existing PR heads descend from one another, but merge commits produced on current sibling target branches are not automatically ancestors of the following source heads |
 | Tests, Ruff, package check, install and CLI | PASS | Maintained suite, historical contract tests and isolated install verified |
 | Scientific hashes and replay | PASS | 127 files, 31 evidence items, six manifests, 9,139 pairs |
 | Upstream advisory scan | PASS | Seven refreshed 2026-11-05 queries: 0 findings and 0 skips; raw evidence is versioned in `evidence/security-audits/` |
@@ -40,6 +48,13 @@ no-license state is intentional for code integration. Add a license only after
 the owner verifies authority over code and bundled artifacts; citation metadata
 does not grant a license.
 
+The recommended path retargets PRs #1–#4 to `main` and merges them sequentially
+with merge commits. Recalculate and review every diff after retargeting. Verify
+that each next PR's merge base equals the prior source head; only then will main
+contain all source commits and each PR merge commit. If retargeting is prohibited,
+use the consolidated PR alternative in `INTEGRATION_PLAN.md` and record that
+only source commits and one final integration merge commit reach main.
+
 Before a public release tag, decide the license, rerun dated dependency audits
 and archive provenance for the exact release commit. Scientific campaigns need
 their frozen prospective protocol, independent data and semantic-overlap review,
@@ -47,10 +62,12 @@ objective response rubric and appropriate hardware.
 
 ## Post-merge checks
 
-After each stacked PR merge and after final integration to main:
+After each sequential PR merge and after the final PR integration to main:
 
-1. Fetch refs and record full SHAs. Verify the target points to the expected
-   GitHub merge commit and the prior reviewed head remains its ancestor.
+1. Fetch refs and record full SHAs. Verify each target points to the expected
+   GitHub merge commit, with the reviewed base as first parent and reviewed PR
+   head as second parent. After PR #4, verify all four source heads and all four
+   PR merge commits are ancestors of main.
 2. Verify all 127 scientific hashes, 31 evidence hashes, six historical
    manifests and five LFS pointers/payloads (`git lfs fsck`).
 3. Run repository inventory, research evidence, historical manifest and

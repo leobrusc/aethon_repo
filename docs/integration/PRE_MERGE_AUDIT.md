@@ -20,6 +20,12 @@ produced a tree with no conflicts. GitHub marked all four PRs mergeable when
 queried. Recheck exact refs at merge time because concurrent pushes can change
 them.
 
+The PR heads' source commits are nested, but a GitHub merge commit written only
+to a PR's current target branch is not automatically inherited by its child
+source branch. The existing scientific merge commit already in the research
+history is present; hypothetical merge commits for the current open PRs do not
+yet exist. See [the corrected strategy comparison](INTEGRATION_PLAN.md).
+
 The main-to-final diff has 384 paths: 360 added, 21 modified and three deleted;
 127,882 insertions and 39,570 deletions. PR #4 against its direct base changes
 123 files, with 14,134 insertions and 7 deletions. The three files deleted from
