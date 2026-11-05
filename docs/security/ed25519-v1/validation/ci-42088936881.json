@@ -1,0 +1,34 @@
+{
+  "query_head": "7431d7b423bc6fc34d1db51c12794742481f8428",
+  "run": {
+    "id": 42088936881,
+    "name": "Quality and dependency hardening",
+    "status": "completed",
+    "conclusion": "success",
+    "run_number": 37,
+    "jobs_url": "https://api.github.com/repos/leobrusc/aethon_repo/actions/runs/42088936881/jobs",
+    "logs_url": "https://api.github.com/repos/leobrusc/aethon_repo/actions/runs/42088936881/logs",
+    "workflow_id": 405914296
+  },
+  "jobs": [
+    {
+      "id": 127461498318,
+      "name": "research-and-gpu-audit",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127461498685,
+      "name": "cpu-development (windows)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127461498801,
+      "name": "cpu-development (linux)",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "scope": "Parent #19 CI; not candidate provider acceptance"
+}

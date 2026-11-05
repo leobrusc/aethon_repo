@@ -1,0 +1,118 @@
+{
+  "artifacts.json": {
+    "bytes": 5918,
+    "sha256": "7604fd5c12b910e7ffad4184fc88b1aa9145e316783bef624218e76abd64a887"
+  },
+  "metadata-audits.json": {
+    "bytes": 3702,
+    "sha256": "916845698151217435e5b25b42f3c6ff2ceeb06e7affc5ba153218afa1ccf8b2"
+  },
+  "sbom.cdx.json": {
+    "bytes": 9262,
+    "sha256": "fd7f6376e6738be386dd1f61865c165d4b8ac59bbe86010b724ef6d7fe168161"
+  },
+  "validation/build_ed25519_proposal_sbom.py.txt": {
+    "bytes": 3208,
+    "sha256": "26e0eacdc430d56acff3f403651eb390f862a2fd60dfc8824dd8a53b6961c58e"
+  },
+  "validation/checks.json": {
+    "bytes": 5962,
+    "sha256": "8521528fb87fdcd7a76db4ec1ec18411c91f665464ca235daad4309bb35e647c"
+  },
+  "validation/ci-42088936881.json": {
+    "bytes": 952,
+    "sha256": "46357e22c965fe7d8167af0e45ce303c297c4c9c665db48f41d2f9de88a6f356"
+  },
+  "validation/collect_ed25519_metadata.py.txt": {
+    "bytes": 2420,
+    "sha256": "0885bd42898270a95cdf3bcb97239b1df520b9e7e51bcdcb0f738e5062535a63"
+  },
+  "validation/diff-check.txt": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "validation/disposition.json": {
+    "bytes": 842,
+    "sha256": "c79d55b06f8c07f32265e66b39c88682fb8380827b099ecd38349e92049e78c4"
+  },
+  "validation/integrity-127.txt": {
+    "bytes": 80,
+    "sha256": "bf51279dccb18603a19a6b9acaa562cb92a0c43fd13539a45d05ea03b8b967af"
+  },
+  "validation/integrity-31.txt": {
+    "bytes": 54,
+    "sha256": "6a25bb6808d75c6ff79d3c78d06d19943829cd8269833288b5f96173a6b54b38"
+  },
+  "validation/integrity-six.txt": {
+    "bytes": 86,
+    "sha256": "0c31ace07d18bc1d6474a15a91f0586b217320cb7be6b1b5772ff66df9f6a2d4"
+  },
+  "validation/lfs-files.txt": {
+    "bytes": 519,
+    "sha256": "d66941b9ad03fcef639df7bfe219c7378d587ae9632d7ceb8179a3272e32a227"
+  },
+  "validation/lfs-fsck.txt": {
+    "bytes": 16,
+    "sha256": "81f6819612dfaf9af7854c05c501e2a69e3852e47f0bfb0a82dfce8f3f6c5db9"
+  },
+  "validation/network-audit.json": {
+    "bytes": 509,
+    "sha256": "ae0b0f21b33e777a2f115e710aa2c37363baef02508c871992978ae0adec12c6"
+  },
+  "validation/original-preflight.txt": {
+    "bytes": 569,
+    "sha256": "f2e10d6cd45be449ae365dca35e1a065a0f848e4ced4cc2f0e73358b471e2fdc"
+  },
+  "validation/osv-cffi-response.json": {
+    "bytes": 2,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  "validation/osv-cryptography-response.json": {
+    "bytes": 2,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  "validation/osv-pycparser-response.json": {
+    "bytes": 2,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  "validation/pip-check.txt": {
+    "bytes": 31,
+    "sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
+  },
+  "validation/preflight.txt": {
+    "bytes": 584,
+    "sha256": "24371b3acfd26ef838daf33c4bce03a0ce645941a90fc074876fd24cdcced133"
+  },
+  "validation/prepare_ed25519_proposal_metadata.py.txt": {
+    "bytes": 5293,
+    "sha256": "dc35a8ec72750cfc016de9d281582455f44e90e26b1edd9d1bfe360e76971485"
+  },
+  "validation/pytest.txt": {
+    "bytes": 837,
+    "sha256": "bc92ba47e4ab13c53023cc8408f655b870d520db00ede8e5d8f573780a80a61f"
+  },
+  "validation/ruff.txt": {
+    "bytes": 19,
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  "validation/runtime-inventory.json": {
+    "bytes": 736,
+    "sha256": "e718ffdb67aa6d4af82e135cc12eccff5a8cb4b0fef01612c9e9598b6e352fcc"
+  },
+  "validation/sources.json": {
+    "bytes": 713,
+    "sha256": "82a919c2954512ce4f9c080f24f0cf5bb80de0f40e0defd71bce3c38681150c2"
+  },
+  "validation/summary.json": {
+    "bytes": 691,
+    "sha256": "a4c7fab61d0f70469b0faa1960bf1c0519c01012711ab07fbd63cce1fcf49342"
+  },
+  "validation/unauthorized-collect.txt": {
+    "bytes": 165,
+    "sha256": "89854f4961d04fe03b4fc2b27e84411e1fcfe61a37e48ba8ab6a54318d0facb4"
+  },
+  "validation/validate_ed25519_proposal.py.txt": {
+    "bytes": 4655,
+    "sha256": "4423ee32df6bef801cb5dc86b54ff1b1a67b91936caba2a693b11c84f68fe83a"
+  }
+}

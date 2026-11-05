@@ -1,0 +1,16 @@
+{
+  "python": "3.12.13 (main, Mar 20 2026, 00:36:00) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+  "base_executable": "C:\\Users\\leolima\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+  "cache_tag": "cpython-312",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "architecture": "AMD64",
+  "packages": {
+    "cryptography": false,
+    "nacl": false,
+    "cffi": false,
+    "pycparser": false
+  },
+  "executable_sha256": "1a7e89fa8025b0518a8859ee22b9aba3b46222b23391e14aed395a502e2ee791",
+  "base_executable_sha256": "3bcdba7ad853f00890f1b8d58c8d673c22c26e60d6e50a8cb580114cee097f79"
+}

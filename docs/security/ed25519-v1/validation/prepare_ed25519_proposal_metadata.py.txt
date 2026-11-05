@@ -1,0 +1,67 @@
+from pathlib import Path
+from datetime import datetime,timezone
+from concurrent.futures import ThreadPoolExecutor
+import urllib.request,urllib.error,json,hashlib
+from packaging.requirements import Requirement
+from packaging.specifiers import SpecifierSet
+from packaging.tags import cpython_tags,compatible_tags
+from packaging.utils import parse_wheel_filename
+ROOT=Path(__file__).resolve().parents[3]
+WT=ROOT/'.worktrees/ed25519-proposal'
+RAW=WT/'results/audit/ed25519-metadata-20261105T190009Z'
+OUT=WT/'docs/security/ed25519-v1'
+OUT.mkdir(parents=True,exist_ok=False)
+choices={
+ 'cryptography':['cryptography-50.0.2-cp311-abi3-win_amd64.whl','cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl'],
+ 'cffi':['cffi-2.1.1-cp312-cp312-win_amd64.whl','cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl'],
+ 'pycparser':['pycparser-3.12-py3-none-any.whl']}
+artifacts=[]; packages=[]
+for name,files in choices.items():
+ data=json.loads((RAW/(name+'.json')).read_text())
+ info=data['info']; version=info['version']
+ assert SpecifierSet(info['requires_python']).contains('3.12.13')
+ packages.append({'name':name,'version':version,'requires_python':info['requires_python'],'requires_dist':info['requires_dist'] or [],'license_expression':info.get('license_expression') or info.get('license'),'pypi_vulnerabilities':data.get('vulnerabilities'),'source':'https://pypi.org/pypi/'+name+'/'+version+'/json','metadata_sha256':hashlib.sha256((RAW/(name+'.json')).read_bytes()).hexdigest()})
+ for filename in files:
+  f=next(f for f in data['urls'] if f['filename']==filename)
+  assert not f['yanked'] and f['packagetype']=='bdist_wheel'
+  target='windows-x86_64' if 'win_amd64' in filename else 'linux-x86_64' if 'manylinux' in filename else 'both'
+  platforms=['win_amd64'] if target=='windows-x86_64' else ['manylinux_2_'+str(n)+'_x86_64' for n in range(28,16,-1)]+['manylinux2014_x86_64']
+  tags=set(cpython_tags(python_version=(3,12),platforms=platforms)) | set(compatible_tags(python_version=(3,12),interpreter='cp312',platforms=platforms))
+  assert parse_wheel_filename(filename)[3] & tags
+  artifacts.append({'package':name,'version':version,'filename':filename,'sha256':f['digests']['sha256'],'bytes':f['size'],'target':target,'upload_time':f['upload_time_iso_8601'],'yanked':False,'url':f['url'],'published_digest':'VERIFIED_FROM_PYPI_METADATA','artifact_bytes':'NOT_DOWNLOADED_NOT_AUDITED','wheel_tag_check':'PASS_METADATA_ONLY'})
+by_name={p['name']:p for p in packages}
+active=[]
+for p in packages:
+ for requirement in p['requires_dist']:
+  req=Requirement(requirement)
+  env={'python_version':'3.12','python_full_version':'3.12.13','platform_python_implementation':'CPython','implementation_name':'cpython','extra':''}
+  included=req.marker is None or req.marker.evaluate(env)
+  if included:
+   assert req.name in by_name and req.specifier.contains(by_name[req.name]['version'])
+  active.append({'package':p['name'],'requirement':requirement,'active_for_cpython312_no_extras':included})
+record={'schema':'aethon.ed25519-dependency-proposal.v1','classification':'DEPENDENCY_APPROVAL_REQUIRED','pilot':'PILOT_BLOCKED','python':'CPython 3.12.13','targets':['windows-x86_64','linux-x86_64-glibc>=2.28'],'packages':packages,'artifacts':artifacts,'marker_evaluation':active,'artifact_downloads':False,'installs':False,'lock_changes':False}
+(OUT/'artifacts.json').write_text(json.dumps(record,indent=2)+'\n',encoding='utf-8')
+def metadata_request(item):
+ kind,key,url,body=item
+ request=urllib.request.Request(url,data=body,headers={'User-Agent':'AETHON-metadata-review/1','Content-Type':'application/json'})
+ try:
+  with urllib.request.urlopen(request,timeout=30) as r: raw=r.read(2*1024*1024); code=r.status
+ except urllib.error.HTTPError as e: raw=e.read(4096); code=e.code
+ except OSError as e: return {'kind':kind,'key':key,'url':url,'status':'NOT_AUDITED','error_type':type(e).__name__}
+ path=RAW/(kind+'-'+key+'.json');path.write_bytes(raw)
+ result={'kind':kind,'key':key,'url':url,'http_status':code,'response_sha256':hashlib.sha256(raw).hexdigest()}
+ if code==200:
+  data=json.loads(raw)
+  if kind=='osv': result.update(status='QUERY_COMPLETE',vulnerability_ids=[v['id'] for v in data.get('vulns',[])])
+  else:
+   result.update(status='AVAILABLE_NOT_CRYPTOGRAPHICALLY_VERIFIED',publishers=[bundle.get('publisher') for bundle in data.get('attestation_bundles',[])])
+ else: result['status']='UNAVAILABLE_NOT_AUDITED'
+ return result
+queries=[]
+for p in packages:
+ queries.append(('osv',p['name'],'https://api.osv.dev/v1/query',json.dumps({'package':{'name':p['name'],'ecosystem':'PyPI'},'version':p['version']}).encode()))
+for n,a in enumerate(artifacts):
+ queries.append(('provenance',str(n),'https://pypi.org/integrity/'+a['package']+'/'+a['version']+'/'+a['filename']+'/provenance',None))
+with ThreadPoolExecutor(max_workers=5) as executor: results=list(executor.map(metadata_request,queries))
+(OUT/'metadata-audits.json').write_text(json.dumps({'scope':'metadata/API queries only; no wheel payload or attestation cryptographic verification','queried_at':datetime.now(timezone.utc).isoformat(),'results':results},indent=2)+'\n',encoding='utf-8')
+print(json.dumps({'packages':[(p['name'],p['version']) for p in packages],'artifacts':artifacts,'audits':results},indent=2))

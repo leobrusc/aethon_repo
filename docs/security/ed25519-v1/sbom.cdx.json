@@ -1,0 +1,353 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:79d52043-292b-553a-a84a-e3911807e4a0",
+  "version": 1,
+  "metadata": {
+    "component": {
+      "type": "application",
+      "bom-ref": "proposal",
+      "name": "AETHON Ed25519 dependency proposal",
+      "version": "1"
+    },
+    "properties": [
+      {
+        "name": "aethon:classification",
+        "value": "DEPENDENCY_APPROVAL_REQUIRED"
+      },
+      {
+        "name": "aethon:completeness",
+        "value": "METADATA_ONLY_NOT_INSTALLED_OR_BINARY_COMPLETE"
+      },
+      {
+        "name": "aethon:unresolved",
+        "value": "wheel bytes; attestation verification; libffi/native closure; OS/runtime artifact pin; licenses inside distributions"
+      }
+    ],
+    "lifecycles": [
+      {
+        "phase": "design"
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "cryptography-windows-x86_64",
+      "name": "cryptography",
+      "version": "50.0.2",
+      "purl": "pkg:pypi/cryptography@50.0.2",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "7afa5a6602a9f29af1f3a2965f831bae7c9d5d597b7cbb716d41ab3b7d89879c"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/9a/4f/adfc442765721292fff86d314ce385d3249d22db42295c0dd057727b60f3/cryptography-50.0.2-cp311-abi3-win_amd64.whl"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aethon:scope",
+          "value": "PROPOSED_NOT_INSTALLED"
+        },
+        {
+          "name": "aethon:filename",
+          "value": "cryptography-50.0.2-cp311-abi3-win_amd64.whl"
+        },
+        {
+          "name": "aethon:target",
+          "value": "windows-x86_64"
+        },
+        {
+          "name": "aethon:digest-evidence",
+          "value": "PYPI_PUBLISHED_NOT_BINARY_VERIFIED"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "cryptography-linux-x86_64",
+      "name": "cryptography",
+      "version": "50.0.2",
+      "purl": "pkg:pypi/cryptography@50.0.2",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "4061c0079120205fb760c58acab6443e217307dcf05e3702cf970e0689972856"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/1a/f1/b474e930c4d910328780e3940da76f5aa5cbc48ce1fc14e44d239d9ea9db/cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aethon:scope",
+          "value": "PROPOSED_NOT_INSTALLED"
+        },
+        {
+          "name": "aethon:filename",
+          "value": "cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl"
+        },
+        {
+          "name": "aethon:target",
+          "value": "linux-x86_64"
+        },
+        {
+          "name": "aethon:digest-evidence",
+          "value": "PYPI_PUBLISHED_NOT_BINARY_VERIFIED"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "cffi-windows-x86_64",
+      "name": "cffi",
+      "version": "2.1.1",
+      "purl": "pkg:pypi/cffi@2.1.1",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f53e442b08449d42821fa4a4fba000095af9f62742a500f978a9f557ec44339a"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "MIT-0"
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/d9/79/615cc094e2fb508cade7de88d3b4f6c4ec2bab695c97bce9153dc65aadf5/cffi-2.1.1-cp312-cp312-win_amd64.whl"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aethon:scope",
+          "value": "PROPOSED_NOT_INSTALLED"
+        },
+        {
+          "name": "aethon:filename",
+          "value": "cffi-2.1.1-cp312-cp312-win_amd64.whl"
+        },
+        {
+          "name": "aethon:target",
+          "value": "windows-x86_64"
+        },
+        {
+          "name": "aethon:digest-evidence",
+          "value": "PYPI_PUBLISHED_NOT_BINARY_VERIFIED"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "cffi-linux-x86_64",
+      "name": "cffi",
+      "version": "2.1.1",
+      "purl": "pkg:pypi/cffi@2.1.1",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "c1453022f490d2459a11819d83ad1d586e9ff65a12ac3e705ffebd46d3685dcf"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "MIT-0"
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/b1/db/dceb9dd5b231e1da801793f8acc9f3c52a7e1afe40bb1aae37e02b0faad5/cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aethon:scope",
+          "value": "PROPOSED_NOT_INSTALLED"
+        },
+        {
+          "name": "aethon:filename",
+          "value": "cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl"
+        },
+        {
+          "name": "aethon:target",
+          "value": "linux-x86_64"
+        },
+        {
+          "name": "aethon:digest-evidence",
+          "value": "PYPI_PUBLISHED_NOT_BINARY_VERIFIED"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pycparser-both",
+      "name": "pycparser",
+      "version": "3.12",
+      "purl": "pkg:pypi/pycparser@3.12",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "a076f3f489b39b43ed13563a1dafe42447445bec2e294154ec5c57fcdda4c85e"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/b6/ae/315bbeee126a769cbde43cf4908acb4b40408d8bf8bbf334dd7368d8dadf/pycparser-3.12-py3-none-any.whl"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aethon:scope",
+          "value": "PROPOSED_NOT_INSTALLED"
+        },
+        {
+          "name": "aethon:filename",
+          "value": "pycparser-3.12-py3-none-any.whl"
+        },
+        {
+          "name": "aethon:target",
+          "value": "both"
+        },
+        {
+          "name": "aethon:digest-evidence",
+          "value": "PYPI_PUBLISHED_NOT_BINARY_VERIFIED"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "openssl-declared",
+      "name": "OpenSSL",
+      "version": "4.0.3",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "release-notes",
+          "url": "https://cryptography.io/en/50.0.2/changelog/"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aethon:scope",
+          "value": "UPSTREAM_WHEEL_BUILD_CLAIM_NOT_BINARY_VERIFIED"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "libffi-pending",
+      "name": "libffi",
+      "properties": [
+        {
+          "name": "aethon:scope",
+          "value": "NATIVE_COMPONENT_INVENTORY_VERSION_LINKAGE_LICENSE_PENDING"
+        }
+      ]
+    },
+    {
+      "type": "application",
+      "bom-ref": "python-target",
+      "name": "CPython",
+      "version": "3.12.13",
+      "properties": [
+        {
+          "name": "aethon:scope",
+          "value": "TARGET_RUNTIME_FULL_ARTIFACT_PIN_AND_OS_CLOSURE_PENDING"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "proposal",
+      "dependsOn": [
+        "cryptography-windows-x86_64",
+        "cryptography-linux-x86_64",
+        "cffi-windows-x86_64",
+        "cffi-linux-x86_64",
+        "pycparser-both"
+      ]
+    },
+    {
+      "ref": "cryptography-windows-x86_64",
+      "dependsOn": [
+        "python-target",
+        "cffi-windows-x86_64",
+        "openssl-declared"
+      ]
+    },
+    {
+      "ref": "cryptography-linux-x86_64",
+      "dependsOn": [
+        "python-target",
+        "cffi-linux-x86_64",
+        "openssl-declared"
+      ]
+    },
+    {
+      "ref": "cffi-windows-x86_64",
+      "dependsOn": [
+        "python-target",
+        "pycparser-both",
+        "libffi-pending"
+      ]
+    },
+    {
+      "ref": "cffi-linux-x86_64",
+      "dependsOn": [
+        "python-target",
+        "pycparser-both",
+        "libffi-pending"
+      ]
+    },
+    {
+      "ref": "pycparser-both",
+      "dependsOn": [
+        "python-target"
+      ]
+    },
+    {
+      "ref": "openssl-declared",
+      "dependsOn": []
+    },
+    {
+      "ref": "libffi-pending",
+      "dependsOn": []
+    },
+    {
+      "ref": "python-target",
+      "dependsOn": []
+    }
+  ]
+}

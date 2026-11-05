@@ -1,0 +1,37 @@
+from pathlib import Path
+import json,uuid,hashlib
+root=Path(__file__).resolve().parents[3]
+out=root/'.worktrees/ed25519-proposal/docs/security/ed25519-v1'
+data=json.loads((out/'artifacts.json').read_text())
+packages={p['name']:p for p in data['packages']}
+components=[]; refs={}
+for a in data['artifacts']:
+ ref=a['package']+'-'+a['target']; refs[(a['package'],a['target'])]=ref
+ components.append({'type':'library','bom-ref':ref,'name':a['package'],'version':a['version'],'purl':'pkg:pypi/'+a['package']+'@'+a['version'],
+   'hashes':[{'alg':'SHA-256','content':a['sha256']}], 'licenses':[{'expression':packages[a['package']]['license_expression']}],
+   'externalReferences':[{'type':'distribution','url':a['url']}],
+   'properties':[{'name':'aethon:scope','value':'PROPOSED_NOT_INSTALLED'}, {'name':'aethon:filename','value':a['filename']},
+                 {'name':'aethon:target','value':a['target']},{'name':'aethon:digest-evidence','value':'PYPI_PUBLISHED_NOT_BINARY_VERIFIED'}]})
+components.extend([
+ {'type':'library','bom-ref':'openssl-declared','name':'OpenSSL','version':'4.0.3','licenses':[{'expression':'Apache-2.0'}],
+  'externalReferences':[{'type':'release-notes','url':'https://cryptography.io/en/50.0.2/changelog/'}],
+  'properties':[{'name':'aethon:scope','value':'UPSTREAM_WHEEL_BUILD_CLAIM_NOT_BINARY_VERIFIED'}]},
+ {'type':'library','bom-ref':'libffi-pending','name':'libffi','properties':[{'name':'aethon:scope','value':'NATIVE_COMPONENT_INVENTORY_VERSION_LINKAGE_LICENSE_PENDING'}]},
+ {'type':'application','bom-ref':'python-target','name':'CPython','version':'3.12.13',
+  'properties':[{'name':'aethon:scope','value':'TARGET_RUNTIME_FULL_ARTIFACT_PIN_AND_OS_CLOSURE_PENDING'}]}])
+dependencies=[]
+for a in data['artifacts']:
+ ref=refs[(a['package'],a['target'])]
+ deps=['python-target']
+ if a['package']=='cryptography':deps += [refs[('cffi',a['target'])],'openssl-declared']
+ if a['package']=='cffi':deps += [refs[('pycparser','both')],'libffi-pending']
+ dependencies.append({'ref':ref,'dependsOn':deps})
+for ref in ['openssl-declared','libffi-pending','python-target']:dependencies.append({'ref':ref,'dependsOn':[]})
+bom={'bomFormat':'CycloneDX','specVersion':'1.6','serialNumber':'urn:uuid:'+str(uuid.uuid5(uuid.NAMESPACE_URL,'https://github.com/leobrusc/aethon_repo/ed25519-proposal/'+hashlib.sha256((out/'artifacts.json').read_bytes()).hexdigest())),
+ 'version':1,'metadata':{'component':{'type':'application','bom-ref':'proposal','name':'AETHON Ed25519 dependency proposal','version':'1'},
+  'properties':[{'name':'aethon:classification','value':'DEPENDENCY_APPROVAL_REQUIRED'}, {'name':'aethon:completeness','value':'METADATA_ONLY_NOT_INSTALLED_OR_BINARY_COMPLETE'},
+                {'name':'aethon:unresolved','value':'wheel bytes; attestation verification; libffi/native closure; OS/runtime artifact pin; licenses inside distributions'}]},
+ 'components':components,'dependencies':[{'ref':'proposal','dependsOn':[r for r in refs.values()]}]+dependencies}
+bom['metadata']['lifecycles']=[{'phase':'design'}]
+(out/'sbom.cdx.json').write_text(json.dumps(bom,indent=2)+'\n',encoding='utf-8')
+print('Created proposal-only CycloneDX 1.6 SBOM; not an installed/binary-complete SBOM')

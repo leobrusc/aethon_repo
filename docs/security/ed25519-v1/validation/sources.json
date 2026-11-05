@@ -1,0 +1,20 @@
+[
+  {
+    "name": "cryptography",
+    "url": "https://pypi.org/pypi/cryptography/50.0.2/json",
+    "sha256": "7423990cc0948676ef47a71ea62a476ece4c76245e6bebd1c3a71f03c4ffc0f4",
+    "scope": "JSON metadata only; no distribution downloaded"
+  },
+  {
+    "name": "cffi",
+    "url": "https://pypi.org/pypi/cffi/json",
+    "sha256": "ea59a663b5779e4e6bca654cfa65fcbae449a08ecd5ed576b6cbbed0c77d90fc",
+    "scope": "JSON metadata only; no distribution downloaded"
+  },
+  {
+    "name": "pycparser",
+    "url": "https://pypi.org/pypi/pycparser/json",
+    "sha256": "670e730ae15d0c0fcebbf1606120abcaaf9d436e3e3604dcf3e563e5ae745871",
+    "scope": "JSON metadata only; no distribution downloaded"
+  }
+]
