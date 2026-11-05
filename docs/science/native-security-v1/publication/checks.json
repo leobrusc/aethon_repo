@@ -1,0 +1,39 @@
+[
+  {
+    "name": "guard",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/repository_guard.py",
+      "--base",
+      "be5827af4345f44e6083ed3b7c84692a7772f113"
+    ],
+    "head": "ae1b1bb8c583289571cd3f66871e57c5fcdd45f9",
+    "exit_code": 0,
+    "sha256": "ead7ff6b848b89632b686439a21bd9b4760b990b0bd5c90a0ab77f85eef305e2"
+  },
+  {
+    "name": "whitespace",
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "be5827a",
+      "HEAD"
+    ],
+    "head": "ae1b1bb8c583289571cd3f66871e57c5fcdd45f9",
+    "exit_code": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "committed-31",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/verify_research_evidence.py",
+      "--git-tree",
+      "HEAD"
+    ],
+    "head": "ae1b1bb8c583289571cd3f66871e57c5fcdd45f9",
+    "exit_code": 0,
+    "sha256": "6a25bb6808d75c6ff79d3c78d06d19943829cd8269833288b5f96173a6b54b38"
+  }
+]
