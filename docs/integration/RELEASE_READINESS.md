@@ -19,8 +19,11 @@ three initial CI jobs: Linux CPU, Windows CPU and research/GPU audit in
 PR #5 remains directly based on validation head
 `147747cf855dbacbb221f2074908dde1b0c77860`; the correction adds documentation
 only. Main remains an ancestor of the report branch with no divergence. The
-latest documentation head has new CI in progress; use the live PR checks before
-relying on that result.
+corrected PR #5 head `dcc6d3bef8fac5a184a33a30c96900ba3d0614bd`, directly based
+on validation head `147747cf855dbacbb221f2074908dde1b0c77860`, passed all three
+jobs in [run 42022134734](https://github.com/leobrusc/aethon_repo/actions/runs/42022134734).
+The report-only commit recording that result does not change source, locks or
+validation inputs.
 
 ## Status
 
@@ -28,7 +31,7 @@ relying on that result.
 | --- | --- | --- |
 | Four PR ancestry and GitHub mergeability | PASS | At the audited snapshot refs form the 20/7/5/8 commit stack; each PR open, draft and mergeable |
 | Audit PR ancestry | PASS | PR #5 is a direct documentation-only descendant of PR #4; main is an ancestor with zero divergence |
-| Linux/Windows CI and research audit | PASS / IN_PROGRESS | PR #4 and PR #5 snapshot `e8942ae` passed; later documentation-head checks are running |
+| Linux/Windows CI and research audit | PASS | PR #4 and PR #5 exact heads `e8942ae` and `dcc6d3b`; both runs passed all three jobs |
 | Sequential target merge commits | NOT_YET_CREATED | Existing PR heads descend from one another, but merge commits produced on current sibling target branches are not automatically ancestors of the following source heads |
 | Tests, Ruff, package check, install and CLI | PASS | Maintained suite, historical contract tests and isolated install verified |
 | Scientific hashes and replay | PASS | 127 files, 31 evidence items, six manifests, 9,139 pairs |
