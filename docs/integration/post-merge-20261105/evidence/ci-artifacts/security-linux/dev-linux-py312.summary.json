@@ -1,0 +1,42 @@
+{
+  "lock": "dev-linux-py312.lock",
+  "package_count": 102,
+  "platform_installation": "PASS",
+  "torch_binary_catalog": "NOT_AUDITED",
+  "upstream_and_dependency_audit": {
+    "status": "PASS",
+    "exit_code": 0,
+    "skipped": [],
+    "findings": [],
+    "raw": "results/security/audits/dev-linux-py312.upstream.json",
+    "raw_sha256": "c1f7874c6e1545b77327e6348649950271aa08def69103a2f08b69dea5ac7996"
+  },
+  "version_mismatches": [],
+  "torch_provenance": {
+    "status": "PASS",
+    "url": "https://download-r2.pytorch.org/whl/cpu/torch-2.15.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl",
+    "sha256": "0955c7e3446326293f48af18fad67872fa31dee5a36a87690eb9e5be8b465be3",
+    "version": "2.15.0+cpu",
+    "cuda_runtime": null,
+    "cuda_available": false,
+    "exact_binary_catalog": "NOT_AUDITED",
+    "meaning": "Verified official artifact, not a binary vulnerability proof"
+  },
+  "native_scanner": {
+    "status": "NOT_AUDITED",
+    "exit_code": 0,
+    "skipped": [
+      {
+        "name": "aethon-research",
+        "reason": "Dependency not found on PyPI and could not be audited: aethon-research (0.1.0)"
+      },
+      {
+        "name": "torch",
+        "reason": "Dependency not found on PyPI and could not be audited: torch (2.15.0+cpu)"
+      }
+    ],
+    "findings": [],
+    "raw": "results/security/audits/dev-linux-py312.native.json",
+    "raw_sha256": "8c45d365b4473129f79b62cb0e90465e47932230004cfff1c1b6220accb95919"
+  }
+}

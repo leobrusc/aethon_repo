@@ -1,0 +1,27 @@
+from pathlib import Path
+import json
+source=Path(__file__).with_name('post_merge_validate.py').read_text()
+prefix=source[:source.index("assert git('rev-parse','HEAD')==MERGE")]
+prefix=prefix.replace("RUN='post-merge-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')","RUN='post-merge-20261105T141025Z'")
+prefix=prefix.replace('OUT.mkdir(parents=True,exist_ok=False)','assert OUT.is_dir()')
+exec(compile(prefix,'post_merge_resume_setup','exec'))
+records=json.loads((OUT/'checks.json').read_text())
+snapshot=json.loads((OUT/'git-and-preservation.json').read_text())
+requirements=snapshot['requirements_hashes']
+preserved=json.loads((WT/'docs/modernization/preserved-local-state.json').read_text())
+IPY=str(OUT/'installed-venv/Scripts/python.exe')
+IENV=dict(ENV); IENV.pop('PYTHONPATH',None)
+wheel=next((OUT/'dist').glob('*.whl'))
+require('wheel-install-retry',[PY,'-m','pip','--python',IPY,'install','--ignore-installed','--no-index','--no-deps',str(wheel)],env=IENV)
+require('installed-import-retry',[IPY,'-I','-c','import aethon,pathlib; p=pathlib.Path(aethon.__file__).resolve(); assert "installed-venv" in str(p); print(p)'],env=IENV)
+for command in ['benchmark','detect','train','integrity','generalization','baseline','dp']:
+    require('cli-'+command,[IPY,'-I','-m','aethon',command,'--help'],env=IENV)
+# Scientific data intentionally lives in a checkout, not the distributable wheel.
+require('cli-source-dry-run',[PY,'-m','aethon','benchmark','--models','gpt-4o-mini','--datasets','prompt_injections_test','--conditions','B0','--dataset-limit','2','--dry-run','--output-root',str(OUT/'cli-source-dry-run'),'--run-id',RUN+'-source'])
+require('editable-venv',[PY,'-m','venv','--without-pip',str(OUT/'editable-venv')])
+EPY=str(OUT/'editable-venv/Scripts/python.exe')
+(OUT/'editable-venv/Lib/site-packages/maintained-dependencies.pth').write_text(str(ROOT/'.worktrees/security/.venv-security/Lib/site-packages')+'\n')
+require('editable-install',[PY,'-m','pip','--python',EPY,'install','--ignore-installed','--no-index','--no-deps','--no-build-isolation','--editable',str(WT)],env=IENV)
+require('editable-import',[EPY,'-I','-c','import aethon,pathlib; p=pathlib.Path(aethon.__file__).resolve(); assert "post-merge-validation" in str(p) and "src" in p.parts; print(p)'],env=IENV)
+require('cli-editable-dry-run',[EPY,'-I','-m','aethon','benchmark','--models','gpt-4o-mini','--datasets','prompt_injections_test','--conditions','B0','--dataset-limit','2','--dry-run','--output-root',str(OUT/'cli-editable-dry-run'),'--run-id',RUN+'-editable'],env=IENV)
+exec(compile(source[source.index("profiles={'dev-windows"):],'post_merge_resume_security','exec'))

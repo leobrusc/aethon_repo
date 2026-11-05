@@ -1,0 +1,11 @@
+[LOAD] Carregando dataset: C:\Users\leolima\Documents\aethon_repo\.worktrees\post-merge-validation\datasets\hf_prompt-injections_test.parquet
+[NORMALIZE] 'prompt_injections_test' -> shape=(116, 4)
+[LOAD] Carregando dataset: C:\Users\leolima\Documents\aethon_repo\.worktrees\post-merge-validation\datasets\neuralchemy_prompt_injection_core.jsonl
+[NORMALIZE] 'prompt_injection_core' -> shape=(6274, 4)
+[LOAD] Carregando dataset: C:\Users\leolima\Documents\aethon_repo\.worktrees\post-merge-validation\datasets\jailbreakbench_behaviors.jsonl
+[NORMALIZE] 'jailbreakbench_behaviors' -> shape=(200, 4)
+[LOAD] Carregando dataset: C:\Users\leolima\Documents\aethon_repo\.worktrees\post-merge-validation\datasets\wildjailbreak_eval.jsonl
+[NORMALIZE] 'wildjailbreak_eval' -> shape=(2210, 4)
+[LOAD] Carregando dataset: C:\Users\leolima\Documents\aethon_repo\.worktrees\post-merge-validation\datasets\notinject.jsonl
+[NORMALIZE] 'notinject' -> shape=(339, 4)
+{"status": "PASS", "reference_rows": 9139, "comparisons": 25, "mismatches": []}

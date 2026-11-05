@@ -1,0 +1,13 @@
+Obtaining file:///C:/Users/leolima/Documents/aethon_repo/.worktrees/post-merge-validation
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: aethon-research
+  Building editable for aethon-research (pyproject.toml): started
+  Building editable for aethon-research (pyproject.toml): finished with status 'done'
+  Created wheel for aethon-research: filename=aethon_research-0.1.0-0.editable-py3-none-any.whl size=12526 sha256=b29d58ea28993897a386686a54d4710eaa1f62e45aa7c0c1646c68d75139ee00
+  Stored in directory: C:\Users\leolima\AppData\Local\Temp\pip-ephem-wheel-cache-b4g92him\wheels\a3\43\9a\0a916aa41c45a84ce586fac4271d8743e6ee496d8aa93bf05c
+Successfully built aethon-research
+Installing collected packages: aethon-research
+Successfully installed aethon-research-0.1.0

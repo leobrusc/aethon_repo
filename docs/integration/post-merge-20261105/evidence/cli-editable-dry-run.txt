@@ -1,0 +1,20 @@
+[LOAD] Carregando dataset: C:\Users\leolima\Documents\aethon_repo\.worktrees\post-merge-validation\datasets\hf_prompt-injections_test.parquet
+[NORMALIZE] 'prompt_injections_test' -> shape=(116, 4)
+[MODELS] gpt-4o-mini
+[MODEL] gpt-4o-mini
+[DATASET] prompt_injections_test
+[CONDITION] B0
+[PROMPT] 1/2
+[ETA] unknown
+[MODEL] gpt-4o-mini
+[DATASET] prompt_injections_test
+[CONDITION] B0
+[PROMPT] 2/2
+[ETA] 00:00:00
+{
+  "run_id": "post-merge-20261105T141025Z-editable",
+  "rows_written": 2,
+  "failures": 0,
+  "master_csv": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\post-merge-validation\\results\\audit\\post-merge-20261105T141025Z\\cli-editable-dry-run\\aggregated\\master_results.csv",
+  "metrics_rows": 1
+}

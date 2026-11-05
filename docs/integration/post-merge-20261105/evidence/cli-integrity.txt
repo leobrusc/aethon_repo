@@ -1,0 +1,8 @@
+usage: research_integrity [-h] [--output OUTPUT] --run-id RUN_ID
+                          [--similarity SIMILARITY]
+
+options:
+  -h, --help            show this help message and exit
+  --output OUTPUT
+  --run-id RUN_ID
+  --similarity SIMILARITY
