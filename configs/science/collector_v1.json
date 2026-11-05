@@ -1,0 +1,75 @@
+{
+  "schema": "aethon.prospective-collector.v1",
+  "baseline": "9ed55709add0fc45f63847a0394315863faa0876",
+  "science_parent": "1c6fc01edef58cc1565a7c233c7a23722a4d72a1",
+  "state": "PILOT_BLOCKED",
+  "conditions": [
+    "B0",
+    "B1",
+    "B2",
+    "B3",
+    "B4"
+  ],
+  "generation": {
+    "seed": 2026,
+    "temperature": 0,
+    "max_new_tokens": 256,
+    "max_input_tokens": 1024,
+    "do_sample": false,
+    "num_beams": 1,
+    "num_return_sequences": 1,
+    "pad_token_id": 128009,
+    "eos_token_ids": [
+      128001,
+      128008,
+      128009
+    ]
+  },
+  "revision": "9213176726f574b556790deb65791e0c5aa438b6",
+  "tokenizer_revision": "9213176726f574b556790deb65791e0c5aa438b6",
+  "template_sha256": "5816fce10444e03c2e9ee1ef8a4a1ea61ae7e69e438613f3b17b69d0426223a4",
+  "asset_set_sha256": "51e37ed4521a12651fa9927bae4590a3a6e706c64528bf7c23cd7ccf2990cdd0",
+  "effective_model_generation_config_sha256": "56e5c046b4dcc79d3a5bc2c48efa4453e0fb4dbafa9c8071aeeb5e449d0af8e9",
+  "detector_sha256": "21b715a1f1522475c6d20463bffaba21b853f1260159718d0a00f90efaf58080",
+  "implementation_files": {
+    "src/aethon/pilot_collector.py": [
+      "d6c000995907357f65a3c5d4365dd53d9022ee314359ecb1bd6bbf7434bcc8b1"
+    ],
+    "src/aethon/pilot_governance.py": [
+      "3c7df10b1ea1249fd6040feb2a39afc34d75f4fbe2883b779667c29f60e2c375"
+    ],
+    "src/aethon/pilot_local.py": [
+      "ddbe1c057acf545f151a26cabff8f3cf7790e554f3de9695a160baaa4bddac21"
+    ],
+    "src/aethon/pilot_runtime.py": [
+      "441b0568cd20e4369c85f93563d46097d5959505f90ab9a8548d2c92312d1164"
+    ],
+    "src/aethon/pilot_storage.py": [
+      "e6dac2fb08ed4ee621e9fd440a21730577d85490e081234beb3faa773c04e4d3"
+    ],
+    "scripts/prospective_collector.py": [
+      "3bb318171c1307fb8a3f82e52d983d23042455097b877b2d9bfcb24ed84d6345"
+    ],
+    "tests/test_pilot_collector.py": [
+      "dea6132056cda31deb9398493520a575a784d0d75933f7d304a015003fdffe03"
+    ],
+    "tests/pilot_network_guard.py": [
+      "818024308128f1bcf700ce81056a41c59c0842335ffc91fb6a4ba5d33889cf39"
+    ]
+  },
+  "gate_receipts": {
+    "independent_inventory": null,
+    "semantic_review": null,
+    "rubric_review": null,
+    "reviewer_assignment": null,
+    "private_storage": null,
+    "hardware_check": null,
+    "model_assets": null,
+    "execution_authorization": null
+  },
+  "launch_intent": null,
+  "trust_policy": null,
+  "independent_trust_policy_sha256": null,
+  "production_directory_created": false,
+  "pilot_executed": false
+}

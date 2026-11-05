@@ -1,0 +1,24 @@
+{
+  "template_only": true,
+  "status": "PENDING",
+  "required_role": "operations_authority",
+  "minimum_independent_signatures": 1,
+  "payload": {
+    "schema": "aethon.gate-receipt.v1",
+    "version": "1.0",
+    "gate": "execution_authorization",
+    "kind": "operational_authorization",
+    "subject_sha256": null,
+    "responsible": null,
+    "issued_at": null,
+    "expires_at": null,
+    "evidence": [],
+    "claims": {
+      "max_calls": null,
+      "max_slots": null,
+      "purpose": null
+    },
+    "disposition": null
+  },
+  "signatures": []
+}

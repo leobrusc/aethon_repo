@@ -23,3 +23,10 @@ configs/science/** -text whitespace=cr-at-eol
 tests/fixtures/prospective_pilot_v1.json -text whitespace=cr-at-eol
 src/aethon/prospective.py text eol=lf
 scripts/prepare_prospective_pilot.py text eol=lf
+# New collector sources have stable seals; existing protocol/artifacts are unchanged.
+src/aethon/pilot_*.py text eol=lf
+scripts/prospective_collector.py text eol=lf
+tests/test_pilot_collector.py text eol=lf
+tests/pilot_network_guard.py text eol=lf
+# Raw test tracebacks retain original whitespace and are checked by output SHA-256.
+docs/science/collector-v1/validation/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

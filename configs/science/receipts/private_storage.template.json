@@ -1,0 +1,25 @@
+{
+  "template_only": true,
+  "status": "PENDING",
+  "required_role": "storage_custodian",
+  "minimum_independent_signatures": 1,
+  "payload": {
+    "schema": "aethon.gate-receipt.v1",
+    "version": "1.0",
+    "gate": "private_storage",
+    "kind": "technical_review",
+    "subject_sha256": null,
+    "responsible": null,
+    "issued_at": null,
+    "expires_at": null,
+    "evidence": [],
+    "claims": {
+      "custodian": null,
+      "delete_after": null,
+      "probe_fingerprint": null,
+      "retention_plan_sha256": null
+    },
+    "disposition": null
+  },
+  "signatures": []
+}
