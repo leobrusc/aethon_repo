@@ -20,6 +20,7 @@ from aethon.pilot_governance import (Authorization, CLAIMS, KINDS, DISPOSITIONS,
                                     ReceiptAuthority, authorize, canonical, digest, verify_gates)
 from aethon.pilot_storage import (CorruptCheckpoint, PrivateRunStore, immutable_write,
                                  probe_storage, safe_path)
+from aethon.pilot_identity import path_identity
 from aethon.prospective import BASELINE, CONDITIONS, fingerprint
 
 REV = "9213176726f574b556790deb65791e0c5aa438b6"
@@ -37,7 +38,7 @@ def deny_network(monkeypatch):
 
 def synthetic_rows():
     return [dict(namespace="SYNTHETIC-ONLY", source_id="fixture", source_row_id=f"{i}-{label}",
-                 scenario_id=f"scenario-{i}-{label}", pair_id=f"pair-{i:02d}", family_id=f"family-{i%3}",
+                 scenario_id=f"scenario-{i}-{label}", pair_id=f"pair-{i:02d}", family_id=("instruction-override", "synthetic-disclosure", "answer-contamination")[i%3],
                  system_prompt=f"Authorized synthetic task {i}", prompt_text=f"PRIVATE_INPUT_CANARY {i} {label}",
                  label=label, fixture_only=True, task_rubric_id="synthetic-task-v1",
                  legitimate_objective="synthetic authorized task", attack_objective="synthetic override" if label else None,
@@ -108,6 +109,13 @@ def synthetic_judge(**kwargs):
     return {"status": "indeterminate", "judge_id": "synthetic-test-only", "evidence_ref": None}
 
 
+class SyntheticConfinement:
+    """Trusted test-only fake. Does not claim native storage confinement."""
+    def check(self, root, identity):
+        if path_identity(root) != identity:
+            raise PermissionError("Synthetic identity changed")
+
+
 @pytest.fixture
 def setup_run(tmp_path):
     private = tmp_path/"private"; private.mkdir()
@@ -117,6 +125,11 @@ def setup_run(tmp_path):
                                    "policy_version": "synthetic-v1", "custodian": "SYNTHETIC-CUSTODIAN",
                                    "delete_after": "2099-01-01", "deletion_process": "synthetic-test-only"}))
     proof_sha = digest(evidence.read_bytes())
+    rubric_path = tmp_path/"rubrics.json"
+    rubric_path.write_text(json.dumps({"schema": "aethon.rubric-bundle.v1", "rubrics": {
+        "synthetic-task-v1": digest(b"synthetic task rubric v1"),
+        "synthetic-objective-v1": digest(b"synthetic objective rubric v1")}}))
+    rubric_sha = digest(rubric_path.read_bytes())
     config = {"baseline": BASELINE, "revision": REV, "tokenizer_revision": REV,
               "template_sha256": TEMPLATE, "asset_set_sha256": proof_sha,
               "generation": {"seed": 2026, "temperature": 0, "max_new_tokens": 256, "max_input_tokens": 1024,
@@ -128,8 +141,10 @@ def setup_run(tmp_path):
                "protocol_sha256": fingerprint(config), "inventory_sha256": fingerprint(rows),
                "storage_root_sha256": fingerprint(str(private.resolve())), "environment_sha256": proof_sha,
                "asset_set_sha256": proof_sha}
-    observation = {"status": "PASS", "probe_fingerprint": proof_sha,
-                   "observation": {"path_sha256": fingerprint(str(private.resolve())), "synthetic_only": True}}
+    observation = {"status": "PASS", "probe_fingerprint": "pending",
+                   "observation": {"path_sha256": fingerprint(str(private.resolve())), "synthetic_only": True,
+                                   "path_identity": path_identity(private), "subject_sha256": fingerprint(subject)}}
+    observation["probe_fingerprint"] = fingerprint(observation["observation"])
     technical = {"private_storage": observation, "model_assets": {"status": "PASS", "asset_set_sha256": proof_sha},
                  "hardware_check": {"status": "PASS", "environment_sha256": proof_sha}}
     names = {"steward": "data_steward", "review-a": "scientific_reviewer", "review-b": "scientific_reviewer",
@@ -155,7 +170,8 @@ def setup_run(tmp_path):
         if gate == "independent_inventory": claim["inventory_sha256"] = subject["inventory_sha256"]
         if gate == "semantic_review": claim["screen_model_revision"] = "a"*40
         if gate == "reviewer_assignment": claim.update(reviewer_ids=["rater-a", "rater-b"], adjudicator_id="adjudicator")
-        if gate == "private_storage": claim.update(probe_fingerprint=proof_sha, custodian="SYNTHETIC-CUSTODIAN", delete_after="2099-01-01")
+        if gate == "rubric_review": claim["rubric_bundle_sha256"] = rubric_sha
+        if gate == "private_storage": claim.update(probe_fingerprint=observation["probe_fingerprint"], custodian="SYNTHETIC-CUSTODIAN", delete_after="2099-01-01")
         if gate == "model_assets": claim["snapshot_path"] = str(tmp_path)
         if gate in {"execution_authorization", "launch_intent"}: claim.update(purpose="bounded_pilot", max_slots=120, max_calls=96)
         if claims: claim.update(claims)
@@ -165,6 +181,7 @@ def setup_run(tmp_path):
                    "subject_sha256": fingerprint(subject), "responsible": signers[gate][0],
                    "issued_at": (now-timedelta(minutes=1)).isoformat(), "expires_at": (now+timedelta(hours=1)).isoformat(),
                    "evidence": [{"path": str(evidence), "sha256": proof_sha}], "claims": claim}
+        if gate == "rubric_review": payload["evidence"].append({"path": str(rubric_path), "sha256": rubric_sha})
         return {"payload": payload, "signatures": [{"authority_id": name,
                 "signature_base64": base64.b64encode(hmac.new(keys[name], canonical(payload), hashlib.sha256).digest()).decode()} for name in signers[gate]]}
     envelopes = {gate: receipt(gate) for gate in CLAIMS if gate != "launch_intent"}
@@ -172,10 +189,10 @@ def setup_run(tmp_path):
     permission = authorize(authority, envelopes, subject, launch, technical)
     retention = {"custodian": "SYNTHETIC-CUSTODIAN", "delete_after": "2099-01-01"}
     manifest = make_manifest(rows, config, subject, retention)
-    def store(): return PrivateRunStore(private, manifest, permission, [repo], observation)
+    def store(): return PrivateRunStore(private, manifest, permission, [repo], observation, confinement=SyntheticConfinement())
     return dict(rows=rows, config=config, subject=subject, manifest=manifest, permission=permission, store=store,
                 private=private, repo=repo, technical=technical, authority=authority, envelopes=envelopes,
-                launch=launch, receipt=receipt, policy_path=policy_path, observation=observation)
+                launch=launch, receipt=receipt, policy_path=policy_path, observation=observation, rubric_path=rubric_path, keys=keys)
 
 
 def collector(fixture, driver=None, defenses=None, judge=synthetic_judge):
@@ -187,7 +204,7 @@ def test_complete_120_slots_and_idempotence(setup_run):
     assert len(first.store.slots) == 120 and set(s["state"] for s in first.store.slots.values()) == {"pending"}
     summary = first.run()
     assert summary["accounting_complete"] and summary["represented_slots"] == 120 and driver.calls == 96
-    assert summary["states"] == {"completed": 96, "reused": 24}
+    assert summary["states"] == {"evaluation_error": 96, "reused": 24}
     assert summary["scientific_estimates_computed"] is False
     before = driver.calls
     assert collector(setup_run, driver).run() == summary
@@ -207,7 +224,7 @@ def test_private_events_retain_utc_and_monotonic_timing_provenance(setup_run):
     run = collector(setup_run); run.run(max_slots=1)
     events = [unseal(p.read_bytes()) for p in run.store.events.glob('*.json')]
     assert all(utc(e['recorded_utc']).tzinfo is not None for e in events)
-    slot = next(s for s in run.store.slots.values() if s['state'] == 'completed')
+    slot = next(s for s in run.store.slots.values() if s['state'] == 'evaluation_error')
     assert slot['generation_elapsed_ns'] >= 0 and slot['evaluation_elapsed_ns'] >= 0
 
 
@@ -243,7 +260,7 @@ def test_durable_response_reconciles_without_duplicate_inference(setup_run, monk
     assert driver.calls == 1
     second = collector(setup_run, driver); second.run(max_slots=1)
     assert driver.calls == 1
-    assert sum(s["state"] == "completed" for s in second.store.slots.values()) == 1
+    assert sum(s["state"] == "evaluation_error" for s in second.store.slots.values()) == 1
 
 
 @pytest.mark.parametrize("mode,state", [("missing", "no_response"), ("empty", "no_response"),
@@ -342,7 +359,7 @@ def test_fingerprint_change_and_duplicate_identifiers_rejected(setup_run):
     first = setup_run["store"]()
     changed = copy.deepcopy(setup_run["manifest"]); changed["config"]["generation"]["seed"] += 1
     with pytest.raises(CorruptCheckpoint):
-        PrivateRunStore(setup_run["private"], changed, setup_run["permission"], [setup_run["repo"]], setup_run["observation"])
+        PrivateRunStore(setup_run["private"], changed, setup_run["permission"], [setup_run["repo"]], setup_run["observation"], confinement=SyntheticConfinement())
     assert first.manifest["config"] == setup_run["manifest"]["config"]
     rows = synthetic_rows(); rows[1] = rows[0]
     with pytest.raises(ValueError): validate_inventory(rows)
@@ -354,10 +371,12 @@ def test_valid_checkpoint_copied_from_another_run_is_rejected(setup_run):
     name = "a"*64+".response"
     first.pointer(name, {"reference": reference})
     f["subject"]["run_id"] = "another-synthetic-run"
+    f["observation"]["observation"]["subject_sha256"] = fingerprint(f["subject"])
+    f["observation"]["probe_fingerprint"] = fingerprint(f["observation"]["observation"])
     envelopes = {gate: f["receipt"](gate) for gate in f["envelopes"]}
     permission = authorize(f["authority"], envelopes, f["subject"], f["receipt"]("launch_intent"), f["technical"])
     manifest = make_manifest(f["rows"], f["config"], f["subject"], f["manifest"]["retention"])
-    second = PrivateRunStore(f["private"], manifest, permission, [f["repo"]], f["observation"])
+    second = PrivateRunStore(f["private"], manifest, permission, [f["repo"]], f["observation"], confinement=SyntheticConfinement())
     shutil.copyfile(first.objects/(reference+".json"), second.objects/(reference+".json"))
     shutil.copyfile(first.path/(name+".json"), second.path/(name+".json"))
     with pytest.raises(CorruptCheckpoint): second.get(reference)
@@ -508,6 +527,11 @@ def test_production_ed25519_verifier_with_ephemeral_synthetic_key(tmp_path):
     message.write_bytes(b'{"synthetic_only":true}')
     subprocess.run([executable, "pkeyutl", "-sign", "-rawin", "-inkey", str(key), "-in", str(message), "-out", str(signature)], check=True, capture_output=True)
     verifier = OpenSSLVerifier(str(Path(executable).resolve()), digest(Path(executable).read_bytes()))
-    assert verifier(public.read_bytes(), message.read_bytes(), signature.read_bytes())
-    assert not verifier(public.read_bytes(), b"tampered", signature.read_bytes())
+    # Genuine local Ed25519 still accepts valid signatures and rejects tampering.
+    assert subprocess.run([executable, "pkeyutl", "-verify", "-pubin", "-rawin", "-inkey", str(public), "-in", str(message), "-sigfile", str(signature)], capture_output=True).returncode == 0
+    message.write_bytes(b"tampered")
+    assert subprocess.run([executable, "pkeyutl", "-verify", "-pubin", "-rawin", "-inkey", str(public), "-in", str(message), "-sigfile", str(signature)], capture_output=True).returncode != 0
+    # Production pathname execution is disabled even for a valid local tool.
+    with pytest.raises(PermissionError, match="execution disabled"):
+        verifier(public.read_bytes(), message.read_bytes(), signature.read_bytes())
     assert key_identity(public.read_bytes()) == key_identity(public.read_bytes()+b"\n")

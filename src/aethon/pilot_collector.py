@@ -14,6 +14,8 @@ from aethon.generation import GenerationResult
 from aethon.pilot_storage import TERMINAL, CorruptCheckpoint
 from aethon.prospective import CONDITIONS, case_identity, fingerprint, sample_identity
 
+FROZEN_FAMILIES = ("instruction-override", "synthetic-disclosure", "answer-contamination")
+
 
 class ContractError(ValueError):
     pass
@@ -63,6 +65,9 @@ def validate_inventory(rows):
             raise ValueError("Each pair needs one attack/clean control in the same family")
         if len({(r["system_prompt"], r["legitimate_objective"], r["task_rubric_id"]) for r in pair}) != 1:
             raise ValueError("Paired task context changed")
+    counts = {family: sum(pair[0]["family_id"] == family for pair in groups.values()) for family in FROZEN_FAMILIES}
+    if set(r["family_id"] for r in rows) != set(FROZEN_FAMILIES) or set(counts.values()) != {4}:
+        raise ValueError("Exactly four pairs per frozen family required")
     return sorted(output, key=lambda r: r["sample_id"])
 
 
@@ -93,6 +98,7 @@ def make_manifest(rows, config, subject, retention):
             order.extend(by_key[(row["sample_id"], arm)] for arm in arms)
     return {"schema": "aethon.pilot-run.v1", "run_id": subject["run_id"], "subject": subject,
             "config": config, "retention": retention, "inventory_sha256": fingerprint(rows),
+            "review_rubrics": {r["sample_id"]: r["attack_rubric_id"] if r["label"] else r["task_rubric_id"] for r in rows},
             "slots": slots, "schedule": order, "schedule_policy": "seeded_pairs_arms_b4_after_b3",
             "provenance": {"baseline": config["baseline"], "code_commit": subject["code_commit"]},
             "run_fingerprint": fingerprint([subject, config, rows, retention, order])}
@@ -232,8 +238,7 @@ class Collector:
             return
         pointer = store.pointer(key+".evaluation")
         if pointer:
-            if pointer["response_ref"] != slot["response_ref"]: raise CorruptCheckpoint("Foreign evaluation checkpoint")
-            store.get(pointer["reference"])
+            raise CorruptCheckpoint("Legacy unsigned evaluation checkpoint requires independent review")
         else:
             if slot["state"] == "evaluating":
                 store.transition(key, "evaluation_interrupted", reason="evaluation_started_without_durable_result")
@@ -242,26 +247,18 @@ class Collector:
             started = time.perf_counter_ns()
             try:
                 with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
-                    judgment = self.judge(continuation=result.continuation,
+                    self.judge(continuation=result.continuation,
                                           objective=row["attack_objective"] if row["label"] else row["legitimate_objective"],
                                           rubric_id=row["attack_rubric_id"] if row["label"] else row["task_rubric_id"])
-                if judgment.get("status") not in {"success", "failure", "indeterminate"} or not judgment.get("judge_id"):
-                    raise ValueError("Invalid evaluation")
-                if judgment["status"] != "indeterminate" and not judgment.get("evidence_ref"):
-                    raise ValueError("Missing evidence")
-                reference = store.put({"judgment": judgment, "response_ref": slot["response_ref"],
-                                       "evaluation_elapsed_ns": time.perf_counter_ns()-started})
-                pointer = {"reference": reference, "response_ref": slot["response_ref"]}
-                store.pointer(key+".evaluation", pointer)
+                # A callback is untrusted candidate output, never an authenticated
+                # independent vote. ReviewLedger is the sole scientific review API.
+                raise ValueError("Unsigned callback judgment rejected")
             except UnauthorizedExternalOperation:
                 raise ContractError("unauthorized_external_operation")
             except Exception as exc:
                 store.transition(key, "evaluation_error", reason="evaluation_exception", exception_type=type(exc).__name__,
                                  evaluation_elapsed_ns=time.perf_counter_ns()-started)
                 return
-        store.transition(key, "completed", evaluation_ref=pointer["reference"], reason="evaluation_recorded",
-                         evaluation_elapsed_ns=store.get(pointer["reference"])["evaluation_elapsed_ns"])
-
     def run(self, max_slots=None):
         store = self.store
         with store.writer(), no_external_calls():

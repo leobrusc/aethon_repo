@@ -1,0 +1,12 @@
+{
+  "tests/test_independent_security_review.py": {
+    "commit": "355e07d9bb20200df953628d49f20368d6439e54",
+    "git_sha256": "82ae38a051f93666a02ef0da4c897aa05ed9409a50f066b224f11770b1094dbd",
+    "checkout_sha256": "82ae38a051f93666a02ef0da4c897aa05ed9409a50f066b224f11770b1094dbd"
+  },
+  "tests/test_pilot_collector.py": {
+    "commit": "355e07d9bb20200df953628d49f20368d6439e54",
+    "git_sha256": "c747d64d87d67826c9bcb3ad0ab7d48878ad0f673d176a1587993fc187e54825",
+    "checkout_sha256": "c747d64d87d67826c9bcb3ad0ab7d48878ad0f673d176a1587993fc187e54825"
+  }
+}

@@ -14,6 +14,7 @@ import uuid
 
 from aethon.pilot_governance import canonical, digest, utc
 from aethon.prospective import fingerprint
+from aethon.pilot_identity import path_identity
 
 
 class CorruptCheckpoint(ValueError):
@@ -45,10 +46,11 @@ def discover_repositories(root):
     return sorted(set(p.resolve() for p in roots), key=str)
 
 
-def probe_storage(path, forbidden):
+def probe_storage(path, forbidden, subject=None):
     """Never sets ACL, enables encryption, schedules deletion or creates roots."""
     path = safe_path(path, forbidden)
-    identity = {"path_sha256": fingerprint(str(path)), "device": path.stat().st_dev, "inode": path.stat().st_ino}
+    identity = {"path_sha256": fingerprint(str(path)), "device": path.stat().st_dev, "inode": path.stat().st_ino,
+                "path_identity": path_identity(path), "subject_sha256": fingerprint(subject) if subject else None}
     if os.name == "nt":
         script = r'''
 $ErrorActionPreference='Stop'
@@ -79,7 +81,10 @@ $v=Get-BitLockerVolume -MountPoint ([System.IO.Path]::GetPathRoot($p))
         info = path.stat()
         identity.update(acl="PASS" if info.st_uid == os.getuid() and stat.S_IMODE(info.st_mode) == 0o700 else "PENDING",
                         encryption="PENDING", reason="volume_encryption_not_independently_observed")
-    return {"status": "PASS" if identity["acl"] == identity["encryption"] == "PASS" else "PENDING",
+    if path_identity(path) != identity["path_identity"]:
+        raise PermissionError("Storage changed during observation")
+    # ACL/encryption observations are diagnostic, not an object-confined I/O lease.
+    return {"status": "PENDING", "native_confinement": "NOT_AUDITED",
             "probe_fingerprint": fingerprint(identity), "observation": identity,
             "future_deletion": "NOT_AUDITED"}
 
@@ -134,7 +139,7 @@ TRANSITIONS = {
 
 
 class PrivateRunStore:
-    def __init__(self, root, manifest, authorization, forbidden, storage_observation):
+    def __init__(self, root, manifest, authorization, forbidden, storage_observation, *, confinement=None):
         authorization.check(manifest["subject"])
         manifest = {**manifest, "authorization_provenance": {
             "policy_sha256": authorization.policy_sha256, "receipts_sha256": authorization.receipts_sha256,
@@ -148,6 +153,19 @@ class PrivateRunStore:
             raise PermissionError("Storage ACL/encryption observation pending")
         if storage_observation["observation"]["path_sha256"] != fingerprint(str(self.root)):
             raise PermissionError("Storage receipt belongs to a different directory")
+        observed = storage_observation["observation"]
+        if (storage_observation["probe_fingerprint"] != fingerprint(observed)
+                or storage_observation["probe_fingerprint"] != authorization.storage_probe_fingerprint
+                or observed.get("subject_sha256") != fingerprint(manifest["subject"])
+                or observed.get("path_identity") != path_identity(self.root)):
+            raise PermissionError("Foreign or stale storage identity observation")
+        # No approved native backend exists. CLI never injects one. Synthetic tests
+        # inject trusted application code, not a receipt flag or policy switch.
+        if confinement is None:
+            raise PermissionError("Native object-confined storage NOT_AUDITED; writes disabled")
+        self.confinement = confinement
+        self.observed_identity = observed["path_identity"]
+        self.confinement.check(self.root, self.observed_identity)
         self.custodian = manifest["retention"]["custodian"]
         self.delete_after = manifest["retention"]["delete_after"]
         if not self.custodian or date.fromisoformat(self.delete_after) <= date.today():
@@ -164,6 +182,7 @@ class PrivateRunStore:
             if not folder.exists(): folder.mkdir(mode=0o700)
             safe_path(folder, forbidden)
         self.identities = {p: (p.stat().st_dev, p.stat().st_ino) for p in [self.root, self.path, self.events, self.objects]}
+        self.directory_metadata = {p: path_identity(p) for p in [self.path, self.events, self.objects]}
         immutable_write(self.path/"manifest.json", canonical(sealed(manifest)))
         self.manifest = unseal((self.path/"manifest.json").read_bytes())
         if self.manifest != manifest: raise CorruptCheckpoint("Run fingerprint or inventory changed")
@@ -171,6 +190,11 @@ class PrivateRunStore:
 
     def guard(self):
         self.authorization.check(self.manifest["subject"])
+        if path_identity(self.root) != self.observed_identity:
+            raise CorruptCheckpoint("Storage root/ancestor identity or permissions changed")
+        self.confinement.check(self.root, self.observed_identity)
+        if any(path_identity(p) != identity for p, identity in self.directory_metadata.items()):
+            raise CorruptCheckpoint("Private directory metadata changed")
         if date.fromisoformat(self.delete_after) <= date.today(): raise PermissionError("Retention expired")
         safe_path(self.path, self.forbidden)
         safe_path(self.events, self.forbidden)
@@ -195,6 +219,7 @@ class PrivateRunStore:
         self.slots = {s["slot_id"]: dict(s) for s in self.manifest["slots"]}
         if len(self.slots) != 120: raise CorruptCheckpoint("Incomplete or duplicate slot matrix")
         self.sequence, self.previous, self.suspended, self.defenses = 0, None, None, None
+        self.review_events = []
         files = sorted(self.events.glob("*.json"))
         for path in files:
             if path.name != f"{self.sequence + 1:06d}.json" or path.is_symlink() or path.stat().st_nlink != 1:
@@ -216,6 +241,10 @@ class PrivateRunStore:
                 if self.defenses is not None: raise CorruptCheckpoint("Duplicate frozen defenses")
                 self.defenses = self.get(event["reference"])
                 if set(self.defenses) != set(self.slots): raise CorruptCheckpoint("Incomplete defense matrix")
+            elif event["kind"] == "review":
+                if event["slot_id"] not in self.slots: raise CorruptCheckpoint("Foreign review slot")
+                self.get(event["reference"])
+                self.review_events.append(event)
             else: raise CorruptCheckpoint("Unknown event kind")
             self.sequence += 1; self.previous = digest(raw)
 
@@ -250,6 +279,8 @@ class PrivateRunStore:
             self.suspended = event["reason"]
         elif event["kind"] == "defenses":
             self.defenses = self.get(event["reference"])
+        elif event["kind"] == "review":
+            self.review_events.append(event)
         self.sequence += 1
         self.previous = digest(raw)
 
@@ -281,4 +312,6 @@ class PrivateRunStore:
                 "represented_slots": len(self.slots), "states": dict(Counter(s["state"] for s in self.slots.values())),
                 "suspended": self.suspended, "accounting_complete": all(s["state"] in TERMINAL for s in self.slots.values()),
                 "attempted_calls": sum(s.get("attempted", False) for s in self.slots.values()),
+                "collection_status": "COLLECTION_COMPLETE" if all(s["state"] in TERMINAL for s in self.slots.values()) else "COLLECTION_IN_PROGRESS",
+                "scientific_review_status": "REVIEW_PENDING",  # Authenticated ReviewLedger reports adjudication separately.
                 "scientific_estimates_computed": False}

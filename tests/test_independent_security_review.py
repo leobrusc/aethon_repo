@@ -1,4 +1,4 @@
-"""Independent reproductions: passing assertions document defects, not remediation.
+"""Acceptance counterparts; exact original reproductions are archived with hashes.
 
 Synthetic scaffolding is reused; no target inference or external service is used.
 """
@@ -30,30 +30,31 @@ def test_src01_replaced_verifier_is_used_without_revalidating_pin(tmp_path, monk
         assert Path(argv[0]).read_bytes() != b"trusted synthetic tool"
         return SimpleNamespace(returncode=0, stdout=bytes.fromhex("302a300506032b6570032100") + b"x" * 32)
 
-    monkeypatch.setattr("aethon.pilot_governance.subprocess.run", controlled_launcher)
+    monkeypatch.setattr("subprocess.run", controlled_launcher)
     assert digest(executable.read_bytes()) != pinned
-    assert verifier(b"synthetic public key", b"synthetic payload", b"x" * 64)
-    assert len(calls) == 2  # Launcher simulation; no malicious executable is run.
+    with pytest.raises(PermissionError):
+        verifier(b"synthetic public key", b"synthetic payload", b"x" * 64)
+    assert len(calls) == 0  # Launcher simulation; no malicious executable is run.
 
 
 def test_src02_replaced_storage_root_accepts_stale_observation(setup_run):
     f = setup_run
     root = f["private"]
     old = (root.stat().st_dev, root.stat().st_ino)
-    f["observation"]["observation"].update(device=old[0], inode=old[1])
     root.rename(root.with_name("original-private"))
     root.mkdir()
     assert (root.stat().st_dev, root.stat().st_ino) != old
-    store = f["store"]()
-    assert store.identities[root] != old
-    assert (store.path / "manifest.json").is_file()
+    with pytest.raises(PermissionError):
+        f["store"]()
+    assert not (root / "synthetic-run").exists()
 
 
 def test_sci01_family_allocation_is_not_enforced():
     rows = synthetic_rows()
     for row in rows:
         row["family_id"] = "only-one-family"
-    validate_inventory(rows)
+    with pytest.raises(ValueError):
+        validate_inventory(rows)
     assert len({r["family_id"] for r in rows}) == 1
     assert len({r["pair_id"] for r in rows}) == 12
 
@@ -65,10 +66,9 @@ def test_sci02_unassigned_judge_is_persisted_as_completed(setup_run):
 
     run = collector(setup_run, judge=unassigned)
     run.run(max_slots=1)
-    slot = next(s for s in run.store.slots.values() if s["state"] == "completed")
-    judgment = run.store.get(slot["evaluation_ref"])["judgment"]
-    assert judgment["judge_id"] not in setup_run["authority"].policy["authorities"]
-    assert judgment["status"] == "success"
+    slot = next(s for s in run.store.slots.values() if s["state"] == "evaluation_error")
+    assert slot["evaluation_ref"] is None
+    assert run.store.summary()["scientific_review_status"] == "REVIEW_PENDING"
 
 
 def test_control_foreign_subject_receipt_replay_rejected(setup_run):
