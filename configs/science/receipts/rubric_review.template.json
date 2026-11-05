@@ -1,0 +1,23 @@
+{
+  "template_only": true,
+  "status": "PENDING",
+  "required_role": "scientific_reviewer",
+  "minimum_independent_signatures": 2,
+  "payload": {
+    "schema": "aethon.gate-receipt.v1",
+    "version": "1.0",
+    "gate": "rubric_review",
+    "kind": "scientific_approval",
+    "subject_sha256": null,
+    "responsible": null,
+    "issued_at": null,
+    "expires_at": null,
+    "evidence": [],
+    "claims": {
+      "rubric_bundle_sha256": null,
+      "scenario_oracles_sha256": null
+    },
+    "disposition": null
+  },
+  "signatures": []
+}

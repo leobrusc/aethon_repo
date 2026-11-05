@@ -1,0 +1,59 @@
+...........................F...F.....                                    [100%]
+================================== FAILURES ===================================
+____________ test_symlink_storage_rejected_if_platform_supports_it ____________
+
+setup_run = {'rows': [{'namespace': 'SYNTHETIC-ONLY', 'source_id': 'fixture', 'source_row_id': '0-0', 'scenario_id': 'scenario-0-0...91e0c5aa438b6', 'template_sha256': '5816fce10444e03c2e9ee1ef8a4a1ea61ae7e69e438613f3b17b69d0426223a4', ...}, ...}, ...}
+tmp_path = WindowsPath('C:/Users/leolima/Documents/aethon_repo/.worktrees/prospective-collector/results/audit/collector-check-20261105T163940Z/synthetic-temp/test_symlink_storage_rejected_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000219E0AE9790>
+
+    def test_symlink_storage_rejected_if_platform_supports_it(setup_run, tmp_path, monkeypatch):
+        link = tmp_path/"linked-private"
+        try: link.symlink_to(setup_run["private"], target_is_directory=True)
+        except OSError:
+            link.mkdir()
+            original = Path.is_symlink
+            monkeypatch.setattr(Path, "is_symlink", lambda p: p == link or original(p))
+>       with pytest.raises(ValueError): safe_path(link, [])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests\test_pilot_collector.py:358: Failed
+_____ test_pending_config_preflight_has_all_eight_gates_and_no_execution ______
+
+    def test_pending_config_preflight_has_all_eight_gates_and_no_execution():
+        from aethon.pilot_runtime import inspect_runtime
+        root = Path(__file__).resolve().parents[1]
+>       report, context = inspect_runtime(root)
+                          ^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_pilot_collector.py:392: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\aethon\pilot_runtime.py:60: in inspect_runtime
+    config = load_config(root)
+             ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/leolima/Documents/aethon_repo/.worktrees/prospective-collector')
+
+    def load_config(root):
+        config = json.loads((root/"configs/science/collector_v1.json").read_text(encoding="utf-8"))
+        if config["schema"] != "aethon.prospective-collector.v1" or config["baseline"] != BASELINE:
+            raise ValueError("Unsupported collector baseline")
+        if config["conditions"] != list(CONDITIONS): raise ValueError("Frozen arms changed")
+        target = json.loads((root/"configs/science/target_v1.json").read_text())
+        if (config["revision"] != target["model_revision"] or config["tokenizer_revision"] != target["tokenizer_revision"]
+                or config["template_sha256"] != target["chat_template_sha256"] or config["asset_set_sha256"] != fingerprint(target["assets"])):
+            raise ValueError("Frozen target identity changed")
+        if config["generation"] != json.loads((root/"configs/science/pilot_v1.json").read_text())["generation"]:
+            raise ValueError("Frozen generation settings changed")
+        for name, hashes in config["implementation_files"].items():
+            path = (root/name).resolve()
+            if root not in path.parents or digest(path.read_bytes()) not in hashes:
+>               raise ValueError("Collector implementation seal mismatch")
+E               ValueError: Collector implementation seal mismatch
+
+src\aethon\pilot_runtime.py:52: ValueError
+=========================== short test summary info ===========================
+FAILED tests/test_pilot_collector.py::test_symlink_storage_rejected_if_platform_supports_it
+FAILED tests/test_pilot_collector.py::test_pending_config_preflight_has_all_eight_gates_and_no_execution
+2 failed, 35 passed in 112.31s (0:01:52)

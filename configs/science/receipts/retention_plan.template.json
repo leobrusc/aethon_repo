@@ -1,0 +1,14 @@
+{
+  "schema": "aethon.retention-plan.v1",
+  "template_only": true,
+  "status": "PENDING",
+  "policy_version": null,
+  "custodian": null,
+  "private_root": null,
+  "delete_after": null,
+  "deletion_process": null,
+  "backup_disposition": null,
+  "encryption_evidence_sha256": null,
+  "acl_evidence_sha256": null,
+  "future_deletion_verified": false
+}

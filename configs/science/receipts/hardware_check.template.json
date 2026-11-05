@@ -1,0 +1,23 @@
+{
+  "template_only": true,
+  "status": "PENDING",
+  "required_role": "platform_reviewer",
+  "minimum_independent_signatures": 1,
+  "payload": {
+    "schema": "aethon.gate-receipt.v1",
+    "version": "1.0",
+    "gate": "hardware_check",
+    "kind": "technical_review",
+    "subject_sha256": null,
+    "responsible": null,
+    "issued_at": null,
+    "expires_at": null,
+    "evidence": [],
+    "claims": {
+      "environment_sha256": null,
+      "network_isolation_evidence_sha256": null
+    },
+    "disposition": null
+  },
+  "signatures": []
+}

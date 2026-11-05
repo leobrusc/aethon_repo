@@ -1,0 +1,13 @@
+{
+  "schema": "aethon.storage-observation.v1",
+  "template_only": true,
+  "status": "PENDING",
+  "observed_at": null,
+  "observer": null,
+  "private_root_sha256": null,
+  "acl_observation": null,
+  "encryption_observation": null,
+  "probe_fingerprint": null,
+  "production_directory_created": false,
+  "permissions_changed": false
+}

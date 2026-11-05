@@ -1,0 +1,23 @@
+{
+  "template_only": true,
+  "status": "PENDING",
+  "required_role": "asset_reviewer",
+  "minimum_independent_signatures": 1,
+  "payload": {
+    "schema": "aethon.gate-receipt.v1",
+    "version": "1.0",
+    "gate": "model_assets",
+    "kind": "technical_review",
+    "subject_sha256": null,
+    "responsible": null,
+    "issued_at": null,
+    "expires_at": null,
+    "evidence": [],
+    "claims": {
+      "asset_set_sha256": null,
+      "snapshot_path": null
+    },
+    "disposition": null
+  },
+  "signatures": []
+}

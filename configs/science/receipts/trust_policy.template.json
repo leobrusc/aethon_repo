@@ -1,0 +1,10 @@
+{
+  "schema": "aethon.trust-policy.v1",
+  "template_only": true,
+  "authorities": {},
+  "verifier": {
+    "executable": null,
+    "expected_sha256": null
+  },
+  "note": "Obtain policy SHA-256 independently; do not trust a digest supplied by a receipt author."
+}
