@@ -1,0 +1,84 @@
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+from datetime import datetime, timezone
+
+ROOT = Path(__file__).resolve().parents[3]
+WT = ROOT / '.worktrees/artifact-guard-fix'
+OUT = WT / 'docs/integration/recovery-20261105'
+OUT.mkdir(parents=True, exist_ok=False)
+PY = str(ROOT / '.worktrees/security/.venv-security/Scripts/python.exe')
+ENV = dict(os.environ, HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1', HF_DATASETS_OFFLINE='1', PYTHONPATH=str(WT / 'src'))
+results = []
+def git(*args, cwd=WT):
+    return subprocess.check_output(['git', *args], cwd=cwd)
+def run(name, command):
+    p = subprocess.run(command, cwd=WT, env=ENV, capture_output=True)
+    raw = p.stdout + p.stderr
+    (OUT / (name + '.txt')).write_bytes(raw)
+    results.append(dict(name=name, command=command, cwd=str(WT), exit_code=p.returncode,
+        status='PASS' if p.returncode == 0 else 'FAIL', sha256=hashlib.sha256(raw).hexdigest()))
+    (OUT / 'checks.json').write_text(json.dumps(results, indent=2)+'\n', encoding='utf-8')
+    print(name, results[-1]['status'], raw.decode(errors='replace')[-600:], flush=True)
+paths = ['src/close_harness.py', 'tests/test_harness_closure.py', 'close_harness.validated.backup.py',
+         'test_harness_closure.validated.backup.py', 'validated_tpr_auroc_closure.patch']
+state = {'utc': datetime.now(timezone.utc).isoformat(), 'original_files': {}, 'worktrees': {}}
+for name in paths:
+    state['original_files'][name] = hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
+for cwd in [ROOT, *[p for p in (ROOT/'.worktrees').iterdir() if p.is_dir()]]:
+    state['worktrees'][cwd.name] = {'head': git('rev-parse', 'HEAD', cwd=cwd).decode().strip(),
+        'status': git('status', '--short', cwd=cwd).decode(), 'reflog': git('reflog', '-5', cwd=cwd).decode()}
+patch = git('diff', '--binary')
+state['recovered_patch_sha256'] = hashlib.sha256(patch).hexdigest()
+(Path(__file__).parent/'recovered-changes.patch').write_bytes(patch)
+prior = ROOT/'.worktrees/pr1-audit/results/audit/PR1_FINAL_READINESS.md'
+state['prior_report_sha256'] = hashlib.sha256(prior.read_bytes()).hexdigest()
+(OUT/'recovered-state.json').write_text(json.dumps(state, indent=2)+'\n', encoding='utf-8')
+run('targeted', [PY, '-m', 'pytest', '-q', 'tests/test_harness_closure.py::test_readiness_function_all_flags', 'tests/test_repository_guard.py', '-p', 'no:cacheprovider'])
+run('pytest', [PY, '-m', 'pytest', '-q', '-p', 'no:cacheprovider'])
+run('ruff', [PY, '-m', 'ruff', 'check', 'src', 'tests', 'scripts'])
+run('integrity-127', [PY, 'scripts/repository_inventory.py', 'verify'])
+run('integrity-31', [PY, 'scripts/verify_research_evidence.py', '--git-tree', 'HEAD'])
+run('integrity-6', [PY, 'scripts/verify_historical_dependencies.py'])
+run('diff-check', ['git', 'diff', '--check', 'origin/main'])
+run('guard-main', [PY, 'scripts/repository_guard.py', '--base', 'origin/main'])
+run('pip-check', [PY, '-m', 'pip', 'check'])
+run('lfs-fsck', ['git', 'lfs', 'fsck'])
+run('lfs-files', ['git', 'lfs', 'ls-files', '--long'])
+run('fix-ancestry', ['git', 'merge-base', '--is-ancestor', '3a21165', 'HEAD'])
+import pandas as pd
+frame = pd.read_csv(WT/'results/revision/detection/per_prompt_results.csv', dtype={'prompt_id': str})
+keys = ['dataset', 'prompt_id', 'prompt_sha256']
+a,b = [frame[frame.condition == c] for c in ['B3','B4']]
+paired = a.merge(b, on=keys, how='outer', validate='one_to_one', indicator=True)
+assert len(paired) == 9139 and (paired._merge == 'both').all()
+assert (paired.true_label_x == paired.true_label_y).all()
+assert (paired.final_prediction_x == paired.final_prediction_y).all()
+name = 'results/revision/detection/per_prompt_results.csv'
+raw = git('show', 'HEAD:'+name)
+assert raw == git('show', '544c363:'+name)
+reuse = {'paired':9139, 'mismatches':0, 'new_inference':False,
+    'csv_git_bytes':len(raw), 'csv_git_sha256':hashlib.sha256(raw).hexdigest(),
+    'csv_worktree_sha256':hashlib.sha256((WT/name).read_bytes()).hexdigest()}
+manifest = json.loads((WT/'docs/validation/VALIDATION_MANIFEST.json').read_text())
+reuse['manifest_keys'] = list(manifest)
+for field in ['lock_sha256','implementation_sha256']:
+    for name,digest in manifest[field].items():
+        assert hashlib.sha256((WT/name).read_bytes()).hexdigest() == digest, name
+reuse['locks_and_implementations'] = 'PASS'
+frozen = WT/'docs/validation/evidence/frozen-metrics-comparison.json'
+record = json.loads(frozen.read_text())
+assert record['metric_values_compared'] == 80 and not record['mismatches']
+assert hashlib.sha256((WT/record['source']).read_bytes()).hexdigest() == record['source_sha256']
+reuse['80_metrics'] = 'PASS: reused comparison; frozen source hash verified'
+reuse['security'] = []
+for p in (WT/'docs/integration/evidence/security-audits').glob('*.summary.json'):
+    item = json.loads(p.read_text())
+    assert item['upstream_and_dependency_audit']['status'] == 'PASS'
+    assert git('show','HEAD:'+p.relative_to(WT).as_posix()) == p.read_bytes()
+    reuse['security'].append({'file':p.name, 'sha256':hashlib.sha256(p.read_bytes()).hexdigest(), 'result':item})
+assert len(reuse['security']) == 7
+(OUT/'scientific-reuse.json').write_text(json.dumps(reuse, indent=2)+'\n', encoding='utf-8')
+print('REPLAY AND REUSE PASS', flush=True)

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "verified_validation_evidence_files": 103,
+  "original_five_files": "PASS",
+  "canonical_git_implementation_hashes": "PASS",
+  "note": "Initial raw implementation hash assertion failed on generation.py CRLF checkout. Continuation compares recorded Git bytes as well; no source change.",
+  "git_locks": [],
+  "project_session_directories": {
+    ".codex": false,
+    ".agents": false
+  }
+}

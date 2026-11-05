@@ -1,0 +1,9 @@
+........................................................................ [ 50%]
+........................................................................ [100%]
+============================== warnings summary ===============================
+tests/test_hf_causal_driver.py::test_available_property_false_on_load_error
+  C:\Users\leolima\Documents\aethon_repo\.worktrees\artifact-guard-fix\src\models\hf_causal_driver.py:48: UserWarning: test: problema ao carregar pesos: download failed
+    warnings.warn(f"{self.NAME}: problema ao carregar pesos: {e}")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+144 passed, 1 warning in 58.90s

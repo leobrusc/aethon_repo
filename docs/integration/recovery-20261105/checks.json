@@ -1,0 +1,164 @@
+[
+  {
+    "name": "targeted",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_harness_closure.py::test_readiness_function_all_flags",
+      "tests/test_repository_guard.py",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\artifact-guard-fix",
+    "exit_code": 0,
+    "status": "PASS",
+    "sha256": "d935d8031277068ef8ed46196fc64c88bd6cd1f5c10f65a6837be278f07e5b30"
+  },
+  {
+    "name": "pytest",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\artifact-guard-fix",
+    "exit_code": 0,
+    "status": "PASS",
+    "sha256": "019afd3498ef0f458b5ef66293f7c5f773c4e598cfbdb9337a35f7ce8fcf08ea"
+  },
+  {
+    "name": "ruff",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "check",
+      "src",
+      "tests",
+      "scripts"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\artifact-guard-fix",
+    "exit_code": 0,
+    "status": "PASS",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  {
+    "name": "integrity-127",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/repository_inventory.py",
+      "verify"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\artifact-guard-fix",
+    "exit_code": 0,
+    "status": "PASS",
+    "sha256": "bf51279dccb18603a19a6b9acaa562cb92a0c43fd13539a45d05ea03b8b967af"
+  },
+  {
+    "name": "integrity-31",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/verify_research_evidence.py",
+      "--git-tree",
+      "HEAD"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\artifact-guard-fix",
+    "exit_code": 0,
+    "status": "PASS",
+    "sha256": "6a25bb6808d75c6ff79d3c78d06d19943829cd8269833288b5f96173a6b54b38"
+  },
+  {
+    "name": "integrity-6",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/verify_historical_dependencies.py"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\artifact-guard-fix",
+    "exit_code": 0,
+    "status": "PASS",
+    "sha256": "0c31ace07d18bc1d6474a15a91f0586b217320cb7be6b1b5772ff66df9f6a2d4"
+  },
+  {
+    "name": "diff-check",
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "origin/main"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\artifact-guard-fix",
+    "exit_code": 0,
+    "status": "PASS",
+    "sha256": "bd9acc70e1396d858846cc010a9c2ba07f014fde91e501a0d8d81257dc3ec6ba"
+  },
+  {
+    "name": "guard-main",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "scripts/repository_guard.py",
+      "--base",
+      "origin/main"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\artifact-guard-fix",
+    "exit_code": 0,
+    "status": "PASS",
+    "sha256": "ead7ff6b848b89632b686439a21bd9b4760b990b0bd5c90a0ab77f85eef305e2"
+  },
+  {
+    "name": "pip-check",
+    "command": [
+      "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\artifact-guard-fix",
+    "exit_code": 0,
+    "status": "PASS",
+    "sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
+  },
+  {
+    "name": "lfs-fsck",
+    "command": [
+      "git",
+      "lfs",
+      "fsck"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\artifact-guard-fix",
+    "exit_code": 0,
+    "status": "PASS",
+    "sha256": "81f6819612dfaf9af7854c05c501e2a69e3852e47f0bfb0a82dfce8f3f6c5db9"
+  },
+  {
+    "name": "lfs-files",
+    "command": [
+      "git",
+      "lfs",
+      "ls-files",
+      "--long"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\artifact-guard-fix",
+    "exit_code": 0,
+    "status": "PASS",
+    "sha256": "d66941b9ad03fcef639df7bfe219c7378d587ae9632d7ceb8179a3272e32a227"
+  },
+  {
+    "name": "fix-ancestry",
+    "command": [
+      "git",
+      "merge-base",
+      "--is-ancestor",
+      "3a21165",
+      "HEAD"
+    ],
+    "cwd": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\artifact-guard-fix",
+    "exit_code": 0,
+    "status": "PASS",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

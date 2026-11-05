@@ -1,0 +1,160 @@
+{
+  "paired": 9139,
+  "mismatches": 0,
+  "new_inference": false,
+  "csv_git_bytes": 6718635,
+  "csv_git_sha256": "66130f23a92ea05fca856c808a4049245a31d0f6c530bbba517473be389e7a15",
+  "csv_worktree_sha256": "914901a1ed82836dfb42567cb376ec90f20459d1ad0f9b12d72568f4bfca202a",
+  "manifest_keys": [
+    "schema_version",
+    "generated_utc",
+    "validation_code_commit",
+    "prior_manifest",
+    "base_commit",
+    "pr_chain",
+    "hardware",
+    "contracts",
+    "engineering_decision",
+    "scientific_decision",
+    "controls",
+    "profiles",
+    "evidence_files",
+    "lock_sha256",
+    "frozen_protocols",
+    "preserved_local_state",
+    "prior_evidence_files",
+    "new_final_real_calls",
+    "additional_pre_final_real_calls_retained",
+    "implementation_sha256"
+  ],
+  "locks_and_implementations": "PASS",
+  "80_metrics": "PASS: reused comparison; frozen source hash verified",
+  "security": [
+    {
+      "file": "cpu-linux-py312.summary.json",
+      "sha256": "e349eaa842a292b756930057361f2fdd69c25f7202af80cc2a45c3ac3e588100",
+      "result": {
+        "lock": "cpu-linux-py312.lock",
+        "package_count": 68,
+        "platform_installation": "NOT_RUN",
+        "torch_binary_catalog": "NOT_AUDITED",
+        "upstream_and_dependency_audit": {
+          "status": "PASS",
+          "exit_code": 0,
+          "skipped": [],
+          "findings": [],
+          "raw": "results\\integration-audit\\advisory-refresh\\cpu-linux-py312.upstream.json",
+          "raw_sha256": "3b25741151c321df551417c2ae6cfdafdb63cae0dc8a16044b91bf8b4e05bd65"
+        }
+      }
+    },
+    {
+      "file": "cpu-windows-py312.summary.json",
+      "sha256": "3941cccfc61550c7229ce58fb8120d25ebd08c15fb84409d5c9c4776919a7bca",
+      "result": {
+        "lock": "cpu-windows-py312.lock",
+        "package_count": 69,
+        "platform_installation": "NOT_RUN",
+        "torch_binary_catalog": "NOT_AUDITED",
+        "upstream_and_dependency_audit": {
+          "status": "PASS",
+          "exit_code": 0,
+          "skipped": [],
+          "findings": [],
+          "raw": "results\\integration-audit\\advisory-refresh\\cpu-windows-py312.upstream.json",
+          "raw_sha256": "16a0cb7cc05766e0b09d2d12c3dd06a6b18f80af87493cc04c184fb5e83a0af9"
+        }
+      }
+    },
+    {
+      "file": "dev-linux-py312.summary.json",
+      "sha256": "248b057ae5f3bdc84b427d1820a4d1c6a247e5c8267976342af993ddb926dc1b",
+      "result": {
+        "lock": "dev-linux-py312.lock",
+        "package_count": 102,
+        "platform_installation": "NOT_RUN",
+        "torch_binary_catalog": "NOT_AUDITED",
+        "upstream_and_dependency_audit": {
+          "status": "PASS",
+          "exit_code": 0,
+          "skipped": [],
+          "findings": [],
+          "raw": "results\\integration-audit\\advisory-refresh\\dev-linux-py312.upstream.json",
+          "raw_sha256": "80228ba78714ce6afba73be3f2af84fc1873bb22cc5f9b61d6907d8e65293b17"
+        }
+      }
+    },
+    {
+      "file": "dev-windows-py312.summary.json",
+      "sha256": "f281f409902fee5b43db84fd41d1f5e80741b4741a2a534f65dade702f549b48",
+      "result": {
+        "lock": "dev-windows-py312.lock",
+        "package_count": 103,
+        "platform_installation": "NOT_RUN",
+        "torch_binary_catalog": "NOT_AUDITED",
+        "upstream_and_dependency_audit": {
+          "status": "PASS",
+          "exit_code": 0,
+          "skipped": [],
+          "findings": [],
+          "raw": "results\\integration-audit\\advisory-refresh\\dev-windows-py312.upstream.json",
+          "raw_sha256": "737daa7bb47abf624c9fba70103acfa4843fcc878e09d2318ada943bdfdde4aa"
+        }
+      }
+    },
+    {
+      "file": "gpu-linux-py312.summary.json",
+      "sha256": "bc426b89c1170f0e2643a33476b0cddfe9f9f3fff618aa90c0882c63fe21bb7b",
+      "result": {
+        "lock": "gpu-linux-py312.lock",
+        "package_count": 110,
+        "platform_installation": "NOT_RUN",
+        "torch_binary_catalog": "NOT_AUDITED",
+        "upstream_and_dependency_audit": {
+          "status": "PASS",
+          "exit_code": 0,
+          "skipped": [],
+          "findings": [],
+          "raw": "results\\integration-audit\\advisory-refresh\\gpu-linux-py312.upstream.json",
+          "raw_sha256": "28c94cff85911963544b0b1ef799399c82541b675665ec426ef1a2e3d88cdfb0"
+        }
+      }
+    },
+    {
+      "file": "research-linux-py312.summary.json",
+      "sha256": "58630c37dd49fb05bbd46a6f016581300c47833e95870b7143506f79c39d0e61",
+      "result": {
+        "lock": "research-linux-py312.lock",
+        "package_count": 90,
+        "platform_installation": "NOT_RUN",
+        "torch_binary_catalog": "NOT_AUDITED",
+        "upstream_and_dependency_audit": {
+          "status": "PASS",
+          "exit_code": 0,
+          "skipped": [],
+          "findings": [],
+          "raw": "results\\integration-audit\\advisory-refresh\\research-linux-py312.upstream.json",
+          "raw_sha256": "e61568c45c72ffb6b626134fdc8ca42a16277d131d297de6a41ac25adcfbbba3"
+        }
+      }
+    },
+    {
+      "file": "research-windows-py312.summary.json",
+      "sha256": "32946de23963f419dc28cf467595b9cf1ad197a9db749c8221db4a87b89e66cf",
+      "result": {
+        "lock": "research-windows-py312.lock",
+        "package_count": 91,
+        "platform_installation": "NOT_RUN",
+        "torch_binary_catalog": "NOT_AUDITED",
+        "upstream_and_dependency_audit": {
+          "status": "PASS",
+          "exit_code": 0,
+          "skipped": [],
+          "findings": [],
+          "raw": "results\\integration-audit\\advisory-refresh\\research-windows-py312.upstream.json",
+          "raw_sha256": "e7f388eb14c1bc383577d3b0c03efd1d725dc95a3ec344e225264e3fe9858057"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "utc": "2026-11-05T13:21:39.913948+00:00",
+  "original_files": {
+    "src/close_harness.py": "a8b05c3cdd3ab563e6b36f4a8bfd024671f4ebc8251330d5e039d022b19e8b65",
+    "tests/test_harness_closure.py": "bca2d16e3347259ad3a1574bbb84c7269d0e77796db18286c16a4c54d0ce9416",
+    "close_harness.validated.backup.py": "a8b05c3cdd3ab563e6b36f4a8bfd024671f4ebc8251330d5e039d022b19e8b65",
+    "test_harness_closure.validated.backup.py": "bca2d16e3347259ad3a1574bbb84c7269d0e77796db18286c16a4c54d0ce9416",
+    "validated_tpr_auroc_closure.patch": "7827ae8ba281a24df7476c93f47a189a329883aaadb5b7fb85c23f5b344a1e98"
+  },
+  "worktrees": {
+    "aethon_repo": {
+      "head": "544c363c19a08574d30e7e2c064a78ce1bdfb601",
+      "status": " M src/close_harness.py\n M tests/test_harness_closure.py\n?? close_harness.validated.backup.py\n?? test_harness_closure.validated.backup.py\n?? validated_tpr_auroc_closure.patch\n",
+      "reflog": "544c363 HEAD@{0}: commit: fix(reproducibility): preserve evidence bytes across platform checkouts\n8132c42 HEAD@{1}: commit: docs(research): publish audited local evidence and experimental limitations\n528a373 HEAD@{2}: commit: fix(baselines): preserve completed resume provenance and export review evidence\nccd069d HEAD@{3}: commit: fix(research): enforce run provenance and all-eligible ASR denominators\n14a9234 HEAD@{4}: commit: feat(research): add nested selection and controlled evaluation primitives\n"
+    },
+    "artifact-guard-fix": {
+      "head": "ae351cdb3f0be39dc4de5be0645e2d17c0ab11f0",
+      "status": " M .gitattributes\n M BENCHMARK_STATUS.md\n M scripts/repository_guard.py\n M src/final_harness_diagnostics.py\n M tests/test_repository_guard.py\n",
+      "reflog": "ae351cd HEAD@{0}: reset: moving to HEAD\nae351cd HEAD@{1}: \n"
+    },
+    "integration-audit": {
+      "head": "ae351cdb3f0be39dc4de5be0645e2d17c0ab11f0",
+      "status": "",
+      "reflog": "ae351cd HEAD@{0}: commit: docs(integration): record successful corrected-plan CI\ndcc6d3b HEAD@{1}: commit: docs(integration): distinguish audit snapshots from live refs\n72f53a9 HEAD@{2}: commit: docs(integration): pin corrected audit head and CI state\n793356a HEAD@{3}: commit: docs(integration): correct stacked merge ancestry strategy\ne8942ae HEAD@{4}: commit: docs(integration): publish pre-merge audit and guarded release plan\n"
+    },
+    "modernization": {
+      "head": "a6090ae3030ef52f333fe14380839df4a7d879eb",
+      "status": "",
+      "reflog": "a6090ae HEAD@{0}: commit: docs(validation): record published PR and completed Linux CI outcomes\ned64d78 HEAD@{1}: commit: docs(validation): record regression, integrity and vulnerability audit results\n3a21165 HEAD@{2}: commit: ci(security): add offline quality gates and scientific contribution policies\n39989f1 HEAD@{3}: commit: chore(cleanup): archive superseded plans and track red-team data with LFS\n5d38557 HEAD@{4}: commit: feat(cli): add installable aethon namespace with legacy compatibility\n"
+    },
+    "pr1-audit": {
+      "head": "544c363c19a08574d30e7e2c064a78ce1bdfb601",
+      "status": "",
+      "reflog": "544c363 HEAD@{0}: \n"
+    },
+    "security": {
+      "head": "3ca7eaff5dc91701ecf7ea0dabdf7f185700a035",
+      "status": "",
+      "reflog": "3ca7eaf HEAD@{0}: commit: docs(security): publish normalized severities and verified remediation evidence\nac1e2c2 HEAD@{1}: commit: fix(ci): provision pinned Python consistently across Windows and Linux\n0199546 HEAD@{2}: commit: ci(security): verify locked environments and explicit PyTorch audit coverage\n15b03c1 HEAD@{3}: commit: build(security): lock isolated CPU development research and CUDA profiles\n2fbd236 HEAD@{4}: commit: docs(security): preserve historical pins and normalize advisory evidence\n"
+    },
+    "validation": {
+      "head": "147747cf855dbacbb221f2074908dde1b0c77860",
+      "status": "",
+      "reflog": "147747c HEAD@{0}: commit: docs(validation): record explicit generation contract evidence\n5b44560 HEAD@{1}: commit: feat(inference): enforce versioned precision and token-boundary output contracts\n11bc514 HEAD@{2}: commit: test(validation): verify point metrics against immutable published outputs\nbe2a69f HEAD@{3}: commit: docs(validation): publish real inference evidence and independent readiness decisions\nb9f8812 HEAD@{4}: commit: test(validation): distinguish registry default precision from controlled inference\n"
+    }
+  },
+  "recovered_patch_sha256": "8aef4af025dd820d78b977d4a48ec0df295ae9fadc039f82a66132f21f6880ab",
+  "prior_report_sha256": "2936820ae0fac6f23c37c02d0d2faf59a1e039f90e66fe481195b1d6693ef720"
+}
