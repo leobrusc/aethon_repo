@@ -1,0 +1,15 @@
+usage: research_generalization [-h] --run-id RUN_ID [--output OUTPUT]
+                               [--outer-folds OUTER_FOLDS]
+                               [--inner-folds INNER_FOLDS] [--seed SEED]
+                               [--fpr-cap FPR_CAP] [--smoke]
+
+options:
+  -h, --help            show this help message and exit
+  --run-id RUN_ID
+  --output OUTPUT
+  --outer-folds OUTER_FOLDS
+  --inner-folds INNER_FOLDS
+  --seed SEED
+  --fpr-cap FPR_CAP
+  --smoke               Two candidates and two outer folds, not a publication
+                        estimate

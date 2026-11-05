@@ -1,0 +1,14 @@
+{
+  "lock": "research-windows-py312.lock",
+  "package_count": 91,
+  "platform_installation": "NOT_RUN",
+  "torch_binary_catalog": "NOT_AUDITED",
+  "upstream_and_dependency_audit": {
+    "status": "PASS",
+    "exit_code": 0,
+    "skipped": [],
+    "findings": [],
+    "raw": "results\\integration-audit\\advisory-refresh\\research-windows-py312.upstream.json",
+    "raw_sha256": "e7f388eb14c1bc383577d3b0c03efd1d725dc95a3ec344e225264e3fe9858057"
+  }
+}

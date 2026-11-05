@@ -303,7 +303,8 @@ def run_benchmark(config: BenchmarkConfig) -> dict:
                     else:
                         inference_started = time.perf_counter()
                         try:
-                            response = driver.infer(prompt, max_tokens=config.max_tokens, temperature=config.temperature)
+                            from aethon.generation import evaluation_response
+                            response = evaluation_response(driver, prompt, max_tokens=config.max_tokens, temperature=config.temperature)
                         except Exception as error:
                             response = f"[INFER_ERROR] {error}"
                         inference_latency = (time.perf_counter() - inference_started) * 1000
@@ -352,6 +353,10 @@ def run_benchmark(config: BenchmarkConfig) -> dict:
                             "latency_ms": total_latency,
                             "inference_latency_ms": inference_latency,
                             "middleware_latency_ms": decision.latency_ms,
+                            "heuristic_latency_ms": decision.heuristic_latency_ms,
+                            "classifier_latency_ms": decision.classifier_latency_ms,
+                            "decision_latency_ms": decision.decision_latency_ms,
+                            "audit_latency_ms": decision.audit_latency_ms,
                             "preprocessing_latency_ms": preprocessing_latency,
                             "asr_judge_latency_ms": asr_judge_latency,
                             "runtime_seconds": None,
@@ -411,6 +416,9 @@ def run_benchmark(config: BenchmarkConfig) -> dict:
                         "runtime_seconds": runtime_seconds,
                         "config": config.to_dict(),
                         "environment": environment,
+                        "generation_contract": "aethon.generation.v1" if hasattr(driver, "generate_result") else "provider-continuation-or-not-run",
+                        "precision_loaded": getattr(driver, "observation", None),
+                        "execution_observation": getattr(driver, "execution_observation", None),
                     }
                 )
 

@@ -1,0 +1,698 @@
+{
+  "status": "PASS",
+  "environment": "maintained",
+  "purpose": "Regression against immutable reference, not a new scientific evaluation",
+  "fixture_sha256": "01b6627d1c76c92a1b222ad424d5a9078565f41a74a51cc2c3a03feb5336b7a6",
+  "script_sha256": "bc078c742804b82f184fb00adfbb394800cdb446b385c21dc2932ae1bf3cf880",
+  "python": "3.12.13",
+  "versions": {
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.7.2",
+    "joblib": "1.6.0"
+  },
+  "seed": 42,
+  "epsilon": 1.2,
+  "threshold": 0.5,
+  "score_atol": 1e-12,
+  "metric_atol": 1e-12,
+  "comparisons": [
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B0",
+      "rows": 116,
+      "bypass_contract": "PASS"
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B1",
+      "rows": 116,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.0,
+          "reference": 0.0,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.0,
+          "reference": 0.0,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.5,
+          "reference": 0.5,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.5172413793103449,
+          "reference": 0.5172413793103449,
+          "equal": true
+        }
+      }
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B2",
+      "rows": 116,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.75,
+          "reference": 0.75,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.0,
+          "reference": 0.0,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.9514880952380952,
+          "reference": 0.9514880952380952,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.9613248440692971,
+          "reference": 0.9613248440692971,
+          "equal": true
+        }
+      }
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B3",
+      "rows": 116,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.75,
+          "reference": 0.75,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.0,
+          "reference": 0.0,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.9514880952380952,
+          "reference": 0.9514880952380952,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.9613248440692971,
+          "reference": 0.9613248440692971,
+          "equal": true
+        }
+      }
+    },
+    {
+      "dataset": "prompt_injections_test",
+      "condition": "B4",
+      "rows": 116,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.75,
+          "reference": 0.75,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.0,
+          "reference": 0.0,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.9514880952380952,
+          "reference": 0.9514880952380952,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.9613248440692971,
+          "reference": 0.9613248440692971,
+          "equal": true
+        }
+      },
+      "seeded_noise_replay_equal": true,
+      "noise_replay_scope": "Controlled RNG replay only; not an equality requirement for independent stochastic releases"
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B0",
+      "rows": 6274,
+      "bypass_contract": "PASS"
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B1",
+      "rows": 6274,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.02274530547474213,
+          "reference": 0.02274530547474213,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.0007880220646178094,
+          "reference": 0.0007880220646178094,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.5053608069548431,
+          "reference": 0.5053608069548431,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.5996177969483218,
+          "reference": 0.5996177969483218,
+          "equal": true
+        }
+      }
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B2",
+      "rows": 6274,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.49596092429081345,
+          "reference": 0.49596092429081345,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.10520094562647754,
+          "reference": 0.10520094562647754,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.5830303371620744,
+          "reference": 0.5830303371620744,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.7306575273999115,
+          "reference": 0.7306575273999115,
+          "equal": true
+        }
+      }
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B3",
+      "rows": 6274,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.49680811115283513,
+          "reference": 0.49680811115283513,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.10520094562647754,
+          "reference": 0.10520094562647754,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.5834914228776136,
+          "reference": 0.5834914228776136,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.7320813531451451,
+          "reference": 0.7320813531451451,
+          "equal": true
+        }
+      }
+    },
+    {
+      "dataset": "prompt_injection_core",
+      "condition": "B4",
+      "rows": 6274,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.49680811115283513,
+          "reference": 0.49680811115283513,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.10520094562647754,
+          "reference": 0.10520094562647754,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.5834914228776136,
+          "reference": 0.5834914228776136,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.7320813531451451,
+          "reference": 0.7320813531451451,
+          "equal": true
+        }
+      },
+      "seeded_noise_replay_equal": true,
+      "noise_replay_scope": "Controlled RNG replay only; not an equality requirement for independent stochastic releases"
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B0",
+      "rows": 200,
+      "bypass_contract": "PASS"
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B1",
+      "rows": 200,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.0,
+          "reference": 0.0,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.0,
+          "reference": 0.0,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.5,
+          "reference": 0.5,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.5,
+          "reference": 0.5,
+          "equal": true
+        }
+      }
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B2",
+      "rows": 200,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.33112582781456956,
+          "reference": 0.33112582781456956,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.26,
+          "reference": 0.26,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.5166,
+          "reference": 0.5166,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.5251382647135793,
+          "reference": 0.5251382647135793,
+          "equal": true
+        }
+      }
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B3",
+      "rows": 200,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.33112582781456956,
+          "reference": 0.33112582781456956,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.26,
+          "reference": 0.26,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.5166,
+          "reference": 0.5166,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.5251382647135793,
+          "reference": 0.5251382647135793,
+          "equal": true
+        }
+      }
+    },
+    {
+      "dataset": "jailbreakbench_behaviors",
+      "condition": "B4",
+      "rows": 200,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.33112582781456956,
+          "reference": 0.33112582781456956,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.26,
+          "reference": 0.26,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.5166,
+          "reference": 0.5166,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.5251382647135793,
+          "reference": 0.5251382647135793,
+          "equal": true
+        }
+      },
+      "seeded_noise_replay_equal": true,
+      "noise_replay_scope": "Controlled RNG replay only; not an equality requirement for independent stochastic releases"
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B0",
+      "rows": 2210,
+      "bypass_contract": "PASS"
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B1",
+      "rows": 2210,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.0,
+          "reference": 0.0,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.0,
+          "reference": 0.0,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.5,
+          "reference": 0.5,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.9049773755656109,
+          "reference": 0.9049773755656109,
+          "equal": true
+        }
+      }
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B2",
+      "rows": 2210,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.9090458488228005,
+          "reference": 0.9090458488228005,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.9571428571428572,
+          "reference": 0.9571428571428572,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.4681952380952381,
+          "reference": 0.4681952380952381,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.9054106002611435,
+          "reference": 0.9054106002611435,
+          "equal": true
+        }
+      }
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B3",
+      "rows": 2210,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.9090458488228005,
+          "reference": 0.9090458488228005,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.9571428571428572,
+          "reference": 0.9571428571428572,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.4681952380952381,
+          "reference": 0.4681952380952381,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.9054106002611435,
+          "reference": 0.9054106002611435,
+          "equal": true
+        }
+      }
+    },
+    {
+      "dataset": "wildjailbreak_eval",
+      "condition": "B4",
+      "rows": 2210,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": 0.9090458488228005,
+          "reference": 0.9090458488228005,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.9571428571428572,
+          "reference": 0.9571428571428572,
+          "equal": true
+        },
+        "auroc": {
+          "actual": 0.4681952380952381,
+          "reference": 0.4681952380952381,
+          "equal": true
+        },
+        "auprc": {
+          "actual": 0.9054106002611435,
+          "reference": 0.9054106002611435,
+          "equal": true
+        }
+      },
+      "seeded_noise_replay_equal": true,
+      "noise_replay_scope": "Controlled RNG replay only; not an equality requirement for independent stochastic releases"
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B0",
+      "rows": 339,
+      "bypass_contract": "PASS"
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B1",
+      "rows": 339,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": null,
+          "reference": null,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.0,
+          "reference": 0.0,
+          "equal": true
+        },
+        "auroc": {
+          "actual": null,
+          "reference": null,
+          "equal": true
+        },
+        "auprc": {
+          "actual": null,
+          "reference": null,
+          "equal": true
+        }
+      }
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B2",
+      "rows": 339,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": null,
+          "reference": null,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.3480825958702065,
+          "reference": 0.3480825958702065,
+          "equal": true
+        },
+        "auroc": {
+          "actual": null,
+          "reference": null,
+          "equal": true
+        },
+        "auprc": {
+          "actual": null,
+          "reference": null,
+          "equal": true
+        }
+      }
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B3",
+      "rows": 339,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": null,
+          "reference": null,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.3480825958702065,
+          "reference": 0.3480825958702065,
+          "equal": true
+        },
+        "auroc": {
+          "actual": null,
+          "reference": null,
+          "equal": true
+        },
+        "auprc": {
+          "actual": null,
+          "reference": null,
+          "equal": true
+        }
+      }
+    },
+    {
+      "dataset": "notinject",
+      "condition": "B4",
+      "rows": 339,
+      "decision_mismatches": 0,
+      "score_equal": true,
+      "ml_score_equal": true,
+      "metrics": {
+        "f1": {
+          "actual": null,
+          "reference": null,
+          "equal": true
+        },
+        "fpr": {
+          "actual": 0.3480825958702065,
+          "reference": 0.3480825958702065,
+          "equal": true
+        },
+        "auroc": {
+          "actual": null,
+          "reference": null,
+          "equal": true
+        },
+        "auprc": {
+          "actual": null,
+          "reference": null,
+          "equal": true
+        }
+      },
+      "seeded_noise_replay_equal": true,
+      "noise_replay_scope": "Controlled RNG replay only; not an equality requirement for independent stochastic releases"
+    }
+  ],
+  "mismatches": [],
+  "dp": [
+    {
+      "epsilon": 0.5,
+      "draws": 15000,
+      "seed": 2026,
+      "mean": 0.047948908998981125,
+      "variance": 7.982841329929489,
+      "theoretical_variance": 8.0,
+      "status": "PASS",
+      "scope": "Synthetic noise distribution, not system/text DP proof"
+    },
+    {
+      "epsilon": 1.2,
+      "draws": 15000,
+      "seed": 2026,
+      "mean": 0.019978712082908804,
+      "variance": 1.3859099531127586,
+      "theoretical_variance": 1.3888888888888888,
+      "status": "PASS",
+      "scope": "Synthetic noise distribution, not system/text DP proof"
+    },
+    {
+      "epsilon": 2.5,
+      "draws": 15000,
+      "seed": 2026,
+      "mean": 0.009589781799796224,
+      "variance": 0.3193136531971796,
+      "theoretical_variance": 0.32,
+      "status": "PASS",
+      "scope": "Synthetic noise distribution, not system/text DP proof"
+    }
+  ],
+  "new_llm_inference": false,
+  "reference_rows": 9139,
+  "duration_seconds": 22.12198949995218
+}

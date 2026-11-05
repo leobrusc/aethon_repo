@@ -1,0 +1,14 @@
+{
+  "lock": "cpu-windows-py312.lock",
+  "package_count": 69,
+  "platform_installation": "NOT_RUN",
+  "torch_binary_catalog": "NOT_AUDITED",
+  "upstream_and_dependency_audit": {
+    "status": "PASS",
+    "exit_code": 0,
+    "skipped": [],
+    "findings": [],
+    "raw": "results\\integration-audit\\advisory-refresh\\cpu-windows-py312.upstream.json",
+    "raw_sha256": "16a0cb7cc05766e0b09d2d12c3dd06a6b18f80af87493cc04c184fb5e83a0af9"
+  }
+}

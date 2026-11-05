@@ -1,0 +1,361 @@
+{
+  "date": "2026-11-03",
+  "core_commit": "ac1e2c2b48292fb88c949995723dc03b814ce0e7",
+  "pull_request": "https://github.com/leobrusc/aethon_repo/pull/3",
+  "tests": {
+    "status": "PASS",
+    "count": 115,
+    "summary": "115 passed, 1 warning in 41.04s"
+  },
+  "checks": {
+    "ruff": "PASS",
+    "pre_commit": "PASS",
+    "dependency_consistency": "PASS",
+    "build_sdist_wheel": "PASS",
+    "editable_installations": "PASS",
+    "scientific_hashes": {
+      "status": "PASS",
+      "count": 127
+    },
+    "curated_evidence_hashes": {
+      "status": "PASS",
+      "count": 31
+    },
+    "historical_dependency_snapshots": {
+      "status": "PASS",
+      "count": 6
+    },
+    "historical_B3_B4": {
+      "status": "PASS",
+      "pairs": 9139,
+      "differences": 0
+    },
+    "cli_dry_runs": {
+      "status": "PASS",
+      "rows_each": 2,
+      "semantic_columns_equal": 19
+    },
+    "original_user_files": {
+      "status": "PASS",
+      "count": 5
+    }
+  },
+  "runtimes": {
+    "security": {
+      "version": "3.12.13 (main, Mar 20 2026, 00:36:00) [MSC v.1944 64 bit (AMD64)]",
+      "executable": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe"
+    },
+    "cpu": {
+      "version": "3.12.13 (main, Mar 20 2026, 00:36:00) [MSC v.1944 64 bit (AMD64)]",
+      "executable": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-cpu\\Scripts\\python.exe"
+    },
+    "research": {
+      "version": "3.12.13 (main, Mar 20 2026, 00:36:00) [MSC v.1944 64 bit (AMD64)]",
+      "executable": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-research\\Scripts\\python.exe"
+    }
+  },
+  "profiles": [
+    {
+      "source": "local",
+      "profile": "cpu-linux-py312.lock",
+      "packages": 68,
+      "strict_dependency_query": "PASS",
+      "installation": "NOT_RUN",
+      "provenance": "NOT_RUN",
+      "native_catalog": "NOT_RUN",
+      "torch_exact_binary_catalog": "NOT_AUDITED",
+      "evidence": "docs/security/evidence/local-cpu-linux-py312.summary.json"
+    },
+    {
+      "source": "local",
+      "profile": "cpu-windows-py312.lock",
+      "packages": 69,
+      "strict_dependency_query": "PASS",
+      "installation": "PASS",
+      "provenance": "PASS",
+      "native_catalog": "NOT_AUDITED",
+      "torch_exact_binary_catalog": "NOT_AUDITED",
+      "evidence": "docs/security/evidence/local-cpu-windows-py312.summary.json"
+    },
+    {
+      "source": "local",
+      "profile": "dev-linux-py312.lock",
+      "packages": 102,
+      "strict_dependency_query": "PASS",
+      "installation": "NOT_RUN",
+      "provenance": "NOT_RUN",
+      "native_catalog": "NOT_RUN",
+      "torch_exact_binary_catalog": "NOT_AUDITED",
+      "evidence": "docs/security/evidence/local-dev-linux-py312.summary.json"
+    },
+    {
+      "source": "local",
+      "profile": "dev-windows-py312.lock",
+      "packages": 103,
+      "strict_dependency_query": "PASS",
+      "installation": "PASS",
+      "provenance": "PASS",
+      "native_catalog": "NOT_AUDITED",
+      "torch_exact_binary_catalog": "NOT_AUDITED",
+      "evidence": "docs/security/evidence/local-dev-windows-py312.summary.json"
+    },
+    {
+      "source": "local",
+      "profile": "gpu-linux-py312.lock",
+      "packages": 110,
+      "strict_dependency_query": "PASS",
+      "installation": "NOT_RUN",
+      "provenance": "NOT_RUN",
+      "native_catalog": "NOT_RUN",
+      "torch_exact_binary_catalog": "NOT_AUDITED",
+      "evidence": "docs/security/evidence/local-gpu-linux-py312.summary.json"
+    },
+    {
+      "source": "local",
+      "profile": "research-linux-py312.lock",
+      "packages": 90,
+      "strict_dependency_query": "PASS",
+      "installation": "NOT_RUN",
+      "provenance": "NOT_RUN",
+      "native_catalog": "NOT_RUN",
+      "torch_exact_binary_catalog": "NOT_AUDITED",
+      "evidence": "docs/security/evidence/local-research-linux-py312.summary.json"
+    },
+    {
+      "source": "local",
+      "profile": "research-windows-py312.lock",
+      "packages": 91,
+      "strict_dependency_query": "PASS",
+      "installation": "PASS",
+      "provenance": "PASS",
+      "native_catalog": "NOT_AUDITED",
+      "torch_exact_binary_catalog": "NOT_AUDITED",
+      "evidence": "docs/security/evidence/local-research-windows-py312.summary.json"
+    },
+    {
+      "source": "github-linux",
+      "profile": "cpu-linux-py312.lock",
+      "packages": 68,
+      "strict_dependency_query": "PASS",
+      "installation": "PASS",
+      "provenance": "PASS",
+      "native_catalog": "NOT_AUDITED",
+      "torch_exact_binary_catalog": "NOT_AUDITED",
+      "evidence": "docs/security/evidence/github-linux-cpu-linux-py312.summary.json"
+    },
+    {
+      "source": "github-linux",
+      "profile": "dev-linux-py312.lock",
+      "packages": 102,
+      "strict_dependency_query": "PASS",
+      "installation": "PASS",
+      "provenance": "PASS",
+      "native_catalog": "NOT_AUDITED",
+      "torch_exact_binary_catalog": "NOT_AUDITED",
+      "evidence": "docs/security/evidence/github-linux-dev-linux-py312.summary.json"
+    },
+    {
+      "source": "github-windows",
+      "profile": "cpu-windows-py312.lock",
+      "packages": 69,
+      "strict_dependency_query": "PASS",
+      "installation": "PASS",
+      "provenance": "PASS",
+      "native_catalog": "NOT_AUDITED",
+      "torch_exact_binary_catalog": "NOT_AUDITED",
+      "evidence": "docs/security/evidence/github-windows-cpu-windows-py312.summary.json"
+    },
+    {
+      "source": "github-windows",
+      "profile": "dev-windows-py312.lock",
+      "packages": 103,
+      "strict_dependency_query": "PASS",
+      "installation": "PASS",
+      "provenance": "PASS",
+      "native_catalog": "NOT_AUDITED",
+      "torch_exact_binary_catalog": "NOT_AUDITED",
+      "evidence": "docs/security/evidence/github-windows-dev-windows-py312.summary.json"
+    },
+    {
+      "source": "github-research-cuda",
+      "profile": "gpu-linux-py312.lock",
+      "packages": 110,
+      "strict_dependency_query": "PASS",
+      "installation": "NOT_RUN",
+      "provenance": "NOT_RUN",
+      "native_catalog": "NOT_RUN",
+      "torch_exact_binary_catalog": "NOT_AUDITED",
+      "evidence": "docs/security/evidence/github-research-cuda-gpu-linux-py312.summary.json"
+    },
+    {
+      "source": "github-research-cuda",
+      "profile": "research-linux-py312.lock",
+      "packages": 90,
+      "strict_dependency_query": "PASS",
+      "installation": "PASS",
+      "provenance": "PASS",
+      "native_catalog": "NOT_AUDITED",
+      "torch_exact_binary_catalog": "NOT_AUDITED",
+      "evidence": "docs/security/evidence/github-research-cuda-research-linux-py312.summary.json"
+    }
+  ],
+  "remote_runs": [
+    {
+      "id": 41679899780,
+      "event": "push",
+      "status": "PASS",
+      "all_three_jobs": "SUCCESS"
+    },
+    {
+      "id": 41679911344,
+      "event": "pull_request",
+      "status": "PASS",
+      "all_three_jobs": "SUCCESS"
+    }
+  ],
+  "limits": {
+    "historical_runtime_untrusted_use": "FAIL",
+    "exact_binary_catalog": "NOT_AUDITED",
+    "cuda_execution": "NOT_RUN",
+    "real_model_inference_new_stack": "NOT_RUN",
+    "full_historical_experiments_new_stack": "NOT_RUN"
+  },
+  "evidence_files": [
+    {
+      "file": "docs/security/evidence/local-cpu-linux-py312.summary.json",
+      "sha256": "b897a0983ad0cd051ca86a8eed7a4bea93cbe3bcafcc7d71e05286aa173a4f9a"
+    },
+    {
+      "file": "docs/security/evidence/local-cpu-linux-py312.upstream.json",
+      "sha256": "3b25741151c321df551417c2ae6cfdafdb63cae0dc8a16044b91bf8b4e05bd65"
+    },
+    {
+      "file": "docs/security/evidence/local-cpu-windows-py312.native.json",
+      "sha256": "625d73dde17c278728b61498f8317f3d2ae87af487b49fabb942816f7088c19a"
+    },
+    {
+      "file": "docs/security/evidence/local-cpu-windows-py312.summary.json",
+      "sha256": "100cfaeb39a5fc7c7ddc1bcd66f3f156df7c499f6dd5060c5fba436721bdeb50"
+    },
+    {
+      "file": "docs/security/evidence/local-cpu-windows-py312.upstream.json",
+      "sha256": "16a0cb7cc05766e0b09d2d12c3dd06a6b18f80af87493cc04c184fb5e83a0af9"
+    },
+    {
+      "file": "docs/security/evidence/local-dev-linux-py312.summary.json",
+      "sha256": "ec417c9dd7e5962e6aad4d0062fa5b67f66a7c49b8870a918466376942055f04"
+    },
+    {
+      "file": "docs/security/evidence/local-dev-linux-py312.upstream.json",
+      "sha256": "80228ba78714ce6afba73be3f2af84fc1873bb22cc5f9b61d6907d8e65293b17"
+    },
+    {
+      "file": "docs/security/evidence/local-dev-windows-py312.native.json",
+      "sha256": "e32576a594d0f03d93857043a645f2f53d7cf62fea3efe481ef0cb4ce90a66b9"
+    },
+    {
+      "file": "docs/security/evidence/local-dev-windows-py312.summary.json",
+      "sha256": "9b2a41d6140914677aaa47e0440dca4c6afbf71d5e3c1cc1d43aea46b131279f"
+    },
+    {
+      "file": "docs/security/evidence/local-dev-windows-py312.upstream.json",
+      "sha256": "737daa7bb47abf624c9fba70103acfa4843fcc878e09d2318ada943bdfdde4aa"
+    },
+    {
+      "file": "docs/security/evidence/local-gpu-linux-py312.summary.json",
+      "sha256": "9d31435d4e2a863d66dd385a0d721422718ea4a14aaf76c27924a33549a2b630"
+    },
+    {
+      "file": "docs/security/evidence/local-gpu-linux-py312.upstream.json",
+      "sha256": "28c94cff85911963544b0b1ef799399c82541b675665ec426ef1a2e3d88cdfb0"
+    },
+    {
+      "file": "docs/security/evidence/local-research-linux-py312.summary.json",
+      "sha256": "78cfc80b082c9786db3d1a7f6f1ae4cd1953a555f794bc7ed234ed75f804dbbe"
+    },
+    {
+      "file": "docs/security/evidence/local-research-linux-py312.upstream.json",
+      "sha256": "e61568c45c72ffb6b626134fdc8ca42a16277d131d297de6a41ac25adcfbbba3"
+    },
+    {
+      "file": "docs/security/evidence/local-research-windows-py312.native.json",
+      "sha256": "b76fbc73327a1bef80bab4f7c2730e62eaa2c213db947a3493a0cecc49a996f1"
+    },
+    {
+      "file": "docs/security/evidence/local-research-windows-py312.summary.json",
+      "sha256": "73035d57f50389c4b741af21ba9c04f42ba06f0b377d26a1cefcc6db5555c317"
+    },
+    {
+      "file": "docs/security/evidence/local-research-windows-py312.upstream.json",
+      "sha256": "e7f388eb14c1bc383577d3b0c03efd1d725dc95a3ec344e225264e3fe9858057"
+    },
+    {
+      "file": "docs/security/evidence/github-linux-cpu-linux-py312.native.json",
+      "sha256": "43f024f451944474bd1f2b3a8a8adbd935e346fb621cb09258434a138bfabb2f"
+    },
+    {
+      "file": "docs/security/evidence/github-linux-cpu-linux-py312.summary.json",
+      "sha256": "75c2b8b73b876a5a403a310b4a2f51adfee69fbb618d0163af23768bb5178c22"
+    },
+    {
+      "file": "docs/security/evidence/github-linux-cpu-linux-py312.upstream.json",
+      "sha256": "728d35911f4173792ea1ed22bb5d115c0602c1b70ae615dcf7cdd960ed7e0b4d"
+    },
+    {
+      "file": "docs/security/evidence/github-linux-dev-linux-py312.native.json",
+      "sha256": "8c45d365b4473129f79b62cb0e90465e47932230004cfff1c1b6220accb95919"
+    },
+    {
+      "file": "docs/security/evidence/github-linux-dev-linux-py312.summary.json",
+      "sha256": "fba1a62ff6ecd036eab3bbf4391f5450812a8fbb3135480582f3c1ef1e217c45"
+    },
+    {
+      "file": "docs/security/evidence/github-linux-dev-linux-py312.upstream.json",
+      "sha256": "c1f7874c6e1545b77327e6348649950271aa08def69103a2f08b69dea5ac7996"
+    },
+    {
+      "file": "docs/security/evidence/github-windows-cpu-windows-py312.native.json",
+      "sha256": "625d73dde17c278728b61498f8317f3d2ae87af487b49fabb942816f7088c19a"
+    },
+    {
+      "file": "docs/security/evidence/github-windows-cpu-windows-py312.summary.json",
+      "sha256": "100cfaeb39a5fc7c7ddc1bcd66f3f156df7c499f6dd5060c5fba436721bdeb50"
+    },
+    {
+      "file": "docs/security/evidence/github-windows-cpu-windows-py312.upstream.json",
+      "sha256": "16a0cb7cc05766e0b09d2d12c3dd06a6b18f80af87493cc04c184fb5e83a0af9"
+    },
+    {
+      "file": "docs/security/evidence/github-windows-dev-windows-py312.native.json",
+      "sha256": "e32576a594d0f03d93857043a645f2f53d7cf62fea3efe481ef0cb4ce90a66b9"
+    },
+    {
+      "file": "docs/security/evidence/github-windows-dev-windows-py312.summary.json",
+      "sha256": "9b2a41d6140914677aaa47e0440dca4c6afbf71d5e3c1cc1d43aea46b131279f"
+    },
+    {
+      "file": "docs/security/evidence/github-windows-dev-windows-py312.upstream.json",
+      "sha256": "737daa7bb47abf624c9fba70103acfa4843fcc878e09d2318ada943bdfdde4aa"
+    },
+    {
+      "file": "docs/security/evidence/github-research-cuda-gpu-linux-py312.summary.json",
+      "sha256": "18437751915dca6ce9c7f1fb2b1af52e568dcdccbb32d5f16a71e196df63ad58"
+    },
+    {
+      "file": "docs/security/evidence/github-research-cuda-gpu-linux-py312.upstream.json",
+      "sha256": "2b766340e3c2fb95445e2d0e1a27cffea1fd5f02405fd11802bc5d87b93f2d31"
+    },
+    {
+      "file": "docs/security/evidence/github-research-cuda-research-linux-py312.native.json",
+      "sha256": "6bbc521b833d371e180aa4df29d1cae80461d3dde301e72974512310387f1b89"
+    },
+    {
+      "file": "docs/security/evidence/github-research-cuda-research-linux-py312.summary.json",
+      "sha256": "6d7c0042c45fcc99820323046350bd298be7768919155c67c24d6df5c64ab010"
+    },
+    {
+      "file": "docs/security/evidence/github-research-cuda-research-linux-py312.upstream.json",
+      "sha256": "5d408d1fbd23f447e704a6b756303dcd23348910a6310efb316c4d2bd41696c0"
+    }
+  ]
+}

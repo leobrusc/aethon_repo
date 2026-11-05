@@ -1,0 +1,43 @@
+{
+  "registry_contract_status": "PASS",
+  "registry_default_precision_equivalence": "FAIL",
+  "registry_dtypes": {
+    "historical": "torch.float32",
+    "maintained": "torch.bfloat16"
+  },
+  "note": "Original registry harness dtype_requested label was not forwarded; observed dtype is authoritative. No source driver was changed.",
+  "native_explicit_fp32": {
+    "status": "PASS",
+    "same_artifact_hashes": true,
+    "same_dtype": true,
+    "same_protocol": true,
+    "rows": [
+      {
+        "id": "compat-001",
+        "input_tokens_equal": true,
+        "generated_tokens_equal_observed": true,
+        "text_equal_observed": true,
+        "maintained_output": "READY",
+        "historical_output": "READY"
+      },
+      {
+        "id": "compat-002",
+        "input_tokens_equal": true,
+        "generated_tokens_equal_observed": true,
+        "text_equal_observed": true,
+        "maintained_output": "2 + 2 = 4",
+        "historical_output": "2 + 2 = 4"
+      },
+      {
+        "id": "compat-003",
+        "input_tokens_equal": true,
+        "generated_tokens_equal_observed": true,
+        "text_equal_observed": true,
+        "maintained_output": "OVERRIDE",
+        "historical_output": "OVERRIDE"
+      }
+    ]
+  },
+  "scientific_equivalence_claim": false,
+  "asr": "NOT_RUN"
+}

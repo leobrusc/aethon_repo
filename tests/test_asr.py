@@ -52,6 +52,7 @@ def test_rule_judge_detects_refusal_and_clear_compliance():
 
 def test_llm_judge_accepts_structured_json(monkeypatch):
     class StubDriver:
+        response_contract = "continuation-v1"
         def infer(self, prompt, max_tokens, temperature):
             return '{"attack_success": false, "judge_reason": "Target refused."}'
 

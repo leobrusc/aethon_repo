@@ -1,0 +1,90 @@
+{
+  "run_id": "integrity-final-2026-10-28",
+  "fingerprint": "5f0ea4867144dde0d76944567104d40515c215b2ccf76032a76f2f89e97d76bb",
+  "config": {
+    "datasets": [
+      {
+        "name": "prompt_injections_train",
+        "file": "hf_prompt-injections_train.parquet",
+        "sha256": "2e10bc7ab30f542c97e4e83e2a5683000b5057d25ec10908784c631d44124c04",
+        "bytes": 40323
+      },
+      {
+        "name": "prompt_injections_test",
+        "file": "hf_prompt-injections_test.parquet",
+        "sha256": "39ac797cabc157eeed58435a08593b2952bb6cb16fc394a2d383f447cc7b246e",
+        "bytes": 10892
+      },
+      {
+        "name": "prompt_injection_core",
+        "file": "neuralchemy_prompt_injection_core.jsonl",
+        "sha256": "e7a1b0b9a21032df8b3ffcac1605841324d1266f30fb4d70e6d058af0cde685f",
+        "bytes": 2165752
+      },
+      {
+        "name": "jailbreakbench_behaviors",
+        "file": "jailbreakbench_behaviors.jsonl",
+        "sha256": "4f3a40e85e5be7314ae8e6cb5dc73f4197eca0e691b67d6a25a915b1a934a850",
+        "bytes": 60175
+      },
+      {
+        "name": "wildjailbreak_eval",
+        "file": "wildjailbreak_eval.jsonl",
+        "sha256": "2e74645416c7daa3b30ae11cb845a50cc9fe5d0b147e4ddc2ef5b0af23ec88a5",
+        "bytes": 1825386
+      },
+      {
+        "name": "notinject",
+        "file": "notinject.jsonl",
+        "sha256": "e41959c6cd149a4f921cb70deff86f9aab10bfede0894b958e99980bf71349b8",
+        "bytes": 67357
+      }
+    ],
+    "similarity": 0.95,
+    "schema": 2,
+    "implementation": {
+      "research_integrity.py": "346c6458415d50c5e32a55487df8cd1f336eaf6e05eb87b9b9abcb8ee5ae0026",
+      "dataset_loader.py": "c6d09f7a76dfb7d35caf88c3c6d8797ffb280dc48251aa017b3d31ab38695bf1"
+    },
+    "dependencies": {
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "scikit-learn": "1.7.2"
+    }
+  },
+  "commit_sha": "ccd069d2800ede8293aba519f02b9da7fdea85ff",
+  "git_dirty": true,
+  "status": "DONE",
+  "checkpoint": "whole deterministic audit; restart on interruption",
+  "python": "3.10.11",
+  "hardware": {
+    "system": "Windows",
+    "node": "CPQDGNR2JG4",
+    "release": "10",
+    "version": "10.0.26300",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 181 Stepping 0, GenuineIntel"
+  },
+  "dependencies": {
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2"
+  },
+  "seed": null,
+  "model": null,
+  "threshold": null,
+  "temperature": null,
+  "token_limit": null,
+  "expected_records": 9685,
+  "processed_records": 9685,
+  "duration_seconds": 18.609386500000255,
+  "errors": [],
+  "artifact_hashes": {
+    "rows.csv": "73bfe3f2a2ed3e987dd53de6d28be49262ea95684618ada4fd71fcdc2e30b15e",
+    "exact_duplicates.csv": "a7a506f3df05eafdb36f44029bb1adbad9c6e00632a80623125d910bd98ddf1f",
+    "near_duplicates.csv": "b49e3d5bd4806d90988445312d33154b15c4da21d8fdb03c9e850b145f63d33c",
+    "summary.json": "692ed05ae15289c10238d419b26ea5b1fb916983db55bedb41544e1a903c762b",
+    "summary.md": "f1eb57de6ef8d2ff09236cceda9b1922b0e2c8618bcdccd1044abcc872637c55",
+    "summary.tex": "126c51fb1033e8267f39ad35308d7414cf503d59ce4b781bc4d941fe97097372"
+  }
+}

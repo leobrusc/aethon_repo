@@ -1,0 +1,11 @@
+{
+  "protocol": "docs/EXPERIMENT_PROTOCOL_2026.md",
+  "status": "PARTIAL",
+  "executable_config": false,
+  "reason": "Local audit and controlled pipelines implemented; prospective data, target snapshots and human review pending",
+  "selection_datasets": ["prompt_injections_train"],
+  "reference_pool_role": "previously_inspected_reference_benchmark",
+  "independent_generalization_claim_allowed": false,
+  "dp_epsilon": [0.5, 1.2, 2.5],
+  "full_evaluation_authorized_here": false
+}

@@ -1,0 +1,4 @@
+-r ../../requirements-core.txt
+torch==2.15.0
+setuptools>=84.2.1
+wheel>=0.48

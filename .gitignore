@@ -10,6 +10,7 @@ htmlcov/
 
 # Virtual environments
 .venv/
+.venv-*/
 venv/
 aethon_env/
 
@@ -34,6 +35,8 @@ temp/
 
 # Generated benchmark and experiment artifacts
 results/
+# Local diagnostic text may contain sensitive/adversarial prompts. Never commit it.
+results/revision/error_analysis/private_false_positive_text.csv
 examples/sample_results/
 progress.json
 **/progress.json
@@ -45,6 +48,7 @@ experiment_manifest.json
 **/experiment_manifest.json
 *_manifest.json
 *_manifest.jsonl
+!docs/validation/VALIDATION_MANIFEST.json
 
 # Generated benchmark summaries and checkpoints
 master_results.csv
@@ -80,3 +84,10 @@ test_llamas.py
 package-lock.json
 scratch/
 local_*.py
+.hf_cache/
+.worktrees/
+build/
+dist/
+*.egg-info/
+.pre-commit-cache/
+results/revision/baselines/private_*

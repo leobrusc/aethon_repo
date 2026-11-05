@@ -1,0 +1,22 @@
+# Maintained runtime. Historical PR #2 pins are in requirements/historical/pr2/.
+# Keep numerical implementation versions used by the original scientific runtime.
+numpy==2.2.6
+pandas==2.3.3
+scipy==1.15.3
+scikit-learn==1.7.2
+matplotlib
+transformers>=5.22.1
+tokenizers>=0.23.3
+torch>=2.14.1,<2.16
+huggingface-hub
+pyarrow
+openai>=1.40.0
+python-dotenv
+joblib
+statsmodels
+# Security floors for transitives processing untrusted network/file content.
+pillow>=13.0.0
+urllib3>=2.8.0
+certifi>=2026.10.23
+filelock>=4.2.7
+anyio>=4.16.0

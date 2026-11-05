@@ -1,0 +1,14 @@
+{
+  "rows": 9685,
+  "reference_rows": 9139,
+  "historical_pool_expected": 9139,
+  "historical_pool_count_matches": true,
+  "exact_duplicate_groups": 201,
+  "near_duplicate_pairs": 636,
+  "cross_partition_exact_groups": 0,
+  "cross_partition_near_pairs": 1,
+  "similarity_threshold": 0.95,
+  "semantic_overlap_audit": "NOT_RUN",
+  "normalization": "Unicode NFKC; whitespace collapse; case preserved",
+  "near_method": "corpus-fitted char_wb TF-IDF 3-5 cosine; lexical screening only"
+}

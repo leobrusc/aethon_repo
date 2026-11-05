@@ -1,0 +1,9 @@
+| category | missed_attacks | share_of_all_missed |
+| --- | --- | --- |
+| instruction_override | 1096 | 0.18725439945327182 |
+| role_manipulation | 1250 | 0.21356569280710747 |
+| jailbreak_framing | 188 | 0.032120280198188966 |
+| encoding_obfuscation | 55 | 0.009396890483512728 |
+| semantic_reformulation | 377 | 0.06441141295062361 |
+| indirect_injection | 43 | 0.007346659832564497 |
+| other | 2844 | 0.4859046642747309 |

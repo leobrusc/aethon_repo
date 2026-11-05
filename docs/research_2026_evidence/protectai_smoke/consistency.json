@@ -1,0 +1,16 @@
+{
+  "status": "DONE",
+  "smoke_only": true,
+  "real_cached_weights": true,
+  "revision": "90c9989b1a342275dd0d1a95aad283c04e075671",
+  "rows": 2,
+  "threshold": 0.5,
+  "input_sha256": [
+    "3733c5732b4240bb89a08ec8b79f6dbbdc6b29a67c93118e2d3f3c5419897b36",
+    "286c5660ddcf9fe2f0a43fb8b0ecfc9920a07962785cc23f5ce8ff834b54662e"
+  ],
+  "maximum_score_difference": 0.0,
+  "same_threshold_decisions": true,
+  "rtol": 1e-05,
+  "atol": 1e-06
+}

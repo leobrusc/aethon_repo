@@ -1,0 +1,11 @@
+Processing .\.
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: aethon-research
+  Building wheel for aethon-research (pyproject.toml): started
+  Building wheel for aethon-research (pyproject.toml): finished with status 'done'
+  Created wheel for aethon-research: filename=aethon_research-0.1.0-py3-none-any.whl size=120298 sha256=e95102c46bd8082070634f2569c32ac16a0e574937cad7dbf2af525a61cf62e1
+  Stored in directory: C:\Users\leolima\AppData\Local\Temp\pip-ephem-wheel-cache-dc5txpxm\wheels\66\9c\ba\66d96ce4888f917d230ec85c807312a7863210bbf068351ba7
+Successfully built aethon-research
+Installing collected packages: aethon-research
+Successfully installed aethon-research-0.1.0

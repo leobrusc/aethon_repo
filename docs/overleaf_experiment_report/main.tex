@@ -1,0 +1,208 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{float}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+\sisetup{round-mode=places,round-precision=4}
+\setlength{\parskip}{0.45em}
+\setlength{\parindent}{0pt}
+
+\title{AETHON Revision Experiments\\
+\large Model-Independent Prompt-Injection Detection, Error Analysis, and Leakage-Free Lightweight Model Selection}
+\author{Leonardo Bruscagini de Lima}
+\date{September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This technical report documents the local revision experiments conducted for AETHON, a pre-inference middleware for prompt-injection detection. The revised protocol removes target-LLM identity from prompt-level detection metrics, prevents train--test leakage, separates deterministic heuristic behavior from machine-learning behavior, and evaluates generalization across five fixed datasets. The experiments show that the original heuristic layer has extremely high precision but negligible recall, while the TF--IDF + Logistic Regression detector provides most of AETHON's discriminative capability. A training-only model-selection study identified a character n-gram calibrated Linear SVM with strong cross-validation performance, but its external evaluation substantially increased false-positive rate, confirming a major domain-shift and over-defense problem. The report therefore recommends retaining the original leakage-free Logistic Regression configuration as the main lightweight AETHON baseline, presenting the character-SVM model as an experimental variant, and explicitly limiting claims about modern transformer baselines because the complete ProtectAI/Prompt Guard comparison was not finished locally.
+\end{abstract}
+
+\section{Objective and Scope}
+The revision was designed to address methodological concerns in the submitted AETHON evaluation, especially the inappropriate reporting of prompt-level AUROC by target LLM. Since AETHON operates before target-model inference, prompt-level detection effectiveness must be independent of Phi, Llama, Qwen, or any other downstream generator. The local study therefore focuses on the detector itself.
+
+The work was organized into three completed experimental stages: (i) a model-independent detection benchmark, (ii) an error and distribution-shift analysis, and (iii) leakage-free lightweight model selection using training-only cross-validation. A modern ProtectAI DeBERTa adapter was also validated locally at smoke-test level, but the full 9,139-prompt transformer benchmark was not completed because CPU runtime was excessive and GPU execution was intentionally skipped. Meta Prompt Guard 2 remained unavailable because the model is gated.
+
+\section{Repository and Reproducibility}
+The experiment is maintained in the GitHub repository:
+
+\begin{center}
+\url{https://github.com/leobrusc/aethon_repo}
+\end{center}
+
+The revision branch is:
+
+\begin{center}
+\url{https://github.com/leobrusc/aethon_repo/tree/revision/bracis-reviewer-experiments}
+\end{center}
+
+The validated branch head used to close the local reliability work is commit
+\texttt{55407e7e998bb58a4cc3f8426e63dcd6ee77e761}. The final local automated test suite reported \textbf{57 passed, 1 warning}. The warning is the pre-existing mocked Hugging Face download warning and is not a test failure.
+
+\section{Datasets}
+Table~\ref{tab:datasets} summarizes the fixed datasets used in the revised detection evaluation. AUROC and AUPRC are reported only when both classes are present. Label provenance is retained because some benchmark labels are imposed by loader policy rather than provided as native binary labels.
+
+\begin{table}[H]
+\centering
+\caption{Datasets used in the local revision experiments.}
+\label{tab:datasets}
+\begin{tabular}{lrrrll}
+\toprule
+Dataset & Rows & Benign & Attack & Class status & Main role \\
+\midrule
+Prompt Injections Test & 116 & 56 & 60 & Mixed & External test \\
+Prompt Injection Core & 6,274 & 2,538 & 3,736 & Mixed & External/OOD test \\
+JailbreakBench Behaviors & 200 & 100 & 100 & Mixed & External test \\
+WildJailbreak Eval & 2,210 & 210 & 2,000 & Mixed & Over-defense stress test \\
+NotInject & 339 & 339 & 0 & Benign-only & Hard-negative/FPR \\
+\midrule
+Total & 9,139 & 3,243 & 5,896 & --- & Fixed evaluation pool \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The clean revision classifier was trained only on \texttt{prompt\_injections\_train}: 546 rows (343 benign, 203 adversarial). No exact or normalized-exact duplicate was found between that training set and any of the five evaluation datasets.
+
+\section{Phase 1: Model-Independent Detection Benchmark}
+\subsection{Conditions}
+The detection-only benchmark evaluates four conditions:
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{B1}: deterministic heuristic rules only;
+  \item \textbf{B2}: TF--IDF + Logistic Regression only;
+  \item \textbf{B3}: heuristic OR Logistic Regression;
+  \item \textbf{B4}: B3 plus differentially private noisy audit telemetry.
+\end{itemize}
+
+B0 is not included because an ``always allow'' condition is not a prompt detector. B3 and B4 are required to produce identical classification outputs; DP affects telemetry only.
+
+\subsection{Aggregate Results}
+Table~\ref{tab:phase1} reports micro-pooled results across all 9,139 fixed evaluation prompts.
+
+\begin{table}[H]
+\centering
+\caption{Phase 1 model-independent detection results.}
+\label{tab:phase1}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Condition & AUROC & AUPRC & Precision & Recall & F1 & FPR & Median ms & P95 ms \\
+\midrule
+B1 Heuristic & 0.5033 & 0.6474 & 0.9556 & 0.0073 & 0.0145 & 0.0006 & 0.0036 & 0.0106 \\
+B2 TF--IDF+LR & 0.6761 & 0.8066 & 0.8401 & 0.5453 & 0.6613 & 0.1887 & 0.6292 & 1.2264 \\
+B3 AETHON & 0.6766 & 0.8075 & 0.8402 & 0.5458 & 0.6617 & 0.1887 & 0.7152 & 1.4118 \\
+B4 AETHON+DP & 0.6766 & 0.8075 & 0.8402 & 0.5458 & 0.6617 & 0.1887 & 0.7091 & 1.3641 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For B3, the confusion counts were TP=3,218, TN=2,631, FP=612, FN=2,678. Bootstrap 95\% intervals were approximately 0.666--0.688 for AUROC, 0.651--0.673 for F1, and 0.175--0.203 for FPR. B3 and B4 produced identical predictions and scores, as required by design.
+
+The main implication is that the heuristic layer is not a high-coverage defense. It adds only three true positives over B2 in the complete fixed evaluation and adds no false positives. It should therefore be described as a precision-oriented fail-fast layer rather than as a synergistic source of recall.
+
+\section{Phase 1.5: Error Analysis}
+\subsection{False Positives and False Negatives}
+Table~\ref{tab:error} shows B3 errors by dataset.
+
+\begin{table}[H]
+\centering
+\caption{B3 error profile by dataset.}
+\label{tab:error}
+\begin{tabular}{lrrrr}
+\toprule
+Dataset & FP & FPR & FN & FN rate \\
+\midrule
+Prompt Injections Test & 0 & 0.0000 & 24 & 0.4000 \\
+Prompt Injection Core & 267 & 0.1052 & 2,413 & 0.6459 \\
+JailbreakBench Behaviors & 26 & 0.2600 & 75 & 0.7500 \\
+WildJailbreak Eval & 201 & 0.9571 & 166 & 0.0830 \\
+NotInject & 118 & 0.3481 & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+WildJailbreak is the clearest over-defense stress case. Its 210 \texttt{adversarial\_benign} prompts have benign intent but are intentionally written in jailbreak-like form. AETHON classifies 201 of these 210 prompts as malicious, producing FPR=0.9571. The label mapping was audited and was not reversed; relabeling these examples is not justified.
+
+\subsection{Heuristic Coverage}
+The eight literal heuristic patterns detected only 43 of 5,896 adversarial prompts, yielding recall around 0.7\%. Missed cases include role manipulation, instruction override, semantic reformulation, jailbreak framing, encoding/obfuscation, and indirect injection. Nearly half of the missed attacks were not captured by the conservative keyword categorization, reinforcing that the current rule set is intentionally narrow.
+
+\subsection{Distribution Shift}
+The lexical similarity between training and evaluation data varies substantially. TF--IDF centroid cosine similarity to the training set was 0.796 for Prompt Injections Test, 0.468 for Prompt Injection Core, 0.426 for JailbreakBench, 0.577 for WildJailbreak, and 0.529 for NotInject. WildJailbreak prompts were also much longer (mean about 121 words) than the training prompts (mean about 19 words). These findings are descriptive rather than causal, but they are consistent with significant cross-domain generalization difficulty.
+
+\section{Phase 2: Leakage-Free Lightweight Model Selection}
+Fifteen candidates were evaluated using stratified 5-fold cross-validation exclusively on the 546-row training set. The candidate space covered word unigrams, word bigrams, character n-grams, a word+character feature union, Logistic Regression, LinearSVC, and calibrated LinearSVC. Threshold selection used out-of-fold predictions only, with the primary policy of maximizing F1 subject to FPR $\leq 0.10$.
+
+The selected model was:
+
+\begin{center}
+\textbf{character TF--IDF (char\_wb, 3--5 grams, 5,000 features) + calibrated LinearSVC, threshold 0.48.}
+\end{center}
+
+Its training-only OOF results were AUROC=0.9697, AUPRC=0.9571, precision=0.9568, recall=0.8719, F1=0.9124, and FPR=0.0233. These numbers are \emph{selection-domain metrics}, not external-test claims.
+
+\subsection{Frozen External Evaluation}
+After configuration and threshold were frozen, the model was evaluated once on the same 9,139 fixed external rows. Table~\ref{tab:phase2} compares the immutable Phase 1 B3 baseline with the selected Phase 2 detector plus heuristic (V2).
+
+\begin{table}[H]
+\centering
+\caption{Immutable AETHON baseline versus the selected character-SVM variant.}
+\label{tab:phase2}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Detector & AUROC & AUPRC & Precision & Recall & F1 & FPR & Median ms \\
+\midrule
+AETHON-LR (B3) & 0.6766 & 0.8075 & 0.8402 & 0.5458 & 0.6617 & 0.1887 & 0.7152 \\
+AETHON-CharSVM (V2) & 0.6734 & 0.8084 & 0.7239 & 0.6577 & 0.6892 & 0.4561 & 1.0730 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The variant increases recall and F1, but the false-positive rate rises from 18.9\% to 45.6\%. It is therefore not an unqualified improvement and should not replace the LR baseline as the principal AETHON configuration.
+
+For the V2 detector, WildJailbreak adversarial-benign FPR is 0.9952 (209/210), while FPR on the remaining ordinary-benign rows is 0.4187. The result confirms that strong in-domain cross-validation does not transfer reliably to the external domains used here.
+
+\section{Modern Baseline Attempt and Local-Only Decision}
+A ProtectAI DeBERTa-v3 prompt-injection detector adapter was implemented and smoke-tested locally. The integration validated label orientation, score extraction, batching, checkpoint/recovery behavior, and inference-free post-run analysis. The complete 9,139-prompt evaluation was not completed because CPU execution remained too slow. Meta Prompt Guard 2 was not evaluated because gated Hugging Face access was unavailable. GPU execution was subsequently skipped because the target infrastructure was inactive.
+
+Accordingly, this report does \textbf{not} present ProtectAI or Prompt Guard as full experimental baselines and does not claim superiority or inferiority relative to AETHON. Any smoke-test numbers are excluded from the publication tables because they are not comparable to the complete fixed evaluation.
+
+\section{Implications for the AETHON Paper}
+The revised evidence supports the following changes to the manuscript:
+
+\begin{itemize}[leftmargin=*]
+  \item Prompt-level AUROC/AUPRC must be reported independently of target LLM identity.
+  \item Previous target-specific AUROC values and the earlier FPR $<3\%$ claim should be retired unless independently reproduced under the revised protocol.
+  \item The L1 heuristic should be framed as a high-precision, very-low-coverage fail-fast filter.
+  \item The paper should not claim synergistic effectiveness between L1 and L2 under the current evidence.
+  \item Ordinary-benign FPR and adversarial-benign FPR should be reported separately to expose over-defense.
+  \item The character-SVM model should be presented as an ablation/variant, not as the replacement AETHON detector.
+  \item The modern-transformer comparison remains a limitation of the current local study and should not be fabricated from smoke runs.
+\end{itemize}
+
+\section{Conclusion}
+The revised local evaluation is methodologically stronger than the original target-model-grouped benchmark. It establishes a reproducible detector-only baseline, demonstrates that most AETHON effectiveness comes from the lightweight statistical classifier rather than the heuristic layer, and quantifies the principal weakness of the current architecture: poor cross-domain calibration and over-defense on jailbreak-shaped benign prompts. The selected character-SVM variant improves recall but substantially worsens FPR, so the leakage-free Logistic Regression cascade remains the more defensible lightweight reference configuration. The next scientific step, when compute and access permit, is a complete shared-protocol comparison with modern transformer guardrails and an end-to-end response-level ASR study.
+
+\section*{Reproducibility Note}
+The experiment code, fixed evaluation artifacts, model-selection outputs, error analyses, and publication-ready tables are maintained on the revision branch linked above. Generated raw prompts are not stored in committed result files; stable IDs and SHA-256 hashes are used for per-prompt traceability where applicable.
+
+\end{document}

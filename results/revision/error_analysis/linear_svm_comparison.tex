@@ -1,0 +1,12 @@
+\begin{tabular}{llrrrrrrrrrrrrrrr}
+\toprule
+dataset & aggregation & rows & benign & adversarial & auroc & auprc & precision & recall & f1 & fpr & tp & tn & fp & fn & median_latency_ms & p95_latency_ms \\
+\midrule
+prompt_injections_test & per_dataset & 116 & 56 & 60 & 0.958036 & 0.967005 & 0.976744 & 0.700000 & 0.815534 & 0.017857 & 42 & 55 & 1 & 18 & 0.235950 & 0.360300 \\
+prompt_injection_core & per_dataset & 6274 & 2538 & 3736 & 0.609488 & 0.730336 & 0.688822 & 0.488223 & 0.571429 & 0.324665 & 1824 & 1714 & 824 & 1912 & 0.225000 & 0.349440 \\
+jailbreakbench_behaviors & per_dataset & 200 & 100 & 100 & 0.526400 & 0.543016 & 0.532468 & 0.410000 & 0.463277 & 0.360000 & 41 & 64 & 36 & 59 & 0.225300 & 0.346205 \\
+wildjailbreak_eval & per_dataset & 2210 & 210 & 2000 & 0.503579 & 0.915509 & 0.904097 & 0.971000 & 0.936355 & 0.980952 & 1942 & 4 & 206 & 58 & 0.263600 & 0.395665 \\
+notinject & per_dataset & 339 & 339 & 0 & NA & NA & NA & NA & NA & 0.445428 & 0 & 188 & 151 & 0 & 0.225600 & 0.322380 \\
+__aggregate_micro__ & micro_pooled_fixed_rows & 9139 & 3243 & 5896 & 0.688963 & 0.808737 & 0.759621 & 0.652815 & 0.702180 & 0.375578 & 3849 & 2025 & 1218 & 2047 & 0.233400 & 0.362110 \\
+\bottomrule
+\end{tabular}

@@ -99,6 +99,14 @@ def get_model_driver(name: str, **kwargs):
     key = normalize_model_name(name)
     if key not in MODEL_REGISTRY:
         raise ValueError(f"[model_registry] Model '{name}' not registered. Available: {list(MODEL_REGISTRY.keys())}")
+    contract = kwargs.pop("contract_version", "aethon.generation.v1")
+    if contract not in {"aethon.generation.v1", "legacy-v1"}:
+        raise ValueError("Unknown generation contract")
+    if MODEL_REGISTRY[key].module not in {"models.openai_driver", "models.deepseek_driver"} and contract != "legacy-v1":
+        from aethon.generation import ExplicitCausalLMDriver
+        kwargs.setdefault("model_id", MODEL_VERSIONS[key])
+        kwargs.setdefault("name", key)
+        return ExplicitCausalLMDriver(**kwargs)
     return MODEL_REGISTRY[key](**kwargs)
 
 

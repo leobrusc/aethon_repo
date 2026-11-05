@@ -1,0 +1,6 @@
+dataset,n_paired,old_only_errors_b,new_only_errors_c,discordant,mcnemar_p_two_sided
+prompt_injections_test,116,13,0,13,0.000244140625
+prompt_injection_core,6274,511,833,1344,1.3934824713673765e-18
+jailbreakbench_behaviors,200,32,29,61,0.798152627305718
+wildjailbreak_eval,2210,157,10,167,4.029970997975849e-35
+notinject,339,9,57,66,1.1827848105236058e-09

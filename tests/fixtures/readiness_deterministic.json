@@ -1,0 +1,31 @@
+{
+  "protocol_id": "historical-deterministic-2026-v1",
+  "purpose": "Regression against immutable reference, not a new scientific evaluation",
+  "artifacts": {
+    "results/revision/detection/per_prompt_results.csv": [
+      "66130f23a92ea05fca856c808a4049245a31d0f6c530bbba517473be389e7a15",
+      "914901a1ed82836dfb42567cb376ec90f20459d1ad0f9b12d72568f4bfca202a"
+    ],
+    "src/models/aethon_tfidf_lr_revision.pkl": [
+      "21b715a1f1522475c6d20463bffaba21b853f1260159718d0a00f90efaf58080"
+    ]
+  },
+  "expected_pairs": 9139,
+  "epsilon": 1.2,
+  "seed": 42,
+  "score_atol": 1e-12,
+  "metric_atol": 1e-12,
+  "threshold": 0.5,
+  "dp_statistical": {
+    "draws": 15000,
+    "seed": 2026,
+    "epsilons": [
+      0.5,
+      1.2,
+      2.5
+    ],
+    "variance_relative_tolerance": 0.15,
+    "mean_standard_errors": 5.0
+  },
+  "trusted_model_review": "Versioned project TF-IDF + LogisticRegression from train_revision_detector.py; metadata fixes training source, parameters and sklearn 1.7.2. No arbitrary pickle path accepted."
+}

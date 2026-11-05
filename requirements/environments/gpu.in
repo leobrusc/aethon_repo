@@ -1,0 +1,6 @@
+-r ../../requirements-core.txt
+-r ../../requirements-research.txt
+-r ../../requirements-gpu.txt
+torch==2.14.1
+setuptools>=84.2.1
+wheel>=0.48

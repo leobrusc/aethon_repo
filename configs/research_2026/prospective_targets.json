@@ -1,0 +1,18 @@
+{
+  "status": "PREPARED_NOT_RUN",
+  "temperature": 0.0,
+  "max_tokens": 256,
+  "seed": 2026,
+  "conditions": ["B0", "B3"],
+  "b4": "reuse only after exact decision equivalence; separate audit timing",
+  "detector_metrics": "one result per detector, independent of target LLM",
+  "targets": [
+    {"registry_key": "phi-3-mini-4k-instruct", "model_id": "microsoft/Phi-3-mini-4k-instruct", "revision": null},
+    {"registry_key": "llama-3.2-1b-instruct", "model_id": "meta-llama/Llama-3.2-1B-Instruct", "revision": null},
+    {"registry_key": "llama-3.2-3b-instruct", "model_id": "meta-llama/Llama-3.2-3B-Instruct", "revision": null},
+    {"registry_key": "qwen2.5-7b-instruct", "model_id": "Qwen/Qwen2.5-7B-Instruct", "revision": null},
+    {"registry_key": "gpt-4o-mini", "credential_variable": "OPENAI_API_KEY", "snapshot": null}
+  ],
+  "launch_requirements": ["pin target revisions", "unseen prospective data and semantic overlap review", "frozen objective rubric", "private response directory with verified ACL and deletion date", "two blinded human reviewers"],
+  "note": "Protocol configuration, not a legacy BenchmarkConfig launch file"
+}

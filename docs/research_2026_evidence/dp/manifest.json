@@ -1,0 +1,51 @@
+{
+  "run_id": "dp-final-2026-10-28",
+  "status": "DONE",
+  "fingerprint": "50e4e66cdcc5090aab9bfc4877eb4dcbf6035cee310b4716f0cdbd36019f3467",
+  "configuration": {
+    "draws": 10000,
+    "seed": 2026,
+    "epsilon": [
+      0.5,
+      1.2,
+      2.5
+    ],
+    "implementation_sha256": "108901be17fc64b4361a6b4eb72600a5812444fa114ef18df23f2788678bfadc",
+    "numpy": "2.2.6"
+  },
+  "artifact_hashes": {
+    "utility.csv": "a2294c938c8217fa051093a3d074cdc106946069123ba0b3523972601d4663f3",
+    "utility.json": "33f5b3362366056ff443e9e3e0698928e9a9fe14cf8cfcc47edbcfd22859d1f7",
+    "utility.tex": "c1eab0cddd7fc502e57e2573911f55e0abd3c40a59473a05230ee12b9011569c",
+    "utility.md": "8a9ea2d1b225309bbc0f61f66c963da3f8a7ae8d109831fabac6717318bd4e74"
+  },
+  "experiment": "synthetic noise Monte Carlo, no model inference or private dataset",
+  "commit_sha": "ccd069d2800ede8293aba519f02b9da7fdea85ff",
+  "git_dirty": true,
+  "hardware": {
+    "system": "Windows",
+    "node": "CPQDGNR2JG4",
+    "release": "10",
+    "version": "10.0.26300",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 181 Stepping 0, GenuineIntel"
+  },
+  "python": "3.10.11",
+  "numpy": "2.2.6",
+  "duration_seconds": 1.085840300002019,
+  "expected_records": 30000,
+  "processed_records": 30000,
+  "batch_size": 1,
+  "warmup_per_epsilon": 100,
+  "seed": 2026,
+  "checkpoint": "whole deterministic restart with a new timing run ID",
+  "adjacency": "add/remove one event; contribution bounded by one per released counter",
+  "production_dp_claim": false,
+  "model": null,
+  "dataset": null,
+  "threshold": null,
+  "temperature": null,
+  "token_limit": null,
+  "errors": [],
+  "exclusions": []
+}

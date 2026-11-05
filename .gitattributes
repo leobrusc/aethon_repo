@@ -1,1 +1,19 @@
 *.jsonl filter=lfs diff=lfs merge=lfs -text
+# Preserve scientific evidence hashes across Windows/Linux checkouts.
+docs/research_2026_evidence/** -text whitespace=cr-at-eol
+# Matplotlib path elements contain valid trailing spaces; retain original bytes.
+docs/research_2026_evidence/nested/diagnostic_curves.svg whitespace=cr-at-eol,-blank-at-eol
+# Archived originals preserve existing Markdown hard breaks and historical bytes.
+docs/archive/2026-06/** whitespace=-blank-at-eol
+# Security locks and archived dependency snapshots have portable byte hashes.
+requirements/historical/** -text whitespace=cr-at-eol
+requirements/environments/*.lock -text whitespace=cr-at-eol
+docs/security/*.json -text whitespace=cr-at-eol
+docs/security/evidence/** -text whitespace=cr-at-eol
+# Frozen validation inputs and evidence retain their recorded bytes across OSes.
+tests/fixtures/readiness*.json -text whitespace=cr-at-eol
+docs/validation/** -text whitespace=cr-at-eol
+# Retain the exact protected historical report bytes; its manifest enforces the blob hash.
+results/revision/error_analysis/wildjailbreak_diagnosis.md whitespace=-blank-at-eof
+# New recovery evidence carries raw-output SHA-256 values; preserve recorded bytes.
+docs/integration/recovery-20261105/** -text whitespace=cr-at-eol

@@ -1,0 +1,12 @@
+[LOAD] Carregando dataset: C:\Users\leolima\Documents\aethon_repo\.worktrees\validation\datasets\hf_prompt-injections_test.parquet
+[NORMALIZE] 'prompt_injections_test' -> shape=(116, 4)
+Traceback (most recent call last):
+  File "C:\Users\leolima\Documents\aethon_repo\.worktrees\validation\scripts\validate_deterministic_readiness.py", line 122, in <module>
+    main()
+  File "C:\Users\leolima\Documents\aethon_repo\.worktrees\validation\scripts\validate_deterministic_readiness.py", line 66, in main
+    if hashlib.sha256(str(row.prompt_text).encode()).hexdigest() != record.prompt_sha256 or int(row.label) != int(record.true_label):
+                                                                    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leolima\Documents\aethon_repo\.worktrees\security\.venv-security\Lib\site-packages\pandas\core\generic.py", line 6321, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Series' object has no attribute 'prompt_sha256'

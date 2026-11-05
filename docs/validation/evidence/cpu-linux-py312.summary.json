@@ -1,0 +1,14 @@
+{
+  "lock": "cpu-linux-py312.lock",
+  "package_count": 68,
+  "platform_installation": "NOT_RUN",
+  "torch_binary_catalog": "NOT_AUDITED",
+  "upstream_and_dependency_audit": {
+    "status": "PASS",
+    "exit_code": 0,
+    "skipped": [],
+    "findings": [],
+    "raw": "results\\validation\\audits\\cpu-linux-py312.upstream.json",
+    "raw_sha256": "3b25741151c321df551417c2ae6cfdafdb63cae0dc8a16044b91bf8b4e05bd65"
+  }
+}

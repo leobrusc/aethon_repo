@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=84.2.1", "wheel>=0.48"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aethon-research"
+version = "0.1.0"
+description = "Reproducible adversarial prompt detection and LLM security research"
+readme = "README.md"
+requires-python = ">=3.12"
+dynamic = ["dependencies", "optional-dependencies"]
+
+[project.urls]
+Repository = "https://github.com/leobrusc/aethon_repo"
+
+[project.scripts]
+aethon = "aethon.__main__:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = false
+py-modules = ["aethon_calibrated_cascade", "aethon_full_pipeline", "aethon_heuristic", "aethon_ml_pipeline", "analysis_utils", "analyze_baseline_results", "baseline_detectors", "baseline_reliability", "close_harness", "complete_smoke_diagnostics", "dataset_loader", "final_harness_diagnostics", "model_registry", "model_selection", "prepare_datasets", "research_baseline", "research_dp", "research_e2e", "research_generalization", "research_integrity", "research_paired", "research_response", "run_baseline_benchmark", "run_benchmark", "run_detection_benchmark", "run_error_analysis", "run_experiment", "run_model_selection", "run_smoke_diagnostics", "test_model_loading", "test_openai", "train_detector", "train_revision_detector", "unified_detector_benchmark"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["aethon*", "benchmark*", "baselines*", "loaders*", "models*"]
+namespaces = true
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements-core.txt"]}
+
+[tool.setuptools.dynamic.optional-dependencies]
+research = {file = ["requirements-research.txt"]}
+gpu = {file = ["requirements-research.txt", "requirements-gpu.txt"]}
+dev = {file = ["requirements-tools.txt"]}
+
+[tool.ruff]
+target-version = "py310"
+extend-exclude = ["docs/archive", "venv", ".venv", ".worktrees"]
+
+[tool.ruff.lint]
+# Establish a blocking correctness gate without rewriting scientific source.
+select = ["E9", "F63", "F7", "F82"]

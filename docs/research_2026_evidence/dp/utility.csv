@@ -1,0 +1,4 @@
+epsilon_per_release,sensitivity,synthetic_count,draws,seed,warmup,releases,basic_composition_epsilon,mean_absolute_error,mean_relative_error,empirical_bias,empirical_variance,theoretical_variance,audit_draw_p50_ms,audit_draw_p95_ms,audit_draw_p99_ms,privacy_scope
+0.5,1,100,10000,2026,100,1,0.5,1.9914401173295864,0.019914401173295862,0.0762584461880925,7.836613206498258,8.0,0.0004,0.0005,0.0005,bounded counter releases only; not raw text or per-record identity
+1.2,1,100,10000,2026,100,1,1.2,0.8297667155539944,0.008297667155539944,0.03177435257837188,1.3605231261281698,1.388888888888889,0.0004,0.0005,0.0005,bounded counter releases only; not raw text or per-record identity
+2.5,1,100,10000,2026,100,1,2.5,0.3982880234659173,0.003982880234659173,0.015251689237618504,0.3134645282599304,0.32000000000000006,0.0004,0.0005,0.0019,bounded counter releases only; not raw text or per-record identity

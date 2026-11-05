@@ -1,0 +1,8 @@
+{
+  "status": "DONE",
+  "historical_reanalysis": true,
+  "new_detector_inference": false,
+  "n_paired": 9139,
+  "decision_mismatches": 0,
+  "source_sha256": "914901a1ed82836dfb42567cb376ec90f20459d1ad0f9b12d72568f4bfca202a"
+}

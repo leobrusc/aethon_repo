@@ -1,0 +1,8 @@
+{
+  "repo_id": "meta-llama/Llama-3.2-1B-Instruct",
+  "check": "gated repository access, no weight download",
+  "license_legal_review": "NOT_AUDITED",
+  "credential_material_exported": false,
+  "status": "PASS",
+  "access_verified": true
+}

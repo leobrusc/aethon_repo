@@ -1,0 +1,155 @@
+name: Quality and dependency hardening
+'on':
+  push:
+    branches:
+    - main
+    - refactor/repository-modernization-2026
+    - security/dependency-hardening-2026
+    - validation/experimental-readiness-2026
+  pull_request: null
+  workflow_dispatch: null
+permissions:
+  contents: read
+jobs:
+  cpu-development:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - os: ubuntu-latest
+          platform: linux
+          python: .venv-dev/bin/python
+          cpu_python: .venv-cpu/bin/python
+          controller: .venv-controller/bin/python
+        - os: windows-latest
+          platform: windows
+          python: .venv-dev/Scripts/python.exe
+          cpu_python: .venv-cpu/Scripts/python.exe
+          controller: .venv-controller/Scripts/python.exe
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    env:
+      HF_HUB_OFFLINE: '1'
+      TRANSFORMERS_OFFLINE: '1'
+      MPLBACKEND: Agg
+      PRE_COMMIT_HOME: .pre-commit-cache
+    steps:
+    - &id001
+      uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      with:
+        lfs: true
+        fetch-depth: 0
+        persist-credentials: false
+    - &id002
+      uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      with:
+        python-version: 3.12.10
+    - name: Bootstrap pinned installer
+      run: 'python -m pip install --isolated --require-hashes --only-binary=:all: -r requirements/environments/bootstrap.lock
+
+        uv python install 3.12.13
+
+        uv venv --python 3.12.13 .venv-controller
+
+        uv pip install --python ${{ matrix.controller }} --require-hashes --only-binary :all: -r requirements/environments/bootstrap.lock'
+    - name: Install isolated development profile
+      run: ${{ matrix.controller }} scripts/install_security_environment.py requirements/environments/dev-${{ matrix.platform
+        }}-py312.lock .venv-dev
+    - name: Correctness and all regression tests
+      run: '${{ matrix.python }} -m ruff check src scripts tests
+
+        ${{ matrix.python }} -m pytest -q
+
+        ${{ matrix.python }} -m pip check'
+    - name: Scientific preservation and legacy compatibility
+      run: '${{ matrix.python }} scripts/repository_inventory.py verify
+
+        ${{ matrix.python }} scripts/verify_research_evidence.py --git-tree HEAD
+
+        ${{ matrix.python }} scripts/validate_historical_decisions.py
+
+        ${{ matrix.python }} scripts/verify_historical_dependencies.py
+
+        ${{ matrix.python }} -m aethon benchmark --help
+
+        ${{ matrix.python }} src/run_benchmark.py --models gpt-4o-mini --datasets prompt_injections_test --conditions
+        B0 --dataset-limit 2 --dry-run --output-root results/security/legacy-smoke --run-id security-legacy'
+    - name: Immutable deterministic reference replay
+      run: ${{ matrix.python }} scripts/validate_deterministic_readiness.py --environment maintained --output results/validation/deterministic-${{
+        matrix.platform }}.json
+    - name: Audit development and PyTorch receipt
+      run: ${{ matrix.python }} scripts/audit_security_environment.py requirements/environments/dev-${{ matrix.platform
+        }}-py312.lock --installed
+    - name: Install and audit independent CPU profile
+      run: '${{ matrix.python }} scripts/install_security_environment.py requirements/environments/cpu-${{ matrix.platform
+        }}-py312.lock .venv-cpu
+
+        ${{ matrix.cpu_python }} -m aethon benchmark --models gpt-4o-mini --datasets prompt_injections_test --conditions
+        B0 --dataset-limit 2 --dry-run --output-root results/security/cpu-smoke --run-id security-cpu
+
+        ${{ matrix.python }} scripts/audit_security_environment.py requirements/environments/cpu-${{ matrix.platform
+        }}-py312.lock --installed --target-python ${{ matrix.cpu_python }}'
+    - name: Check complete publication diff
+      run: 'base="${PR_BASE:-a6090ae3030ef52f333fe14380839df4a7d879eb}"
+
+        ${{ matrix.python }} scripts/repository_guard.py --base "$base"'
+      env:
+        PR_BASE: ${{ github.event.pull_request.base.sha }}
+    - name: Publish scoped audit evidence
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: security-${{ matrix.platform }}
+        path: results/security/audits/
+        retention-days: 14
+        if-no-files-found: warn
+    - name: Publish non-text validation replay
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: validation-${{ matrix.platform }}
+        path: results/validation/deterministic-*.json
+        retention-days: 14
+        if-no-files-found: warn
+    name: cpu-development (${{ matrix.platform }})
+  research-and-gpu-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      HF_HUB_OFFLINE: '1'
+      TRANSFORMERS_OFFLINE: '1'
+    steps:
+    - *id001
+    - *id002
+    - name: Bootstrap isolated audit tools
+      run: 'python -m pip install --isolated --require-hashes --only-binary=:all: -r requirements/environments/bootstrap.lock
+
+        uv python install 3.12.13
+
+        uv venv --python 3.12.13 .venv-controller
+
+        uv pip install --python .venv-controller/bin/python --require-hashes --only-binary :all: -r requirements/environments/bootstrap.lock
+
+        .venv-controller/bin/python scripts/install_security_environment.py requirements/environments/dev-linux-py312.lock
+        .venv-dev'
+    - name: Install and verify research CPU profile
+      run: '.venv-dev/bin/python scripts/install_security_environment.py requirements/environments/research-linux-py312.lock
+        .venv-research
+
+        .venv-research/bin/python -m aethon baseline --help
+
+        .venv-dev/bin/python scripts/audit_security_environment.py requirements/environments/research-linux-py312.lock
+        --installed --target-python .venv-research/bin/python'
+    - name: Audit CUDA lock and upstream torch; GPU execution NOT_RUN
+      run: .venv-dev/bin/python scripts/audit_security_environment.py requirements/environments/gpu-linux-py312.lock
+    - name: Publish scoped audit evidence
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: security-research-cuda
+        path: results/security/audits/
+        retention-days: 14
+        if-no-files-found: warn

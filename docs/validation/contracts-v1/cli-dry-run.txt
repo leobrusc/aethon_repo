@@ -1,0 +1,20 @@
+[LOAD] Carregando dataset: C:\Users\leolima\Documents\aethon_repo\.worktrees\validation\datasets\notinject.jsonl
+[NORMALIZE] 'notinject' -> shape=(339, 4)
+[MODELS] llama-3.2-1b-instruct
+[MODEL] llama-3.2-1b-instruct
+[DATASET] notinject
+[CONDITION] B0
+[PROMPT] 1/2
+[ETA] unknown
+[MODEL] llama-3.2-1b-instruct
+[DATASET] notinject
+[CONDITION] B0
+[PROMPT] 2/2
+[ETA] 00:00:00
+{
+  "run_id": "generation-v1-smoke",
+  "rows_written": 2,
+  "failures": 0,
+  "master_csv": "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\validation\\results\\validation\\contracts-v1\\cli-dry-run\\aggregated\\master_results.csv",
+  "metrics_rows": 1
+}

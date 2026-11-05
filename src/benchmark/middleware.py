@@ -19,15 +19,22 @@ class MissingClassifierError(RuntimeError):
 class MiddlewareResult:
     heuristic_flag: Optional[bool]
     ml_prediction: Optional[int]
+    ml_score: Optional[float]
     detection_score: Optional[float]
     final_decision: str
     blocked: bool
     noisy_audit_count: Optional[float]
     latency_ms: float
+    heuristic_latency_ms: float = 0.0
+    classifier_latency_ms: float = 0.0
+    decision_latency_ms: float = 0.0
+    audit_latency_ms: float = 0.0
 
 
 class BenchmarkMiddleware:
     def __init__(self, ml_model_path: Optional[str], epsilon: float, seed: int):
+        if not np.isfinite(epsilon) or epsilon <= 0:
+            raise ValueError("epsilon must be finite and positive")
         self.epsilon = epsilon
         self.rng = np.random.default_rng(seed)
         self.ml_model = None
@@ -50,34 +57,60 @@ class BenchmarkMiddleware:
         started = time.perf_counter()
         heuristic_flag: Optional[bool] = None
         ml_prediction: Optional[int] = None
+        ml_score: Optional[float] = None
         detection_score: Optional[float] = None
         noisy_count: Optional[float] = None
+        heuristic_ms = classifier_ms = audit_ms = decision_ms = 0.0
 
         if condition == "B0":
+            stage_started = time.perf_counter()
             blocked = False
+            decision_ms = (time.perf_counter()-stage_started)*1000
         elif condition == "B1":
+            stage_started = time.perf_counter()
             heuristic_flag = is_adversarial_heuristic(prompt)
+            heuristic_ms = (time.perf_counter()-stage_started)*1000
+            stage_started = time.perf_counter()
             blocked = heuristic_flag
             detection_score = float(heuristic_flag)
+            decision_ms = (time.perf_counter()-stage_started)*1000
         elif condition == "B2":
-            ml_prediction, detection_score = self._predict_ml(prompt)
-            blocked = ml_prediction == 1
-        elif condition in {"B3", "B4"}:
-            heuristic_flag = is_adversarial_heuristic(prompt)
+            stage_started = time.perf_counter()
             ml_prediction, ml_score = self._predict_ml(prompt)
+            classifier_ms = (time.perf_counter()-stage_started)*1000
+            stage_started = time.perf_counter()
+            detection_score = ml_score if ml_score is not None else float(ml_prediction)
+            blocked = ml_prediction == 1
+            decision_ms = (time.perf_counter()-stage_started)*1000
+        elif condition in {"B3", "B4"}:
+            stage_started = time.perf_counter()
+            heuristic_flag = is_adversarial_heuristic(prompt)
+            heuristic_ms = (time.perf_counter()-stage_started)*1000
+            stage_started = time.perf_counter()
+            ml_prediction, ml_score = self._predict_ml(prompt)
+            classifier_ms = (time.perf_counter()-stage_started)*1000
+            stage_started = time.perf_counter()
             blocked = heuristic_flag or ml_prediction == 1
             detection_score = max(float(heuristic_flag), ml_score if ml_score is not None else float(ml_prediction))
+            decision_ms = (time.perf_counter()-stage_started)*1000
             if condition == "B4":
+                stage_started = time.perf_counter()
                 noisy_count = float(1 + self.rng.laplace(0, 1 / self.epsilon))
+                audit_ms = (time.perf_counter()-stage_started)*1000
         else:
             raise ValueError(f"Unknown condition: {condition}")
 
         return MiddlewareResult(
             heuristic_flag=heuristic_flag,
             ml_prediction=ml_prediction,
+            ml_score=ml_score,
             detection_score=detection_score,
             final_decision="mitigate" if blocked else "allow",
             blocked=bool(blocked),
             noisy_audit_count=noisy_count,
             latency_ms=(time.perf_counter() - started) * 1000,
+            heuristic_latency_ms=heuristic_ms,
+            classifier_latency_ms=classifier_ms,
+            decision_latency_ms=decision_ms,
+            audit_latency_ms=audit_ms,
         )

@@ -1,0 +1,51 @@
+{
+  "model_path": "C:\\Users\\leolima\\Documents\\aethon_repo\\src\\models\\aethon_tfidf_lr_revision.pkl",
+  "training_dataset": "prompt_injections_train",
+  "excluded_evaluation_datasets": [
+    "prompt_injections_test",
+    "prompt_injection_core",
+    "jailbreakbench_behaviors",
+    "wildjailbreak_eval",
+    "notinject",
+    "cyberseceval_prompt_injection",
+    "red_team_attempts",
+    "kaggle_redteam",
+    "advbench_harmful"
+  ],
+  "number_of_samples": 546,
+  "benign": 343,
+  "adversarial": 203,
+  "dataset_sha256": "2e10bc7ab30f542c97e4e83e2a5683000b5057d25ec10908784c631d44124c04",
+  "dataset_source_file": "hf_prompt-injections_train.parquet",
+  "tfidf_parameters": {
+    "max_features": 5000,
+    "analyzer": "word",
+    "ngram_range": [
+      1,
+      1
+    ],
+    "lowercase": true,
+    "min_df": 1,
+    "max_df": 1.0,
+    "sublinear_tf": false,
+    "norm": "l2",
+    "use_idf": true,
+    "smooth_idf": true
+  },
+  "logistic_regression_parameters": {
+    "max_iter": 1000,
+    "random_state": 42,
+    "solver": "lbfgs",
+    "penalty": "l2",
+    "C": 1.0,
+    "class_weight": null,
+    "fit_intercept": true,
+    "tol": 0.0001
+  },
+  "decision_threshold": 0.5,
+  "random_state": 42,
+  "sklearn_version": "1.7.2",
+  "python_version": "3.10.11",
+  "git_commit": "abe9e757bbb7112a68e25bbef872e88d7ddbe96a",
+  "timestamp_utc": "2026-09-09T18:26:56.759799+00:00"
+}

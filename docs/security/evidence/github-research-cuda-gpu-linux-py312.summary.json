@@ -1,0 +1,14 @@
+{
+  "lock": "gpu-linux-py312.lock",
+  "package_count": 110,
+  "platform_installation": "NOT_RUN",
+  "torch_binary_catalog": "NOT_AUDITED",
+  "upstream_and_dependency_audit": {
+    "status": "PASS",
+    "exit_code": 0,
+    "skipped": [],
+    "findings": [],
+    "raw": "results/security/audits/gpu-linux-py312.upstream.json",
+    "raw_sha256": "2b766340e3c2fb95445e2d0e1a27cffea1fd5f02405fd11802bc5d87b93f2d31"
+  }
+}
