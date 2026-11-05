@@ -1,8 +1,9 @@
 # Integration and recovery plan — corrected merge ancestry
 
-Snapshot refs and CI are in [PRE_MERGE_AUDIT.md](PRE_MERGE_AUDIT.md). Current
-heads are main `2964556`, PR #1 `544c363`, #2 `a6090ae`, #3 `3ca7eaf`, #4
-`147747c`, audit `793356a`. Each source head descends from its predecessor.
+Snapshot refs and CI are in [PRE_MERGE_AUDIT.md](PRE_MERGE_AUDIT.md). The code
+heads are main `2964556`, PR #1 `544c363`, #2 `a6090ae`, #3 `3ca7eaf`, and #4
+`147747c`. Each source head descends from its predecessor. This report PR is a
+documentation-only child of PR #4; re-read its live head from GitHub before use.
 
 ## Merge commits in this stack
 

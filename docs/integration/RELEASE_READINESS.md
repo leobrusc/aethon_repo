@@ -13,13 +13,13 @@ research/CUDA audit job. Local quality, integrity and replay checks passed in
 their stated scope. The 127 scientific files, 31 evidence files, six historical
 dependency manifests and 9,139 paired B3/B4 records retain verified identities.
 
-The audit-report PR #5 head `e8942ae7adc0f37f19515b4ec2193a195a167878` passed
-all three initial CI jobs: Linux CPU, Windows CPU and research/GPU audit in
+Audit PR #5 snapshot `e8942ae7adc0f37f19515b4ec2193a195a167878` passed all
+three initial CI jobs: Linux CPU, Windows CPU and research/GPU audit in
 [workflow run 42019751311](https://github.com/leobrusc/aethon_repo/actions/runs/42019751311).
-After the merge-plan correction, current PR #5 head is
-`793356a377692613ad73ae8ffcb17bfd4896aff9`, directly based on validation head
-`147747cf855dbacbb221f2074908dde1b0c77860`. Current ancestry is 62 commits
-ahead of main and zero behind. Its updated CI is in progress; check the PR before
+PR #5 remains directly based on validation head
+`147747cf855dbacbb221f2074908dde1b0c77860`; the correction adds documentation
+only. Main remains an ancestor of the report branch with no divergence. The
+latest documentation head has new CI in progress; use the live PR checks before
 relying on that result.
 
 ## Status
@@ -27,8 +27,8 @@ relying on that result.
 | Item | State | Interpretation |
 | --- | --- | --- |
 | Four PR ancestry and GitHub mergeability | PASS | At the audited snapshot refs form the 20/7/5/8 commit stack; each PR open, draft and mergeable |
-| Audit PR ancestry | PASS | Corrected PR #5 head `793356a` is two commits beyond PR #4 head; main is ancestor, 62 ahead and zero behind |
-| Linux/Windows CI and research audit | PASS / IN_PROGRESS | PR #4 workflows and initial PR #5 head `e8942ae` passed; corrected PR #5 head `793356a` checks are pending |
+| Audit PR ancestry | PASS | PR #5 is a direct documentation-only descendant of PR #4; main is an ancestor with zero divergence |
+| Linux/Windows CI and research audit | PASS / IN_PROGRESS | PR #4 and PR #5 snapshot `e8942ae` passed; later documentation-head checks are running |
 | Sequential target merge commits | NOT_YET_CREATED | Existing PR heads descend from one another, but merge commits produced on current sibling target branches are not automatically ancestors of the following source heads |
 | Tests, Ruff, package check, install and CLI | PASS | Maintained suite, historical contract tests and isolated install verified |
 | Scientific hashes and replay | PASS | 127 files, 31 evidence items, six manifests, 9,139 pairs |
