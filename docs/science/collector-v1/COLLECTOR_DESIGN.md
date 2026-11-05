@@ -120,11 +120,19 @@ is not an independent observation. All blocked B3/B4 slots remain explicit.
 ## Recovery and durability
 
 Manifest, response/evaluation objects, request pointers and event files are immutable.
+Every object and pointer also carries the run fingerprint; pointers bind their
+logical checkpoint name. Even an otherwise valid hashed checkpoint copied from
+another run is rejected, before any continuation reaches a judge.
 Writers publish flushed files through atomic no-clobber hard links; existing
 different bytes, symlinks, hard-linked evidence, chain gaps or changed hashes fail
 closed. A single-writer lock is released only by its owner; stale/foreign locks are
 never removed automatically. Object hashes and previous-event hashes are checked
 when loading. Run/config/inventory/authorization mismatches cannot share a run ID.
+Events carry UTC timestamps and generation/evaluation wall durations use a
+monotonic nanosecond clock. Durable response/evaluation objects retain the original
+durations through recovery; interrupted unknown calls do not receive invented times.
+These observations do not enter request-equivalence or schedule fingerprints and
+are not exported as performance evidence from synthetic tests.
 
 Inference/evaluation intent is journaled before invoking the adapter. If the
 response/evaluation checkpoint is durable, recovery verifies and reuses it. If

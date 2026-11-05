@@ -201,6 +201,16 @@ def test_order_independent_inventory_and_deterministic_schedule(setup_run):
     assert len(set(manifest["schedule"])) == 120
 
 
+def test_private_events_retain_utc_and_monotonic_timing_provenance(setup_run):
+    from aethon.pilot_governance import utc
+    from aethon.pilot_storage import unseal
+    run = collector(setup_run); run.run(max_slots=1)
+    events = [unseal(p.read_bytes()) for p in run.store.events.glob('*.json')]
+    assert all(utc(e['recorded_utc']).tzinfo is not None for e in events)
+    slot = next(s for s in run.store.slots.values() if s['state'] == 'completed')
+    assert slot['generation_elapsed_ns'] >= 0 and slot['evaluation_elapsed_ns'] >= 0
+
+
 def test_partial_resume_does_not_repeat_completed_calls(setup_run):
     driver = SyntheticDriver()
     first = collector(setup_run, driver); first.run(max_slots=13)
@@ -336,6 +346,22 @@ def test_fingerprint_change_and_duplicate_identifiers_rejected(setup_run):
     assert first.manifest["config"] == setup_run["manifest"]["config"]
     rows = synthetic_rows(); rows[1] = rows[0]
     with pytest.raises(ValueError): validate_inventory(rows)
+
+
+def test_valid_checkpoint_copied_from_another_run_is_rejected(setup_run):
+    f = setup_run; first = f["store"]()
+    reference = first.put({"synthetic_only": True})
+    name = "a"*64+".response"
+    first.pointer(name, {"reference": reference})
+    f["subject"]["run_id"] = "another-synthetic-run"
+    envelopes = {gate: f["receipt"](gate) for gate in f["envelopes"]}
+    permission = authorize(f["authority"], envelopes, f["subject"], f["receipt"]("launch_intent"), f["technical"])
+    manifest = make_manifest(f["rows"], f["config"], f["subject"], f["manifest"]["retention"])
+    second = PrivateRunStore(f["private"], manifest, permission, [f["repo"]], f["observation"])
+    shutil.copyfile(first.objects/(reference+".json"), second.objects/(reference+".json"))
+    shutil.copyfile(first.path/(name+".json"), second.path/(name+".json"))
+    with pytest.raises(CorruptCheckpoint): second.get(reference)
+    with pytest.raises(CorruptCheckpoint): second.pointer(name)
 
 
 def test_storage_inside_any_repository_or_worktree_rejected(setup_run):

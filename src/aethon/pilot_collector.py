@@ -8,6 +8,7 @@ import random
 import io
 import socket
 import subprocess
+import time
 
 from aethon.generation import GenerationResult
 from aethon.pilot_storage import TERMINAL, CorruptCheckpoint
@@ -196,26 +197,30 @@ class Collector:
                 return
             store.transition(key, "started", reason="inference_intent_durable", attempted=True,
                              request_fingerprint=request["request_fingerprint"], decision=store.defenses[key])
+            started = time.perf_counter_ns()
             try:
                 with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
                     result = self.driver.generate(request, self.config)
             except UnauthorizedExternalOperation:
                 raise ContractError("unauthorized_external_operation")
             except Exception as exc:
-                store.transition(key, "inference_error", reason="inference_exception", exception_type=type(exc).__name__)
+                store.transition(key, "inference_error", reason="inference_exception", exception_type=type(exc).__name__,
+                                 generation_elapsed_ns=time.perf_counter_ns()-started)
                 return
             if result is None:
-                store.transition(key, "no_response", reason="missing_generation")
+                store.transition(key, "no_response", reason="missing_generation", generation_elapsed_ns=time.perf_counter_ns()-started)
                 return
             if fingerprint(self.config) != self.config_fingerprint: raise ContractError("collector_configuration_changed")
             check_result(result, request, self.config, self.driver.decode)
-            reference = store.put({"generation_result": result.to_dict(), "request_fingerprint": request["request_fingerprint"]})
+            reference = store.put({"generation_result": result.to_dict(), "request_fingerprint": request["request_fingerprint"],
+                                   "generation_elapsed_ns": time.perf_counter_ns()-started})
             pointer = {"reference": reference, "request_fingerprint": request["request_fingerprint"]}
             store.pointer(key+".response", pointer)
         check_result(result, request, self.config, self.driver.decode)
         state = "no_response" if not result.generated_ids or not result.continuation.strip() else "truncated" if result.stop_reason != "eos" else "generated"
         store.transition(key, state, reason="empty_continuation" if state == "no_response" else "non_eos_unresolved" if state == "truncated" else "generated_interval_verified",
                          response_ref=pointer["reference"], generation_metadata=result.metadata,
+                         generation_elapsed_ns=store.get(pointer["reference"])["generation_elapsed_ns"],
                          generated_tokens=len(result.generated_ids), request_fingerprint=request["request_fingerprint"])
 
     def _evaluate(self, slot, row, request):
@@ -234,6 +239,7 @@ class Collector:
                 store.transition(key, "evaluation_interrupted", reason="evaluation_started_without_durable_result")
                 return
             store.transition(key, "evaluating", reason="evaluation_intent_durable")
+            started = time.perf_counter_ns()
             try:
                 with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
                     judgment = self.judge(continuation=result.continuation,
@@ -243,15 +249,18 @@ class Collector:
                     raise ValueError("Invalid evaluation")
                 if judgment["status"] != "indeterminate" and not judgment.get("evidence_ref"):
                     raise ValueError("Missing evidence")
-                reference = store.put({"judgment": judgment, "response_ref": slot["response_ref"]})
+                reference = store.put({"judgment": judgment, "response_ref": slot["response_ref"],
+                                       "evaluation_elapsed_ns": time.perf_counter_ns()-started})
                 pointer = {"reference": reference, "response_ref": slot["response_ref"]}
                 store.pointer(key+".evaluation", pointer)
             except UnauthorizedExternalOperation:
                 raise ContractError("unauthorized_external_operation")
             except Exception as exc:
-                store.transition(key, "evaluation_error", reason="evaluation_exception", exception_type=type(exc).__name__)
+                store.transition(key, "evaluation_error", reason="evaluation_exception", exception_type=type(exc).__name__,
+                                 evaluation_elapsed_ns=time.perf_counter_ns()-started)
                 return
-        store.transition(key, "completed", evaluation_ref=pointer["reference"], reason="evaluation_recorded")
+        store.transition(key, "completed", evaluation_ref=pointer["reference"], reason="evaluation_recorded",
+                         evaluation_elapsed_ns=store.get(pointer["reference"])["evaluation_elapsed_ns"])
 
     def run(self, max_slots=None):
         store = self.store

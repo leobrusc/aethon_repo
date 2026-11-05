@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from collections import Counter
 from contextlib import contextmanager
-from datetime import date
+from datetime import date, datetime, timezone
 import json
 import os
 from pathlib import Path
@@ -12,7 +12,7 @@ import stat
 import subprocess
 import uuid
 
-from aethon.pilot_governance import canonical, digest
+from aethon.pilot_governance import canonical, digest, utc
 from aethon.prospective import fingerprint
 
 
@@ -200,6 +200,8 @@ class PrivateRunStore:
             if path.name != f"{self.sequence + 1:06d}.json" or path.is_symlink() or path.stat().st_nlink != 1:
                 raise CorruptCheckpoint("Journal gap or unsafe event")
             raw = path.read_bytes(); event = unseal(raw)
+            try: utc(event["recorded_utc"])
+            except (KeyError, ValueError): raise CorruptCheckpoint("Missing event time provenance")
             if event["sequence"] != self.sequence + 1 or event["previous_sha256"] != self.previous:
                 raise CorruptCheckpoint("Journal chain mismatch")
             if event["kind"] == "slot":
@@ -218,7 +220,9 @@ class PrivateRunStore:
             self.sequence += 1; self.previous = digest(raw)
 
     def put(self, payload):
-        self.guard(); raw = canonical(sealed(payload)); key = digest(raw)
+        self.guard()
+        raw = canonical(sealed({"run_fingerprint": self.manifest["run_fingerprint"], "data": payload}))
+        key = digest(raw)
         immutable_write(self.objects/(key+".json"), raw)
         return key
 
@@ -228,11 +232,15 @@ class PrivateRunStore:
         if path.is_symlink() or path.stat().st_nlink != 1: raise CorruptCheckpoint("Unsafe object")
         raw = path.read_bytes()
         if digest(raw) != key: raise CorruptCheckpoint("Corrupted object")
-        return unseal(raw)
+        scoped = unseal(raw)
+        if scoped.get("run_fingerprint") != self.manifest["run_fingerprint"]:
+            raise CorruptCheckpoint("Foreign-run object rejected")
+        return scoped["data"]
 
     def append(self, event):
         self.guard()
-        event = {**event, "sequence": self.sequence+1, "previous_sha256": self.previous}
+        event = {**event, "sequence": self.sequence+1, "previous_sha256": self.previous,
+                 "recorded_utc": datetime.now(timezone.utc).isoformat()}
         raw = canonical(sealed(event))
         immutable_write(self.events/f"{self.sequence+1:06d}.json", raw)
         if event["kind"] == "slot":
@@ -259,10 +267,14 @@ class PrivateRunStore:
             raise ValueError("Unsafe checkpoint name")
         self.guard()
         path = self.path/(name+".json")
-        if payload is not None: immutable_write(path, canonical(sealed(payload)))
+        if payload is not None:
+            immutable_write(path, canonical(sealed({"run_fingerprint": self.manifest["run_fingerprint"], "pointer_name": name, "data": payload})))
         if not path.exists(): return None
         if path.is_symlink() or path.stat().st_nlink != 1: raise CorruptCheckpoint("Unsafe checkpoint pointer")
-        return unseal(path.read_bytes())
+        scoped = unseal(path.read_bytes())
+        if scoped.get("run_fingerprint") != self.manifest["run_fingerprint"] or scoped.get("pointer_name") != name:
+            raise CorruptCheckpoint("Foreign-run pointer rejected")
+        return scoped["data"]
 
     def summary(self):
         return {"schema": "aethon.pilot-accounting.v1", "expected_slots": 120,
