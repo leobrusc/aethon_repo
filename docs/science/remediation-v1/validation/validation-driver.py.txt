@@ -1,0 +1,69 @@
+from pathlib import Path
+import hashlib
+import json
+import os
+import subprocess
+from datetime import datetime,timezone
+ROOT=Path(__file__).resolve().parents[3]
+WT=ROOT/'.worktrees/collector-remediation'
+PY=str(ROOT/'.worktrees/security/.venv-security/Scripts/python.exe')
+OUT=WT/'results/audit'/('remediation-final-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'))
+OUT.mkdir(parents=True,exist_ok=False)
+ENV=dict(os.environ,PYTHONPATH=os.pathsep.join([str(WT/'src'),str(WT/'tests')]),
+    HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',HF_DATASETS_OFFLINE='1',AETHON_OFFLINE_AUDIT_OUTPUT=str(OUT/'network-audit.json'))
+checks=[]
+def run(name,args,expected=0):
+    p=subprocess.run(args,cwd=WT,env=ENV,capture_output=True,timeout=900)
+    raw=p.stdout+p.stderr
+    (OUT/(name+'.txt')).write_bytes(raw)
+    checks.append({'name':name,'command':args,'cwd':str(WT),'exit_code':p.returncode,'expected_exit_code':expected,
+                   'status':'PASS' if p.returncode==expected else 'FAIL','sha256':hashlib.sha256(raw).hexdigest()})
+    (OUT/'checks.json').write_text(json.dumps(checks,indent=2)+'\n',encoding='utf-8')
+    print(name,checks[-1]['status'],raw.decode(errors='replace')[-1500:],flush=True)
+    if p.returncode!=expected: raise SystemExit(1)
+run('pytest',[PY,'-m','pytest','-q','-p','no:cacheprovider','-p','pilot_network_guard','--basetemp',str(OUT/'synthetic-temp')])
+run('ruff',[PY,'-m','ruff','check','src','tests','scripts'])
+run('preflight',[PY,'scripts/prospective_collector.py','preflight'],expected=2)
+run('unauthorized-collect',[PY,'scripts/prospective_collector.py','collect'],expected=2)
+run('original-preflight',[PY,'scripts/prepare_prospective_pilot.py','--manifest','configs/science/pilot_v1.json','--fixtures','tests/fixtures/prospective_pilot_v1.json','--output',str(OUT/'parent-preflight')],expected=2)
+for name,args in [('127',['scripts/repository_inventory.py','verify']),('31',['scripts/verify_research_evidence.py','--git-tree','HEAD']),('six',['scripts/verify_historical_dependencies.py'])]:
+    run('integrity-'+name,[PY,*args])
+run('pip-check',[PY,'-m','pip','check'])
+run('lfs-fsck',['git','lfs','fsck'])
+run('lfs-files',['git','lfs','ls-files','--long'])
+run('diff-check',['git','diff','--check'])
+import sys
+sys.path.insert(0,str(WT/'src'))
+import pandas as pd
+import numpy as np
+from benchmark.detection import _metric_values
+name='results/revision/detection/per_prompt_results.csv'
+frame=pd.read_csv(WT/name,dtype={'prompt_id':str})
+a,b=[frame[frame.condition==c] for c in ['B3','B4']]
+paired=a.merge(b,on=['dataset','prompt_id','prompt_sha256'],how='outer',validate='one_to_one',indicator=True)
+assert len(paired)==9139 and (paired._merge=='both').all()
+assert (paired.true_label_x==paired.true_label_y).all() and (paired.final_prediction_x==paired.final_prediction_y).all()
+published=pd.read_csv(WT/'results/revision/detection/metrics_by_dataset.csv').set_index(['dataset','condition'])
+count=0
+for key,group in frame.groupby(['dataset','condition']):
+    actual=_metric_values(group)
+    for metric in ['f1','fpr','auroc','auprc']:
+        assert np.isclose(actual[metric],float(published.loc[key,metric]),atol=1e-12,rtol=0,equal_nan=True)
+        count+=1
+assert count==80
+def git(*args,cwd=WT):return subprocess.check_output(['git',*args],cwd=cwd)
+assert git('show','HEAD:'+name)==git('show','9ed55709:'+name)
+for line in git('lfs','ls-files','--long').decode().splitlines():
+    digest,marker,path=line.split(maxsplit=2)
+    assert marker=='*' and hashlib.sha256((WT/path).read_bytes()).hexdigest()==digest
+preserved=json.loads((WT/'docs/modernization/preserved-local-state.json').read_text())
+assert all(hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==digest for name,digest in preserved.items())
+assert not git('diff','--name-only','--','results','datasets','requirements','requirements.txt','requirements-dev.txt')
+assert json.loads((OUT/'network-audit.json').read_text())['status']=='PASS'
+summary={'status':'PASS','classification':'PILOT_BLOCKED','target_model_inference':'NOT_RUN',
+    'pilot_executed':False,'historical_pairs':9139,'decision_mismatches':0,'historical_metrics_checked':80,
+    'original_five_files_preserved':True,'locks_and_historical_results_unchanged':True,
+    'native_crypto':'tested_with_ephemeral_synthetic_keys','gates':{name:'PENDING' for name in ['independent_inventory','semantic_review','rubric_review','reviewer_assignment','private_storage','model_assets','hardware_check','execution_authorization']}}
+(OUT/'summary.json').write_text(json.dumps(summary,indent=2)+'\n',encoding='utf-8')
+print('FINAL VALIDATION PASS; PILOT_BLOCKED; evidence '+str(OUT),flush=True)
+

@@ -1,0 +1,47 @@
+.....F........................................F.......................F. [ 81%]
+.....F..........                                                         [100%]
+================================== FAILURES ===================================
+___________ test_verifier_missing_identity_and_wrong_dependency_pin ___________
+tests\test_pilot_remediation.py:50: in test_verifier_missing_identity_and_wrong_dependency_pin
+    with pytest.raises(ValueError): OpenSSLVerifier(str(tool), digest(tool.read_bytes()), {str(tool.with_name("dep")): "0"*64})
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\aethon\pilot_governance.py:107: in __init__
+    identity = path_identity(dependency, file=True)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\aethon\pilot_identity.py:14: in path_identity
+    info = item.lstat()
+           ^^^^^^^^^^^^
+..\..\..\..\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\pathlib.py:847: in lstat
+    return self.stat(follow_symlinks=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\pathlib.py:840: in stat
+    return os.stat(self, follow_symlinks=follow_symlinks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   FileNotFoundError: [WinError 2] O sistema não pode encontrar o arquivo especificado: 'C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\collector-remediation\\results\\audit\\remediation-dev-1\\test_verifier_missing_identity0\\dep'
+_______ test_private_events_retain_utc_and_monotonic_timing_provenance ________
+tests\test_pilot_collector.py:227: in test_private_events_retain_utc_and_monotonic_timing_provenance
+    slot = next(s for s in run.store.slots.values() if s['state'] == 'completed')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   StopIteration
+_________ test_fingerprint_change_and_duplicate_identifiers_rejected __________
+tests\test_pilot_collector.py:362: in test_fingerprint_change_and_duplicate_identifiers_rejected
+    PrivateRunStore(setup_run["private"], changed, setup_run["permission"], [setup_run["repo"]], setup_run["observation"])
+src\aethon\pilot_storage.py:164: in __init__
+    raise PermissionError("Native object-confined storage NOT_AUDITED; writes disabled")
+E   PermissionError: Native object-confined storage NOT_AUDITED; writes disabled
+_____ test_pending_config_preflight_has_all_eight_gates_and_no_execution ______
+tests\test_pilot_collector.py:441: in test_pending_config_preflight_has_all_eight_gates_and_no_execution
+    report, context = inspect_runtime(root)
+                      ^^^^^^^^^^^^^^^^^^^^^
+src\aethon\pilot_runtime.py:58: in inspect_runtime
+    config = load_config(root)
+             ^^^^^^^^^^^^^^^^^
+src\aethon\pilot_runtime.py:50: in load_config
+    raise ValueError("Collector implementation seal mismatch")
+E   ValueError: Collector implementation seal mismatch
+=========================== short test summary info ===========================
+FAILED tests/test_pilot_remediation.py::test_verifier_missing_identity_and_wrong_dependency_pin
+FAILED tests/test_pilot_collector.py::test_private_events_retain_utc_and_monotonic_timing_provenance
+FAILED tests/test_pilot_collector.py::test_fingerprint_change_and_duplicate_identifiers_rejected
+FAILED tests/test_pilot_collector.py::test_pending_config_preflight_has_all_eight_gates_and_no_execution
+4 failed, 84 passed in 143.39s (0:02:23)

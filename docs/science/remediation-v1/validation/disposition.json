@@ -1,0 +1,64 @@
+{
+  "source_commit": "458bfddd13703a2e4561996b6c863e8539a767dc",
+  "review_parent": "355e07d9bb20200df953628d49f20368d6439e54",
+  "technical_classification": "REMEDIATION_PARTIAL",
+  "operational_classification": "PILOT_BLOCKED",
+  "SRC-01": {
+    "denial_tests": "PASS",
+    "native_execution": "NOT_AUDITED",
+    "operational_closure": "FAIL"
+  },
+  "SRC-02": {
+    "denial_tests": "PASS",
+    "native_confinement": "NOT_AUDITED",
+    "operational_closure": "FAIL"
+  },
+  "SCI-01": "PASS_STRUCTURAL",
+  "SCI-02": "PASS_SYNTHETIC_SOFTWARE_CONTRACT",
+  "full_pytest_passed": 249,
+  "warnings": 1,
+  "skips": 0,
+  "new_acceptance_cases": 35,
+  "real_inference": "NOT_RUN",
+  "pilot_executed": false,
+  "native_linux_execution": "NOT_RUN",
+  "exact_binary_vulnerability_coverage": "NOT_AUDITED",
+  "independent_raw_dataset_digest": "NOT_AUDITED",
+  "post_commit_checks": [
+    {
+      "name": "committed-31",
+      "command": [
+        "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+        "scripts/verify_research_evidence.py",
+        "--git-tree",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "publication-guard",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "355e07d",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "committed-guard",
+      "command": [
+        "C:\\Users\\leolima\\Documents\\aethon_repo\\.worktrees\\security\\.venv-security\\Scripts\\python.exe",
+        "scripts/repository_guard.py",
+        "--base",
+        "355e07d9bb20200df953628d49f20368d6439e54"
+      ],
+      "exit_code": 0,
+      "status": "PASS"
+    }
+  ],
+  "all_eight_real_gates": "PENDING"
+}
