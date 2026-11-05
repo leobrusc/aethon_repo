@@ -2,7 +2,7 @@
 
 Snapshot refs and CI are in [PRE_MERGE_AUDIT.md](PRE_MERGE_AUDIT.md). Current
 heads are main `2964556`, PR #1 `544c363`, #2 `a6090ae`, #3 `3ca7eaf`, #4
-`147747c`, audit `e8942ae`. Each source head descends from its predecessor.
+`147747c`, audit `793356a`. Each source head descends from its predecessor.
 
 ## Merge commits in this stack
 
