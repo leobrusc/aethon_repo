@@ -39,3 +39,7 @@ tests/test_pilot_remediation.py text eol=lf
 docs/science/remediation-v1/validation/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 tests/test_native_security_review.py text eol=lf
 docs/science/native-security-v1/evidence/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+tests/test_ed25519_proposal.py text eol=lf
+tests/ed25519_contract_cases.py text eol=lf
+tests/fixtures/ed25519_public_vectors.json -text whitespace=cr-at-eol
+docs/security/ed25519-v1/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

@@ -1,0 +1,110 @@
+{
+  "scope": "metadata/API queries only; no wheel payload or attestation cryptographic verification",
+  "queried_at": "2026-11-05T19:05:21.756552+00:00",
+  "results": [
+    {
+      "kind": "osv",
+      "key": "cryptography",
+      "url": "https://api.osv.dev/v1/query",
+      "http_status": 200,
+      "response_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "status": "QUERY_COMPLETE",
+      "vulnerability_ids": [],
+      "request": {
+        "package": {
+          "name": "cryptography",
+          "ecosystem": "PyPI"
+        },
+        "version": "50.0.2"
+      }
+    },
+    {
+      "kind": "osv",
+      "key": "cffi",
+      "url": "https://api.osv.dev/v1/query",
+      "http_status": 200,
+      "response_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "status": "QUERY_COMPLETE",
+      "vulnerability_ids": [],
+      "request": {
+        "package": {
+          "name": "cffi",
+          "ecosystem": "PyPI"
+        },
+        "version": "2.1.1"
+      }
+    },
+    {
+      "kind": "osv",
+      "key": "pycparser",
+      "url": "https://api.osv.dev/v1/query",
+      "http_status": 200,
+      "response_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "status": "QUERY_COMPLETE",
+      "vulnerability_ids": [],
+      "request": {
+        "package": {
+          "name": "pycparser",
+          "ecosystem": "PyPI"
+        },
+        "version": "3.12"
+      }
+    },
+    {
+      "kind": "provenance",
+      "key": "0",
+      "url": "https://pypi.org/integrity/cryptography/50.0.2/cryptography-50.0.2-cp311-abi3-win_amd64.whl/provenance",
+      "http_status": 200,
+      "response_sha256": "fdb0b76ef513abf28b93e555905dad5e1c6c797972c738f45c8bce083fa146aa",
+      "status": "AVAILABLE_NOT_CRYPTOGRAPHICALLY_VERIFIED",
+      "publishers": [
+        {
+          "environment": null,
+          "kind": "GitHub",
+          "repository": "pyca/cryptography",
+          "workflow": "pypi-publish.yml"
+        }
+      ]
+    },
+    {
+      "kind": "provenance",
+      "key": "1",
+      "url": "https://pypi.org/integrity/cryptography/50.0.2/cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl/provenance",
+      "http_status": 200,
+      "response_sha256": "2f611e0134f4ebf4a9fa9e3bf29a281ff8a00bdbb6ec85c5f499ab2516f1b20a",
+      "status": "AVAILABLE_NOT_CRYPTOGRAPHICALLY_VERIFIED",
+      "publishers": [
+        {
+          "environment": null,
+          "kind": "GitHub",
+          "repository": "pyca/cryptography",
+          "workflow": "pypi-publish.yml"
+        }
+      ]
+    },
+    {
+      "kind": "provenance",
+      "key": "2",
+      "url": "https://pypi.org/integrity/cffi/2.1.1/cffi-2.1.1-cp312-cp312-win_amd64.whl/provenance",
+      "http_status": 404,
+      "response_sha256": "1ace272e59ea5286e43eb8afd139ecae70c03dbe6c98dd26d27cd8542f5c6512",
+      "status": "UNAVAILABLE_NOT_AUDITED"
+    },
+    {
+      "kind": "provenance",
+      "key": "3",
+      "url": "https://pypi.org/integrity/cffi/2.1.1/cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl/provenance",
+      "http_status": 404,
+      "response_sha256": "4ecf74b48ee251cedebbab4b5cdcdd7046e27e6e79ab393ae9e0d354b127dd61",
+      "status": "UNAVAILABLE_NOT_AUDITED"
+    },
+    {
+      "kind": "provenance",
+      "key": "4",
+      "url": "https://pypi.org/integrity/pycparser/3.12/pycparser-3.12-py3-none-any.whl/provenance",
+      "http_status": 404,
+      "response_sha256": "68933999c11f65ba6d25a58975421f8b135c004795ee0f01b75aee8ef9a86a19",
+      "status": "UNAVAILABLE_NOT_AUDITED"
+    }
+  ]
+}
