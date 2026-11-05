@@ -10,7 +10,7 @@ New evidence covers dataset overlap audit, training-only nested selection,
 No target LLM evaluation, cloud provisioning or full modern baseline run occurred.
 The status below is retained as historical context.
 
-**Updated:** 2026-09-10  
+**Updated:** 2026-09-10<br>
 **Scope:** local revision experiments for the BRACIS reviewer response.
 
 ## Current validated state

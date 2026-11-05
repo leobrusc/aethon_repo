@@ -13,3 +13,7 @@ docs/security/evidence/** -text whitespace=cr-at-eol
 # Frozen validation inputs and evidence retain their recorded bytes across OSes.
 tests/fixtures/readiness*.json -text whitespace=cr-at-eol
 docs/validation/** -text whitespace=cr-at-eol
+# Retain the exact protected historical report bytes; its manifest enforces the blob hash.
+results/revision/error_analysis/wildjailbreak_diagnosis.md whitespace=-blank-at-eof
+# New recovery evidence carries raw-output SHA-256 values; preserve recorded bytes.
+docs/integration/recovery-20261105/** -text whitespace=cr-at-eol
