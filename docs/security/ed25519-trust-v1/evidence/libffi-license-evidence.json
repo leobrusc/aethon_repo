@@ -1,0 +1,7 @@
+{
+  "source": "https://raw.githubusercontent.com/python-cffi/cffi/fd33e7700f0ebafe6f30bd5053f13327221b77a2/src/c/libffi_x86_x64/LICENSE",
+  "sha256": "40a537c7d74baeed3831304e92d1664ababd7ad8a3cf29f11a257c9e47145248",
+  "scope": "Pinned cffi vendored-source license, NOT proof of exact wheel libffi build/version",
+  "wheel_libffi_version": "NOT_IDENTIFIED",
+  "license_notice_closure": "PENDING"
+}

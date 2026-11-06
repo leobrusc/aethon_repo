@@ -1,0 +1,37 @@
+[
+  {
+    "name": "wrong-issuer",
+    "exit_code": 1,
+    "stderr": "\nError: expected Issuer to be https://invalid.example, got https://token.actions.githubusercontent.com\n"
+  },
+  {
+    "name": "wrong-identity",
+    "exit_code": 1,
+    "stderr": "\nError: verifying with issuer \"sigstore.dev\"\n"
+  },
+  {
+    "name": "tamper-signature",
+    "exit_code": 1,
+    "stderr": "\nError: verifying with issuer \"sigstore.dev\"\n"
+  },
+  {
+    "name": "proof-only",
+    "exit_code": 1,
+    "stderr": "\nError: verifying with issuer \"sigstore.dev\"\n"
+  },
+  {
+    "name": "bad-proof-with-promise",
+    "exit_code": 1,
+    "stderr": "\nError: verifying with issuer \"sigstore.dev\"\n"
+  },
+  {
+    "name": "bad-proof-only",
+    "exit_code": 1,
+    "stderr": "\nError: verifying with issuer \"sigstore.dev\"\n"
+  },
+  {
+    "name": "bad-checkpoint-only",
+    "exit_code": 1,
+    "stderr": "\nError: verifying with issuer \"sigstore.dev\"\n"
+  }
+]

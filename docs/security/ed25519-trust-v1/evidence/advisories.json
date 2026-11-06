@@ -1,0 +1,292 @@
+{
+  "timestamp_utc": "2026-11-06T14:35:05.661941+00:00",
+  "url": "https://api.osv.dev/v1/querybatch",
+  "queries": [
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "cryptography"
+      },
+      "version": "50.0.2"
+    },
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "cffi"
+      },
+      "version": "2.1.1"
+    },
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "pycparser"
+      },
+      "version": "3.12"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "asn1"
+      },
+      "version": "0.24.1"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "asn1_derive"
+      },
+      "version": "0.24.1"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "base64"
+      },
+      "version": "0.23.0"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "bitflags"
+      },
+      "version": "2.13.1"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "cc"
+      },
+      "version": "1.4.0"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "cfg-if"
+      },
+      "version": "1.0.4"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "find-msvc-tools"
+      },
+      "version": "0.1.9"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "foreign-types-shared"
+      },
+      "version": "0.1.1"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "foreign-types"
+      },
+      "version": "0.3.2"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "heck"
+      },
+      "version": "0.5.0"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "itoa"
+      },
+      "version": "1.0.18"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "libc"
+      },
+      "version": "0.2.189"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "once_cell"
+      },
+      "version": "1.21.4"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "openssl-macros"
+      },
+      "version": "0.1.1"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "openssl-sys"
+      },
+      "version": "0.9.117"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "openssl"
+      },
+      "version": "0.10.81"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "pem"
+      },
+      "version": "4.0.0"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "pkg-config"
+      },
+      "version": "0.3.33"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "portable-atomic"
+      },
+      "version": "1.14.0"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "proc-macro2"
+      },
+      "version": "1.0.107"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "pyo3-build-config"
+      },
+      "version": "0.29.2"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "pyo3-ffi"
+      },
+      "version": "0.29.2"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "pyo3-macros-backend"
+      },
+      "version": "0.29.2"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "pyo3-macros"
+      },
+      "version": "0.29.2"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "pyo3"
+      },
+      "version": "0.29.2"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "quote"
+      },
+      "version": "1.0.47"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "self_cell"
+      },
+      "version": "1.3.0"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "shlex"
+      },
+      "version": "2.0.1"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "syn"
+      },
+      "version": "2.0.119"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "target-lexicon"
+      },
+      "version": "0.13.5"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "unicode-ident"
+      },
+      "version": "1.0.24"
+    },
+    {
+      "package": {
+        "ecosystem": "crates.io",
+        "name": "vcpkg"
+      },
+      "version": "0.2.15"
+    }
+  ],
+  "response": {
+    "results": [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ]
+  },
+  "request_sha256": "a4b03a86bb8c34a358ac0f5a27ce8c83a6bd63ea69ca56306563a3aeea9d75f5",
+  "response_sha256": "56163baf54e50f62298098cbb08a03885b8dc6e9d415d4fd8ad4b4bc0fa30f6f"
+}

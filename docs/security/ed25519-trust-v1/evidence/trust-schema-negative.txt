@@ -1,0 +1,6 @@
+Test-Json: 
+Line |
+  19 |  … hema.json'; Test-Json -Path $invalid -SchemaFile $schema *> results/a …
+     |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | The JSON is not valid with the schema: Required properties ["bomFormat"] are not present at ''
+False

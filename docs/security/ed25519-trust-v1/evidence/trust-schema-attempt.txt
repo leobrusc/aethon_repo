@@ -1,0 +1,6 @@
+Test-Json: 
+Line |
+   2 |  … hema.json'; Test-Json -Path docs/security/ed25519-acquisition-v1/STAT …
+     |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | The JSON schema contains a reference that could not be resolved. External schema references are not supported by default, use the 'FetchExternalReference' parameter to enable it.
+False

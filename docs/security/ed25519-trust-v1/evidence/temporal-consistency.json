@@ -1,0 +1,26 @@
+[
+  {
+    "artifact": "cryptography-50.0.2-cp311-abi3-win_amd64.whl",
+    "verified_log_utc": "2026-09-30T14:43:23+00:00",
+    "PyPI_upload_utc": "2026-09-30T14:44:11.671809+00:00",
+    "upload_after_log_seconds": 48.671809,
+    "certificate_interval_utc": [
+      "2026-09-30T14:43:03Z",
+      "2026-09-30T14:53:03Z"
+    ],
+    "within_interval": true,
+    "publication_timestamp_trust": "HTTPS PyPI metadata; not independently signed timestamp"
+  },
+  {
+    "artifact": "cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl",
+    "verified_log_utc": "2026-09-30T14:43:33+00:00",
+    "PyPI_upload_utc": "2026-09-30T14:43:55.272150+00:00",
+    "upload_after_log_seconds": 22.27215,
+    "certificate_interval_utc": [
+      "2026-09-30T14:43:03Z",
+      "2026-09-30T14:53:03Z"
+    ],
+    "within_interval": true,
+    "publication_timestamp_trust": "HTTPS PyPI metadata; not independently signed timestamp"
+  }
+]

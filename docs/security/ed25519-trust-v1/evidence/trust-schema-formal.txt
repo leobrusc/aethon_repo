@@ -1,0 +1,6 @@
+Test-Json: 
+Line |
+   2 |  … hema.json'; Test-Json -Path docs/security/ed25519-acquisition-v1/STAT …
+     |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Cannot parse the JSON schema.
+False

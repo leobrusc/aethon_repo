@@ -1,0 +1,496 @@
+{
+  "source_sha256": "1f5bf81e78e4a5bb5e6bfef1c6137b429c1f3cb9cac216a17803b9d3f781a65f",
+  "schema": "PASS: normative CycloneDX 1.5, offline reference-bundled",
+  "validator": "Preexisting PowerShell 7.6.9 Test-Json",
+  "negative_control": "Missing bomFormat rejected",
+  "components": 91,
+  "unique_refs": 91,
+  "canonical_purls": 85,
+  "dependency_reference_integrity": "PASS",
+  "duplicate_identity_scope": "Same declared crates occur once per platform artifact; distinct provenance-scoped refs; no conflicting versions/hashes found",
+  "artifact_hashes": "5 matched actual wheel SHA-256",
+  "native_hashes": "4 matched actual ZIP member bytes",
+  "license_and_runtime_completeness": "PARTIAL; NOT a runtime/deployed SBOM",
+  "declared_roles": [
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:0",
+      "name": "cryptography-cffi",
+      "version": "0.50.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:1",
+      "name": "cryptography-crypto",
+      "version": "0.50.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:2",
+      "name": "cryptography-keepalive",
+      "version": "0.50.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:3",
+      "name": "cryptography-key-parsing",
+      "version": "0.50.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:4",
+      "name": "cryptography-openssl",
+      "version": "0.50.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:5",
+      "name": "cryptography-x509",
+      "version": "0.50.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:6",
+      "name": "cryptography-x509-verification",
+      "version": "0.50.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:7",
+      "name": "asn1",
+      "version": "0.24.1",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:8",
+      "name": "asn1_derive",
+      "version": "0.24.1",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:9",
+      "name": "base64",
+      "version": "0.23.0",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:10",
+      "name": "bitflags",
+      "version": "2.13.1",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:11",
+      "name": "cc",
+      "version": "1.4.0",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:12",
+      "name": "cfg-if",
+      "version": "1.0.4",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:13",
+      "name": "find-msvc-tools",
+      "version": "0.1.9",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:14",
+      "name": "foreign-types-shared",
+      "version": "0.1.1",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:15",
+      "name": "foreign-types",
+      "version": "0.3.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:16",
+      "name": "heck",
+      "version": "0.5.0",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:17",
+      "name": "itoa",
+      "version": "1.0.18",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:18",
+      "name": "libc",
+      "version": "0.2.189",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:19",
+      "name": "once_cell",
+      "version": "1.21.4",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:20",
+      "name": "openssl-macros",
+      "version": "0.1.1",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:21",
+      "name": "openssl-sys",
+      "version": "0.9.117",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:22",
+      "name": "openssl",
+      "version": "0.10.81",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:23",
+      "name": "pem",
+      "version": "4.0.0",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:24",
+      "name": "pkg-config",
+      "version": "0.3.33",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:25",
+      "name": "portable-atomic",
+      "version": "1.14.0",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:26",
+      "name": "proc-macro2",
+      "version": "1.0.107",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:27",
+      "name": "pyo3-build-config",
+      "version": "0.29.2",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:28",
+      "name": "pyo3-ffi",
+      "version": "0.29.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:29",
+      "name": "pyo3-macros-backend",
+      "version": "0.29.2",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:30",
+      "name": "pyo3-macros",
+      "version": "0.29.2",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:31",
+      "name": "pyo3",
+      "version": "0.29.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:32",
+      "name": "quote",
+      "version": "1.0.47",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:33",
+      "name": "self_cell",
+      "version": "1.3.0",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:34",
+      "name": "shlex",
+      "version": "2.0.1",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:35",
+      "name": "syn",
+      "version": "2.0.119",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:36",
+      "name": "target-lexicon",
+      "version": "0.13.5",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:37",
+      "name": "unicode-ident",
+      "version": "1.0.24",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:38",
+      "name": "vcpkg",
+      "version": "0.2.15",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/sbom.json:0",
+      "name": "openssl",
+      "version": "4.0.3",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:0",
+      "name": "cryptography-cffi",
+      "version": "0.50.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:1",
+      "name": "cryptography-crypto",
+      "version": "0.50.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:2",
+      "name": "cryptography-keepalive",
+      "version": "0.50.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:3",
+      "name": "cryptography-key-parsing",
+      "version": "0.50.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:4",
+      "name": "cryptography-openssl",
+      "version": "0.50.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:5",
+      "name": "cryptography-x509",
+      "version": "0.50.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:6",
+      "name": "cryptography-x509-verification",
+      "version": "0.50.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:7",
+      "name": "asn1",
+      "version": "0.24.1",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:8",
+      "name": "asn1_derive",
+      "version": "0.24.1",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:9",
+      "name": "base64",
+      "version": "0.23.0",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:10",
+      "name": "bitflags",
+      "version": "2.13.1",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:11",
+      "name": "cc",
+      "version": "1.4.0",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:12",
+      "name": "cfg-if",
+      "version": "1.0.4",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:13",
+      "name": "find-msvc-tools",
+      "version": "0.1.9",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:14",
+      "name": "foreign-types-shared",
+      "version": "0.1.1",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:15",
+      "name": "foreign-types",
+      "version": "0.3.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:16",
+      "name": "heck",
+      "version": "0.5.0",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:17",
+      "name": "itoa",
+      "version": "1.0.18",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:18",
+      "name": "libc",
+      "version": "0.2.189",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:19",
+      "name": "once_cell",
+      "version": "1.21.4",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:20",
+      "name": "openssl-macros",
+      "version": "0.1.1",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:21",
+      "name": "openssl-sys",
+      "version": "0.9.117",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:22",
+      "name": "openssl",
+      "version": "0.10.81",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:23",
+      "name": "pem",
+      "version": "4.0.0",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:24",
+      "name": "pkg-config",
+      "version": "0.3.33",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:25",
+      "name": "portable-atomic",
+      "version": "1.14.0",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:26",
+      "name": "proc-macro2",
+      "version": "1.0.107",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:27",
+      "name": "pyo3-build-config",
+      "version": "0.29.2",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:28",
+      "name": "pyo3-ffi",
+      "version": "0.29.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:29",
+      "name": "pyo3-macros-backend",
+      "version": "0.29.2",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:30",
+      "name": "pyo3-macros",
+      "version": "0.29.2",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:31",
+      "name": "pyo3",
+      "version": "0.29.2",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:32",
+      "name": "quote",
+      "version": "1.0.47",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:33",
+      "name": "self_cell",
+      "version": "1.3.0",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:34",
+      "name": "shlex",
+      "version": "2.0.1",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:35",
+      "name": "syn",
+      "version": "2.0.119",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:36",
+      "name": "target-lexicon",
+      "version": "0.13.5",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:37",
+      "name": "unicode-ident",
+      "version": "1.0.24",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:38",
+      "name": "vcpkg",
+      "version": "0.2.15",
+      "role": "BUILD_OR_PROC_MACRO_CANDIDATE_NOT_CONFIRMED_LINKED"
+    },
+    {
+      "bom_ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/sbom.json:0",
+      "name": "openssl",
+      "version": "4.0.3",
+      "role": "DECLARED_COMPONENT_LINKAGE_NOT_INDEPENDENTLY_ESTABLISHED"
+    }
+  ]
+}
