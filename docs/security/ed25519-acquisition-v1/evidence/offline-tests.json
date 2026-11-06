@@ -1,0 +1,30 @@
+{
+  "python_network_events": [],
+  "allowed_local_process_basenames": [
+    "git",
+    "git",
+    "git",
+    "git",
+    "git",
+    "git",
+    "git",
+    "git",
+    "git",
+    "git",
+    "git",
+    "git",
+    "powershell.exe",
+    "git",
+    "git",
+    "openssl.exe",
+    "openssl.exe",
+    "openssl.exe",
+    "openssl.exe",
+    "openssl.exe",
+    "git",
+    "git",
+    "git"
+  ],
+  "status": "PASS",
+  "scope": "Python audit events; native/child network isolation remains a separate operational gate"
+}

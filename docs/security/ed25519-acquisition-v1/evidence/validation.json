@@ -1,0 +1,26 @@
+{
+  "timestamp_utc": "2026-11-06T14:18:01.925273+00:00",
+  "pytest": {
+    "status": "PASS",
+    "count": 322,
+    "warnings": 1,
+    "warning": "Synthetic mocked load failure; no model download occurred"
+  },
+  "ruff": "PASS",
+  "pip_check": "PASS",
+  "preflight": {
+    "status": "PASS",
+    "classification": "PILOT_BLOCKED",
+    "gate_count": 8,
+    "execution": false
+  },
+  "allowlist_sha256_size_zip_record": "PASS: 5/5",
+  "scientific_preservation": "PASS: before and after",
+  "LFS_fsck": "PASS",
+  "whitespace": "PASS",
+  "publication_guard": "PASS (repeat after staging)",
+  "sbom_json_and_reference_consistency": "PASS: 91 components",
+  "cyclonedx_schema_validation": "NOT_RUN: trusted schema validator unavailable; no installation authorized",
+  "wheel_import_install_execution": "NONE",
+  "audit_ci": "NOT_RUN: installation outside authorization; skip CI"
+}

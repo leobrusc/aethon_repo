@@ -1,0 +1,9 @@
+# Chain of custody
+
+Run `ed25519-20261106T135119Z-ba2a4581`. Private quarantine: `%LOCALAPPDATA%/AETHON-Quarantine/ed25519-20261106T135119Z-ba2a4581`; external to repository, all worktrees and builds. Source commit `b3f7819b94e8710cc4df9e7fb8ab87d5b323fc15`; acquisition audit code `f9e1948eb2c2ec8a707cdc429534ba3909a085d7`. Original private manifest SHA-256 `23ddfbfe8bbcd664933ecc9c43caa8b958a197ee67f707bccfb4e991157ac328`. Operator identity and absolute local path are retained privately and redacted publicly. This public JSON is explicitly a redacted derivative, not the original signed evidence (no signing authority is claimed).
+
+Per-file exclusive temporary download, streaming SHA-256/size verification, bounded format checks and atomic no-clobber promotion occurred only within quarantine. Existing verified files were never replaced. Immutable create-only per-artifact receipts, original PyPI metadata, attestations/404 responses, selected native analysis bytes and static-tool outputs remain in quarantine. Public manifests record source/effective URLs, expected/observed SHA-256 and size, UTC timestamps, status and evidence hashes. No package binary/native member is published.
+
+Audit files are append-only by application convention; no claim of WORM, authenticated timestamp, adversarial host protection, encryption, privileged ACL hardening or rollback-proof storage. Retain privately pending project governance disposition; no deletion or production storage provisioning was performed. Public SHA256SUMS.json hashes every published document/evidence except itself. This proves later byte consistency only, not source identity or a trusted timestamp.
+
+Installation: **DEPENDENCY_APPROVAL_REQUIRED**. Prospective execution: **PILOT_BLOCKED**; all eight operational gates remain PENDING.
