@@ -1,0 +1,32 @@
+[
+  {
+    "name": "cffi-win",
+    "url": "https://api.github.com/repos/python-cffi/cffi/attestations/sha256:f53e442b08449d42821fa4a4fba000095af9f62742a500f978a9f557ec44339a",
+    "queried_utc": "2026-11-06T15:30:27.379352+00:00",
+    "tool": "preexisting gh api",
+    "exit_code": 1,
+    "stdout": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/attestations#list-attestations\",\"status\":\"404\"}",
+    "stderr": "gh: Not Found (HTTP 404)\n",
+    "response_sha256": "8ecae33333826db91507fbc9512eabf6e8e7c9be3c43f6681ca70bff4c028a6d"
+  },
+  {
+    "name": "cffi-linux",
+    "url": "https://api.github.com/repos/python-cffi/cffi/attestations/sha256:c1453022f490d2459a11819d83ad1d586e9ff65a12ac3e705ffebd46d3685dcf",
+    "queried_utc": "2026-11-06T15:30:28.347610+00:00",
+    "tool": "preexisting gh api",
+    "exit_code": 1,
+    "stdout": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/attestations#list-attestations\",\"status\":\"404\"}",
+    "stderr": "gh: Not Found (HTTP 404)\n",
+    "response_sha256": "8ecae33333826db91507fbc9512eabf6e8e7c9be3c43f6681ca70bff4c028a6d"
+  },
+  {
+    "name": "pycparser",
+    "url": "https://api.github.com/repos/eliben/pycparser/attestations/sha256:a076f3f489b39b43ed13563a1dafe42447445bec2e294154ec5c57fcdda4c85e",
+    "queried_utc": "2026-11-06T15:30:29.339660+00:00",
+    "tool": "preexisting gh api",
+    "exit_code": 1,
+    "stdout": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/attestations#list-attestations\",\"status\":\"404\"}",
+    "stderr": "gh: Not Found (HTTP 404)\n",
+    "response_sha256": "8ecae33333826db91507fbc9512eabf6e8e7c9be3c43f6681ca70bff4c028a6d"
+  }
+]

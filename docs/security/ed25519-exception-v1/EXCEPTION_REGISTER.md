@@ -19,3 +19,5 @@ Source #22: 42540f1ddef6d975507482ac8da8970b54f6a945; #21: 0eef2cb7797df1ed21ae8
 Effective decisions, named owners, independent reviewers, signatures and approval evidence remain **PENDING**. **DEPENDENCY_APPROVAL_REQUIRED**; **PILOT_BLOCKED**, all eight operational gates PENDING. This dossier does not authorize installation, locks, runtime provisioning, adapter implementation or pilot execution.
 
 Evidence paths in every JSON case are resolved from the explicit repository-relative evidence_reference_base, not from the decisions/ subdirectory. Each native-identity form includes its own static/build/notice references.
+
+Phase5E targeted additions reuse these same five records. See LIBFFI_BUILD_TRACEABILITY.md, TRANSITIVE_PUBLISHER_EVIDENCE.md, THIRD_PARTY_NOTICE_FINAL_MATRIX.md and HUMAN_DECISION_BRIEF.md. The phase5e_closure field identifies new source/hash evidence, the documentary edge closed and material edges still open. Effective decisions remain PENDING; classification remains EVIDENCE_GAPS_REMAIN. Original PR23 index and case snapshots are retained under evidence/phase5e/.

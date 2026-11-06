@@ -1,0 +1,41 @@
+{
+  "cffi_source_commit": "fd33e7700f0ebafe6f30bd5053f13327221b77a2",
+  "source_tree": "dc954328517d7d06ee8ecf663ee61c8f7511b4d5",
+  "manual_run": 30836879169,
+  "tag_run": 30854037511,
+  "target_jobs": [
+    {
+      "id": 91764146011,
+      "name": "windows (cp312-win_amd64)",
+      "conclusion": "success",
+      "started_at": "2026-08-03T17:28:23Z",
+      "completed_at": "2026-08-03T17:30:21Z"
+    },
+    {
+      "id": 91764159393,
+      "name": "linux (cp312-manylinux_x86_64, x86_64)",
+      "conclusion": "success",
+      "started_at": "2026-08-03T17:45:39Z",
+      "completed_at": "2026-08-03T17:49:20Z"
+    }
+  ],
+  "manual_and_tag_artifact_counts": [
+    0,
+    0
+  ],
+  "job_log_results": {
+    "91764146011": 410,
+    "91764159393": 410
+  },
+  "closed_documentary_gap": "Matching source commit has successful exact-platform CPython3.12 build/test/upload job metadata before publication",
+  "not_closed": [
+    "Final output SHA256 to acquired wheel",
+    "Actual source/patch libffi identity",
+    "Exact compiler/toolchain/container/link inputs",
+    "Authenticated publisher-to-file identity"
+  ],
+  "libffi_linux_version": "NOT_IDENTIFIED",
+  "recipe_declares": "3.4.6 (prior acquired recipe, not actual binary identity)",
+  "libffi_windows_version": "NOT_IDENTIFIED",
+  "no_source_binary_tool_downloads": true
+}

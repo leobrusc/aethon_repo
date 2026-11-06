@@ -1,0 +1,108 @@
+[
+  {
+    "component": "cryptography",
+    "artifact": "cryptography-50.0.2-cp311-abi3-win_amd64.whl",
+    "member": "cryptography-50.0.2.dist-info/licenses/LICENSE",
+    "sha256": "3e0c7c091a948b82533ba98fd7cbb40432d6f1a9acbf85f5922d2f99a93ae6bb",
+    "text_file": "notices/phase5e/cryptography-LICENSE.txt",
+    "evidence_role": "EXACT_ACQUIRED_PACKAGE_LICENSE_TEXT; not full incorporated notice closure",
+    "official_acquisition_url": "https://files.pythonhosted.org/packages/9a/4f/adfc442765721292fff86d314ce385d3249d22db42295c0dd057727b60f3/cryptography-50.0.2-cp311-abi3-win_amd64.whl",
+    "acquired_wheel_sha256": "7afa5a6602a9f29af1f3a2965f831bae7c9d5d597b7cbb716d41ab3b7d89879c"
+  },
+  {
+    "component": "cryptography",
+    "artifact": "cryptography-50.0.2-cp311-abi3-win_amd64.whl",
+    "member": "cryptography-50.0.2.dist-info/licenses/LICENSE.APACHE",
+    "sha256": "aac73b3148f6d1d7111dbca32099f68d26c644c6813ae1e4f05f6579aa2663fe",
+    "text_file": "notices/phase5e/cryptography-LICENSE.APACHE.txt",
+    "evidence_role": "EXACT_ACQUIRED_PACKAGE_LICENSE_TEXT; not full incorporated notice closure",
+    "official_acquisition_url": "https://files.pythonhosted.org/packages/9a/4f/adfc442765721292fff86d314ce385d3249d22db42295c0dd057727b60f3/cryptography-50.0.2-cp311-abi3-win_amd64.whl",
+    "acquired_wheel_sha256": "7afa5a6602a9f29af1f3a2965f831bae7c9d5d597b7cbb716d41ab3b7d89879c"
+  },
+  {
+    "component": "cryptography",
+    "artifact": "cryptography-50.0.2-cp311-abi3-win_amd64.whl",
+    "member": "cryptography-50.0.2.dist-info/licenses/LICENSE.BSD",
+    "sha256": "602c4c7482de6479dd2e9793cda275e5e63d773dacd1eca689232ab7008fb4fb",
+    "text_file": "notices/phase5e/cryptography-LICENSE.BSD.txt",
+    "evidence_role": "EXACT_ACQUIRED_PACKAGE_LICENSE_TEXT; not full incorporated notice closure",
+    "official_acquisition_url": "https://files.pythonhosted.org/packages/9a/4f/adfc442765721292fff86d314ce385d3249d22db42295c0dd057727b60f3/cryptography-50.0.2-cp311-abi3-win_amd64.whl",
+    "acquired_wheel_sha256": "7afa5a6602a9f29af1f3a2965f831bae7c9d5d597b7cbb716d41ab3b7d89879c"
+  },
+  {
+    "component": "cryptography",
+    "artifact": "cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl",
+    "member": "cryptography-50.0.2.dist-info/licenses/LICENSE",
+    "sha256": "3e0c7c091a948b82533ba98fd7cbb40432d6f1a9acbf85f5922d2f99a93ae6bb",
+    "text_file": "notices/phase5e/cryptography-LICENSE.txt",
+    "evidence_role": "EXACT_ACQUIRED_PACKAGE_LICENSE_TEXT; not full incorporated notice closure",
+    "official_acquisition_url": "https://files.pythonhosted.org/packages/1a/f1/b474e930c4d910328780e3940da76f5aa5cbc48ce1fc14e44d239d9ea9db/cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl",
+    "acquired_wheel_sha256": "4061c0079120205fb760c58acab6443e217307dcf05e3702cf970e0689972856"
+  },
+  {
+    "component": "cryptography",
+    "artifact": "cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl",
+    "member": "cryptography-50.0.2.dist-info/licenses/LICENSE.APACHE",
+    "sha256": "aac73b3148f6d1d7111dbca32099f68d26c644c6813ae1e4f05f6579aa2663fe",
+    "text_file": "notices/phase5e/cryptography-LICENSE.APACHE.txt",
+    "evidence_role": "EXACT_ACQUIRED_PACKAGE_LICENSE_TEXT; not full incorporated notice closure",
+    "official_acquisition_url": "https://files.pythonhosted.org/packages/1a/f1/b474e930c4d910328780e3940da76f5aa5cbc48ce1fc14e44d239d9ea9db/cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl",
+    "acquired_wheel_sha256": "4061c0079120205fb760c58acab6443e217307dcf05e3702cf970e0689972856"
+  },
+  {
+    "component": "cryptography",
+    "artifact": "cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl",
+    "member": "cryptography-50.0.2.dist-info/licenses/LICENSE.BSD",
+    "sha256": "602c4c7482de6479dd2e9793cda275e5e63d773dacd1eca689232ab7008fb4fb",
+    "text_file": "notices/phase5e/cryptography-LICENSE.BSD.txt",
+    "evidence_role": "EXACT_ACQUIRED_PACKAGE_LICENSE_TEXT; not full incorporated notice closure",
+    "official_acquisition_url": "https://files.pythonhosted.org/packages/1a/f1/b474e930c4d910328780e3940da76f5aa5cbc48ce1fc14e44d239d9ea9db/cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl",
+    "acquired_wheel_sha256": "4061c0079120205fb760c58acab6443e217307dcf05e3702cf970e0689972856"
+  },
+  {
+    "component": "cffi",
+    "artifact": "cffi-2.1.1-cp312-cp312-win_amd64.whl",
+    "member": "cffi-2.1.1.dist-info/licenses/LICENSE",
+    "sha256": "5ba24ddc57067f9249add644c3afc41a5d6dc37e23433ef759d95df370b0af63",
+    "text_file": "notices/phase5e/cffi-LICENSE.txt",
+    "evidence_role": "EXACT_ACQUIRED_PACKAGE_LICENSE_TEXT; not full incorporated notice closure",
+    "official_acquisition_url": "https://files.pythonhosted.org/packages/d9/79/615cc094e2fb508cade7de88d3b4f6c4ec2bab695c97bce9153dc65aadf5/cffi-2.1.1-cp312-cp312-win_amd64.whl",
+    "acquired_wheel_sha256": "f53e442b08449d42821fa4a4fba000095af9f62742a500f978a9f557ec44339a"
+  },
+  {
+    "component": "cffi",
+    "artifact": "cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+    "member": "cffi-2.1.1.dist-info/licenses/LICENSE",
+    "sha256": "5ba24ddc57067f9249add644c3afc41a5d6dc37e23433ef759d95df370b0af63",
+    "text_file": "notices/phase5e/cffi-LICENSE.txt",
+    "evidence_role": "EXACT_ACQUIRED_PACKAGE_LICENSE_TEXT; not full incorporated notice closure",
+    "official_acquisition_url": "https://files.pythonhosted.org/packages/b1/db/dceb9dd5b231e1da801793f8acc9f3c52a7e1afe40bb1aae37e02b0faad5/cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+    "acquired_wheel_sha256": "c1453022f490d2459a11819d83ad1d586e9ff65a12ac3e705ffebd46d3685dcf"
+  },
+  {
+    "component": "pycparser",
+    "artifact": "pycparser-3.12-py3-none-any.whl",
+    "member": "pycparser-3.12.dist-info/licenses/LICENSE",
+    "sha256": "0a9e78156ae8b96caf1b4f11ac2df424b83de29736f9e757630548a6272fdf90",
+    "text_file": "notices/phase5e/pycparser-LICENSE.txt",
+    "evidence_role": "EXACT_ACQUIRED_PACKAGE_LICENSE_TEXT; not full incorporated notice closure",
+    "official_acquisition_url": "https://files.pythonhosted.org/packages/b6/ae/315bbeee126a769cbde43cf4908acb4b40408d8bf8bbf334dd7368d8dadf/pycparser-3.12-py3-none-any.whl",
+    "acquired_wheel_sha256": "a076f3f489b39b43ed13563a1dafe42447445bec2e294154ec5c57fcdda4c85e"
+  },
+  {
+    "component": "OpenSSL 4.0.3",
+    "source_snapshot": "Prior Phase5C public upstream text in private evidence",
+    "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a",
+    "text_file": "notices/phase5e/OPENSSL_4.0.3_UPSTREAM_LICENSE.txt",
+    "evidence_role": "Exact-tag upstream license already acquired; full attribution/NOTICE applicability not independently closed",
+    "upstream_source_url": "https://raw.githubusercontent.com/openssl/openssl/openssl-4.0.3/LICENSE.txt"
+  },
+  {
+    "component": "libffi",
+    "source_snapshot": "Prior Phase5C public upstream text in private evidence",
+    "sha256": "40a537c7d74baeed3831304e92d1664ababd7ad8a3cf29f11a257c9e47145248",
+    "text_file": "notices/phase5e/LIBFFI_PINNED_SOURCE_LICENSE.txt",
+    "evidence_role": "Pinned cffi source-tree license only; not proof of exact Windows/Linux wheel version or complete applicable notices",
+    "upstream_source_url": "https://raw.githubusercontent.com/python-cffi/cffi/fd33e7700f0ebafe6f30bd5053f13327221b77a2/src/c/libffi_x86_x64/LICENSE"
+  }
+]
