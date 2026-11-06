@@ -181,9 +181,10 @@
       "public_redacted": true
     },
     {
-      "file": "trusted-root.jsonl",
+      "file": "trusted-root.txt",
       "private_original_sha256": "65ca537f6ed8a47fd0e560c421baa1f6c1efb8b25fc200d8c5c02c0e92eb2b9c",
-      "public_redacted": true
+      "public_redacted": true,
+      "note": "Public filename avoids global *.jsonl LFS rule; source and content unchanged"
     },
     {
       "file": "cryptography-50.0.2-cp311-abi3-win_amd64.whl.0.0.bundle.json",

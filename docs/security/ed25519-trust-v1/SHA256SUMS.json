@@ -4,7 +4,7 @@
     "SHA256SUMS.json"
   ],
   "files": {
-    "COMMANDS.md": "196b1320b2ff221795ce7742881afbab41f55187f0a90e7b1f57e8d4e83e4d7e",
+    "COMMANDS.md": "10303ed92c32538ccc4fea47e013626e14ace8650c4b565c671f687322007020",
     "DEPENDENCY_APPROVAL_RECOMMENDATION.md": "780ed290ff34b62377d5de41711d6da8346dec2668252ea8dd560081bb671a5f",
     "evidence/advisories.json": "eb5048b3b34cbe97a2574f5b2e64decdfb8397a4570505adc58630871a7a1aca",
     "evidence/bad-checkpoint-with-promise.result.json": "86ae9fa136394f486ab2f5b9735a543ae13d5fa11320eb4fad35be1a1769370b",
@@ -24,7 +24,7 @@
     "evidence/merkle-cross-check.json": "8b6959da503bcf770790016ac595811e8c90b55e24ce6607f54b9c079853a6a0",
     "evidence/native-recheck.json": "e20e80e455dfa37172a76cfdf2b456a96f99ab42d57ccdd60746e0af21adb754",
     "evidence/negative-controls.json": "2502b6a5203a3d838c848d9981e6106ec797382671edce222db998139e76d7ab",
-    "evidence/parent-verification.json": "f59a5fa58a7a8c3687b3af7c15714191faba31ec860486d14508205f50628438",
+    "evidence/parent-verification.json": "cb544d2c8dcf5cbe931f5f6b5797213a505d944e632030c8acf75f38a252248a",
     "evidence/preservation.json": "1ad7ff4ebd0d5e79ab8c4006c15f8c5604c4a8f5b497bf46571c0ee8b48b8de6",
     "evidence/publisher-workflow.txt": "8c8b8f6f0165eac85b9b875f8724822c415499fa445e89d786a5e2f17f1396ab",
     "evidence/review.json": "5f1d438d96c37539c957d65aedff68a84c1ae242677094e10c8a07c2d87952da",
@@ -47,8 +47,8 @@
     "evidence/trust-schema-bundled.txt": "a9ac0c3ac83c40e1b4c3416066d63d324ee9f8c144641dfeed72d140b6557245",
     "evidence/trust-schema-formal.txt": "4cdaacdaf595ad9cc51c97d2bcaa308f9de9208c2b7dd00cf48707a4791655e3",
     "evidence/trust-schema-negative.txt": "2d6f006fa3e4bb47ea4da9feb32083ea64297419770640204f24725ad0319c20",
-    "evidence/trusted-root.jsonl": "65ca537f6ed8a47fd0e560c421baa1f6c1efb8b25fc200d8c5c02c0e92eb2b9c",
     "evidence/trusted-root.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/trusted-root.txt": "65ca537f6ed8a47fd0e560c421baa1f6c1efb8b25fc200d8c5c02c0e92eb2b9c",
     "evidence/upstream-metadata.json": "7ae9bbb64c4e58779242da9e44be3b51dd3aed86ceae6b20b004e6a89f004b0e",
     "evidence/valid-control.json": "25094c19e5de024e87a0a547387071ff8317cb827d9661bdb1ebd2da34f3c587",
     "evidence/valid-control.result.json": "49ebba5be1d33d9aaf6c037f5e1951b27ffab31404ca7da76e615ab57963865b",
