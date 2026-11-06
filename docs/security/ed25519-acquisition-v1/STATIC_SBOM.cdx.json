@@ -1,0 +1,2561 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-11-06T14:12:18.387606+00:00",
+    "component": {
+      "type": "data",
+      "name": "AETHON five acquired wheels static inventory",
+      "version": "ed25519-20261106T135119Z-ba2a4581"
+    },
+    "properties": [
+      {
+        "name": "aethon:limitations",
+        "value": "Artifact inventory, not installation/runtime. Dependencies include declared composition/build relationships; no complete dynamic closure. libffi version unknown. CycloneDX schema validation NOT_RUN: trusted schema validator unavailable."
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl",
+      "name": "cryptography",
+      "version": "50.0.2",
+      "purl": "pkg:pypi/cryptography@50.0.2?file_name=cryptography-50.0.2-cp311-abi3-win_amd64.whl",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "7afa5a6602a9f29af1f3a2965f831bae7c9d5d597b7cbb716d41ab3b7d89879c"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aethon:scope",
+          "value": "ACQUIRED_WHEEL_NOT_INSTALLED"
+        },
+        {
+          "name": "aethon:platform",
+          "value": "windows-x86_64"
+        },
+        {
+          "name": "aethon:discovery",
+          "value": "ZIP/METADATA/RECORD; evidence/static-analysis.json"
+        },
+        {
+          "name": "aethon:provenance",
+          "value": "PARTIALLY_VERIFIED"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:native:1d4332a447cab13dec8e3a533ad579e0e562b79e40822c931f33769758fc7156",
+      "name": "cryptography/hazmat/bindings/_rust.pyd",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1d4332a447cab13dec8e3a533ad579e0e562b79e40822c931f33769758fc7156"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "Acquired member bytes; static PE/ELF parsing"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cryptography-cffi",
+      "version": "0.50.2",
+      "purl": "pkg:cargo/cryptography-cffi@0.50.2?download_url=file://cryptography-cffi",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:0",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cryptography-crypto",
+      "version": "0.50.2",
+      "purl": "pkg:cargo/cryptography-crypto@0.50.2?download_url=file://cryptography-crypto",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:1",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cryptography-keepalive",
+      "version": "0.50.2",
+      "purl": "pkg:cargo/cryptography-keepalive@0.50.2?download_url=file://cryptography-keepalive",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:2",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cryptography-key-parsing",
+      "version": "0.50.2",
+      "purl": "pkg:cargo/cryptography-key-parsing@0.50.2?download_url=file://cryptography-key-parsing",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:3",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cryptography-openssl",
+      "version": "0.50.2",
+      "purl": "pkg:cargo/cryptography-openssl@0.50.2?download_url=file://cryptography-openssl",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:4",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cryptography-x509",
+      "version": "0.50.2",
+      "purl": "pkg:cargo/cryptography-x509@0.50.2?download_url=file://cryptography-x509",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:5",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cryptography-x509-verification",
+      "version": "0.50.2",
+      "purl": "pkg:cargo/cryptography-x509-verification@0.50.2?download_url=file://cryptography-x509-verification",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:6",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "asn1",
+      "version": "0.24.1",
+      "purl": "pkg:cargo/asn1@0.24.1",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "c9795210620c0cb3f9a7ce4f882808c38e1ef7b347c90591dceae0886e031fb1"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:7",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "asn1_derive",
+      "version": "0.24.1",
+      "purl": "pkg:cargo/asn1_derive@0.24.1",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "909e307f1cc32bb8bccbd98f446e6d1bf03fa30f7b53a4337da7181ad30fa11a"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:8",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "base64",
+      "version": "0.23.0",
+      "purl": "pkg:cargo/base64@0.23.0",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "b25655df2c3cdd83c5e5b293b88acd880332b2ddadd7c30ac43144fdc0033da9"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:9",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "bitflags",
+      "version": "2.13.1",
+      "purl": "pkg:cargo/bitflags@2.13.1",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "b588b76d00fde79687d7646a9b5bdf3cc0f655e0bbd080335a95d7e96f3587da"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:10",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cc",
+      "version": "1.4.0",
+      "purl": "pkg:cargo/cc@1.4.0",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "5add81bb678e6cb321aff7fa0dc7689ad82b112dbc032cea19f91d6b8e3582b9"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:11",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cfg-if",
+      "version": "1.0.4",
+      "purl": "pkg:cargo/cfg-if@1.0.4",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:12",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "find-msvc-tools",
+      "version": "0.1.9",
+      "purl": "pkg:cargo/find-msvc-tools@0.1.9",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "5baebc0774151f905a1a2cc41989300b1e6fbb29aff0ceffa1064fdd3088d582"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:13",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "foreign-types-shared",
+      "version": "0.1.1",
+      "purl": "pkg:cargo/foreign-types-shared@0.1.1",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "00b0228411908ca8685dba7fc2cdd70ec9990a6e753e89b6ac91a84c40fbaf4b"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:14",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "foreign-types",
+      "version": "0.3.2",
+      "purl": "pkg:cargo/foreign-types@0.3.2",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f6f339eb8adc052cd2ca78910fda869aefa38d22d5cb648e6485e4d3fc06f3b1"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:15",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "heck",
+      "version": "0.5.0",
+      "purl": "pkg:cargo/heck@0.5.0",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:16",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "itoa",
+      "version": "1.0.18",
+      "purl": "pkg:cargo/itoa@1.0.18",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "8f42a60cbdf9a97f5d2305f08a87dc4e09308d1276d28c869c684d7777685682"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:17",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "libc",
+      "version": "0.2.189",
+      "purl": "pkg:cargo/libc@0.2.189",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "3eaf3ede3fee6db1a4c2ee091bf8a8b4dccdc6d17f656fb07896ee72867612f2"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:18",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "once_cell",
+      "version": "1.21.4",
+      "purl": "pkg:cargo/once_cell@1.21.4",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9f7c3e4beb33f85d45ae3e3a1792185706c8e16d043238c593331cc7cd313b50"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:19",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "openssl-macros",
+      "version": "0.1.1",
+      "purl": "pkg:cargo/openssl-macros@0.1.1",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "a948666b637a0f465e8564c73e89d4dde00d72d4d473cc972f390fc3dcee7d9c"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:20",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "openssl-sys",
+      "version": "0.9.117",
+      "purl": "pkg:cargo/openssl-sys@0.9.117",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "b47e7e6bb2c38cd930d25a23b40fa52e068c10e85f3e03a7f5ba5aaca5713695"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:21",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "openssl",
+      "version": "0.10.81",
+      "purl": "pkg:cargo/openssl@0.10.81",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "77823a27f0babb03091cb9ed9ef80af3b39dbc82f97e8fa530374b7dafd87a45"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:22",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "pem",
+      "version": "4.0.0",
+      "purl": "pkg:cargo/pem@4.0.0",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d354a98a3d1251555de99e8fdd8afda05573c31b82f59063a7b0a29b5527f120"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:23",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "pkg-config",
+      "version": "0.3.33",
+      "purl": "pkg:cargo/pkg-config@0.3.33",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "19f132c84eca552bf34cab8ec81f1c1dcc229b811638f9d283dceabe58c5569e"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:24",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "portable-atomic",
+      "version": "1.14.0",
+      "purl": "pkg:cargo/portable-atomic@1.14.0",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR MIT"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "3d20d5497ef88037a52ff98267d066e7f11fcc5e99bbfbd58a42336193aacec3"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:25",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "proc-macro2",
+      "version": "1.0.107",
+      "purl": "pkg:cargo/proc-macro2@1.0.107",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "985e7ec9bb745e6ce6535b544d84d6cd6f7ad8bd711c398938ae983b91a766d9"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:26",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "pyo3-build-config",
+      "version": "0.29.2",
+      "purl": "pkg:cargo/pyo3-build-config@0.29.2",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f41027e41b4bd03f6e60f9f417fe24a6341a6bb744edd62b6f709f2a52ea30e9"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:27",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "pyo3-ffi",
+      "version": "0.29.2",
+      "purl": "pkg:cargo/pyo3-ffi@0.29.2",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "e591a95526fead067432c3b3a33fc74770b87b1e04e73671090d9c2055a2b327"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:28",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "pyo3-macros-backend",
+      "version": "0.29.2",
+      "purl": "pkg:cargo/pyo3-macros-backend@0.29.2",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "571575aa3749fa6216757dd47d2a3e7ef360f329a40f0666a9fbd14889024952"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:29",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "pyo3-macros",
+      "version": "0.29.2",
+      "purl": "pkg:cargo/pyo3-macros@0.29.2",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "73225868fc1cd84eef2c3c230ddb91273bf1de46aeb8a4248da76d32a0924a1c"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:30",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "pyo3",
+      "version": "0.29.2",
+      "purl": "pkg:cargo/pyo3@0.29.2",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "4688ddedf473e32662b9b067670129a8afb8c18e351482c70d62ba4a88171e8b"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:31",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "quote",
+      "version": "1.0.47",
+      "purl": "pkg:cargo/quote@1.0.47",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1fbf4db142a473a8d80c26bbf18454ed458bf8d26c8219c331daecfdbd079001"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:32",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "self_cell",
+      "version": "1.3.0",
+      "purl": "pkg:cargo/self_cell@1.3.0",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR GPL-2.0-only"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "2ab42ca02749e120097e328d91d415325bdf43b1c72c4c8badf37375fe40a813"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:33",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "shlex",
+      "version": "2.0.1",
+      "purl": "pkg:cargo/shlex@2.0.1",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f8fadd59c855ef2080decdef8ff161eb6661b86933c9d82e5ba29dc602a55aba"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:34",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "syn",
+      "version": "2.0.119",
+      "purl": "pkg:cargo/syn@2.0.119",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "872831b642d1a07999a962a351ed35b955ea2cfc8f3862091e2a240a84f17297"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:35",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "target-lexicon",
+      "version": "0.13.5",
+      "purl": "pkg:cargo/target-lexicon@0.13.5",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 WITH LLVM-exception"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "adb6935a6f5c20170eeceb1a3835a49e12e19d792f6dd344ccc76a985ca5a6ca"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:36",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "unicode-ident",
+      "version": "1.0.24",
+      "purl": "pkg:cargo/unicode-ident@1.0.24",
+      "licenses": [
+        {
+          "expression": "(MIT OR Apache-2.0) AND Unicode-3.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "e6e4313cd5fcd3dad5cafa179702e2b244f760991f45397d14d4ebf38247da75"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:37",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "vcpkg",
+      "version": "0.2.15",
+      "purl": "pkg:cargo/vcpkg@0.2.15",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "accd4ea62f7bb7a82fe23066fb0957d48ef677f6eeb8215f372f52e48bb32426"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:38",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "openssl",
+      "version": "4.0.3",
+      "purl": "pkg:generic/openssl@4.0.3?download_url=https://github.com/openssl/openssl/releases/download/openssl-4.0.3/openssl-4.0.3.tar.gz",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "325b5c806167c13b40b1ffeadfe0248197c00eccc4cf123ec1e28d2d2fd216d9"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/sbom.json:0",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/sbom.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl",
+      "name": "cryptography",
+      "version": "50.0.2",
+      "purl": "pkg:pypi/cryptography@50.0.2?file_name=cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "4061c0079120205fb760c58acab6443e217307dcf05e3702cf970e0689972856"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aethon:scope",
+          "value": "ACQUIRED_WHEEL_NOT_INSTALLED"
+        },
+        {
+          "name": "aethon:platform",
+          "value": "linux-x86_64"
+        },
+        {
+          "name": "aethon:discovery",
+          "value": "ZIP/METADATA/RECORD; evidence/static-analysis.json"
+        },
+        {
+          "name": "aethon:provenance",
+          "value": "PARTIALLY_VERIFIED"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:native:f28d787117880abb13cc08822d1a0704d27e0fb33155d353f10a0a67efa6c4c1",
+      "name": "cryptography/hazmat/bindings/_rust.abi3.so",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f28d787117880abb13cc08822d1a0704d27e0fb33155d353f10a0a67efa6c4c1"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "Acquired member bytes; static PE/ELF parsing"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cryptography-cffi",
+      "version": "0.50.2",
+      "purl": "pkg:cargo/cryptography-cffi@0.50.2?download_url=file://cryptography-cffi",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:0",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cryptography-crypto",
+      "version": "0.50.2",
+      "purl": "pkg:cargo/cryptography-crypto@0.50.2?download_url=file://cryptography-crypto",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:1",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cryptography-keepalive",
+      "version": "0.50.2",
+      "purl": "pkg:cargo/cryptography-keepalive@0.50.2?download_url=file://cryptography-keepalive",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:2",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cryptography-key-parsing",
+      "version": "0.50.2",
+      "purl": "pkg:cargo/cryptography-key-parsing@0.50.2?download_url=file://cryptography-key-parsing",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:3",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cryptography-openssl",
+      "version": "0.50.2",
+      "purl": "pkg:cargo/cryptography-openssl@0.50.2?download_url=file://cryptography-openssl",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:4",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cryptography-x509",
+      "version": "0.50.2",
+      "purl": "pkg:cargo/cryptography-x509@0.50.2?download_url=file://cryptography-x509",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:5",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cryptography-x509-verification",
+      "version": "0.50.2",
+      "purl": "pkg:cargo/cryptography-x509-verification@0.50.2?download_url=file://cryptography-x509-verification",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:6",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "asn1",
+      "version": "0.24.1",
+      "purl": "pkg:cargo/asn1@0.24.1",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "c9795210620c0cb3f9a7ce4f882808c38e1ef7b347c90591dceae0886e031fb1"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:7",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "asn1_derive",
+      "version": "0.24.1",
+      "purl": "pkg:cargo/asn1_derive@0.24.1",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "909e307f1cc32bb8bccbd98f446e6d1bf03fa30f7b53a4337da7181ad30fa11a"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:8",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "base64",
+      "version": "0.23.0",
+      "purl": "pkg:cargo/base64@0.23.0",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "b25655df2c3cdd83c5e5b293b88acd880332b2ddadd7c30ac43144fdc0033da9"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:9",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "bitflags",
+      "version": "2.13.1",
+      "purl": "pkg:cargo/bitflags@2.13.1",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "b588b76d00fde79687d7646a9b5bdf3cc0f655e0bbd080335a95d7e96f3587da"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:10",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cc",
+      "version": "1.4.0",
+      "purl": "pkg:cargo/cc@1.4.0",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "5add81bb678e6cb321aff7fa0dc7689ad82b112dbc032cea19f91d6b8e3582b9"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:11",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "cfg-if",
+      "version": "1.0.4",
+      "purl": "pkg:cargo/cfg-if@1.0.4",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:12",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "find-msvc-tools",
+      "version": "0.1.9",
+      "purl": "pkg:cargo/find-msvc-tools@0.1.9",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "5baebc0774151f905a1a2cc41989300b1e6fbb29aff0ceffa1064fdd3088d582"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:13",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "foreign-types-shared",
+      "version": "0.1.1",
+      "purl": "pkg:cargo/foreign-types-shared@0.1.1",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "00b0228411908ca8685dba7fc2cdd70ec9990a6e753e89b6ac91a84c40fbaf4b"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:14",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "foreign-types",
+      "version": "0.3.2",
+      "purl": "pkg:cargo/foreign-types@0.3.2",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f6f339eb8adc052cd2ca78910fda869aefa38d22d5cb648e6485e4d3fc06f3b1"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:15",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "heck",
+      "version": "0.5.0",
+      "purl": "pkg:cargo/heck@0.5.0",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:16",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "itoa",
+      "version": "1.0.18",
+      "purl": "pkg:cargo/itoa@1.0.18",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "8f42a60cbdf9a97f5d2305f08a87dc4e09308d1276d28c869c684d7777685682"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:17",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "libc",
+      "version": "0.2.189",
+      "purl": "pkg:cargo/libc@0.2.189",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "3eaf3ede3fee6db1a4c2ee091bf8a8b4dccdc6d17f656fb07896ee72867612f2"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:18",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "once_cell",
+      "version": "1.21.4",
+      "purl": "pkg:cargo/once_cell@1.21.4",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9f7c3e4beb33f85d45ae3e3a1792185706c8e16d043238c593331cc7cd313b50"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:19",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "openssl-macros",
+      "version": "0.1.1",
+      "purl": "pkg:cargo/openssl-macros@0.1.1",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "a948666b637a0f465e8564c73e89d4dde00d72d4d473cc972f390fc3dcee7d9c"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:20",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "openssl-sys",
+      "version": "0.9.117",
+      "purl": "pkg:cargo/openssl-sys@0.9.117",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "b47e7e6bb2c38cd930d25a23b40fa52e068c10e85f3e03a7f5ba5aaca5713695"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:21",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "openssl",
+      "version": "0.10.81",
+      "purl": "pkg:cargo/openssl@0.10.81",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "77823a27f0babb03091cb9ed9ef80af3b39dbc82f97e8fa530374b7dafd87a45"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:22",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "pem",
+      "version": "4.0.0",
+      "purl": "pkg:cargo/pem@4.0.0",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d354a98a3d1251555de99e8fdd8afda05573c31b82f59063a7b0a29b5527f120"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:23",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "pkg-config",
+      "version": "0.3.33",
+      "purl": "pkg:cargo/pkg-config@0.3.33",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "19f132c84eca552bf34cab8ec81f1c1dcc229b811638f9d283dceabe58c5569e"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:24",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "portable-atomic",
+      "version": "1.14.0",
+      "purl": "pkg:cargo/portable-atomic@1.14.0",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR MIT"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "3d20d5497ef88037a52ff98267d066e7f11fcc5e99bbfbd58a42336193aacec3"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:25",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "proc-macro2",
+      "version": "1.0.107",
+      "purl": "pkg:cargo/proc-macro2@1.0.107",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "985e7ec9bb745e6ce6535b544d84d6cd6f7ad8bd711c398938ae983b91a766d9"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:26",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "pyo3-build-config",
+      "version": "0.29.2",
+      "purl": "pkg:cargo/pyo3-build-config@0.29.2",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f41027e41b4bd03f6e60f9f417fe24a6341a6bb744edd62b6f709f2a52ea30e9"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:27",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "pyo3-ffi",
+      "version": "0.29.2",
+      "purl": "pkg:cargo/pyo3-ffi@0.29.2",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "e591a95526fead067432c3b3a33fc74770b87b1e04e73671090d9c2055a2b327"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:28",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "pyo3-macros-backend",
+      "version": "0.29.2",
+      "purl": "pkg:cargo/pyo3-macros-backend@0.29.2",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "571575aa3749fa6216757dd47d2a3e7ef360f329a40f0666a9fbd14889024952"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:29",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "pyo3-macros",
+      "version": "0.29.2",
+      "purl": "pkg:cargo/pyo3-macros@0.29.2",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "73225868fc1cd84eef2c3c230ddb91273bf1de46aeb8a4248da76d32a0924a1c"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:30",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "pyo3",
+      "version": "0.29.2",
+      "purl": "pkg:cargo/pyo3@0.29.2",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "4688ddedf473e32662b9b067670129a8afb8c18e351482c70d62ba4a88171e8b"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:31",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "quote",
+      "version": "1.0.47",
+      "purl": "pkg:cargo/quote@1.0.47",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1fbf4db142a473a8d80c26bbf18454ed458bf8d26c8219c331daecfdbd079001"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:32",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "self_cell",
+      "version": "1.3.0",
+      "purl": "pkg:cargo/self_cell@1.3.0",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR GPL-2.0-only"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "2ab42ca02749e120097e328d91d415325bdf43b1c72c4c8badf37375fe40a813"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:33",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "shlex",
+      "version": "2.0.1",
+      "purl": "pkg:cargo/shlex@2.0.1",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f8fadd59c855ef2080decdef8ff161eb6661b86933c9d82e5ba29dc602a55aba"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:34",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "syn",
+      "version": "2.0.119",
+      "purl": "pkg:cargo/syn@2.0.119",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "872831b642d1a07999a962a351ed35b955ea2cfc8f3862091e2a240a84f17297"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:35",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "target-lexicon",
+      "version": "0.13.5",
+      "purl": "pkg:cargo/target-lexicon@0.13.5",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 WITH LLVM-exception"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "adb6935a6f5c20170eeceb1a3835a49e12e19d792f6dd344ccc76a985ca5a6ca"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:36",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "unicode-ident",
+      "version": "1.0.24",
+      "purl": "pkg:cargo/unicode-ident@1.0.24",
+      "licenses": [
+        {
+          "expression": "(MIT OR Apache-2.0) AND Unicode-3.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "e6e4313cd5fcd3dad5cafa179702e2b244f760991f45397d14d4ebf38247da75"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:37",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "vcpkg",
+      "version": "0.2.15",
+      "purl": "pkg:cargo/vcpkg@0.2.15",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "accd4ea62f7bb7a82fe23066fb0957d48ef677f6eeb8215f372f52e48bb32426"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:38",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "openssl",
+      "version": "4.0.3",
+      "purl": "pkg:generic/openssl@4.0.3?download_url=https://github.com/openssl/openssl/releases/download/openssl-4.0.3/openssl-4.0.3.tar.gz",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "325b5c806167c13b40b1ffeadfe0248197c00eccc4cf123ec1e28d2d2fd216d9"
+        }
+      ],
+      "bom-ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/sbom.json:0",
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "DECLARED_IN_ACQUIRED_EMBEDDED_SBOM:cryptography-50.0.2.dist-info/sboms/sbom.json"
+        },
+        {
+          "name": "aethon:linkage",
+          "value": "NOT_INDEPENDENTLY_ESTABLISHED; may include build-only components"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "wheel:cffi-2.1.1-cp312-cp312-win_amd64.whl",
+      "name": "cffi",
+      "version": "2.1.1",
+      "purl": "pkg:pypi/cffi@2.1.1?file_name=cffi-2.1.1-cp312-cp312-win_amd64.whl",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f53e442b08449d42821fa4a4fba000095af9f62742a500f978a9f557ec44339a"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aethon:scope",
+          "value": "ACQUIRED_WHEEL_NOT_INSTALLED"
+        },
+        {
+          "name": "aethon:platform",
+          "value": "windows-x86_64"
+        },
+        {
+          "name": "aethon:discovery",
+          "value": "ZIP/METADATA/RECORD; evidence/static-analysis.json"
+        },
+        {
+          "name": "aethon:provenance",
+          "value": "MISSING"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "MIT-0"
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "bom-ref": "wheel:cffi-2.1.1-cp312-cp312-win_amd64.whl:native:9af5e4f68a41f26b726f2e9424f9d58a4f5666189f6a48be95f406b257102aec",
+      "name": "_cffi_backend.cp312-win_amd64.pyd",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9af5e4f68a41f26b726f2e9424f9d58a4f5666189f6a48be95f406b257102aec"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "Acquired member bytes; static PE/ELF parsing"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "wheel:cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "name": "cffi",
+      "version": "2.1.1",
+      "purl": "pkg:pypi/cffi@2.1.1?file_name=cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "c1453022f490d2459a11819d83ad1d586e9ff65a12ac3e705ffebd46d3685dcf"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aethon:scope",
+          "value": "ACQUIRED_WHEEL_NOT_INSTALLED"
+        },
+        {
+          "name": "aethon:platform",
+          "value": "linux-x86_64"
+        },
+        {
+          "name": "aethon:discovery",
+          "value": "ZIP/METADATA/RECORD; evidence/static-analysis.json"
+        },
+        {
+          "name": "aethon:provenance",
+          "value": "MISSING"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "MIT-0"
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "bom-ref": "wheel:cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl:native:9bc1d08072255a5ec2db10fc75df1dd9e73097a75cd9150cfe875ebd6712f17c",
+      "name": "_cffi_backend.cpython-312-x86_64-linux-gnu.so",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9bc1d08072255a5ec2db10fc75df1dd9e73097a75cd9150cfe875ebd6712f17c"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aethon:discovery",
+          "value": "Acquired member bytes; static PE/ELF parsing"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "wheel:pycparser-3.12-py3-none-any.whl",
+      "name": "pycparser",
+      "version": "3.12",
+      "purl": "pkg:pypi/pycparser@3.12?file_name=pycparser-3.12-py3-none-any.whl",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "a076f3f489b39b43ed13563a1dafe42447445bec2e294154ec5c57fcdda4c85e"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aethon:scope",
+          "value": "ACQUIRED_WHEEL_NOT_INSTALLED"
+        },
+        {
+          "name": "aethon:platform",
+          "value": "both"
+        },
+        {
+          "name": "aethon:discovery",
+          "value": "ZIP/METADATA/RECORD; evidence/static-analysis.json"
+        },
+        {
+          "name": "aethon:provenance",
+          "value": "MISSING"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "wheel:cffi-2.1.1-cp312-cp312-win_amd64.whl:observed:libffi",
+      "name": "libffi",
+      "properties": [
+        {
+          "name": "aethon:version",
+          "value": "NOT_IDENTIFIED"
+        },
+        {
+          "name": "aethon:discovery",
+          "value": "Native literal/symbol references in acquired cffi extension; exact build/version/license NOT_AUDITED"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "wheel:cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl:observed:libffi",
+      "name": "libffi",
+      "properties": [
+        {
+          "name": "aethon:version",
+          "value": "NOT_IDENTIFIED"
+        },
+        {
+          "name": "aethon:discovery",
+          "value": "Native literal/symbol references in acquired cffi extension; exact build/version/license NOT_AUDITED"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl",
+      "dependsOn": [
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:native:1d4332a447cab13dec8e3a533ad579e0e562b79e40822c931f33769758fc7156",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:0",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:1",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:2",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:3",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:4",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:5",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:6",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:7",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:8",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:9",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:10",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:11",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:12",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:13",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:14",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:15",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:16",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:17",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:18",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:19",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:20",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:21",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:22",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:23",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:24",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:25",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:26",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:27",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:28",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:29",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:30",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:31",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:32",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:33",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:34",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:35",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:36",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:37",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:38",
+        "wheel:cryptography-50.0.2-cp311-abi3-win_amd64.whl:declared:cryptography-50.0.2.dist-info/sboms/sbom.json:0",
+        "wheel:cffi-2.1.1-cp312-cp312-win_amd64.whl"
+      ]
+    },
+    {
+      "ref": "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl",
+      "dependsOn": [
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:native:f28d787117880abb13cc08822d1a0704d27e0fb33155d353f10a0a67efa6c4c1",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:0",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:1",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:2",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:3",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:4",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:5",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:6",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:7",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:8",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:9",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:10",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:11",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:12",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:13",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:14",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:15",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:16",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:17",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:18",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:19",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:20",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:21",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:22",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:23",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:24",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:25",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:26",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:27",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:28",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:29",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:30",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:31",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:32",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:33",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:34",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:35",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:36",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:37",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/cryptography-rust.cyclonedx.json:38",
+        "wheel:cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl:declared:cryptography-50.0.2.dist-info/sboms/sbom.json:0",
+        "wheel:cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl"
+      ]
+    },
+    {
+      "ref": "wheel:cffi-2.1.1-cp312-cp312-win_amd64.whl",
+      "dependsOn": [
+        "wheel:cffi-2.1.1-cp312-cp312-win_amd64.whl:native:9af5e4f68a41f26b726f2e9424f9d58a4f5666189f6a48be95f406b257102aec",
+        "wheel:pycparser-3.12-py3-none-any.whl",
+        "wheel:cffi-2.1.1-cp312-cp312-win_amd64.whl:observed:libffi"
+      ]
+    },
+    {
+      "ref": "wheel:cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "dependsOn": [
+        "wheel:cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl:native:9bc1d08072255a5ec2db10fc75df1dd9e73097a75cd9150cfe875ebd6712f17c",
+        "wheel:pycparser-3.12-py3-none-any.whl",
+        "wheel:cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl:observed:libffi"
+      ]
+    },
+    {
+      "ref": "wheel:pycparser-3.12-py3-none-any.whl",
+      "dependsOn": []
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "algorithm": "SHA-256",
+  "excludes": [
+    "SHA256SUMS.json"
+  ],
+  "files": {
+    "ACQUISITION_REPORT.md": "f3d9035917b4cde345abea9fa12e2877902e9b21ac7335d74c5499f794b271e9",
+    "CHAIN_OF_CUSTODY.md": "31358f69f3b5a61541894c557f345843a80b166447b621869de45093d2404f2f",
+    "evidence/acquisition.json": "488649e8ecb1d0034c92152d878ce69fcf3e57e03783f518a723d7986346d82b",
+    "evidence/advisories.json": "4964efaa5ef6f274e1d43deedeb644de1b05ebb28026605af21099259ce2ee02",
+    "evidence/offline-tests.json": "b296c5511d4b7e3bfb64d95144147bd45742539a2324d617fc43ba39dc38f1c2",
+    "evidence/openssl-advisory-receipt.json": "0f072450df95257ce769ba5fea35e51a0ad0241aad5f4bfdc2ed775d5d4a575e",
+    "evidence/parent-ci.json": "d4098c231feaee471727ce1953e0cbff4a4b16f9c61d0481b352c0d83f1b015a",
+    "evidence/pip-check.txt": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "evidence/preflight.json": "a6d506577b9c6ac04d1fe46022482cee818f53f861859ad4fd05c58878cedcc7",
+    "evidence/preservation.json": "da727ee2e65c69751518b0d38be3d6db9736269a1986aab9ac8bc34849d8a743",
+    "evidence/pypi-cffi-2.1.1.json": "2255e530e3f80593a354e3d84a29966924d0e10309d1e3a6d50f845ab7d8df66",
+    "evidence/pypi-cffi-2.1.1.receipt.json": "7f4ff51a16efbc3c1c0a45cfa7b2c8073d623266df8ed5802f8efb9748554297",
+    "evidence/pypi-cryptography-50.0.2.json": "7423990cc0948676ef47a71ea62a476ece4c76245e6bebd1c3a71f03c4ffc0f4",
+    "evidence/pypi-cryptography-50.0.2.receipt.json": "1a462264e9d437d2ea2693354add9d3b63ec041e6ed8394b14fbe641bac4eae2",
+    "evidence/pypi-pycparser-3.12.json": "e919b291615d54a2328a0da6128cd9d95601ad04d27cec48eeb75e0d57c3b6ad",
+    "evidence/pypi-pycparser-3.12.receipt.json": "2a9501276c81da462139079876a2d09bdb60b9bf2e2f8f06d45f4510569de1c2",
+    "evidence/pytest.txt": "543db9bf35ab74b13acfe3ba8144ecda3cbf85bd9363f80191882c294b0f2ee4",
+    "evidence/ruff.txt": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "evidence/static-analysis.json": "d2cda84826dffff1af76f3a928d4e64fc436e2e0fccc6d71001df9649f9801c9",
+    "evidence/validation.json": "ac680b192edde4698a4adc97977d7b12cfca1974718dd36774f6cbe7eb1cd4c9",
+    "INTEGRITY_MATRIX.md": "4ed4e8de574c232e7e1c06b5ea64604794644714e90aadb8a2b2ef7ab3731a72",
+    "LICENSE_REVIEW.md": "e7e3bbd7309071054913fde551d497e231de5e1ce0773d148c1472dd6be4f7e1",
+    "NATIVE_COMPONENTS.md": "4d47a3df51809ce54f38fed2400148a488ad6f2ae1573499af1ffcf815140c1b",
+    "NEXT_APPROVAL_GATE.md": "0f671f8a7dbe838f182a6b58900c9b94768263ab3cff3215d934a04af5ab4ec5",
+    "PROVENANCE_REVIEW.md": "b024d5c6bc8cd9f29199b9a9edf69c13a0076e5ba59db499ebd42838ece1d553",
+    "STATIC_SBOM.cdx.json": "1f5bf81e78e4a5bb5e6bfef1c6137b429c1f3cb9cac216a17803b9d3f781a65f",
+    "VALIDATION.md": "8828aaf8d24acb57513c17bac39c3239053be5c5aa3c4a5ae7be4ae12ad72f2e",
+    "VULNERABILITY_REVIEW.md": "690943fa1f335f54b412150c8367dfd27aa7c46a02018df72e109cfb061d2dcd"
+  }
+}
