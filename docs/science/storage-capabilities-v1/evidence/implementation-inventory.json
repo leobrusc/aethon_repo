@@ -1,0 +1,16 @@
+{
+  "sha256": {
+    "src/aethon/pilot_storage.py": "3e8106c862ba751fb21e2001180017d245fee5d1ab10e6e9c6d584e31a30dbd4",
+    "src/aethon/pilot_storage_facade.py": "2d51d7ba02f65a294e7aaf421515987f9ec30ef6e85c43ef262c8fef8ac6ee96",
+    "src/aethon/pilot_storage_backend.py": "02f16423d4f6a83f7b42faf10963724816d9fdbcaf8f6840b87d18bd0773937d",
+    "src/aethon/pilot_storage_probe.py": "70f10653a9d2a20fa769e21110fa02b3fb24fcd4f0109e9d0d5b767a6d253c71",
+    "src/aethon/pilot_runtime.py": "95414771d46ccac0aea4ac4342bba2508f33b6148eace7dba078a265097cab2d",
+    "tests/pilot_memory_backend.py": "b7401d0a68ded77d40f2f5cdcfc7898aba53fedfab6cb3b83150095b3619c581",
+    "tests/test_storage_capabilities.py": "da09116ca37b8a6d45cd306668a35d98491c8d0da1665ec3a453ff6f56d3cd87"
+  },
+  "runtime_boundary": "Facade/Protocol contain no path persistence; backend owns all run I/O, writer leases, recovery and close",
+  "diagnostics": "Separate read-only probe/input loaders are not run-persistence capabilities",
+  "backend_packaging": "Only tests/pilot_memory_backend.py; no installed aethon memory/native backend or productive CLI selection",
+  "root_capability": "No native root bootstrap implemented; native backend constructor must accept independently issued root authority",
+  "authorization": "Existing issued authorization required; SRC01 unchanged"
+}

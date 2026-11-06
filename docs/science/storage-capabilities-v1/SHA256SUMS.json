@@ -1,0 +1,35 @@
+{
+  "algorithm": "SHA-256",
+  "excludes": [
+    "SHA256SUMS.json"
+  ],
+  "files": {
+    "evidence/contract-preservation.json": "1aadd37f8947d35b50a9a8e88f8e79c6c76a9ae168a906e59175c0586d415793",
+    "evidence/implementation-inventory.json": "fc5c260fa0ea531b4b9841a975b0bc0e1ec5103e9abf0f3dbde02df8b3227e2c",
+    "evidence/preservation.json": "baefc97af468629172d2ce7c24cdc59d04df8da874955bc1426997deaf3ae909",
+    "evidence/storage-final-offline-tests.json": "b296c5511d4b7e3bfb64d95144147bd45742539a2324d617fc43ba39dc38f1c2",
+    "evidence/storage-final-seal-check.txt": "a9bf55a60b49f0f1382891d0834096baa15663977b9025422074b4008979e9eb",
+    "evidence/storage-full-1.txt": "ad0b132f735a0af61174013bd7ac3887fa3b6bcd1fe6f27ee2f58044c9ab2087",
+    "evidence/storage-full-final.txt": "f8fe68e33847122dcb6df0eaa22f6c8a9de94a13489e74153074b801e1696718",
+    "evidence/storage-full-release.txt": "fcd90da30f526dc735ef8628ed92e7dd00b02b1ba9b557f108410490c0cebfb2",
+    "evidence/storage-pip-check.txt": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "evidence/storage-preflight.json": "a6d506577b9c6ac04d1fe46022482cee818f53f861859ad4fd05c58878cedcc7",
+    "evidence/storage-publish-ready-guard.txt": "ead7ff6b848b89632b686439a21bd9b4760b990b0bd5c90a0ab77f85eef305e2",
+    "evidence/storage-release-offline-tests.json": "b296c5511d4b7e3bfb64d95144147bd45742539a2324d617fc43ba39dc38f1c2",
+    "evidence/storage-release-preflight.json": "a6d506577b9c6ac04d1fe46022482cee818f53f861859ad4fd05c58878cedcc7",
+    "evidence/storage-release-ruff.txt": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "evidence/storage-ruff.txt": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "evidence/storage-targeted-1.txt": "f1e85ee7db37ae5473ed09b1d4a15c8114ad116f8817cbfc01ed82523e9eaaa9",
+    "evidence/storage-targeted-2.txt": "36c06a5b1448e4900dbfe67679ac68084877bfd66f71a00f3b695219467b4031",
+    "evidence/validation.json": "ede690a8fe69a7991555cb1a9d879887a3570c10e72ffdaafff0e79037b507c6",
+    "historical/index.json": "15c5100de57e4e1353794c614ec7ee86b134899b5ef96105be9ecbfb3ff38a35",
+    "historical/pilot_storage.py.txt": "dfe7f3aacb51aeacf62f82f97e03fc1e783b620092fb0022a1e1246bc21b7f7c",
+    "historical/test_independent_security_review.py.txt": "b8fe52627003801e0942a2a2c22a4634093885f043d4a614df1856183ba4e074",
+    "historical/test_pilot_collector.py.txt": "b9fbeaa0ee8bd15905789b4f6b2b5fe10d5faae97ae0c34892ff1912a17656a3",
+    "historical/test_pilot_remediation.py.txt": "286549150b8ab29494fe5d9633205e8a34756c8e3bb5f3cac40b26d952daf597",
+    "NATIVE_BACKEND_REQUIREMENTS.md": "2c5c14f681b5b2f0920a4d11126471bb6feb74438caa19b255eaff8d5d42650e",
+    "STORAGE_CAPABILITY_API.md": "bf3c2f292500f46289af0237c4354570346bc52b7e2e46354871905dcb712a17",
+    "STORAGE_CONTRACT_TESTS.md": "a70644b9f8b8d552c04ab8fd22a942f688c4a7b84afdb845f04bf4d7d65e6a03",
+    "STORAGE_REFACTOR_VALIDATION.md": "cd8761f469f0de0a8bbfee8b03a6e68152d5adff59aca14d3ea50a1f7eef6ad4"
+  }
+}

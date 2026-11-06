@@ -1,0 +1,41 @@
+.................................F...................................... [ 78%]
+....................                                                     [100%]
+================================== FAILURES ===================================
+_____ test_pending_config_preflight_has_all_eight_gates_and_no_execution ______
+
+    def test_pending_config_preflight_has_all_eight_gates_and_no_execution():
+        from aethon.pilot_runtime import inspect_runtime
+        root = Path(__file__).resolve().parents[1]
+>       report, context = inspect_runtime(root)
+                          ^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_pilot_collector.py:441: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\aethon\pilot_runtime.py:58: in inspect_runtime
+    config = load_config(root)
+             ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('<STORAGE_WORKTREE>')
+
+    def load_config(root):
+        config = json.loads((root/"configs/science/collector_v1.json").read_text(encoding="utf-8"))
+        if config["schema"] != "aethon.prospective-collector.v1" or config["baseline"] != BASELINE:
+            raise ValueError("Unsupported collector baseline")
+        if config["conditions"] != list(CONDITIONS): raise ValueError("Frozen arms changed")
+        target = json.loads((root/"configs/science/target_v1.json").read_text())
+        if (config["revision"] != target["model_revision"] or config["tokenizer_revision"] != target["tokenizer_revision"]
+                or config["template_sha256"] != target["chat_template_sha256"] or config["asset_set_sha256"] != fingerprint(target["assets"])):
+            raise ValueError("Frozen target identity changed")
+        if fingerprint(config["generation"]) != fingerprint(json.loads((root/"configs/science/pilot_v1.json").read_text())["generation"]):
+            raise ValueError("Frozen generation settings changed")
+        for name, hashes in config["implementation_files"].items():
+            path = (root/name).resolve()
+            if root not in path.parents or digest(path.read_bytes()) not in hashes:
+>               raise ValueError("Collector implementation seal mismatch")
+E               ValueError: Collector implementation seal mismatch
+
+src\aethon\pilot_runtime.py:50: ValueError
+=========================== short test summary info ===========================
+FAILED tests/test_pilot_collector.py::test_pending_config_preflight_has_all_eight_gates_and_no_execution
+1 failed, 91 passed in 68.15s (0:01:08)

@@ -12,7 +12,7 @@ import subprocess
 from aethon.pilot_collector import Collector, FrozenDefenses, make_manifest, validate_inventory
 from aethon.pilot_governance import ReceiptAuthority, authorize, digest, read_external, verify_gates
 from aethon.pilot_local import LocalGenerationAdapter, verify_assets
-from aethon.pilot_storage import PrivateRunStore, discover_repositories, probe_storage
+from aethon.pilot_storage_probe import discover_repositories, probe_storage
 from aethon.prospective import BASELINE, CONDITIONS, GATES, fingerprint, preflight
 
 
@@ -104,21 +104,5 @@ def inspect_runtime(root, *, inventory_path=None, private_root=None, run_id=None
 
 
 def collect_runtime(root, *, launch_path, **kwargs):
-    report, context = inspect_runtime(root, **kwargs)
-    if report["classification"] != "READY_FOR_PILOT_REVIEW": raise PermissionError("Pilot remains blocked")
-    launch = json.loads(read_external(launch_path, context["forbidden"]))
-    permission = authorize(context["authority"], context["envelopes"], context["subject"], launch, context["technical"])
-    storage = context["envelopes"]["private_storage"]["payload"]["claims"]
-    retention = {"custodian": storage["custodian"], "delete_after": storage["delete_after"], "retention_plan_sha256": storage["retention_plan_sha256"]}
-    manifest = make_manifest(context["rows"], context["config"], context["subject"], retention)
-    store = PrivateRunStore(kwargs["private_root"], manifest, permission, context["forbidden"], context["technical"]["private_storage"])
-    if store.suspended or store.summary()["accounting_complete"]: return store.summary()
-    target = json.loads((Path(root)/"configs/science/target_v1.json").read_text())
-    snapshot = context["envelopes"]["model_assets"]["payload"]["claims"]["snapshot_path"]
-    # All 120 slots are durable before any model/classifier initialization.
-    def factory():
-        driver = LocalGenerationAdapter(snapshot, target, context["config"])
-        defenses = FrozenDefenses(Path(root)/"src/models/aethon_tfidf_lr_revision.pkl", context["config"]["detector_sha256"])
-        return driver, defenses
-    # The collector acquires its writer lock before any model initialization.
-    return Collector(store, context["rows"], context["config"], None, None, judge=None, factory=factory).run()
+    # No backend selector/test injection is reachable from productive CLI.
+    raise PermissionError("Native capability storage unavailable; production collection disabled")
