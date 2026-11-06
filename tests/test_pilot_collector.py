@@ -18,9 +18,11 @@ from aethon.generation import GenerationResult
 from aethon.pilot_collector import Collector, make_manifest, no_external_calls, validate_inventory
 from aethon.pilot_governance import (Authorization, CLAIMS, KINDS, DISPOSITIONS, OpenSSLVerifier, key_identity,
                                     ReceiptAuthority, authorize, canonical, digest, verify_gates)
-from aethon.pilot_storage import (CorruptCheckpoint, PrivateRunStore, immutable_write,
+from aethon.pilot_storage import (CorruptCheckpoint, PrivateRunStore,
                                  probe_storage, safe_path)
 from aethon.pilot_identity import path_identity
+from aethon.pilot_storage_backend import StorageKey, WriterBusy, StorageCollision, StorageInterrupted
+from pilot_memory_backend import MemoryBackend
 from aethon.prospective import BASELINE, CONDITIONS, fingerprint
 
 REV = "9213176726f574b556790deb65791e0c5aa438b6"
@@ -189,9 +191,10 @@ def setup_run(tmp_path):
     permission = authorize(authority, envelopes, subject, launch, technical)
     retention = {"custodian": "SYNTHETIC-CUSTODIAN", "delete_after": "2099-01-01"}
     manifest = make_manifest(rows, config, subject, retention)
-    def store(): return PrivateRunStore(private, manifest, permission, [repo], observation, confinement=SyntheticConfinement())
+    backend = MemoryBackend()
+    def store(): return PrivateRunStore(manifest=manifest, authorization=permission, backend=backend)
     return dict(rows=rows, config=config, subject=subject, manifest=manifest, permission=permission, store=store,
-                private=private, repo=repo, technical=technical, authority=authority, envelopes=envelopes,
+                private=private, repo=repo, backend=backend, technical=technical, authority=authority, envelopes=envelopes,
                 launch=launch, receipt=receipt, policy_path=policy_path, observation=observation, rubric_path=rubric_path, keys=keys)
 
 
@@ -222,7 +225,7 @@ def test_private_events_retain_utc_and_monotonic_timing_provenance(setup_run):
     from aethon.pilot_governance import utc
     from aethon.pilot_storage import unseal
     run = collector(setup_run); run.run(max_slots=1)
-    events = [unseal(p.read_bytes()) for p in run.store.events.glob('*.json')]
+    events = [unseal(raw) for raw in run.store.backend.read_head(run.store.run_capability).events]
     assert all(utc(e['recorded_utc']).tzinfo is not None for e in events)
     slot = next(s for s in run.store.slots.values() if s['state'] == 'evaluation_error')
     assert slot['generation_elapsed_ns'] >= 0 and slot['evaluation_elapsed_ns'] >= 0
@@ -330,36 +333,34 @@ def test_unauthorized_network_and_process_calls_are_blocked(setup_run):
     with no_external_calls(), pytest.raises(PermissionError): subprocess.run(["NEVER_EXECUTE"])
 
 
-def test_atomic_write_collision_and_failure_leave_no_partial_target(tmp_path, monkeypatch):
-    path = tmp_path/"object.json"
-    def failed(*args): raise OSError("synthetic disk interruption")
-    monkeypatch.setattr(os, "link", failed)
-    with pytest.raises(OSError): immutable_write(path, b"synthetic")
-    assert not path.exists() and not list(tmp_path.glob("*.tmp"))
-    monkeypatch.undo()
-    immutable_write(path, b"first")
-    immutable_write(path, b"first")
-    with pytest.raises(CorruptCheckpoint): immutable_write(path, b"replacement")
-    assert path.read_bytes() == b"first"
+def test_atomic_write_collision_and_failure_leave_no_partial_target(setup_run):
+    f=setup_run; store=f['store'](); backend=f['backend']; backend.fail_next('put','before_commit')
+    with pytest.raises(StorageInterrupted): store.put({'synthetic':True})
+    assert not backend.inspect(store.run_capability)['objects']
+    key=next(iter(store.slots))+'.response'
+    store.pointer(key,{'synthetic':True}); store.pointer(key,{'synthetic':True})
+    with pytest.raises(StorageCollision): store.pointer(key,{'replacement':True})
+    assert store.pointer(key)=={'synthetic':True}
 
 
 def test_checkpoint_corruption_and_journal_gap_are_rejected(setup_run):
-    run = collector(setup_run); run.run(max_slots=1)
-    path = next(run.store.objects.glob("*.json")); path.write_bytes(b"corruption")
-    with pytest.raises((CorruptCheckpoint, ValueError)): setup_run["store"]()
+    run=collector(setup_run);run.run(max_slots=1)
+    objects=setup_run['backend'].inspect(run.store.run_capability)['objects'];key=next(iter(objects))
+    objects[key]=(b'corruption',objects[key][1])
+    with pytest.raises(CorruptCheckpoint): setup_run['store']()
 
 
 def test_journal_deletion_in_middle_rejected(setup_run):
-    run = collector(setup_run); run.run(max_slots=2)
-    (run.store.events/"000002.json").unlink()
-    with pytest.raises(CorruptCheckpoint): setup_run["store"]()
+    run=collector(setup_run);run.run(max_slots=2)
+    setup_run['backend'].inspect(run.store.run_capability)['journal'].pop(1)
+    with pytest.raises(CorruptCheckpoint): setup_run['store']()
 
 
 def test_fingerprint_change_and_duplicate_identifiers_rejected(setup_run):
     first = setup_run["store"]()
     changed = copy.deepcopy(setup_run["manifest"]); changed["config"]["generation"]["seed"] += 1
     with pytest.raises(CorruptCheckpoint):
-        PrivateRunStore(setup_run["private"], changed, setup_run["permission"], [setup_run["repo"]], setup_run["observation"], confinement=SyntheticConfinement())
+        PrivateRunStore(manifest=changed, authorization=setup_run["permission"], backend=setup_run["backend"])
     assert first.manifest["config"] == setup_run["manifest"]["config"]
     rows = synthetic_rows(); rows[1] = rows[0]
     with pytest.raises(ValueError): validate_inventory(rows)
@@ -368,7 +369,7 @@ def test_fingerprint_change_and_duplicate_identifiers_rejected(setup_run):
 def test_valid_checkpoint_copied_from_another_run_is_rejected(setup_run):
     f = setup_run; first = f["store"]()
     reference = first.put({"synthetic_only": True})
-    name = "a"*64+".response"
+    name = next(iter(first.slots))+".response"
     first.pointer(name, {"reference": reference})
     f["subject"]["run_id"] = "another-synthetic-run"
     f["observation"]["observation"]["subject_sha256"] = fingerprint(f["subject"])
@@ -376,9 +377,9 @@ def test_valid_checkpoint_copied_from_another_run_is_rejected(setup_run):
     envelopes = {gate: f["receipt"](gate) for gate in f["envelopes"]}
     permission = authorize(f["authority"], envelopes, f["subject"], f["receipt"]("launch_intent"), f["technical"])
     manifest = make_manifest(f["rows"], f["config"], f["subject"], f["manifest"]["retention"])
-    second = PrivateRunStore(f["private"], manifest, permission, [f["repo"]], f["observation"], confinement=SyntheticConfinement())
-    shutil.copyfile(first.objects/(reference+".json"), second.objects/(reference+".json"))
-    shutil.copyfile(first.path/(name+".json"), second.path/(name+".json"))
+    second = PrivateRunStore(manifest=manifest, authorization=permission, backend=f["backend"])
+    a=f["backend"].inspect(first.run_capability)["objects"];b=f["backend"].inspect(second.run_capability)["objects"]
+    for key,value in a.items(): b[key]=value
     with pytest.raises(CorruptCheckpoint): second.get(reference)
     with pytest.raises(CorruptCheckpoint): second.pointer(name)
 
@@ -476,11 +477,12 @@ def test_expiry_evidence_drift_and_trust_anchor_mismatch(setup_run):
 
 
 def test_concurrent_writer_lock_not_removed_automatically(setup_run):
-    store = setup_run["store"]()
-    path = store.path/"writer.lock"; path.write_bytes(b"foreign writer")
-    with pytest.raises(FileExistsError):
-        with store.writer(): pass
-    assert path.read_bytes() == b"foreign writer"
+    first=setup_run['store']();second=setup_run['store']()
+    with first.writer():
+        with pytest.raises(WriterBusy):
+            with second.writer(): pass
+        assert setup_run['backend'].writer_owned(first.run_capability)
+    with second.writer(): assert setup_run['backend'].writer_owned(second.run_capability)
 
 
 def test_signed_rejection_does_not_become_scientific_approval(setup_run):
@@ -510,7 +512,7 @@ def test_request_and_config_mutation_cannot_change_frozen_contract(setup_run, mu
 def test_model_factory_is_locked_and_initialization_failure_keeps_120_slots(setup_run):
     store = setup_run["store"]()
     def factory():
-        assert (store.path/"writer.lock").exists()
+        assert setup_run["backend"].writer_owned(store.run_capability)
         raise RuntimeError("synthetic model initialization failure")
     result = Collector(store, setup_run["rows"], setup_run["config"], None, None, factory=factory).run()
     assert result["represented_slots"] == 120 and result["attempted_calls"] == 0

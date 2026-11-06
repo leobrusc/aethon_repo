@@ -1,0 +1,73 @@
+{
+  "source_parent": "2dc16eb53d93336318a8e23c428cc0542656d25d",
+  "collector_scientific_config_except_implementation_seals": "IDENTICAL",
+  "generation_B0_B4_gate_receipts_and_launch_fields": "UNCHANGED",
+  "updated_engineering_seals": {
+    "src/aethon/pilot_collector.py": [
+      "35eda66418ebe695b2ed8b055dc5dd3e79550111093ac64058ce67c503b27c71"
+    ],
+    "src/aethon/pilot_governance.py": [
+      "4d1d13371c604c6b6cceac9d8847817e8a3a9f9e62b3f3c69d2a8c92cac4f094"
+    ],
+    "src/aethon/pilot_local.py": [
+      "ddbe1c057acf545f151a26cabff8f3cf7790e554f3de9695a160baaa4bddac21"
+    ],
+    "src/aethon/pilot_runtime.py": [
+      "95414771d46ccac0aea4ac4342bba2508f33b6148eace7dba078a265097cab2d"
+    ],
+    "src/aethon/pilot_storage.py": [
+      "3e8106c862ba751fb21e2001180017d245fee5d1ab10e6e9c6d584e31a30dbd4"
+    ],
+    "scripts/prospective_collector.py": [
+      "3bb318171c1307fb8a3f82e52d983d23042455097b877b2d9bfcb24ed84d6345"
+    ],
+    "tests/test_pilot_collector.py": [
+      "9814d3905c470dbb6320155de0b9a135b4bdae5ff6ba820010c6aecad9a90010"
+    ],
+    "tests/pilot_network_guard.py": [
+      "818024308128f1bcf700ce81056a41c59c0842335ffc91fb6a4ba5d33889cf39"
+    ],
+    "src/aethon/pilot_identity.py": [
+      "0005c3cdb2d21ccb8c61d29075757ea927a890f08c904db52ad4a10eabf970e3"
+    ],
+    "src/aethon/pilot_review.py": [
+      "8dea4b3abd8700b0b54cdd812b2a739e9a320393028ff5bba47b01e8af54f03c"
+    ],
+    "tests/test_pilot_remediation.py": [
+      "0a64aee22aa43df247d4bad64e03d5ac7dec7ecd16119c023d81b0fa3b01d4f1"
+    ],
+    "tests/test_independent_security_review.py": [
+      "88ab965a78593cf1ee5be0587dbb34f77e35aadc9c5f6c3b357cd1c65bc597a9"
+    ],
+    "src/aethon/pilot_storage_backend.py": [
+      "02f16423d4f6a83f7b42faf10963724816d9fdbcaf8f6840b87d18bd0773937d"
+    ],
+    "src/aethon/pilot_storage_facade.py": [
+      "2d51d7ba02f65a294e7aaf421515987f9ec30ef6e85c43ef262c8fef8ac6ee96"
+    ],
+    "src/aethon/pilot_storage_probe.py": [
+      "70f10653a9d2a20fa769e21110fa02b3fb24fcd4f0109e9d0d5b767a6d253c71"
+    ],
+    "tests/pilot_memory_backend.py": [
+      "b7401d0a68ded77d40f2f5cdcfc7898aba53fedfab6cb3b83150095b3619c581"
+    ],
+    "tests/test_storage_capabilities.py": [
+      "da09116ca37b8a6d45cd306668a35d98491c8d0da1665ec3a453ff6f56d3cd87"
+    ]
+  },
+  "source_files_unchanged": [
+    "src/aethon/pilot_collector.py",
+    "src/aethon/pilot_governance.py",
+    "src/aethon/pilot_review.py",
+    "src/aethon/pilot_local.py",
+    "src/aethon/generation.py",
+    "src/research_e2e.py",
+    "configs/science/pilot_v1.json",
+    "configs/science/target_v1.json"
+  ],
+  "implementation_seals_match_working_bytes": true,
+  "old_config_sha256": "e130a91216e5785d64541376289363af6be2570986a1bae39503cdf75e5ffee9",
+  "new_config_sha256": "5f95c4283a923d23a0c167cb9f6e28c93dba93d1b27ca3f0386abac900bdaa65",
+  "legacy_stores_migrated": false,
+  "production_storage_authorized": false
+}

@@ -38,15 +38,11 @@ def test_src01_replaced_verifier_is_used_without_revalidating_pin(tmp_path, monk
 
 
 def test_src02_replaced_storage_root_accepts_stale_observation(setup_run):
-    f = setup_run
-    root = f["private"]
-    old = (root.stat().st_dev, root.stat().st_ino)
-    root.rename(root.with_name("original-private"))
-    root.mkdir()
-    assert (root.stat().st_dev, root.stat().st_ino) != old
+    from aethon.pilot_storage import PrivateRunStore
+    f=setup_run;root=f['private'];root.rename(root.with_name('original-private'));root.mkdir()
     with pytest.raises(PermissionError):
-        f["store"]()
-    assert not (root / "synthetic-run").exists()
+        PrivateRunStore(root,f['manifest'],f['permission'],[f['repo']],f['observation'])
+    assert not (root/'synthetic-run').exists()
 
 
 def test_sci01_family_allocation_is_not_enforced():
@@ -100,17 +96,10 @@ def test_limitation_system_dispatch_is_not_an_os_sandbox():
 
 
 def test_limitation_complete_empty_journal_rollback_has_no_anchor(setup_run):
-    f = setup_run
-    run = collector(f)
-    run.run(max_slots=1)
-    # Move owned synthetic artifacts aside, preserving them as evidence.
-    for directory in [run.store.events, run.store.objects]:
-        archive = directory.with_name(directory.name + "-synthetic-archive")
-        directory.rename(archive)
-        directory.mkdir()
-    for pointer in run.store.path.glob("*.json"):
-        if pointer.name != "manifest.json":
-            pointer.rename(pointer.with_suffix(".archived"))
-    restored = f["store"]()
-    assert restored.sequence == 0
-    assert restored.summary()["attempted_calls"] == 0
+    # Explicit trusted fault injection rolls back the whole synthetic state.
+    f=setup_run;run=collector(f);run.run(max_slots=1)
+    state=f['backend'].inspect(run.store.run_capability)
+    state['journal'].clear();state['objects'].clear();state['ops'].clear();state['used']=len(state['manifest'])
+    restored=f['store']()
+    assert restored.sequence==0 and restored.summary()['attempted_calls']==0
+    # No independent monotonic witness or production freshness claim exists.

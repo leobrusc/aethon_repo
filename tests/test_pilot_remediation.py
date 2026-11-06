@@ -72,15 +72,11 @@ def test_foreign_or_stale_storage_observation_is_rejected(setup_run, field):
 
 @pytest.mark.parametrize("field", ["mode", "inode"])
 def test_ancestor_or_permission_drift_stops_write(setup_run, monkeypatch, field):
-    f = setup_run; store = f["store"]()
-    from aethon import pilot_storage
-    original = pilot_storage.path_identity
-    def changed(path, **kwargs):
-        value = copy.deepcopy(original(path, **kwargs))
-        value["ancestors"][1][field] += 1
-        return value
-    monkeypatch.setattr(pilot_storage, "path_identity", changed)
-    with pytest.raises(CorruptCheckpoint): store.put({"synthetic": True})
+    # Historical inode/ACL tests are archived. No pathname hook can activate storage.
+    f=setup_run
+    with pytest.raises(PermissionError):
+        PrivateRunStore(f['private'], f['manifest'], f['permission'], [f['repo']], f['observation'],
+                        confinement=SyntheticConfinement(), backend=f['backend'])
 
 
 @pytest.mark.parametrize("counts", [(4,4,4), (12,0,0), (5,4,3), (6,3,3)])
