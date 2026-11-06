@@ -1,0 +1,361 @@
+{
+  "schema_version": 1,
+  "classification": "EVIDENCE_GAPS_REMAIN",
+  "proposals_only": true,
+  "source_head": "42540f1ddef6d975507482ac8da8970b54f6a945",
+  "policy_version": "ed25519-exception-v1",
+  "cases": [
+    {
+      "id": "PROV-CFFI-WIN",
+      "scope": {
+        "package": "cffi",
+        "version": "2.1.1",
+        "filename": "cffi-2.1.1-cp312-cp312-win_amd64.whl",
+        "sha256": "f53e442b08449d42821fa4a4fba000095af9f62742a500f978a9f557ec44339a",
+        "platform": "Windows x86_64 CPython cp312",
+        "runtime_approval_reference": "PENDING",
+        "intended_use": "Later separately authorized Ed25519 dependency/runtime review; no current installation"
+      },
+      "distributor": {
+        "index": "Official PyPI exact-version project JSON",
+        "file_host": "files.pythonhosted.org",
+        "project_identity": "python-cffi/cffi",
+        "per_file_uploader_identity": "NOT_AUTHENTICATED: no verified attestation"
+      },
+      "integrity": "VERIFIED",
+      "provenance": "NOT_VERIFIED",
+      "absence_kind": "NO_PROVENANCE_PUBLISHED_IN_PYPI_API_AT_PHASE5C_QUERY; NOT INVALID_ATTESTATION",
+      "evidence": [
+        "../ed25519-trust-v1/evidence/review.json",
+        "../ed25519-trust-v1/evidence/parent-verification.json",
+        "../ed25519-acquisition-v1/evidence/acquisition.json",
+        "../ed25519-acquisition-v1/evidence/pypi-cffi-2.1.1.json",
+        "../ed25519-trust-v1/evidence/upstream-metadata.json",
+        "evidence/recovery.json"
+      ],
+      "upstream": {
+        "release_ref": "v2.1.1",
+        "source_commit": "fd33e7700f0ebafe6f30bd5053f13327221b77a2",
+        "license_bytes_match_release_source": true,
+        "wheel_source_equivalence": "NOT_ESTABLISHED"
+      },
+      "missing": [
+        "Authenticated publisher-to-wheel binding",
+        "Verified builder execution/source-to-binary or source-to-wheel relationship",
+        "Named risk owner and independent approval evidence",
+        "libffi exact identity, notices and version-scoped applicability"
+      ],
+      "threat": "Upstream/index credential compromise or malicious release could publish malicious bytes that agree with index hashes; hash pinning cannot authenticate intent or trusted builder",
+      "likelihood": {
+        "qualitative": "UNDETERMINED",
+        "rationale": "No incident/base-rate/control-effectiveness data; absence of attestation neither proves compromise nor bounds probability"
+      },
+      "impact": {
+        "qualitative": "HIGH_POTENTIAL_IF_LATER_EXECUTED",
+        "rationale": "Malicious native/Python package code could act with interpreter privileges, expose keys/receipts or falsify decisions; current read-only quarantine does not execute it"
+      },
+      "compensating_controls": [
+        "Recheck exact official index and local SHA-256/size before any later separately approved installation",
+        "Keep verified archives quarantined; no source build, dependency resolution, alternate version or mirror",
+        "Independent review of release/source/license/native inventory and advisories",
+        "Future hash-pinned immutable runtime with no editable install, isolated imports, least privilege and OS-enforced no egress",
+        "Installed/native SBOM, accountable approval receipts, rollback and expiry monitoring"
+      ],
+      "control_implementation_state": "Static integrity/release/license checks evidenced; future runtime controls NOT_IMPLEMENTED and NOT_AUTHORIZED",
+      "residual_risk": "Publisher/build compromise and omitted components remain possible; hashes, HTTPS and isolation are not equivalent to signed provenance",
+      "proposal": "ADDITIONAL_EVIDENCE_REQUIRED",
+      "approval": {
+        "effective_decision": "PENDING",
+        "decision_owner_name": "PENDING",
+        "authority_reference": "PENDING",
+        "independent_reviewer_name": "PENDING",
+        "independent_review_evidence": "PENDING",
+        "decision_justification": "PENDING",
+        "signature_or_authenticated_approval_reference": "PENDING",
+        "valid_from_utc": "PENDING",
+        "valid_until_utc": "PENDING",
+        "approved_scope_hash": "PENDING"
+      },
+      "proposed_validity": {
+        "maximum_calendar_days": 30,
+        "starts": "Only after real signed/independently reviewed approval; no effective dates yet",
+        "ends": "Earlier of explicit valid_until, 30 days or any revocation trigger; no automatic renewal"
+      },
+      "revocation_triggers": [
+        "Different filename, hash, version, platform, ABI or runtime identity",
+        "Material new vulnerability, suspected tampering or publisher compromise",
+        "Trust-policy, isolation, dependency/SBOM or intended-use change",
+        "Expiry, loss of approver authority, withdrawn evidence or unmet compensating control"
+      ],
+      "evidence_reference_base": "docs/security/ed25519-exception-v1/"
+    },
+    {
+      "id": "PROV-CFFI-LINUX",
+      "scope": {
+        "package": "cffi",
+        "version": "2.1.1",
+        "filename": "cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+        "sha256": "c1453022f490d2459a11819d83ad1d586e9ff65a12ac3e705ffebd46d3685dcf",
+        "platform": "Linux x86_64 CPython cp312, manylinux2014/glibc>=2.17",
+        "runtime_approval_reference": "PENDING",
+        "intended_use": "Later separately authorized Ed25519 dependency/runtime review; no current installation"
+      },
+      "distributor": {
+        "index": "Official PyPI exact-version project JSON",
+        "file_host": "files.pythonhosted.org",
+        "project_identity": "python-cffi/cffi",
+        "per_file_uploader_identity": "NOT_AUTHENTICATED: no verified attestation"
+      },
+      "integrity": "VERIFIED",
+      "provenance": "NOT_VERIFIED",
+      "absence_kind": "NO_PROVENANCE_PUBLISHED_IN_PYPI_API_AT_PHASE5C_QUERY; NOT INVALID_ATTESTATION",
+      "evidence": [
+        "../ed25519-trust-v1/evidence/review.json",
+        "../ed25519-trust-v1/evidence/parent-verification.json",
+        "../ed25519-acquisition-v1/evidence/acquisition.json",
+        "../ed25519-acquisition-v1/evidence/pypi-cffi-2.1.1.json",
+        "../ed25519-trust-v1/evidence/upstream-metadata.json",
+        "evidence/recovery.json"
+      ],
+      "upstream": {
+        "release_ref": "v2.1.1",
+        "source_commit": "fd33e7700f0ebafe6f30bd5053f13327221b77a2",
+        "license_bytes_match_release_source": true,
+        "wheel_source_equivalence": "NOT_ESTABLISHED"
+      },
+      "missing": [
+        "Authenticated publisher-to-wheel binding",
+        "Verified builder execution/source-to-binary or source-to-wheel relationship",
+        "Named risk owner and independent approval evidence",
+        "libffi exact identity, notices and version-scoped applicability"
+      ],
+      "threat": "Upstream/index credential compromise or malicious release could publish malicious bytes that agree with index hashes; hash pinning cannot authenticate intent or trusted builder",
+      "likelihood": {
+        "qualitative": "UNDETERMINED",
+        "rationale": "No incident/base-rate/control-effectiveness data; absence of attestation neither proves compromise nor bounds probability"
+      },
+      "impact": {
+        "qualitative": "HIGH_POTENTIAL_IF_LATER_EXECUTED",
+        "rationale": "Malicious native/Python package code could act with interpreter privileges, expose keys/receipts or falsify decisions; current read-only quarantine does not execute it"
+      },
+      "compensating_controls": [
+        "Recheck exact official index and local SHA-256/size before any later separately approved installation",
+        "Keep verified archives quarantined; no source build, dependency resolution, alternate version or mirror",
+        "Independent review of release/source/license/native inventory and advisories",
+        "Future hash-pinned immutable runtime with no editable install, isolated imports, least privilege and OS-enforced no egress",
+        "Installed/native SBOM, accountable approval receipts, rollback and expiry monitoring"
+      ],
+      "control_implementation_state": "Static integrity/release/license checks evidenced; future runtime controls NOT_IMPLEMENTED and NOT_AUTHORIZED",
+      "residual_risk": "Publisher/build compromise and omitted components remain possible; hashes, HTTPS and isolation are not equivalent to signed provenance",
+      "proposal": "ADDITIONAL_EVIDENCE_REQUIRED",
+      "approval": {
+        "effective_decision": "PENDING",
+        "decision_owner_name": "PENDING",
+        "authority_reference": "PENDING",
+        "independent_reviewer_name": "PENDING",
+        "independent_review_evidence": "PENDING",
+        "decision_justification": "PENDING",
+        "signature_or_authenticated_approval_reference": "PENDING",
+        "valid_from_utc": "PENDING",
+        "valid_until_utc": "PENDING",
+        "approved_scope_hash": "PENDING"
+      },
+      "proposed_validity": {
+        "maximum_calendar_days": 30,
+        "starts": "Only after real signed/independently reviewed approval; no effective dates yet",
+        "ends": "Earlier of explicit valid_until, 30 days or any revocation trigger; no automatic renewal"
+      },
+      "revocation_triggers": [
+        "Different filename, hash, version, platform, ABI or runtime identity",
+        "Material new vulnerability, suspected tampering or publisher compromise",
+        "Trust-policy, isolation, dependency/SBOM or intended-use change",
+        "Expiry, loss of approver authority, withdrawn evidence or unmet compensating control"
+      ],
+      "evidence_reference_base": "docs/security/ed25519-exception-v1/"
+    },
+    {
+      "id": "PROV-PYCPARSER",
+      "scope": {
+        "package": "pycparser",
+        "version": "3.12",
+        "filename": "pycparser-3.12-py3-none-any.whl",
+        "sha256": "a076f3f489b39b43ed13563a1dafe42447445bec2e294154ec5c57fcdda4c85e",
+        "platform": "Pure Python wheel; future use restricted to proposed Windows/Linux x86_64 runtimes",
+        "runtime_approval_reference": "PENDING",
+        "intended_use": "Later separately authorized Ed25519 dependency/runtime review; no current installation"
+      },
+      "distributor": {
+        "index": "Official PyPI exact-version project JSON",
+        "file_host": "files.pythonhosted.org",
+        "project_identity": "eliben/pycparser",
+        "per_file_uploader_identity": "NOT_AUTHENTICATED: no verified attestation"
+      },
+      "integrity": "VERIFIED",
+      "provenance": "NOT_VERIFIED",
+      "absence_kind": "NO_PROVENANCE_PUBLISHED_IN_PYPI_API_AT_PHASE5C_QUERY; NOT INVALID_ATTESTATION",
+      "evidence": [
+        "../ed25519-trust-v1/evidence/review.json",
+        "../ed25519-trust-v1/evidence/parent-verification.json",
+        "../ed25519-acquisition-v1/evidence/acquisition.json",
+        "../ed25519-acquisition-v1/evidence/pypi-pycparser-3.12.json",
+        "../ed25519-trust-v1/evidence/upstream-metadata.json",
+        "evidence/recovery.json"
+      ],
+      "upstream": {
+        "release_ref": "release_v3.12",
+        "source_commit": "3ec766b7cd94724cba714296509604597ea4ce4e",
+        "license_bytes_match_release_source": true,
+        "wheel_source_equivalence": "NOT_ESTABLISHED"
+      },
+      "missing": [
+        "Authenticated publisher-to-wheel binding",
+        "Verified builder execution/source-to-binary or source-to-wheel relationship",
+        "Named risk owner and independent approval evidence"
+      ],
+      "threat": "Upstream/index credential compromise or malicious release could publish malicious bytes that agree with index hashes; hash pinning cannot authenticate intent or trusted builder",
+      "likelihood": {
+        "qualitative": "UNDETERMINED",
+        "rationale": "No incident/base-rate/control-effectiveness data; absence of attestation neither proves compromise nor bounds probability"
+      },
+      "impact": {
+        "qualitative": "HIGH_POTENTIAL_IF_LATER_EXECUTED",
+        "rationale": "Malicious native/Python package code could act with interpreter privileges, expose keys/receipts or falsify decisions; current read-only quarantine does not execute it"
+      },
+      "compensating_controls": [
+        "Recheck exact official index and local SHA-256/size before any later separately approved installation",
+        "Keep verified archives quarantined; no source build, dependency resolution, alternate version or mirror",
+        "Independent review of release/source/license/native inventory and advisories",
+        "Future hash-pinned immutable runtime with no editable install, isolated imports, least privilege and OS-enforced no egress",
+        "Installed/native SBOM, accountable approval receipts, rollback and expiry monitoring"
+      ],
+      "control_implementation_state": "Static integrity/release/license checks evidenced; future runtime controls NOT_IMPLEMENTED and NOT_AUTHORIZED",
+      "residual_risk": "Publisher/build compromise and omitted components remain possible; hashes, HTTPS and isolation are not equivalent to signed provenance",
+      "proposal": "ADDITIONAL_EVIDENCE_REQUIRED",
+      "approval": {
+        "effective_decision": "PENDING",
+        "decision_owner_name": "PENDING",
+        "authority_reference": "PENDING",
+        "independent_reviewer_name": "PENDING",
+        "independent_review_evidence": "PENDING",
+        "decision_justification": "PENDING",
+        "signature_or_authenticated_approval_reference": "PENDING",
+        "valid_from_utc": "PENDING",
+        "valid_until_utc": "PENDING",
+        "approved_scope_hash": "PENDING"
+      },
+      "proposed_validity": {
+        "maximum_calendar_days": 30,
+        "starts": "Only after real signed/independently reviewed approval; no effective dates yet",
+        "ends": "Earlier of explicit valid_until, 30 days or any revocation trigger; no automatic renewal"
+      },
+      "revocation_triggers": [
+        "Different filename, hash, version, platform, ABI or runtime identity",
+        "Material new vulnerability, suspected tampering or publisher compromise",
+        "Trust-policy, isolation, dependency/SBOM or intended-use change",
+        "Expiry, loss of approver authority, withdrawn evidence or unmet compensating control"
+      ],
+      "evidence_reference_base": "docs/security/ed25519-exception-v1/"
+    },
+    {
+      "id": "LIBFFI-WIN",
+      "scope": {
+        "filename": "cffi-2.1.1-cp312-cp312-win_amd64.whl",
+        "sha256": "f53e442b08449d42821fa4a4fba000095af9f62742a500f978a9f557ec44339a",
+        "native_member": "_cffi_backend.cp312-win_amd64.pyd",
+        "native_sha256": "9af5e4f68a41f26b726f2e9424f9d58a4f5666189f6a48be95f406b257102aec"
+      },
+      "libffi_version": "NOT_IDENTIFIED",
+      "proposal": "ADDITIONAL_EVIDENCE_REQUIRED",
+      "admissibility": "Not currently proposed acceptable for installation: unknown component identity prevents bounded advisory/notice review. Only a separately empowered human policy owner may decide whether a distinct bounded native-identity exception is admissible; provenance acceptance cannot cover it implicitly.",
+      "needed": [
+        "Artifact-bound source/version/patch identity",
+        "Build receipt and linkage/compile inputs",
+        "Applicable license/notice closure",
+        "Version- and platform-scoped advisory assessment"
+      ],
+      "approval": {
+        "effective_decision": "PENDING",
+        "decision_owner_name": "PENDING",
+        "authority_reference": "PENDING",
+        "independent_reviewer_name": "PENDING",
+        "independent_review_evidence": "PENDING",
+        "decision_justification": "PENDING",
+        "signature_or_authenticated_approval_reference": "PENDING",
+        "valid_from_utc": "PENDING",
+        "valid_until_utc": "PENDING",
+        "approved_scope_hash": "PENDING"
+      },
+      "proposed_validity": "No acceptance period until admissibility and bounded risk are established; no blanket unknown-version waiver",
+      "revocation_triggers": [
+        "Different filename, hash, version, platform, ABI or runtime identity",
+        "Material new vulnerability, suspected tampering or publisher compromise",
+        "Trust-policy, isolation, dependency/SBOM or intended-use change",
+        "Expiry, loss of approver authority, withdrawn evidence or unmet compensating control"
+      ],
+      "evidence_reference_base": "docs/security/ed25519-exception-v1/",
+      "evidence": [
+        "evidence/libffi-static-recheck.json",
+        "evidence/build-history-review.json",
+        "../ed25519-trust-v1/evidence/native-recheck.json",
+        "../ed25519-trust-v1/evidence/libffi-license-evidence.json"
+      ]
+    },
+    {
+      "id": "LIBFFI-LINUX",
+      "scope": {
+        "filename": "cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+        "sha256": "c1453022f490d2459a11819d83ad1d586e9ff65a12ac3e705ffebd46d3685dcf",
+        "native_member": "_cffi_backend.cpython-312-x86_64-linux-gnu.so",
+        "native_sha256": "9bc1d08072255a5ec2db10fc75df1dd9e73097a75cd9150cfe875ebd6712f17c"
+      },
+      "libffi_version": "NOT_IDENTIFIED",
+      "proposal": "ADDITIONAL_EVIDENCE_REQUIRED",
+      "admissibility": "Not currently proposed acceptable for installation: unknown component identity prevents bounded advisory/notice review. Only a separately empowered human policy owner may decide whether a distinct bounded native-identity exception is admissible; provenance acceptance cannot cover it implicitly.",
+      "needed": [
+        "Artifact-bound source/version/patch identity",
+        "Build receipt and linkage/compile inputs",
+        "Applicable license/notice closure",
+        "Version- and platform-scoped advisory assessment"
+      ],
+      "approval": {
+        "effective_decision": "PENDING",
+        "decision_owner_name": "PENDING",
+        "authority_reference": "PENDING",
+        "independent_reviewer_name": "PENDING",
+        "independent_review_evidence": "PENDING",
+        "decision_justification": "PENDING",
+        "signature_or_authenticated_approval_reference": "PENDING",
+        "valid_from_utc": "PENDING",
+        "valid_until_utc": "PENDING",
+        "approved_scope_hash": "PENDING"
+      },
+      "proposed_validity": "No acceptance period until admissibility and bounded risk are established; no blanket unknown-version waiver",
+      "revocation_triggers": [
+        "Different filename, hash, version, platform, ABI or runtime identity",
+        "Material new vulnerability, suspected tampering or publisher compromise",
+        "Trust-policy, isolation, dependency/SBOM or intended-use change",
+        "Expiry, loss of approver authority, withdrawn evidence or unmet compensating control"
+      ],
+      "evidence_reference_base": "docs/security/ed25519-exception-v1/",
+      "evidence": [
+        "evidence/libffi-static-recheck.json",
+        "evidence/build-history-review.json",
+        "../ed25519-trust-v1/evidence/native-recheck.json",
+        "../ed25519-trust-v1/evidence/libffi-license-evidence.json"
+      ]
+    }
+  ],
+  "dependency_installation_approval": "PENDING",
+  "pilot": "PILOT_BLOCKED",
+  "operational_gates": {
+    "independent_inventory": "PENDING",
+    "semantic_review": "PENDING",
+    "rubric_review": "PENDING",
+    "reviewer_assignment": "PENDING",
+    "private_storage": "PENDING",
+    "model_assets": "PENDING",
+    "hardware_check": "PENDING",
+    "execution_authorization": "PENDING"
+  },
+  "evidence_reference_base": "docs/security/ed25519-exception-v1/"
+}

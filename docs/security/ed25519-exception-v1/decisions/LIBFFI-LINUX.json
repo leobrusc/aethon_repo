@@ -1,0 +1,44 @@
+{
+  "id": "LIBFFI-LINUX",
+  "scope": {
+    "filename": "cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+    "sha256": "c1453022f490d2459a11819d83ad1d586e9ff65a12ac3e705ffebd46d3685dcf",
+    "native_member": "_cffi_backend.cpython-312-x86_64-linux-gnu.so",
+    "native_sha256": "9bc1d08072255a5ec2db10fc75df1dd9e73097a75cd9150cfe875ebd6712f17c"
+  },
+  "libffi_version": "NOT_IDENTIFIED",
+  "proposal": "ADDITIONAL_EVIDENCE_REQUIRED",
+  "admissibility": "Not currently proposed acceptable for installation: unknown component identity prevents bounded advisory/notice review. Only a separately empowered human policy owner may decide whether a distinct bounded native-identity exception is admissible; provenance acceptance cannot cover it implicitly.",
+  "needed": [
+    "Artifact-bound source/version/patch identity",
+    "Build receipt and linkage/compile inputs",
+    "Applicable license/notice closure",
+    "Version- and platform-scoped advisory assessment"
+  ],
+  "approval": {
+    "effective_decision": "PENDING",
+    "decision_owner_name": "PENDING",
+    "authority_reference": "PENDING",
+    "independent_reviewer_name": "PENDING",
+    "independent_review_evidence": "PENDING",
+    "decision_justification": "PENDING",
+    "signature_or_authenticated_approval_reference": "PENDING",
+    "valid_from_utc": "PENDING",
+    "valid_until_utc": "PENDING",
+    "approved_scope_hash": "PENDING"
+  },
+  "proposed_validity": "No acceptance period until admissibility and bounded risk are established; no blanket unknown-version waiver",
+  "revocation_triggers": [
+    "Different filename, hash, version, platform, ABI or runtime identity",
+    "Material new vulnerability, suspected tampering or publisher compromise",
+    "Trust-policy, isolation, dependency/SBOM or intended-use change",
+    "Expiry, loss of approver authority, withdrawn evidence or unmet compensating control"
+  ],
+  "evidence_reference_base": "docs/security/ed25519-exception-v1/",
+  "evidence": [
+    "evidence/libffi-static-recheck.json",
+    "evidence/build-history-review.json",
+    "../ed25519-trust-v1/evidence/native-recheck.json",
+    "../ed25519-trust-v1/evidence/libffi-license-evidence.json"
+  ]
+}
