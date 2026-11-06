@@ -1,0 +1,36 @@
+{
+  "algorithm": "SHA-256",
+  "excludes": [
+    "SHA256SUMS.json"
+  ],
+  "files": {
+    "CFFI_PROVENANCE_RISK.md": "7ee69e8c37affc4bd81fffd6ec42ecc47f0b6607e2ea0d1e38de2e8d30d893ea",
+    "COMMANDS.md": "3242b289e45b2b4eacfe2247d5cc739473c0132a6c896537b3f86b124b65efa5",
+    "decisions/LIBFFI-LINUX.json": "5bc71e55e18658d31cd72dee563aa928117abd62657f6312d4c9efbe46f07804",
+    "decisions/LIBFFI-WIN.json": "2c2c3c512ddaeda9807e7b0719b874c9137753eb1f529ae34986b238eafd1606",
+    "decisions/NOTICE_CLOSURE_FORM.json": "7ef463b7dd54d8017a88f14c333ccd4a7dcea68967e07b3146046d1697019567",
+    "decisions/PROV-CFFI-LINUX.json": "99ca37f6b573fda70cfe2254ac08a0a0540822a6318bcb1eb08120aa47b8da41",
+    "decisions/PROV-CFFI-WIN.json": "8708406f3afd77f1d0cd694f692d265892171676e8ac09c2f8608ae11cac0be5",
+    "decisions/PROV-PYCPARSER.json": "9fbb3e995e6d6e251ada8cc3a15c38937fa0851061893240a7eeccbf04132484",
+    "decisions/RUNTIME_APPROVAL_FORM.json": "a1f23eda4a0b1e031d46ec7533a46920fcf22b8e6af0ad7e71c38da4d753d805",
+    "DEPENDENCY_APPROVAL_DECISION_MATRIX.md": "83e4e1a73ff83c419d794d3e6080bace614835380985bd2b29d4a1d37a0dae97",
+    "evidence/build-history-review.json": "6ce39b712824aaa138c9c1c59667c4e273a7ab4c620d61adcca33b1d41eb6fb6",
+    "evidence/governance-lfs.txt": "81f6819612dfaf9af7854c05c501e2a69e3852e47f0bfb0a82dfce8f3f6c5db9",
+    "evidence/governance-offline-tests.json": "b296c5511d4b7e3bfb64d95144147bd45742539a2324d617fc43ba39dc38f1c2",
+    "evidence/governance-pip-check.txt": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "evidence/governance-preflight.json": "a6d506577b9c6ac04d1fe46022482cee818f53f861859ad4fd05c58878cedcc7",
+    "evidence/governance-publication-guard.txt": "ead7ff6b848b89632b686439a21bd9b4760b990b0bd5c90a0ab77f85eef305e2",
+    "evidence/governance-pytest.txt": "25da14b9caa000d1fce3b08558b3abad0ebe82bb42fd99b6ef1ad50a36f035dc",
+    "evidence/governance-ruff.txt": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "evidence/libffi-static-recheck.json": "4d2ba4b038a64a34584b1633eda3faa9466dad36903e38ddaa64a3d9c147db16",
+    "evidence/preservation.json": "cc7ffd111ad934f0692ea2aec4f1977c433529a7c7c69ddee472b0c89ce91cab",
+    "evidence/recovery.json": "7500173292f39f00448e144747526914787bb7b211983ffd97ebab3c2742f8fd",
+    "evidence/validation.json": "8f698eba0c186eefece9965d2532917a22c871eda921c54328e650a64ca10a06",
+    "EXCEPTION_REGISTER.json": "c4f2e765b4f88a2f5b3e9b1b46ca8883582e00c75e29a861cb31e2d9bc2dbe1c",
+    "EXCEPTION_REGISTER.md": "8790a9b32eaef40639eeac14f0b0665aabe0cc086ab28d16751d8b2022602628",
+    "LIBFFI_IDENTITY_REVIEW.md": "bb4f7168ad2fdacd7df5f0a8462e5d7a9e7406000186083531f7246f1af9e71a",
+    "PYCPARSER_PROVENANCE_RISK.md": "ce77b03e7042aaebe7e99061880aa0112f9df939398547d3b9c81ab30e5794d3",
+    "RUNTIME_APPROVAL_REQUIREMENTS.md": "66e16ef1cfaac46614eab78ff9a5bf2a43a605d7be968ab3e713243c4691010f",
+    "THIRD_PARTY_NOTICE_CLOSURE.md": "7646ef20f8969a8166bc319ea6169fbda21f1063196dd1fb923f2e06a6ef1e61"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "timestamp_utc": "2026-11-06T15:14:33.021979+00:00",
+  "pytest_passed": 322,
+  "warnings": 1,
+  "warning_scope": "Mocked model-load failure; no actual model download",
+  "ruff": "PASS",
+  "pip_check": "PASS",
+  "preflight": "PILOT_BLOCKED;8 PENDING",
+  "LFS_fsck": "PASS:5 historical payloads",
+  "scientific_preservation": "PASS:127/31/6/9139/80/5/5",
+  "before_after_inventory": "IDENTICAL",
+  "parent_sha_index": "PASS:57/57",
+  "wheel_hashes": "PASS:5/5",
+  "decision_forms": "PASS:3 separate provenance +2 native; all approvals PENDING",
+  "probabilities": "No numerical probability assigned",
+  "installation_import_execution": "NONE",
+  "advisory_freshness": "Prior Phase5C scoped results reused at their recorded timestamps; libffi exact-version applicability NOT_AUDITED",
+  "publication_guard": "PASS: staged",
+  "CI": "NOT_RUN:[skip ci]; no installation permitted",
+  "classification": "EVIDENCE_GAPS_REMAIN",
+  "whitespace": "PASS"
+}

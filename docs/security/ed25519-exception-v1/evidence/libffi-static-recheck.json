@@ -1,0 +1,44 @@
+[
+  {
+    "wheel": "cffi-2.1.1-cp312-cp312-win_amd64.whl",
+    "member": "_cffi_backend.cp312-win_amd64.pyd",
+    "sha256": "9af5e4f68a41f26b726f2e9424f9d58a4f5666189f6a48be95f406b257102aec",
+    "bytes": 181248,
+    "versioned_libffi_literals": [],
+    "identity": "NOT_IDENTIFIED",
+    "cffistatic_ffi_call_literal_present": false,
+    "bounded_reference_contexts": [
+      "ructure, with a different layout than expected by libffi.....It is a struct with bit fields, which libffi does not support...It is a struct with a",
+      " libffi.....It is a struct with bit fields, which libffi does not support...It is a struct with a zero-length array, which libffi does not support",
+      "...It is a struct with a zero-length array, which libffi does not support..........ctype '%s' not supported as %s by libffi.  Unions are only supp",
+      "upport..........ctype '%s' not supported as %s by libffi.  Unions are only supported as %s if the function is 'API mode' and non-variadic (i.e. de",
+      "........... (the support for complex types inside libffi is mostly missing at this point, so CFFI only supports complex types as arguments or retu",
+      "orted as %s%s.....expected a tuple of ctypes......libffi failed to build this function type.......result type '%s' is opaque......result type '%s'",
+      "pported argument or return type or with '...'.....libffi failed to build this callback....sO!O!O!:new_enum_type...tuple args must have the same si",
+      "...I.......FFI_TRAMPOLINE_SIZE too small in src/c/libffi_x86_x64\\ffi.c............@................................@.............................."
+    ],
+    "limits": "Literal absence/presence is not complete version identification or source/build proof"
+  },
+  {
+    "wheel": "cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+    "member": "_cffi_backend.cpython-312-x86_64-linux-gnu.so",
+    "sha256": "9bc1d08072255a5ec2db10fc75df1dd9e73097a75cd9150cfe875ebd6712f17c",
+    "bytes": 348856,
+    "versioned_libffi_literals": [],
+    "identity": "NOT_IDENTIFIED",
+    "cffistatic_ffi_call_literal_present": true,
+    "bounded_reference_contexts": [
+      "ructure, with a different layout than expected by libffi.cf != ((void *)0)...It is a struct with bit fields, which libffi does not support...It is",
+      "void *)0)...It is a struct with bit fields, which libffi does not support...It is a struct with a zero-length array, which libffi does not support",
+      "...It is a struct with a zero-length array, which libffi does not support.cf == ((void *)0)........ctype '%s' not supported as %s by libffi.  Unio",
+      "oid *)0)........ctype '%s' not supported as %s by libffi.  Unions are only supported as %s if the function is 'API mode' and non-variadic (i.e. de",
+      "nt)........ (the support for complex types inside libffi is mostly missing at this point, so CFFI only supports complex types as arguments or retu",
+      "ffer.bufferp == buffer + funcbuffer.nb_bytes......libffi failed to build this function type.result type '%s' is opaque....result type '%s' is not ",
+      "pported argument or return type or with '...'.....libffi failed to build this callback....ffi_prep_closure(): bad user_data (it seems that the ver",
+      ": bad user_data (it seems that the version of the libffi library seen at runtime is different from the 'ffi.h' file seen at compile-time).sO!O!O!:",
+      "     = %10lu..in use bytes     = %10lu..ro.noexec.LIBFFI_TMPDIR.TMPDIR./tmp./var/tmp./dev/shm.HOME./etc/mtab..../ffiXXXXXX./proc/%d/maps.r.%lx-%lx",
+      "dlmmap_locked.tramp.c.tramp_globals.ffi_tramp_get_libffi.tramp_table_alloc.ffi_tramp_get_temp_file.ffi_tramp_init_os.tramp_globals_mutex.ffi_tramp"
+    ],
+    "limits": "Literal absence/presence is not complete version identification or source/build proof"
+  }
+]

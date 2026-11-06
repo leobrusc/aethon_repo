@@ -1,0 +1,30 @@
+{
+  "classification": "PILOT_BLOCKED",
+  "executed": false,
+  "gates": {
+    "independent_inventory": {
+      "status": "PENDING"
+    },
+    "semantic_review": {
+      "status": "PENDING"
+    },
+    "rubric_review": {
+      "status": "PENDING"
+    },
+    "reviewer_assignment": {
+      "status": "PENDING"
+    },
+    "private_storage": {
+      "status": "PENDING"
+    },
+    "hardware_check": {
+      "status": "PENDING"
+    },
+    "model_assets": {
+      "status": "PENDING"
+    },
+    "execution_authorization": {
+      "status": "PENDING"
+    }
+  }
+}

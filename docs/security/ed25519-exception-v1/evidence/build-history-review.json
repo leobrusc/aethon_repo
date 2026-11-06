@@ -1,0 +1,36 @@
+{
+  "source_commit": "fd33e7700f0ebafe6f30bd5053f13327221b77a2",
+  "retrieved_utc": "2026-11-06T15:07:32.645Z",
+  "sources": [
+    {
+      "name": "workflow",
+      "url": "https://github.com/python-cffi/cffi/blob/fd33e7700f0ebafe6f30bd5053f13327221b77a2/.github/workflows/ci.yaml",
+      "retrieved_text_sha256": "b1910ddbfc69d2fbe41f1493cb564658d0970522bfeb5e6fe93d3288c802736c"
+    },
+    {
+      "name": "setup",
+      "url": "https://github.com/python-cffi/cffi/blob/fd33e7700f0ebafe6f30bd5053f13327221b77a2/setup.py",
+      "retrieved_text_sha256": "f4205f108b2fc7798e854724918a2790951137200980b65b6a5e652d612b07f7"
+    },
+    {
+      "name": "readme",
+      "url": "https://github.com/python-cffi/cffi/blob/fd33e7700f0ebafe6f30bd5053f13327221b77a2/src/c/libffi_x86_x64/README",
+      "retrieved_text_sha256": "d37e90ea896278309a2b45b7a1663321431e2083ef5d80e23706af2567816caf"
+    }
+  ],
+  "linux_recipe": {
+    "declared_libffi_release": "3.4.6",
+    "static_build_configuration": true,
+    "source_archive_sha256_pin_observed": false,
+    "build_to_acquired_wheel_binding": "NOT_ESTABLISHED",
+    "cibuildwheel_exact_version_for_this_wheel": "NOT_ESTABLISHED"
+  },
+  "windows_recipe": {
+    "source_directory": "src/c/libffi_x86_x64",
+    "source_origin_claim": "CPython distribution",
+    "README_historical_labels": "Development 2.00 and released 1.20; stale historical text, NOT current wheel identity",
+    "exact_compiled_source_tree_binding": "NOT_ESTABLISHED"
+  },
+  "source_code_executed": false,
+  "archives_or_tools_downloaded": false
+}
