@@ -1,0 +1,20 @@
+[
+  {
+    "artifact": "cryptography-50.0.2-cp311-abi3-win_amd64.whl",
+    "rfc6962_path_matches_root": true,
+    "entry_log_index": "3020561492",
+    "proof_leaf_index": "2898657230",
+    "tree_size": "2898657233",
+    "path_length": 23,
+    "checkpoint_signature": "gh verified; mutated checkpoint rejected"
+  },
+  {
+    "artifact": "cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl",
+    "rfc6962_path_matches_root": true,
+    "entry_log_index": "3020563834",
+    "proof_leaf_index": "2898659572",
+    "tree_size": "2898659575",
+    "path_length": 16,
+    "checkpoint_signature": "gh verified; mutated checkpoint rejected"
+  }
+]

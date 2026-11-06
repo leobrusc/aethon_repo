@@ -1,0 +1,111 @@
+[
+  {
+    "member_sha256": "1d4332a447cab13dec8e3a533ad579e0e562b79e40822c931f33769758fc7156",
+    "tool": "/usr/bin/objdump",
+    "argv": [
+      "wsl.exe",
+      "--distribution",
+      "Ubuntu",
+      "--exec",
+      "/usr/bin/objdump",
+      "-p",
+      "/mnt/c/Users/leolima/AppData/Local/AETHON-Quarantine/ed25519-20261106T135119Z-ba2a4581/static-analysis/analysis-20261106T135358Z/native-0000.data"
+    ],
+    "exit_code": 0,
+    "output_sha256": "ceeb4f52294c976aa15e7c8052bbf4f279fda9b80733d82434ae03b9efa8233a",
+    "visible_imports": [
+      "ADVAPI32.dll",
+      "CRYPT32.dll",
+      "KERNEL32.dll",
+      "USER32.dll",
+      "VCRUNTIME140.dll",
+      "WS2_32.dll",
+      "api-ms-win-core-synch-l1-2-0.dll",
+      "api-ms-win-crt-convert-l1-1-0.dll",
+      "api-ms-win-crt-environment-l1-1-0.dll",
+      "api-ms-win-crt-filesystem-l1-1-0.dll",
+      "api-ms-win-crt-heap-l1-1-0.dll",
+      "api-ms-win-crt-runtime-l1-1-0.dll",
+      "api-ms-win-crt-stdio-l1-1-0.dll",
+      "api-ms-win-crt-string-l1-1-0.dll",
+      "api-ms-win-crt-time-l1-1-0.dll",
+      "api-ms-win-crt-utility-l1-1-0.dll",
+      "bcryptprimitives.dll",
+      "ntdll.dll",
+      "python3.dll"
+    ]
+  },
+  {
+    "member_sha256": "f28d787117880abb13cc08822d1a0704d27e0fb33155d353f10a0a67efa6c4c1",
+    "tool": "/usr/bin/readelf",
+    "argv": [
+      "wsl.exe",
+      "--distribution",
+      "Ubuntu",
+      "--exec",
+      "/usr/bin/readelf",
+      "--wide",
+      "--file-header",
+      "--dynamic",
+      "/mnt/c/Users/leolima/AppData/Local/AETHON-Quarantine/ed25519-20261106T135119Z-ba2a4581/static-analysis/analysis-20261106T135358Z/native-0001.data"
+    ],
+    "exit_code": 0,
+    "output_sha256": "3c987e1c2dfc19a83444cf32b7f7b12a23e2a0538900c388bb0ed9d1efce0c91",
+    "visible_imports": [
+      "ld-linux-x86-64.so.2",
+      "libc.so.6",
+      "libdl.so.2",
+      "libgcc_s.so.1",
+      "libpthread.so.0"
+    ]
+  },
+  {
+    "member_sha256": "9af5e4f68a41f26b726f2e9424f9d58a4f5666189f6a48be95f406b257102aec",
+    "tool": "/usr/bin/objdump",
+    "argv": [
+      "wsl.exe",
+      "--distribution",
+      "Ubuntu",
+      "--exec",
+      "/usr/bin/objdump",
+      "-p",
+      "/mnt/c/Users/leolima/AppData/Local/AETHON-Quarantine/ed25519-20261106T135119Z-ba2a4581/static-analysis/analysis-20261106T135358Z/native-0002.data"
+    ],
+    "exit_code": 0,
+    "output_sha256": "37950aa024945243cf8cf8e10f0b69b6951ef452884776a0819f3576618c0eeb",
+    "visible_imports": [
+      "KERNEL32.dll",
+      "USER32.dll",
+      "VCRUNTIME140.dll",
+      "api-ms-win-crt-convert-l1-1-0.dll",
+      "api-ms-win-crt-heap-l1-1-0.dll",
+      "api-ms-win-crt-math-l1-1-0.dll",
+      "api-ms-win-crt-runtime-l1-1-0.dll",
+      "api-ms-win-crt-stdio-l1-1-0.dll",
+      "api-ms-win-crt-string-l1-1-0.dll",
+      "python312.dll"
+    ]
+  },
+  {
+    "member_sha256": "9bc1d08072255a5ec2db10fc75df1dd9e73097a75cd9150cfe875ebd6712f17c",
+    "tool": "/usr/bin/readelf",
+    "argv": [
+      "wsl.exe",
+      "--distribution",
+      "Ubuntu",
+      "--exec",
+      "/usr/bin/readelf",
+      "--wide",
+      "--file-header",
+      "--dynamic",
+      "/mnt/c/Users/leolima/AppData/Local/AETHON-Quarantine/ed25519-20261106T135119Z-ba2a4581/static-analysis/analysis-20261106T135358Z/native-0003.data"
+    ],
+    "exit_code": 0,
+    "output_sha256": "f7c1fa8aa2b8c01828bdcf9c51118e0062b17a06b3b4e35359f04ab10907503a",
+    "visible_imports": [
+      "ld-linux-x86-64.so.2",
+      "libc.so.6",
+      "libpthread.so.0"
+    ]
+  }
+]

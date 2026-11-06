@@ -1,0 +1,29 @@
+{
+  "timestamp_utc": "2026-11-06T14:46:40.226977+00:00",
+  "pytest": {
+    "passed": 322,
+    "warnings": 1,
+    "scope": "Existing complete suite; mocked model-load failure, no actual download"
+  },
+  "ruff": "PASS",
+  "pip_check": "PASS",
+  "schema_positive": "PASS",
+  "schema_negative": "PASS: missing bomFormat rejected",
+  "canonical_purls": 85,
+  "unique_bom_refs": 91,
+  "five_artifact_hashes": "PASS",
+  "four_native_headers_and_hashes": "PASS",
+  "parent_evidence_sha_index": "PASS:28/28",
+  "gh_positive_bundle_control": "PASS",
+  "negative_control_rejections": 7,
+  "proof_only_without_promise": "UNSUPPORTED_BY_CURRENT_TOOL_POLICY; rejected as expected",
+  "merkle_crosscheck": "PASS:2/2",
+  "scientific_before_after": "PASS",
+  "environment_and_requirements_inventory": "IDENTICAL",
+  "offline_preflight": "PILOT_BLOCKED:8 PENDING",
+  "native_coverage": "COVERAGE_PARTIAL",
+  "provenance": "PARTIALLY_VERIFIED:2 VERIFIED/3 NOT_VERIFIED",
+  "dependency_decision": "EXCEPTION_REVIEW_REQUIRED",
+  "installation": "NOT_AUTHORIZED_NOT_PERFORMED",
+  "audit_ci": "NOT_RUN:[skip ci]; installation outside scope"
+}

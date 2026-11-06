@@ -1,0 +1,47 @@
+{
+  "timestamp_utc": "2026-11-06T14:36:10.018606+00:00",
+  "sources": [
+    {
+      "name": "cffi-license",
+      "url": "https://raw.githubusercontent.com/python-cffi/cffi/fd33e7700f0ebafe6f30bd5053f13327221b77a2/LICENSE",
+      "status": 200,
+      "sha256": "5ba24ddc57067f9249add644c3afc41a5d6dc37e23433ef759d95df370b0af63",
+      "bytes": 1123
+    },
+    {
+      "name": "pycparser-license",
+      "url": "https://raw.githubusercontent.com/eliben/pycparser/3ec766b7cd94724cba714296509604597ea4ce4e/LICENSE",
+      "status": 200,
+      "sha256": "0a9e78156ae8b96caf1b4f11ac2df424b83de29736f9e757630548a6272fdf90",
+      "bytes": 1543
+    },
+    {
+      "name": "openssl-license",
+      "url": "https://raw.githubusercontent.com/openssl/openssl/openssl-4.0.3/LICENSE.txt",
+      "status": 200,
+      "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a",
+      "bytes": 10175
+    },
+    {
+      "name": "libffi-current-license",
+      "url": "https://raw.githubusercontent.com/libffi/libffi/master/LICENSE",
+      "status": 200,
+      "sha256": "17b64dc60f3b6897a60f971e288b973f655c2edcdf08b25f3c3dd5549857881c",
+      "bytes": 1132
+    },
+    {
+      "name": "publisher-workflow",
+      "url": "https://raw.githubusercontent.com/pyca/cryptography/fe12d283180ea89ceed622021242fddb31d27f84/.github/workflows/pypi-publish.yml",
+      "status": 200,
+      "sha256": "8c8b8f6f0165eac85b9b875f8724822c415499fa445e89d786a5e2f17f1396ab",
+      "bytes": 2999
+    },
+    {
+      "name": "cffi-tree",
+      "url": "https://api.github.com/repos/python-cffi/cffi/git/trees/fd33e7700f0ebafe6f30bd5053f13327221b77a2?recursive=1",
+      "status": 200,
+      "sha256": "b67700dc259513121d5a4e2e12a466969e402e03d8beebea3faa61987e795b3d",
+      "bytes": 64110
+    }
+  ]
+}
