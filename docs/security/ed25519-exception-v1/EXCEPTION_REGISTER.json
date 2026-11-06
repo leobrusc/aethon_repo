@@ -87,7 +87,87 @@
         "Trust-policy, isolation, dependency/SBOM or intended-use change",
         "Expiry, loss of approver authority, withdrawn evidence or unmet compensating control"
       ],
-      "evidence_reference_base": "docs/security/ed25519-exception-v1/"
+      "evidence_reference_base": "docs/security/ed25519-exception-v1/",
+      "phase5e_closure": {
+        "new_evidence": [
+          {
+            "source_id": "cffi-release",
+            "url": "https://api.github.com/repos/python-cffi/cffi/releases/tags/v2.1.1",
+            "returned_api_text_sha256": "aefff8013ba0e5baa478f75ec876f8ae43b5fb70fde0d2b6d18633432fbb7a78"
+          },
+          {
+            "source_id": "cffi-runs",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs?head_sha=fd33e7700f0ebafe6f30bd5053f13327221b77a2&per_page=100",
+            "returned_api_text_sha256": "c497d731b04853327c3c17bbe8f80a418f2d8f77a1e840e13bca8c88e36c8fb6"
+          },
+          {
+            "source_id": "cffi-tag-artifacts",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs/30854037511/artifacts?per_page=100",
+            "returned_api_text_sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+          },
+          {
+            "source_id": "cffi-dispatch-artifacts",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs/30836879169/artifacts?per_page=100",
+            "returned_api_text_sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+          },
+          {
+            "source_id": "cffi-commit",
+            "url": "https://api.github.com/repos/python-cffi/cffi/git/commits/fd33e7700f0ebafe6f30bd5053f13327221b77a2",
+            "returned_api_text_sha256": "6d10df74834906938657b67a4bf1334d2c59083395025448b8839e10c3aa3a85"
+          },
+          {
+            "source_id": "cffi-dispatch-jobs",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs/30836879169/jobs?per_page=100",
+            "returned_api_text_sha256": "52e35355a422031214940c49cffb5673b99c9f6af4d7788be5b9fe21095faa5a"
+          },
+          {
+            "source_id": "cffi-job-log-91764146011",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/jobs/91764146011/logs",
+            "returned_api_text_sha256": "ca45879a8023dfea2e0f71d873d478de908a4c74312de805a46266622f08e68c"
+          },
+          {
+            "source_id": "cffi-job-log-91764159393",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/jobs/91764159393/logs",
+            "returned_api_text_sha256": "ca45879a8023dfea2e0f71d873d478de908a4c74312de805a46266622f08e68c"
+          },
+          {
+            "source_id": "pypi-exact-file-provenance",
+            "url": "https://pypi.org/integrity/cffi/2.1.1/cffi-2.1.1-cp312-cp312-win_amd64.whl/provenance",
+            "response_sha256": "1ace272e59ea5286e43eb8afd139ecae70c03dbe6c98dd26d27cd8542f5c6512",
+            "queried_utc": "2026-11-06T15:52:31.997528+00:00",
+            "http_status": 404,
+            "meaning": "No provenance published at this PyPI endpoint/time; not an invalid signature"
+          }
+        ],
+        "supporting_files": [
+          "evidence/phase5e/public-api-receipts.json",
+          "evidence/phase5e/github-attestation-query.json",
+          "evidence/phase5e/notice-text-inventory.json",
+          "evidence/phase5e/build-link-matrix.json",
+          "evidence/phase5e/pypi-provenance-query.json"
+        ],
+        "gap_effectively_closed": [
+          "Official release existence, source-commit metadata and its public release context established",
+          "Exact CPython3.12 Windows/Linux successful CI job context at the source SHA identified; timestamps precede PyPI upload",
+          "Required package-license texts are now collected with exact-byte hashes (evidence collection only; not legal disposition)"
+        ],
+        "gap_remaining": [
+          "No authenticated artifact-bound publisher/build receipt or final output digest recovered",
+          "No human risk owner, independent decision or effective acceptance",
+          "Actual libffi release/patch/compiler/link inputs NOT_IDENTIFIED",
+          "Exact component notice/attribution closure unresolved"
+        ],
+        "technical_recommendation": "ADDITIONAL_EVIDENCE_REQUIRED",
+        "compensating_controls_applicable": [
+          "Retain exact hash/platform quarantine binding",
+          "Use new CI/release/source context as supplemental HTTPS evidence only",
+          "Reuse independently reviewed pre-install isolation/rollback controls from PR23; not yet deployed",
+          "Resolve build identity and notices before any future operational acceptance"
+        ],
+        "residual_risk": "Malicious/modified upstream output or omitted native components can match index hashes; public CI success and source signature status do not authenticate the acquired wheel",
+        "effective_human_decision": "PENDING",
+        "validity_and_authority": "Unchanged from PR23; no dates/signatures/owners invented"
+      }
     },
     {
       "id": "PROV-CFFI-LINUX",
@@ -171,7 +251,87 @@
         "Trust-policy, isolation, dependency/SBOM or intended-use change",
         "Expiry, loss of approver authority, withdrawn evidence or unmet compensating control"
       ],
-      "evidence_reference_base": "docs/security/ed25519-exception-v1/"
+      "evidence_reference_base": "docs/security/ed25519-exception-v1/",
+      "phase5e_closure": {
+        "new_evidence": [
+          {
+            "source_id": "cffi-release",
+            "url": "https://api.github.com/repos/python-cffi/cffi/releases/tags/v2.1.1",
+            "returned_api_text_sha256": "aefff8013ba0e5baa478f75ec876f8ae43b5fb70fde0d2b6d18633432fbb7a78"
+          },
+          {
+            "source_id": "cffi-runs",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs?head_sha=fd33e7700f0ebafe6f30bd5053f13327221b77a2&per_page=100",
+            "returned_api_text_sha256": "c497d731b04853327c3c17bbe8f80a418f2d8f77a1e840e13bca8c88e36c8fb6"
+          },
+          {
+            "source_id": "cffi-tag-artifacts",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs/30854037511/artifacts?per_page=100",
+            "returned_api_text_sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+          },
+          {
+            "source_id": "cffi-dispatch-artifacts",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs/30836879169/artifacts?per_page=100",
+            "returned_api_text_sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+          },
+          {
+            "source_id": "cffi-commit",
+            "url": "https://api.github.com/repos/python-cffi/cffi/git/commits/fd33e7700f0ebafe6f30bd5053f13327221b77a2",
+            "returned_api_text_sha256": "6d10df74834906938657b67a4bf1334d2c59083395025448b8839e10c3aa3a85"
+          },
+          {
+            "source_id": "cffi-dispatch-jobs",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs/30836879169/jobs?per_page=100",
+            "returned_api_text_sha256": "52e35355a422031214940c49cffb5673b99c9f6af4d7788be5b9fe21095faa5a"
+          },
+          {
+            "source_id": "cffi-job-log-91764146011",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/jobs/91764146011/logs",
+            "returned_api_text_sha256": "ca45879a8023dfea2e0f71d873d478de908a4c74312de805a46266622f08e68c"
+          },
+          {
+            "source_id": "cffi-job-log-91764159393",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/jobs/91764159393/logs",
+            "returned_api_text_sha256": "ca45879a8023dfea2e0f71d873d478de908a4c74312de805a46266622f08e68c"
+          },
+          {
+            "source_id": "pypi-exact-file-provenance",
+            "url": "https://pypi.org/integrity/cffi/2.1.1/cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl/provenance",
+            "response_sha256": "4ecf74b48ee251cedebbab4b5cdcdd7046e27e6e79ab393ae9e0d354b127dd61",
+            "queried_utc": "2026-11-06T15:52:32.045422+00:00",
+            "http_status": 404,
+            "meaning": "No provenance published at this PyPI endpoint/time; not an invalid signature"
+          }
+        ],
+        "supporting_files": [
+          "evidence/phase5e/public-api-receipts.json",
+          "evidence/phase5e/github-attestation-query.json",
+          "evidence/phase5e/notice-text-inventory.json",
+          "evidence/phase5e/build-link-matrix.json",
+          "evidence/phase5e/pypi-provenance-query.json"
+        ],
+        "gap_effectively_closed": [
+          "Official release existence, source-commit metadata and its public release context established",
+          "Exact CPython3.12 Windows/Linux successful CI job context at the source SHA identified; timestamps precede PyPI upload",
+          "Required package-license texts are now collected with exact-byte hashes (evidence collection only; not legal disposition)"
+        ],
+        "gap_remaining": [
+          "No authenticated artifact-bound publisher/build receipt or final output digest recovered",
+          "No human risk owner, independent decision or effective acceptance",
+          "Actual libffi release/patch/compiler/link inputs NOT_IDENTIFIED",
+          "Exact component notice/attribution closure unresolved"
+        ],
+        "technical_recommendation": "ADDITIONAL_EVIDENCE_REQUIRED",
+        "compensating_controls_applicable": [
+          "Retain exact hash/platform quarantine binding",
+          "Use new CI/release/source context as supplemental HTTPS evidence only",
+          "Reuse independently reviewed pre-install isolation/rollback controls from PR23; not yet deployed",
+          "Resolve build identity and notices before any future operational acceptance"
+        ],
+        "residual_risk": "Malicious/modified upstream output or omitted native components can match index hashes; public CI success and source signature status do not authenticate the acquired wheel",
+        "effective_human_decision": "PENDING",
+        "validity_and_authority": "Unchanged from PR23; no dates/signatures/owners invented"
+      }
     },
     {
       "id": "PROV-PYCPARSER",
@@ -254,7 +414,67 @@
         "Trust-policy, isolation, dependency/SBOM or intended-use change",
         "Expiry, loss of approver authority, withdrawn evidence or unmet compensating control"
       ],
-      "evidence_reference_base": "docs/security/ed25519-exception-v1/"
+      "evidence_reference_base": "docs/security/ed25519-exception-v1/",
+      "phase5e_closure": {
+        "new_evidence": [
+          {
+            "source_id": "parser-release",
+            "url": "https://api.github.com/repos/eliben/pycparser/releases/tags/release_v3.12",
+            "returned_api_text_sha256": "bb051c20e44b0a8758cfbd56584394d0a6273e253a1f62e5959df93f38361c3f"
+          },
+          {
+            "source_id": "parser-runs",
+            "url": "https://api.github.com/repos/eliben/pycparser/actions/runs?head_sha=3ec766b7cd94724cba714296509604597ea4ce4e&per_page=100",
+            "returned_api_text_sha256": "5c68976c8740b3273969b9cae9b2b9f8a019a49c496a0c96fdfde26680adc57a"
+          },
+          {
+            "source_id": "parser-test-artifacts",
+            "url": "https://api.github.com/repos/eliben/pycparser/actions/runs/39789013043/artifacts?per_page=100",
+            "returned_api_text_sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+          },
+          {
+            "source_id": "parser-commit",
+            "url": "https://api.github.com/repos/eliben/pycparser/git/commits/3ec766b7cd94724cba714296509604597ea4ce4e",
+            "returned_api_text_sha256": "5c30332d6157a1f0a2358229dfd35361f70be8fe843c0225deb2c1b6d08bb3ca"
+          },
+          {
+            "source_id": "pypi-exact-file-provenance",
+            "url": "https://pypi.org/integrity/pycparser/3.12/pycparser-3.12-py3-none-any.whl/provenance",
+            "response_sha256": "68933999c11f65ba6d25a58975421f8b135c004795ee0f01b75aee8ef9a86a19",
+            "queried_utc": "2026-11-06T15:52:32.093065+00:00",
+            "http_status": 404,
+            "meaning": "No provenance published at this PyPI endpoint/time; not an invalid signature"
+          }
+        ],
+        "supporting_files": [
+          "evidence/phase5e/public-api-receipts.json",
+          "evidence/phase5e/github-attestation-query.json",
+          "evidence/phase5e/notice-text-inventory.json",
+          "evidence/phase5e/build-link-matrix.json",
+          "evidence/phase5e/pypi-provenance-query.json"
+        ],
+        "gap_effectively_closed": [
+          "Official release existence, source-commit metadata and its public release context established",
+          "Found test/dependabot runs excluded as wheel producers: both start after PyPI upload",
+          "Required package-license texts are now collected with exact-byte hashes (evidence collection only; not legal disposition)"
+        ],
+        "gap_remaining": [
+          "No authenticated artifact-bound publisher/build receipt or final output digest recovered",
+          "No human risk owner, independent decision or effective acceptance",
+          "No authenticated source-to-wheel build relationship; release tests postdate upload",
+          "Competent distribution/notice disposition PENDING"
+        ],
+        "technical_recommendation": "ADDITIONAL_EVIDENCE_REQUIRED",
+        "compensating_controls_applicable": [
+          "Retain exact hash/platform quarantine binding",
+          "Use new CI/release/source context as supplemental HTTPS evidence only",
+          "Reuse independently reviewed pre-install isolation/rollback controls from PR23; not yet deployed",
+          "Resolve build identity and notices before any future operational acceptance"
+        ],
+        "residual_risk": "Malicious/modified upstream output or omitted native components can match index hashes; public CI success and source signature status do not authenticate the acquired wheel",
+        "effective_human_decision": "PENDING",
+        "validity_and_authority": "Unchanged from PR23; no dates/signatures/owners invented"
+      }
     },
     {
       "id": "LIBFFI-WIN",
@@ -298,7 +518,86 @@
         "evidence/build-history-review.json",
         "../ed25519-trust-v1/evidence/native-recheck.json",
         "../ed25519-trust-v1/evidence/libffi-license-evidence.json"
-      ]
+      ],
+      "phase5e_closure": {
+        "new_evidence": [
+          {
+            "source_id": "cffi-release",
+            "url": "https://api.github.com/repos/python-cffi/cffi/releases/tags/v2.1.1",
+            "returned_api_text_sha256": "aefff8013ba0e5baa478f75ec876f8ae43b5fb70fde0d2b6d18633432fbb7a78"
+          },
+          {
+            "source_id": "cffi-runs",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs?head_sha=fd33e7700f0ebafe6f30bd5053f13327221b77a2&per_page=100",
+            "returned_api_text_sha256": "c497d731b04853327c3c17bbe8f80a418f2d8f77a1e840e13bca8c88e36c8fb6"
+          },
+          {
+            "source_id": "cffi-tag-artifacts",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs/30854037511/artifacts?per_page=100",
+            "returned_api_text_sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+          },
+          {
+            "source_id": "cffi-dispatch-artifacts",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs/30836879169/artifacts?per_page=100",
+            "returned_api_text_sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+          },
+          {
+            "source_id": "cffi-commit",
+            "url": "https://api.github.com/repos/python-cffi/cffi/git/commits/fd33e7700f0ebafe6f30bd5053f13327221b77a2",
+            "returned_api_text_sha256": "6d10df74834906938657b67a4bf1334d2c59083395025448b8839e10c3aa3a85"
+          },
+          {
+            "source_id": "cffi-dispatch-jobs",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs/30836879169/jobs?per_page=100",
+            "returned_api_text_sha256": "52e35355a422031214940c49cffb5673b99c9f6af4d7788be5b9fe21095faa5a"
+          },
+          {
+            "source_id": "cffi-job-log-91764146011",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/jobs/91764146011/logs",
+            "returned_api_text_sha256": "ca45879a8023dfea2e0f71d873d478de908a4c74312de805a46266622f08e68c"
+          },
+          {
+            "source_id": "cffi-job-log-91764159393",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/jobs/91764159393/logs",
+            "returned_api_text_sha256": "ca45879a8023dfea2e0f71d873d478de908a4c74312de805a46266622f08e68c"
+          },
+          {
+            "source_id": "pypi-exact-file-provenance",
+            "url": "https://pypi.org/integrity/cffi/2.1.1/cffi-2.1.1-cp312-cp312-win_amd64.whl/provenance",
+            "response_sha256": "1ace272e59ea5286e43eb8afd139ecae70c03dbe6c98dd26d27cd8542f5c6512",
+            "queried_utc": "2026-11-06T15:52:31.997528+00:00",
+            "http_status": 404,
+            "meaning": "No provenance published at this PyPI endpoint/time; not an invalid signature"
+          }
+        ],
+        "supporting_files": [
+          "evidence/phase5e/public-api-receipts.json",
+          "evidence/phase5e/github-attestation-query.json",
+          "evidence/phase5e/notice-text-inventory.json",
+          "evidence/phase5e/build-link-matrix.json",
+          "evidence/phase5e/pypi-provenance-query.json"
+        ],
+        "gap_effectively_closed": [
+          "Source commit -> successful exact-platform CPython3.12 CI job documentary edge established; not job-output -> wheel",
+          "Existing pinned-source libffi license text collected and explicitly separated from exact-wheel license proof"
+        ],
+        "gap_remaining": [
+          "No authenticated artifact-bound publisher/build receipt or final output digest recovered",
+          "No human risk owner, independent decision or effective acceptance",
+          "Actual libffi release/patch/compiler/link inputs NOT_IDENTIFIED",
+          "Exact component notice/attribution closure unresolved"
+        ],
+        "technical_recommendation": "ADDITIONAL_EVIDENCE_REQUIRED",
+        "compensating_controls_applicable": [
+          "Retain exact hash/platform quarantine binding",
+          "Use new CI/release/source context as supplemental HTTPS evidence only",
+          "Reuse independently reviewed pre-install isolation/rollback controls from PR23; not yet deployed",
+          "Resolve build identity and notices before any future operational acceptance"
+        ],
+        "residual_risk": "Malicious/modified upstream output or omitted native components can match index hashes; public CI success and source signature status do not authenticate the acquired wheel",
+        "effective_human_decision": "PENDING",
+        "validity_and_authority": "Unchanged from PR23; no dates/signatures/owners invented"
+      }
     },
     {
       "id": "LIBFFI-LINUX",
@@ -342,7 +641,86 @@
         "evidence/build-history-review.json",
         "../ed25519-trust-v1/evidence/native-recheck.json",
         "../ed25519-trust-v1/evidence/libffi-license-evidence.json"
-      ]
+      ],
+      "phase5e_closure": {
+        "new_evidence": [
+          {
+            "source_id": "cffi-release",
+            "url": "https://api.github.com/repos/python-cffi/cffi/releases/tags/v2.1.1",
+            "returned_api_text_sha256": "aefff8013ba0e5baa478f75ec876f8ae43b5fb70fde0d2b6d18633432fbb7a78"
+          },
+          {
+            "source_id": "cffi-runs",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs?head_sha=fd33e7700f0ebafe6f30bd5053f13327221b77a2&per_page=100",
+            "returned_api_text_sha256": "c497d731b04853327c3c17bbe8f80a418f2d8f77a1e840e13bca8c88e36c8fb6"
+          },
+          {
+            "source_id": "cffi-tag-artifacts",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs/30854037511/artifacts?per_page=100",
+            "returned_api_text_sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+          },
+          {
+            "source_id": "cffi-dispatch-artifacts",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs/30836879169/artifacts?per_page=100",
+            "returned_api_text_sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+          },
+          {
+            "source_id": "cffi-commit",
+            "url": "https://api.github.com/repos/python-cffi/cffi/git/commits/fd33e7700f0ebafe6f30bd5053f13327221b77a2",
+            "returned_api_text_sha256": "6d10df74834906938657b67a4bf1334d2c59083395025448b8839e10c3aa3a85"
+          },
+          {
+            "source_id": "cffi-dispatch-jobs",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/runs/30836879169/jobs?per_page=100",
+            "returned_api_text_sha256": "52e35355a422031214940c49cffb5673b99c9f6af4d7788be5b9fe21095faa5a"
+          },
+          {
+            "source_id": "cffi-job-log-91764146011",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/jobs/91764146011/logs",
+            "returned_api_text_sha256": "ca45879a8023dfea2e0f71d873d478de908a4c74312de805a46266622f08e68c"
+          },
+          {
+            "source_id": "cffi-job-log-91764159393",
+            "url": "https://api.github.com/repos/python-cffi/cffi/actions/jobs/91764159393/logs",
+            "returned_api_text_sha256": "ca45879a8023dfea2e0f71d873d478de908a4c74312de805a46266622f08e68c"
+          },
+          {
+            "source_id": "pypi-exact-file-provenance",
+            "url": "https://pypi.org/integrity/cffi/2.1.1/cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl/provenance",
+            "response_sha256": "4ecf74b48ee251cedebbab4b5cdcdd7046e27e6e79ab393ae9e0d354b127dd61",
+            "queried_utc": "2026-11-06T15:52:32.045422+00:00",
+            "http_status": 404,
+            "meaning": "No provenance published at this PyPI endpoint/time; not an invalid signature"
+          }
+        ],
+        "supporting_files": [
+          "evidence/phase5e/public-api-receipts.json",
+          "evidence/phase5e/github-attestation-query.json",
+          "evidence/phase5e/notice-text-inventory.json",
+          "evidence/phase5e/build-link-matrix.json",
+          "evidence/phase5e/pypi-provenance-query.json"
+        ],
+        "gap_effectively_closed": [
+          "Source commit -> successful exact-platform CPython3.12 CI job documentary edge established; not job-output -> wheel",
+          "Existing pinned-source libffi license text collected and explicitly separated from exact-wheel license proof"
+        ],
+        "gap_remaining": [
+          "No authenticated artifact-bound publisher/build receipt or final output digest recovered",
+          "No human risk owner, independent decision or effective acceptance",
+          "Actual libffi release/patch/compiler/link inputs NOT_IDENTIFIED",
+          "Exact component notice/attribution closure unresolved"
+        ],
+        "technical_recommendation": "ADDITIONAL_EVIDENCE_REQUIRED",
+        "compensating_controls_applicable": [
+          "Retain exact hash/platform quarantine binding",
+          "Use new CI/release/source context as supplemental HTTPS evidence only",
+          "Reuse independently reviewed pre-install isolation/rollback controls from PR23; not yet deployed",
+          "Resolve build identity and notices before any future operational acceptance"
+        ],
+        "residual_risk": "Malicious/modified upstream output or omitted native components can match index hashes; public CI success and source signature status do not authenticate the acquired wheel",
+        "effective_human_decision": "PENDING",
+        "validity_and_authority": "Unchanged from PR23; no dates/signatures/owners invented"
+      }
     }
   ],
   "dependency_installation_approval": "PENDING",
@@ -357,5 +735,11 @@
     "hardware_check": "PENDING",
     "execution_authorization": "PENDING"
   },
-  "evidence_reference_base": "docs/security/ed25519-exception-v1/"
+  "evidence_reference_base": "docs/security/ed25519-exception-v1/",
+  "phase5e_reports": [
+    "LIBFFI_BUILD_TRACEABILITY.md",
+    "TRANSITIVE_PUBLISHER_EVIDENCE.md",
+    "THIRD_PARTY_NOTICE_FINAL_MATRIX.md",
+    "HUMAN_DECISION_BRIEF.md"
+  ]
 }

@@ -1,0 +1,22 @@
+# Targeted notice closure inventory — not legal approval
+
+Concrete addition: seven deduplicated license texts already held in quarantine are now collected under notices/phase5e/, with exact-byte SHA256/source/member mappings. Five texts are exact acquired-package members (three cryptography, one cffi, one pycparser); OpenSSL 4.0.3 and pinned-source libffi texts are upstream evidence acquired previously. No new source or license file was downloaded. This closes text collection/traceability for these package notices, not competent legal disposition or all incorporated attribution.
+
+| Component/category | Text now available | Potential obligation to review | Remaining exact gap |
+|---|---|---|---|
+| cryptography package | Exact acquired LICENSE, LICENSE.APACHE, LICENSE.BSD | Choose Apache-2.0 or BSD-3-Clause terms; preserve applicable attribution/conditions/disclaimer | Actual third-party incorporated notice set and competent choice/disposition |
+| cffi package | Exact acquired MIT-0 text; matches prior pinned upstream evidence | MIT-0 text imposes no generic MIT-style attribution condition; separately licensed incorporated material has its own terms | libffi copyright/license identity and notice completeness cannot inherit MIT-0 |
+| pycparser | Exact acquired BSD-3-Clause copyright/license text, matched release source | Applicable redistribution copyright/conditions/disclaimer and no endorsement | Distribution-specific placement and independent competent disposition |
+| OpenSSL 4.0.3 | Prior exact-tag LICENSE.txt copied with hash; native version literal + embedded SBOM | Apache-2.0 license, applicable notices/attribution and NOTICE handling if upstream NOTICE applies | No independently closed full OpenSSL attribution/NOTICE inventory for these builds |
+| libffi | Prior pinned-cffi-tree LICENSE copied as SOURCE_CONTEXT_ONLY | Applicable copyright/permission notice for actual incorporated fork/patchset | Actual Windows/Linux identity and corresponding notice selection still unproven |
+| Rust: pyo3 0.29.2, pyo3-ffi 0.29.2, openssl-sys 0.9.117 | Binary version references corroborate acquired SBOM declarations, not full linked-source attribution; no complete per-crate texts | pyo3 choices MIT OR Apache-2.0; openssl-sys MIT permission/copyright terms for actual included code | Per-component copyright/texts, selected alternatives and exact incorporation evidence |
+| Rust build/proc-macro candidates | Twelve names identified in existing SBOM role overlay | Determine whether distributed/incorporated or build-only; do not discard obligations based on name alone | No independently proven build-only exclusion |
+| Other Rust declarations | Remaining 24 of 39 per platform; includes local crates and rust-openssl 0.10.81 | Actual incorporated set and each applicable expression | Declaration-only linkage and notice closure remain unproven |
+
+The Rust inventory is 3 binary-reference-corroborated, 12 build/proc-macro candidates, 24 declaration-only records. None is marked confirmed_build_only without evidence. Strings alone do not prove every linked code boundary. The exact .pyd/.so files are confirmed present; a complete crate-level link inventory is not. See evidence/phase5e/rust-notice-inventory.json, including all expressions and missing-text status.
+
+Specific unresolved terms: self_cell Apache-2.0 OR GPL-2.0-only requires a justified alternative choice, not automatic GPL classification; unicode-ident's Unicode-3.0 conjunct and target-lexicon's LLVM exception must not be dropped. A generic Apache license text is not a substitute for per-component attribution/NOTICE applicability. A missing separate NOTICE file is not by itself a legal violation. No conformity approval or legal noncompliance verdict is issued.
+
+Notice files are evidence-only, not an approved deployment redistribution bundle. A competent reviewer must map actual incorporation, chosen terms, copyright and NOTICE to the intended distribution. Sources/byte hashes and purpose qualifications are in evidence/phase5e/notice-text-inventory.json. Existing PR23 notice form remains PENDING; no new governance model is introduced.
+
+**DEPENDENCY_APPROVAL_REQUIRED / PILOT_BLOCKED**. All eight operational gates and all effective human decisions remain PENDING. No installation, import/execution of acquired artifacts, dependency/lock/runtime change, inference, deployment or maintainer contact occurred.

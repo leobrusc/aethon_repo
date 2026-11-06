@@ -1,0 +1,1108 @@
+{
+  "before": {
+    "phase": "before",
+    "timestamp_utc": "2026-11-06T15:28:35.999443+00:00",
+    "head": "52139414ed9592dfae8be7c65cbecee9938194b2",
+    "checks": [
+      {
+        "name": "127",
+        "exit_code": 0,
+        "output_sha256": "bf51279dccb18603a19a6b9acaa562cb92a0c43fd13539a45d05ea03b8b967af"
+      },
+      {
+        "name": "31",
+        "exit_code": 0,
+        "output_sha256": "6a25bb6808d75c6ff79d3c78d06d19943829cd8269833288b5f96173a6b54b38"
+      },
+      {
+        "name": "six",
+        "exit_code": 0,
+        "output_sha256": "0c31ace07d18bc1d6474a15a91f0586b217320cb7be6b1b5772ff66df9f6a2d4"
+      },
+      {
+        "name": "lfs-fsck",
+        "exit_code": 0,
+        "output_sha256": "81f6819612dfaf9af7854c05c501e2a69e3852e47f0bfb0a82dfce8f3f6c5db9"
+      }
+    ],
+    "protected_files": 127,
+    "indexed_evidence": 31,
+    "historical_manifests": 6,
+    "historical_pairs": 9139,
+    "decision_mismatches": 0,
+    "historical_metrics": 80,
+    "lfs_payloads": 5,
+    "preexisting_files": 5,
+    "status": "PASS",
+    "environment_scope": "installed distribution metadata/RECORD and interpreter hashes; bytecode caches excluded"
+  },
+  "after": {
+    "phase": "after",
+    "timestamp_utc": "2026-11-06T15:36:55.821184+00:00",
+    "head": "52139414ed9592dfae8be7c65cbecee9938194b2",
+    "checks": [
+      {
+        "name": "127",
+        "exit_code": 0,
+        "output_sha256": "bf51279dccb18603a19a6b9acaa562cb92a0c43fd13539a45d05ea03b8b967af"
+      },
+      {
+        "name": "31",
+        "exit_code": 0,
+        "output_sha256": "6a25bb6808d75c6ff79d3c78d06d19943829cd8269833288b5f96173a6b54b38"
+      },
+      {
+        "name": "six",
+        "exit_code": 0,
+        "output_sha256": "0c31ace07d18bc1d6474a15a91f0586b217320cb7be6b1b5772ff66df9f6a2d4"
+      },
+      {
+        "name": "lfs-fsck",
+        "exit_code": 0,
+        "output_sha256": "81f6819612dfaf9af7854c05c501e2a69e3852e47f0bfb0a82dfce8f3f6c5db9"
+      }
+    ],
+    "protected_files": 127,
+    "indexed_evidence": 31,
+    "historical_manifests": 6,
+    "historical_pairs": 9139,
+    "decision_mismatches": 0,
+    "historical_metrics": 80,
+    "lfs_payloads": 5,
+    "preexisting_files": 5,
+    "status": "PASS",
+    "environment_scope": "installed distribution metadata/RECORD and interpreter hashes; bytecode caches excluded"
+  },
+  "inventory_identical": true,
+  "inventory_sha256": "f3428e02e4c3eaa6d34e2be5652d2cafa64e1692c1eb2fc4205c349b8beef8c8",
+  "preserved_inventory": {
+    "requirements": {
+      "requirements/environments/bootstrap.lock": "707c2e6ea3b9c6007524359d2b15cc07c7cba2f741494b59f1a96135cdfa8ec6",
+      "requirements/environments/cpu-linux-py312.lock": "5c72d0cff5286f9a29b591bbee8348327f4b7862b0ebd391a75cf1a9f960b994",
+      "requirements/environments/cpu-windows-py312.lock": "2561644b048a7de7fe812a7a97d4cd5a7f4e67dab19a54e7125474a5c252b4e6",
+      "requirements/environments/cpu.in": "bde275e9730eeb2bd4c1db5bc9b456674bd299e97bfdd41ee9f49fe45f083537",
+      "requirements/environments/dev-linux-py312.lock": "bd2c013cb3910c34571b009854ef83ae375e4cba2ee2b6dcea93cd799ebd7a9e",
+      "requirements/environments/dev-windows-py312.lock": "35d615c038e4fd5e5ec690e8d6d2c60acd03a45e4ba78cdb210e2969f3708850",
+      "requirements/environments/dev.in": "9a381e7b72b5b6787692f0bb04ab2fe48bb74b29d68380f6419b33aab4fcc6f7",
+      "requirements/environments/gpu-linux-py312.lock": "c3549c0f3ce5c9ca1e22001eff14ecd8ff7eb46fb655780ef16a9edbe0ed8eba",
+      "requirements/environments/gpu.in": "c3a7e840beaa6a551c84a1b6d894ac51c3545df34ed5a922ed1ac5975fd10c6d",
+      "requirements/environments/research-linux-py312.lock": "c2639a3273e6b6fb65dbfdba9c8be6263e14c381dc2b1f97d94e2ab56b877a1d",
+      "requirements/environments/research-windows-py312.lock": "8505e39c9c706bb8f14fb3e66c2ccf7f248c1d3482b4e50d8242cb0fb6aca3d1",
+      "requirements/environments/research.in": "33300d573827ffd561c240f3a251674598ff4a1619cc271f5f12822ca479fa1d",
+      "requirements/historical/pr2/pyproject.toml": "7c15f8eda078ea99f20cf891eb3be1289ee253226dde7b08529a9704696e2e2b",
+      "requirements/historical/pr2/requirements-core.txt": "9cc5505c170cc129a6fd46317e2379b54cf5cb3e1832b186031d8ce05ba36736",
+      "requirements/historical/pr2/requirements-dev.txt": "d86443f6a9082dfb94523a58c8aae070ebd7ef7ae5754033e3086c633b9dda97",
+      "requirements/historical/pr2/requirements-research.txt": "f1a91e532331447105b27174cd0146bf8e6a5e2aca69522302b1d18e533039ab",
+      "requirements/historical/pr2/requirements-tools.txt": "7526093e28cf2d51126ffd5a6dfbdb1b10e62a40a3575c1f5c7268cabc0820d8",
+      "requirements/historical/pr2/requirements.txt": "862e66fde2ad1bf7a32c98cedd99286b8c9d64964258affb8c6e068672489105"
+    },
+    "installed_distributions": [
+      {
+        "name": "aethon-research",
+        "version": "0.1.0",
+        "metadata_hashes": {
+          "aethon_research-0.1.0.dist-info/METADATA": "37b6d1485f4058bff37ca38e54c935e3737dda3ad677d83567f054ccee962153",
+          "aethon_research-0.1.0.dist-info/RECORD": "113896a7a5e812a475fcab188dd3858e3afd1129919ce50ba664d6913cbb9aaf",
+          "aethon_research-0.1.0.dist-info/WHEEL": "98e75747d0b7c0c568bfb71263c3d8f970b3a374a6996087bc642be5cb09a1aa"
+        }
+      },
+      {
+        "name": "aethon-research",
+        "version": "0.1.0",
+        "metadata_hashes": {}
+      },
+      {
+        "name": "annotated-doc",
+        "version": "0.0.5",
+        "metadata_hashes": {
+          "annotated_doc-0.0.5.dist-info/METADATA": "8c24d70c5d9153d22123353a906042fd7603df2d15c2196290b0f8a962558c46",
+          "annotated_doc-0.0.5.dist-info/RECORD": "eee5b3b5754ae1cb431e5aba650cdab050673d518473f0fb2b4ad9f48671e2e7",
+          "annotated_doc-0.0.5.dist-info/WHEEL": "54ff83e133d2db7d2c304f59def6f720d5efa35cadd3ddb86119b900eb24fdd1"
+        }
+      },
+      {
+        "name": "annotated-types",
+        "version": "0.8.0",
+        "metadata_hashes": {
+          "annotated_types-0.8.0.dist-info/METADATA": "614985b278f601b8ef863f82783b991cc3ada4b89f592eb71c7c48c5f2ef2298",
+          "annotated_types-0.8.0.dist-info/RECORD": "8191d3aa1ac93480688819b4db2385606219a3f7a453b85e086646134ded4f96",
+          "annotated_types-0.8.0.dist-info/WHEEL": "942926c567d0b1273d09f20295879abd37507845f6b683eab9f87d808df91100"
+        }
+      },
+      {
+        "name": "anyio",
+        "version": "4.16.0",
+        "metadata_hashes": {
+          "anyio-4.16.0.dist-info/METADATA": "b184ac9cd097e2bb7f90d42799346cc91c276095d000d95d7f7ddd407d0c887e",
+          "anyio-4.16.0.dist-info/RECORD": "fda338359b5d1126af3ddc05d36f3a9198dee39985d716374435e4b70f23488e",
+          "anyio-4.16.0.dist-info/WHEEL": "98e75747d0b7c0c568bfb71263c3d8f970b3a374a6996087bc642be5cb09a1aa"
+        }
+      },
+      {
+        "name": "boolean.py",
+        "version": "5.0",
+        "metadata_hashes": {
+          "boolean_py-5.0.dist-info/METADATA": "9e43aeae17a73073abee61deb5fb267dfdf0eeb67d6e3123270b52aac5ed87fa",
+          "boolean_py-5.0.dist-info/RECORD": "5c659fba6b65f63a8027684c9111eb1ebe1dd88af590594c229d2b60367aed95",
+          "boolean_py-5.0.dist-info/WHEEL": "0a6c85234931e5c7443132e238d4116c64308c8a11d5a21807b782010e0a3c9d"
+        }
+      },
+      {
+        "name": "build",
+        "version": "1.6.1",
+        "metadata_hashes": {
+          "build-1.6.1.dist-info/METADATA": "f3623590844a25dcf308a71a988c73e293b7ef779a1f43acb83ad1be218d61a0",
+          "build-1.6.1.dist-info/RECORD": "c9990886c9160f5ec39138824d7186197b099b05e4a835c9b9744a77681f0fe6",
+          "build-1.6.1.dist-info/WHEEL": "ff23073da055face9f40cc14a28f3735275308cddcf315d6157461a9a7cdfbb6"
+        }
+      },
+      {
+        "name": "CacheControl",
+        "version": "0.14.4",
+        "metadata_hashes": {
+          "cachecontrol-0.14.4.dist-info/METADATA": "a3b797a601ffe3505ce4b0c635363ccf26a9959f2490e902f841a4b5996b5cc4",
+          "cachecontrol-0.14.4.dist-info/RECORD": "54db1796e88d8af7e97341d6e40c56b85f9a904099a2b135ff5467dbdf5e869f",
+          "cachecontrol-0.14.4.dist-info/WHEEL": "c3866d2da0e0300656d8c319670b47f3310d7a4a1060109eba5948fb3b172509"
+        }
+      },
+      {
+        "name": "certifi",
+        "version": "2026.10.23",
+        "metadata_hashes": {
+          "certifi-2026.10.23.dist-info/METADATA": "e463e38f7fe7da36a11e6d3fecc5dfa5b97be8c8022620400750d79ae7d842bc",
+          "certifi-2026.10.23.dist-info/RECORD": "581dda50610347979dc0cd08ce2c41aecbf5ad02caa7048407d35f968d107b53",
+          "certifi-2026.10.23.dist-info/WHEEL": "98e75747d0b7c0c568bfb71263c3d8f970b3a374a6996087bc642be5cb09a1aa"
+        }
+      },
+      {
+        "name": "cfgv",
+        "version": "3.5.0",
+        "metadata_hashes": {
+          "cfgv-3.5.0.dist-info/METADATA": "ae126b80e15f39d0feff7368cefea2ea6478fdcedcde52918d0f58b668e19137",
+          "cfgv-3.5.0.dist-info/RECORD": "375f5e0f64b9550eb61b74b1f593a491fdb736d5a1dc014ae487f454475a4158",
+          "cfgv-3.5.0.dist-info/WHEEL": "d153540d6409cdf45a8582379de021cf65156d10adceda4de5d3c7006be61977"
+        }
+      },
+      {
+        "name": "charset-normalizer",
+        "version": "3.5.2",
+        "metadata_hashes": {
+          "charset_normalizer-3.5.2.dist-info/METADATA": "49e955a09e1a159e0846872798006e8db7d518d8d70c637066fefdb08d3d9f7b",
+          "charset_normalizer-3.5.2.dist-info/RECORD": "7b6849a2b4243968ae332c2b77fc46fa4d41985bb640876ea52136a6200b6f71",
+          "charset_normalizer-3.5.2.dist-info/WHEEL": "547199cfb31450578b25778938b82f94e190e69e750e6c850e3b6d657fa1a30f"
+        }
+      },
+      {
+        "name": "click",
+        "version": "8.5.0",
+        "metadata_hashes": {
+          "click-8.5.0.dist-info/METADATA": "e87bce0bd194de70dfb8e708e0a6b0483009f25611804eaf87bfeb63e6c20501",
+          "click-8.5.0.dist-info/RECORD": "924078ec3a47b97192425dbc0c3693085af7a7b863afcf6b4e110cf0bd97dea4",
+          "click-8.5.0.dist-info/WHEEL": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db"
+        }
+      },
+      {
+        "name": "cloudpickle",
+        "version": "3.1.2",
+        "metadata_hashes": {
+          "cloudpickle-3.1.2.dist-info/METADATA": "3d0263bfe9ee4f23b244bdcaff73acbe7a1957ebf82743b6ae42693adc48d721",
+          "cloudpickle-3.1.2.dist-info/RECORD": "a24820e3d3ea3f0fb210f58b84abb5450a94cc649e573a9a0a69354afc6fa1de",
+          "cloudpickle-3.1.2.dist-info/WHEEL": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db"
+        }
+      },
+      {
+        "name": "colorama",
+        "version": "0.4.6",
+        "metadata_hashes": {
+          "colorama-0.4.6.dist-info/METADATA": "7baed29eb50c3b29bdb33ff84e3177bf1bc05784f7685ecdcaa4471c7dd810cc",
+          "colorama-0.4.6.dist-info/RECORD": "88413e126edc8a81419b409279ef89424081f27bccd4aeec0140d6f03f1ade7f",
+          "colorama-0.4.6.dist-info/WHEEL": "71d705e056ddd053edc3610c20ec07fb7ad239351d4c278e49744c0f588b51bf"
+        }
+      },
+      {
+        "name": "contourpy",
+        "version": "1.4.0",
+        "metadata_hashes": {
+          "contourpy-1.4.0.dist-info/METADATA": "40450acd747b288a5db999c435e1e921ffee0a38c7884a80cd46934c8004568f",
+          "contourpy-1.4.0.dist-info/RECORD": "9a919bf9742fa8acb943eef720e11c265cfbe34fff179740fee70c05c108433b",
+          "contourpy-1.4.0.dist-info/WHEEL": "e743de01ba6503a3e4234858398a1e69c07d512d51e8482ec9f3a7b1c707d165"
+        }
+      },
+      {
+        "name": "coverage",
+        "version": "7.17.1",
+        "metadata_hashes": {
+          "coverage-7.17.1.dist-info/METADATA": "466b576eaf11202a4bf7a2b145bfad60fe2facb27bc35bf2510a19abb6a1a22e",
+          "coverage-7.17.1.dist-info/RECORD": "f24f23ac642a054553f8bedd68a100645591112c378da93853b3358049bba939",
+          "coverage-7.17.1.dist-info/WHEEL": "b2601f60075ce318a1cf4b08f2b52cc397e708f776ca360504cd2ea7a3a21031"
+        }
+      },
+      {
+        "name": "cycler",
+        "version": "0.12.1",
+        "metadata_hashes": {
+          "cycler-0.12.1.dist-info/METADATA": "23289e19b76f1e01394227696e6af2b6cd1ce79e89731209bf9195148b18ed36",
+          "cycler-0.12.1.dist-info/RECORD": "cbcbee5f18d75bd4935199b135aa33c3ed62df14991110a35c428883798d7979",
+          "cycler-0.12.1.dist-info/WHEEL": "c903798389a0e00c9b4639208bef72cb889010589b1909a5cfbf0f8a4e4eafe0"
+        }
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "version": "11.12.0",
+        "metadata_hashes": {
+          "cyclonedx_python_lib-11.12.0.dist-info/METADATA": "c7ce95aa4f8d1a8b762354ef93d6e3ec72cfd01ecf1db7ebb7997fd0b6568251",
+          "cyclonedx_python_lib-11.12.0.dist-info/RECORD": "7f23d399f52d7517cca9a546c2b9944b1c2731c9373ea2ba83dae7c844ccd9ba",
+          "cyclonedx_python_lib-11.12.0.dist-info/WHEEL": "10612f4a984562a5cab36dfe91005ec8da093f59eb4fc649290a22e69e4360bf"
+        }
+      },
+      {
+        "name": "defusedxml",
+        "version": "0.7.1",
+        "metadata_hashes": {
+          "defusedxml-0.7.1.dist-info/METADATA": "369d3cef64870daf849fba711cb8d05a7efe3c8d9ab0f763adc34079fe378bb1",
+          "defusedxml-0.7.1.dist-info/RECORD": "8d83b6f0c94380f24506bd6d01e9a3a8858aac7a9118bc9e7dee21e6b566d13c",
+          "defusedxml-0.7.1.dist-info/WHEEL": "9064fbe0b5b245466b2f85602e1ebf835d8879597ff6ef5956169dae05d95046"
+        }
+      },
+      {
+        "name": "distlib",
+        "version": "0.4.4",
+        "metadata_hashes": {
+          "distlib-0.4.4.dist-info/METADATA": "356a995bbbe66bab0b00cb720e8024e4230d4987c210dde0145b6e4637da78e8",
+          "distlib-0.4.4.dist-info/RECORD": "b03ae101849d9fbabaf63943b3faa0bed701e3f00cebd642154a92b8caaddb9b",
+          "distlib-0.4.4.dist-info/WHEEL": "e1805f098347e3094ba6fde9cead616c4b8895703858969b28b16ead9ede4cbd"
+        }
+      },
+      {
+        "name": "filelock",
+        "version": "4.2.7",
+        "metadata_hashes": {
+          "filelock-4.2.7.dist-info/METADATA": "560e42f22fa9efafbe185c5ff82d14c2daf81db20ba783e4f7706041e8d82911",
+          "filelock-4.2.7.dist-info/RECORD": "e5cacf70e85ac163e3eb400e433babdf6417c0236ec9f91263570fdb730c635f",
+          "filelock-4.2.7.dist-info/WHEEL": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+        }
+      },
+      {
+        "name": "fonttools",
+        "version": "4.68.0",
+        "metadata_hashes": {
+          "fonttools-4.68.0.dist-info/METADATA": "7382b1e9edaa1a2766b381ca2bc6d07acd150c96ca2bacc00dafa8d2631dea91",
+          "fonttools-4.68.0.dist-info/RECORD": "b5d7f3c639c5b6a2b75efc225c12b466702f2ffe28fc1f7c76e27b0b210bd1f7",
+          "fonttools-4.68.0.dist-info/WHEEL": "b2601f60075ce318a1cf4b08f2b52cc397e708f776ca360504cd2ea7a3a21031"
+        }
+      },
+      {
+        "name": "formulaic",
+        "version": "1.2.2",
+        "metadata_hashes": {
+          "formulaic-1.2.2.dist-info/METADATA": "abc2ce34c42d629b55aa1665550d8f1ba50fcacf874db97954f3b9f2890e0643",
+          "formulaic-1.2.2.dist-info/RECORD": "8d19e627cfd70e9f5a9bdf97df85e4c0deeb9bd6e53a23b7779a76ff8dc375c0",
+          "formulaic-1.2.2.dist-info/WHEEL": "99f7cfcbcc019d9427d959c9514e6313df4ab316927e2c8c1d5f58b7468b571b"
+        }
+      },
+      {
+        "name": "fsspec",
+        "version": "2026.9.0",
+        "metadata_hashes": {
+          "fsspec-2026.9.0.dist-info/METADATA": "68f5a262767510638e9b1933b1493f2baadc9616fe1e696f62aedd59c8c0a37c",
+          "fsspec-2026.9.0.dist-info/RECORD": "f7b3713c1750221155b0601147f3b68a24f11e342dca818b5fd551f5ef88a74b",
+          "fsspec-2026.9.0.dist-info/WHEEL": "4c769fa1bee87cdf8db2e30decc838a99c8769023b2a40fe4257106ad6215cfa"
+        }
+      },
+      {
+        "name": "h11",
+        "version": "0.16.0",
+        "metadata_hashes": {
+          "h11-0.16.0.dist-info/METADATA": "28f326098ac09fcba79b8f180f96087c841fe2456215cb7b872a9c7d5cd19d64",
+          "h11-0.16.0.dist-info/RECORD": "3779e13c17d8e21c769ed9ee8780af123cc3f8656185f5f8d3af258ff5639b3e",
+          "h11-0.16.0.dist-info/WHEEL": "0a6c85234931e5c7443132e238d4116c64308c8a11d5a21807b782010e0a3c9d"
+        }
+      },
+      {
+        "name": "hf-xet",
+        "version": "1.8.0",
+        "metadata_hashes": {
+          "hf_xet-1.8.0.dist-info/METADATA": "b040438f9e531bcffbdf9e6f49ed3dec0cd91c301e01b744fa25abe91c8281a4",
+          "hf_xet-1.8.0.dist-info/RECORD": "9ab365f510b266ad0423876027494af80cdc9650a37e7ea606feefee6950c848",
+          "hf_xet-1.8.0.dist-info/WHEEL": "13152d6e09da2cf0613c757e4ab82dd084b0e24f2a0ff003f13de26858a0d65d"
+        }
+      },
+      {
+        "name": "httpcore2",
+        "version": "2.16.0",
+        "metadata_hashes": {
+          "httpcore2-2.16.0.dist-info/METADATA": "c073bd68b2bd543fbc2bab3763b42ed1e70666536d32c1bf39ef2764fd50b0a4",
+          "httpcore2-2.16.0.dist-info/RECORD": "706dd723a543ee91e72708b8e2d972ee07527e758582e6b00e8182b0bbd9c67d",
+          "httpcore2-2.16.0.dist-info/WHEEL": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+        }
+      },
+      {
+        "name": "httpx2",
+        "version": "2.16.0",
+        "metadata_hashes": {
+          "httpx2-2.16.0.dist-info/METADATA": "192f20046200ff50911a7278c21dfbee1e1a4c6fa7943227afe9231d28defc3f",
+          "httpx2-2.16.0.dist-info/RECORD": "105db8c49c8ac026a443bfd5ae45ebb00470563074ebbc644b601338da4c629a",
+          "httpx2-2.16.0.dist-info/WHEEL": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+        }
+      },
+      {
+        "name": "huggingface_hub",
+        "version": "2.4.0",
+        "metadata_hashes": {
+          "huggingface_hub-2.4.0.dist-info/METADATA": "b575d5eabe0b381489db2c163bb382f4ef44588ffbf468a4052719bf161b4211",
+          "huggingface_hub-2.4.0.dist-info/RECORD": "fdb620a3a20aa640ef2fe13c1c307ded6e189c6507b3438e88e086f2e02e8371",
+          "huggingface_hub-2.4.0.dist-info/WHEEL": "98e75747d0b7c0c568bfb71263c3d8f970b3a374a6996087bc642be5cb09a1aa"
+        }
+      },
+      {
+        "name": "identify",
+        "version": "2.6.20",
+        "metadata_hashes": {
+          "identify-2.6.20.dist-info/METADATA": "83427f3660c7851cdb165c22b5b2822dccf65be42cecdd6c1bc76a1809e968c0",
+          "identify-2.6.20.dist-info/RECORD": "b84661403a20ae9325030ce6ce71e6f6a36f56bd4f064f093977335005d6df35",
+          "identify-2.6.20.dist-info/WHEEL": "4dd4392ed3702eec530a3831379d4081d539c3e2a407db6d98b6f38d31f4da98"
+        }
+      },
+      {
+        "name": "idna",
+        "version": "3.20",
+        "metadata_hashes": {
+          "idna-3.20.dist-info/METADATA": "dbd8c14c1e4ca1e0c9824a6dbc7cbbf78884f38eb52d91148cd3025f671e4b85",
+          "idna-3.20.dist-info/RECORD": "9f7780f97e198606ce03df7af8e86355808613cecc2de526df141f147c08aab4",
+          "idna-3.20.dist-info/WHEEL": "96a37c8d7b7f425a05386731f644adbd66ebca17c45e8236176cfe614466df9d"
+        }
+      },
+      {
+        "name": "iniconfig",
+        "version": "2.3.1",
+        "metadata_hashes": {
+          "iniconfig-2.3.1.dist-info/METADATA": "47c2c35d936f5c649d8074c6464719a42966a67b5cebad01e3e5784cf090cfb6",
+          "iniconfig-2.3.1.dist-info/RECORD": "0000f3396bc6bfd4ddf9c29d9a1f4c099b1b18479ef23a3a6548278c7cf9f48d",
+          "iniconfig-2.3.1.dist-info/WHEEL": "61532836a2b3111b7ec23519c09df7c41180c27165fb872a6d8913b566b88ad1"
+        }
+      },
+      {
+        "name": "interface_meta",
+        "version": "2.0.1",
+        "metadata_hashes": {
+          "interface_meta-2.0.1.dist-info/METADATA": "e9f0a6845e13e5de8b4ee9419760ca1517ee3cdd2c41b1b205499122117f0222",
+          "interface_meta-2.0.1.dist-info/RECORD": "8a96ddaf49ff1ace2479970279663ed5eda7be1861d596af7e44f8582181e92c",
+          "interface_meta-2.0.1.dist-info/WHEEL": "41c708c5adba6e097513ab8ccb9f1d7865a2fb469e22491a9e01dcc64da459fc"
+        }
+      },
+      {
+        "name": "Jinja2",
+        "version": "3.1.6",
+        "metadata_hashes": {
+          "jinja2-3.1.6.dist-info/METADATA": "68c5548fb67c4132a13898d9b31ec50c6bea2abdd915d921f214355c3a6499c8",
+          "jinja2-3.1.6.dist-info/RECORD": "4551b3fb657b85a9f01e961c0f8a235da65d758149b619400211964b3ac02bdc",
+          "jinja2-3.1.6.dist-info/WHEEL": "ff6a3334508b59cf776cae1628708ef9e0d410d0e5a3e76073d714deaa2460ee"
+        }
+      },
+      {
+        "name": "jiter",
+        "version": "0.18.0",
+        "metadata_hashes": {
+          "jiter-0.18.0.dist-info/METADATA": "11c77ce255b6c292f17b876cd7487aa77c8bebe5d968bfedb495a970a4edcf7c",
+          "jiter-0.18.0.dist-info/RECORD": "e9824b426241cf82315ee206a00bed38d644a55a4f1a1e4855319233f28656ec",
+          "jiter-0.18.0.dist-info/WHEEL": "51fe37f21183f8d51fb47d3c77149a89847171f899a9e60af60dc3349faf3d8d"
+        }
+      },
+      {
+        "name": "joblib",
+        "version": "1.6.0",
+        "metadata_hashes": {
+          "joblib-1.6.0.dist-info/METADATA": "c5fd6509906c5795fd6724d97bc1709d1f266b78aff92c0156d6cf5ad7c045e3",
+          "joblib-1.6.0.dist-info/RECORD": "c1088eee5a30f2c8e5b1611ee43a7ccd8e8a9fcc53ebba0606692431d896a873",
+          "joblib-1.6.0.dist-info/WHEEL": "61532836a2b3111b7ec23519c09df7c41180c27165fb872a6d8913b566b88ad1"
+        }
+      },
+      {
+        "name": "kiwisolver",
+        "version": "1.5.1",
+        "metadata_hashes": {
+          "kiwisolver-1.5.1.dist-info/METADATA": "4e635948bf0b496e7e1bf6b8f7f577504670453459bd98e8dcfb0b919257d476",
+          "kiwisolver-1.5.1.dist-info/RECORD": "3116e4ed5a372aa5c2f7cc59b78006c82d14bd568d5e99d84327e524a87157c8",
+          "kiwisolver-1.5.1.dist-info/WHEEL": "547199cfb31450578b25778938b82f94e190e69e750e6c850e3b6d657fa1a30f"
+        }
+      },
+      {
+        "name": "license-expression",
+        "version": "30.4.4",
+        "metadata_hashes": {
+          "license_expression-30.4.4.dist-info/METADATA": "1f8fc95adb7c2fead6d6b52cc2da09d4177b24bfac067f7a4dbdc666e72495fb",
+          "license_expression-30.4.4.dist-info/RECORD": "30e02470d67f4b231b63a07ed915d8f69ed6ee8b32656c97f818c19a050ca39f",
+          "license_expression-30.4.4.dist-info/WHEEL": "ff309ddcdd65ebd02bc724dbf2bcc4a0ff53a5b61792a44548d383e4ebb19d3b"
+        }
+      },
+      {
+        "name": "markdown-it-py",
+        "version": "4.2.0",
+        "metadata_hashes": {
+          "markdown_it_py-4.2.0.dist-info/METADATA": "72c36ff516755443b1ecb61e17b2567a990230b49a504b0eb0c42d5f82448a9c",
+          "markdown_it_py-4.2.0.dist-info/RECORD": "b171b0ea79ecdbd9ecac3756d060b2e0baae54b7a204f04839c8981750f87c66",
+          "markdown_it_py-4.2.0.dist-info/WHEEL": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db"
+        }
+      },
+      {
+        "name": "MarkupSafe",
+        "version": "3.0.4",
+        "metadata_hashes": {
+          "markupsafe-3.0.4.dist-info/METADATA": "08fa79954ab288d778b0fee4f0e6c7dbc869e545a415747d1324622465d3b08d",
+          "markupsafe-3.0.4.dist-info/RECORD": "157fe3d9256295678cdefff252a1b63bd8411354b24567aeb8ab1d113a27a3b1",
+          "markupsafe-3.0.4.dist-info/WHEEL": "547199cfb31450578b25778938b82f94e190e69e750e6c850e3b6d657fa1a30f"
+        }
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.11.2",
+        "metadata_hashes": {
+          "matplotlib-3.11.2.dist-info/METADATA": "e5f532226d1025af2dd15ff951df27391f66d46403b8244ea61e6b8eb3e4d806",
+          "matplotlib-3.11.2.dist-info/RECORD": "e7fffced6eaa133e17784648e752b6eba0b8c7c9cfa7c2c0ac377665d7882721",
+          "matplotlib-3.11.2.dist-info/WHEEL": "e743de01ba6503a3e4234858398a1e69c07d512d51e8482ec9f3a7b1c707d165"
+        }
+      },
+      {
+        "name": "mdurl",
+        "version": "0.1.2",
+        "metadata_hashes": {
+          "mdurl-0.1.2.dist-info/METADATA": "b53b29d48f499367053fda3c81e7ce27d2558380ebbf83e66023b02eb7ddd25d",
+          "mdurl-0.1.2.dist-info/RECORD": "9a1b05128e711beabd7684e116fcf408ce8cff7ef10e7e8b359b248924fe529c",
+          "mdurl-0.1.2.dist-info/WHEEL": "e137ca201ff1bbed386dcda22b3ebfcc5b7e80414410353fdf51c686acce084f"
+        }
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0",
+        "metadata_hashes": {
+          "mpmath-1.3.0.dist-info/METADATA": "44b66ea444b9c0d19ae94815d356bf047ae6b680c19268b5c265687cd6a81406",
+          "mpmath-1.3.0.dist-info/RECORD": "09cbd04e87d0c5ab64aab08291b31883e4ea27e8d2c640710e0beb1995e86b9b",
+          "mpmath-1.3.0.dist-info/WHEEL": "db07a93359e4e034b8785a58ad6d534ea3dca0635f1e184efe2e66e1c3a299ba"
+        }
+      },
+      {
+        "name": "msgpack",
+        "version": "1.2.4",
+        "metadata_hashes": {
+          "msgpack-1.2.4.dist-info/METADATA": "255fe3e083a9711678cb041b24217de6520584f30c84b4e9534a1d337d43c8c2",
+          "msgpack-1.2.4.dist-info/RECORD": "3c41f58294115812b83b8ad2bf5b21d773dc96ac4a9e8727cd8ad8a747d60f38",
+          "msgpack-1.2.4.dist-info/WHEEL": "b2601f60075ce318a1cf4b08f2b52cc397e708f776ca360504cd2ea7a3a21031"
+        }
+      },
+      {
+        "name": "narwhals",
+        "version": "2.28.0",
+        "metadata_hashes": {
+          "narwhals-2.28.0.dist-info/METADATA": "d0da2a7f975c93dc3845bf5d56a4ec09b83709bc31330f5a9cc2031b2a729aed",
+          "narwhals-2.28.0.dist-info/RECORD": "ea8e8c5acfda97a69ab98daf41981640f4a91ffdca5d90972d248e1c8ec2f178",
+          "narwhals-2.28.0.dist-info/WHEEL": "dcd3b5a18b05ee600d1545957721102ccfb399e71ccd65849a6179ac46d7ad69"
+        }
+      },
+      {
+        "name": "networkx",
+        "version": "3.7",
+        "metadata_hashes": {
+          "networkx-3.7.dist-info/METADATA": "ffcf42a343af6ffc54ff9cc4c09cf9638cd73b131370f395abd11b630186c90c",
+          "networkx-3.7.dist-info/RECORD": "0403c7ac1516dc6dc03a4f0d8256c3b5d333c5721e6ab116c9f2b37fdeb6eb30",
+          "networkx-3.7.dist-info/WHEEL": "61532836a2b3111b7ec23519c09df7c41180c27165fb872a6d8913b566b88ad1"
+        }
+      },
+      {
+        "name": "nodeenv",
+        "version": "1.12.0",
+        "metadata_hashes": {
+          "nodeenv-1.12.0.dist-info/METADATA": "8c557233f43f3436608873590bdc20a2692a5a0f70d5d4382cb480673836fac7",
+          "nodeenv-1.12.0.dist-info/RECORD": "566f858684b3880c85eacf368aa59aca94f9503b87f4c39070dd60433afddce7",
+          "nodeenv-1.12.0.dist-info/WHEEL": "98e75747d0b7c0c568bfb71263c3d8f970b3a374a6996087bc642be5cb09a1aa"
+        }
+      },
+      {
+        "name": "numpy",
+        "version": "2.2.6",
+        "metadata_hashes": {
+          "numpy-2.2.6.dist-info/METADATA": "229f3544b02805e0f6a12030e155d8a45fd3a4100b3291574175e6a76f20e1e1",
+          "numpy-2.2.6.dist-info/RECORD": "551dce5680b1fae171bfd54266553f0eb497cbfc02b64ef6fd0b84f04eb8c2c4",
+          "numpy-2.2.6.dist-info/WHEEL": "e743de01ba6503a3e4234858398a1e69c07d512d51e8482ec9f3a7b1c707d165"
+        }
+      },
+      {
+        "name": "openai",
+        "version": "3.42.1",
+        "metadata_hashes": {
+          "openai-3.42.1.dist-info/METADATA": "25515a2ead3c8464de55fdae150937b8a63df21afd977c41a7af49fe15aef7b0",
+          "openai-3.42.1.dist-info/RECORD": "ea558bbd0a13b8ad7b20c5b267c6692a5c559ee16ea84f7dfdfe84f53d192014",
+          "openai-3.42.1.dist-info/WHEEL": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+        }
+      },
+      {
+        "name": "packageurl-python",
+        "version": "0.17.6",
+        "metadata_hashes": {
+          "packageurl_python-0.17.6.dist-info/METADATA": "f7b3575011c7bd1a1375919e1ecd1258ad4541c6e757c77ff55ba06e3035ec94",
+          "packageurl_python-0.17.6.dist-info/RECORD": "a852a2e76fe6f76c283c6eff144196c53bf54b11e0a3389209d2e41761088b83",
+          "packageurl_python-0.17.6.dist-info/WHEEL": "ff309ddcdd65ebd02bc724dbf2bcc4a0ff53a5b61792a44548d383e4ebb19d3b"
+        }
+      },
+      {
+        "name": "packaging",
+        "version": "26.3",
+        "metadata_hashes": {
+          "packaging-26.3.dist-info/METADATA": "70fdb89fc4d4a9a043bf7372b8972bcc883fddff34ab55e9cf80d73875384763",
+          "packaging-26.3.dist-info/RECORD": "1b8655965b0d83e9a067fd7f84b977bd1e117e0fb9f2874b2572781bdc9e2147",
+          "packaging-26.3.dist-info/WHEEL": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db"
+        }
+      },
+      {
+        "name": "pandas",
+        "version": "2.3.3",
+        "metadata_hashes": {
+          "pandas-2.3.3.dist-info/METADATA": "243674e606b51e70e5858596c7bfc9b58875d531d56577927c0a9944693f6c2f",
+          "pandas-2.3.3.dist-info/RECORD": "d81835081d82d4f6a137a59b886a8e9ad94a671fcfa4770f5b317c44722471c3",
+          "pandas-2.3.3.dist-info/WHEEL": "e743de01ba6503a3e4234858398a1e69c07d512d51e8482ec9f3a7b1c707d165"
+        }
+      },
+      {
+        "name": "patsy",
+        "version": "1.0.3",
+        "metadata_hashes": {
+          "patsy-1.0.3.dist-info/METADATA": "c9d8d1a6ebfdadd02c21b9f4d15b1c26716f181c4bb6bcccb1006c9d892da31f",
+          "patsy-1.0.3.dist-info/RECORD": "23ee763dc754c1da0150209e7e263668cd57b1a33499378c5a45cdc98b7f9640",
+          "patsy-1.0.3.dist-info/WHEEL": "01e3b606fa206169b77866870af87399462df226bb29f511887cceff56ad972b"
+        }
+      },
+      {
+        "name": "pillow",
+        "version": "13.0.0",
+        "metadata_hashes": {
+          "pillow-13.0.0.dist-info/METADATA": "140f39cb31ec9b46109828a6286f034a4848621263d6aab38d2f142083dd06c5",
+          "pillow-13.0.0.dist-info/RECORD": "27b08104088adf8fc31197a946ab4175580041ebd9c33e7fa64dde5e57ed9b4b",
+          "pillow-13.0.0.dist-info/WHEEL": "547199cfb31450578b25778938b82f94e190e69e750e6c850e3b6d657fa1a30f"
+        }
+      },
+      {
+        "name": "pip",
+        "version": "26.3",
+        "metadata_hashes": {
+          "pip-26.3.dist-info/METADATA": "ad63a8564cd158c8de9e6a912e92776b4abc56cfa2d8286ef4c35bfb9cb9e439",
+          "pip-26.3.dist-info/RECORD": "69f21b3b0283234a146873dcf55ef759c44be3b7bf80ba72da844a45f663cd89",
+          "pip-26.3.dist-info/WHEEL": "acb244f0e2cf0596f3eedab1b35c83fb003e0036b511ce4fb9853e63f3cd5832"
+        }
+      },
+      {
+        "name": "pip-requirements-parser",
+        "version": "32.0.1",
+        "metadata_hashes": {
+          "pip_requirements_parser-32.0.1.dist-info/METADATA": "e21f49c644814ff1bba064a641768f2f534c806cff523e2403652793794ab46d",
+          "pip_requirements_parser-32.0.1.dist-info/RECORD": "2fb30779d563455360281b87a4c85a75e133cb95396744f5a8c37254e41fff7d",
+          "pip_requirements_parser-32.0.1.dist-info/WHEEL": "db07a93359e4e034b8785a58ad6d534ea3dca0635f1e184efe2e66e1c3a299ba"
+        }
+      },
+      {
+        "name": "pip_api",
+        "version": "0.0.35",
+        "metadata_hashes": {
+          "pip_api-0.0.35.dist-info/METADATA": "9884da12db9dd1e7d25e1618528bf5e5518ab7e3114698a57c362e3a4c9c6395",
+          "pip_api-0.0.35.dist-info/RECORD": "64179e732578c87313613f1232b590168f5d8b365fdaa2d88f598bb6fcc609f1",
+          "pip_api-0.0.35.dist-info/WHEEL": "61532836a2b3111b7ec23519c09df7c41180c27165fb872a6d8913b566b88ad1"
+        }
+      },
+      {
+        "name": "pip_audit",
+        "version": "2.10.1",
+        "metadata_hashes": {
+          "pip_audit-2.10.1.dist-info/METADATA": "1f06472185a91042bc510b1b2afd2f08fdb14482729b02f4d9ac21a10f547ba4",
+          "pip_audit-2.10.1.dist-info/RECORD": "9b5d74955401112589a9a335e68984290d1eb9002e93f7cff9bb0542a88ae558",
+          "pip_audit-2.10.1.dist-info/WHEEL": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db"
+        }
+      },
+      {
+        "name": "platformdirs",
+        "version": "4.14.3",
+        "metadata_hashes": {
+          "platformdirs-4.14.3.dist-info/METADATA": "d0ff5f5c1b82398fed7a0bcb9ab45cda9bf4ea71fa1320006588012bfa9f8d45",
+          "platformdirs-4.14.3.dist-info/RECORD": "8a2fffb63721f2942a68d27836bcfbf5bb32e5002f1731a4e8ea5c90e6dce034",
+          "platformdirs-4.14.3.dist-info/WHEEL": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+        }
+      },
+      {
+        "name": "pluggy",
+        "version": "1.7.0",
+        "metadata_hashes": {
+          "pluggy-1.7.0.dist-info/METADATA": "20ac8237e37f1d6e7e75500cd663015177ba80c1a1a595ff6bae18a539ff8a2c",
+          "pluggy-1.7.0.dist-info/RECORD": "bab7152cdb6aaa818c2be8786237e032b04022f00e928d71e8dc732b768d6e6d",
+          "pluggy-1.7.0.dist-info/WHEEL": "61532836a2b3111b7ec23519c09df7c41180c27165fb872a6d8913b566b88ad1"
+        }
+      },
+      {
+        "name": "pre_commit",
+        "version": "4.7.0",
+        "metadata_hashes": {
+          "pre_commit-4.7.0.dist-info/METADATA": "6e8ac1ff53ee27dde25df4f3fbccdb4c2f869c06215b28e21f4a85249f1d507a",
+          "pre_commit-4.7.0.dist-info/RECORD": "710832dbe203fee30c2140acc2f23959ba1e0fd6ab546c4478d5ff49cd9a65cb",
+          "pre_commit-4.7.0.dist-info/WHEEL": "4dd4392ed3702eec530a3831379d4081d539c3e2a407db6d98b6f38d31f4da98"
+        }
+      },
+      {
+        "name": "py-serializable",
+        "version": "2.1.0",
+        "metadata_hashes": {
+          "py_serializable-2.1.0.dist-info/METADATA": "37f9f541366de7038094960f301642ed46dc82f3701358542dd8e200bd5bef57",
+          "py_serializable-2.1.0.dist-info/RECORD": "06c5a760e992088ad698ca084c5f6d2d1fe8c62068fbb71aef795be83d3d657e",
+          "py_serializable-2.1.0.dist-info/WHEEL": "6f82bf85e95ffa3950a170411137f09dfe01d38602ebb2ce7afd23a387d7e66f"
+        }
+      },
+      {
+        "name": "pyarrow",
+        "version": "26.0.1",
+        "metadata_hashes": {
+          "pyarrow-26.0.1.dist-info/METADATA": "266e9de74290f2dae9851af87d34a1fbb727e238615af836aebd82a1b0bb2d1a",
+          "pyarrow-26.0.1.dist-info/RECORD": "dccdf2249e4ea4838b5be80c23f01538d14a0e52a0c26e5d32e556320d2d6ba9",
+          "pyarrow-26.0.1.dist-info/WHEEL": "66486cd3db7d14be6e5ec8276c9dafdd841fac8c6abdf2a6780e97ae0cc433bc"
+        }
+      },
+      {
+        "name": "pydantic",
+        "version": "2.14.2",
+        "metadata_hashes": {
+          "pydantic-2.14.2.dist-info/METADATA": "5e27715d350cc99bc33877404deba2a9491221ae972db8f8c79f64032bee3a01",
+          "pydantic-2.14.2.dist-info/RECORD": "76bb90c5a95514139c1d08f5e2cdf829406e91cb34151d844b5962b131d21e6e",
+          "pydantic-2.14.2.dist-info/WHEEL": "da266b2640c891e0e1d24f528a428ca85b913feb9aea66f822bd40b04478044c"
+        }
+      },
+      {
+        "name": "pydantic_core",
+        "version": "2.50.2",
+        "metadata_hashes": {
+          "pydantic_core-2.50.2.dist-info/METADATA": "2a6baeaa81c7bd920bd1a326d6f99ac3e6c62f282ff73b90ec782c2053072010",
+          "pydantic_core-2.50.2.dist-info/RECORD": "bebb7282083c2ba047c6c3067bce68de711447343781c817fe2361f48b260eb8",
+          "pydantic_core-2.50.2.dist-info/WHEEL": "5f396668618bce62b05bfc25460431b456deb37748910daf35f30cea9cd7c31c"
+        }
+      },
+      {
+        "name": "Pygments",
+        "version": "2.21.0",
+        "metadata_hashes": {
+          "pygments-2.21.0.dist-info/METADATA": "1dde075570136774c706bf0009183a793fe0ee262e4a5590cc6eff8453eedd43",
+          "pygments-2.21.0.dist-info/RECORD": "3519d4a65291a6fdb0ca8705739ccdd8d5425bd02975155404f0e8a7d3936e4c",
+          "pygments-2.21.0.dist-info/WHEEL": "ccec20e2307acd7da453dd7437e70c6b08e2bc3ead3bc3445af135da37b56d59"
+        }
+      },
+      {
+        "name": "pyparsing",
+        "version": "3.3.3",
+        "metadata_hashes": {
+          "pyparsing-3.3.3.dist-info/METADATA": "f2ca34052d720622d300023472ef8ae94fe5b57d69acbb28a8667f6dd0e13497",
+          "pyparsing-3.3.3.dist-info/RECORD": "dbc82867d6a4a3b935f9a9f3f2c876e3056dfffb104e1c8b3a3117d90aa21ad3",
+          "pyparsing-3.3.3.dist-info/WHEEL": "96a37c8d7b7f425a05386731f644adbd66ebca17c45e8236176cfe614466df9d"
+        }
+      },
+      {
+        "name": "pyproject_hooks",
+        "version": "1.3.3",
+        "metadata_hashes": {
+          "pyproject_hooks-1.3.3.dist-info/METADATA": "844e375bb28dcbe42a0502fbd9428d9ba4669db25028ee7a7afaa8dd7ada2e00",
+          "pyproject_hooks-1.3.3.dist-info/RECORD": "86adcee4c250c3b18b913f21545e2d735b780b382fbf67ac27816d04c908be8e",
+          "pyproject_hooks-1.3.3.dist-info/WHEEL": "ff23073da055face9f40cc14a28f3735275308cddcf315d6157461a9a7cdfbb6"
+        }
+      },
+      {
+        "name": "pytest",
+        "version": "9.2.0",
+        "metadata_hashes": {
+          "pytest-9.2.0.dist-info/METADATA": "006823d1759e40b4546ff4296945eda3f0692e799f724bb235edd0512d42eead",
+          "pytest-9.2.0.dist-info/RECORD": "93f4d43554bee3f6ea131ea5fd6dea872047edd1d0f627df68c1284792d31339",
+          "pytest-9.2.0.dist-info/WHEEL": "98e75747d0b7c0c568bfb71263c3d8f970b3a374a6996087bc642be5cb09a1aa"
+        }
+      },
+      {
+        "name": "pytest-cov",
+        "version": "7.1.0",
+        "metadata_hashes": {
+          "pytest_cov-7.1.0.dist-info/METADATA": "d670e42439ea5a87c46d5659cfcbf64e29aaf7da3aca69dc03eecdafe7e4894c",
+          "pytest_cov-7.1.0.dist-info/RECORD": "115408c1989f669153666396affa70c5edeb9a80a88a5b51e0dce4911c986357",
+          "pytest_cov-7.1.0.dist-info/WHEEL": "41c708c5adba6e097513ab8ccb9f1d7865a2fb469e22491a9e01dcc64da459fc"
+        }
+      },
+      {
+        "name": "python-dateutil",
+        "version": "4.0.0",
+        "metadata_hashes": {
+          "python_dateutil-4.0.0.dist-info/METADATA": "39adffb0c736bb6b6839f89fd158bb9b9ad54a3a795e0ea2ea53e79e1f821907",
+          "python_dateutil-4.0.0.dist-info/RECORD": "8eb8af9b580133411716fcc5be769bb547e537bc127a4a6ebf2d92e182e80cfd",
+          "python_dateutil-4.0.0.dist-info/WHEEL": "da266b2640c891e0e1d24f528a428ca85b913feb9aea66f822bd40b04478044c"
+        }
+      },
+      {
+        "name": "python-discovery",
+        "version": "1.9.2",
+        "metadata_hashes": {
+          "python_discovery-1.9.2.dist-info/METADATA": "8634128e3823ff08971e2a7befae6a7197a802363dc23877d20c62620bf994fc",
+          "python_discovery-1.9.2.dist-info/RECORD": "fde650571c42031d8d14bfdf8cfe2054ccf85040a3ad2c8cd92c7fda21f1913a",
+          "python_discovery-1.9.2.dist-info/WHEEL": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+        }
+      },
+      {
+        "name": "python-dotenv",
+        "version": "1.2.4",
+        "metadata_hashes": {
+          "python_dotenv-1.2.4.dist-info/METADATA": "87cfee6042412d48df1100ea7822684988c3f2b79de7a250f4717f4df3026d6f",
+          "python_dotenv-1.2.4.dist-info/RECORD": "a4e5f7240d13caab131af7f7ca62ec107dced5f5e6bc92acb508d6a13e822352",
+          "python_dotenv-1.2.4.dist-info/WHEEL": "61532836a2b3111b7ec23519c09df7c41180c27165fb872a6d8913b566b88ad1"
+        }
+      },
+      {
+        "name": "pytz",
+        "version": "2026.6",
+        "metadata_hashes": {
+          "pytz-2026.6.dist-info/METADATA": "25de974e5d389a44fdedb89074f9ce19de3c7ab685b682e9a945d1ab36fc60a5",
+          "pytz-2026.6.dist-info/RECORD": "9ac9c5626ec6f64645358ca2677b23cccdc4b7b70d659b7e7cf39cce0b12bc28",
+          "pytz-2026.6.dist-info/WHEEL": "f86fedd281ae13b503d03ad2a55667ab584730157d0c3d97912e6fed7a664e79"
+        }
+      },
+      {
+        "name": "PyYAML",
+        "version": "6.0.3",
+        "metadata_hashes": {
+          "pyyaml-6.0.3.dist-info/METADATA": "847a701020334386852b6e07bad1053cb0ce3da9ee1846e7e9d02b24e8bb3f8d",
+          "pyyaml-6.0.3.dist-info/RECORD": "6fef717920e6590ce79f8f922755690f9d1f3199508e9d79baeb382ea4813c9c",
+          "pyyaml-6.0.3.dist-info/WHEEL": "f143fdc7da6e588d0fd55fddecada831306a7de2cd9b6d424f367f3edaf43575"
+        }
+      },
+      {
+        "name": "regex",
+        "version": "2026.9.29",
+        "metadata_hashes": {
+          "regex-2026.9.29.dist-info/METADATA": "726c658b5d0ee420e773f9e6c843918e8a2ad7c27577d20c8f502c08eccb211e",
+          "regex-2026.9.29.dist-info/RECORD": "8f52fd512d4641fa29f6ce6bbd07aa97c25e551b367a7a5407ecb601122fe0f2",
+          "regex-2026.9.29.dist-info/WHEEL": "547199cfb31450578b25778938b82f94e190e69e750e6c850e3b6d657fa1a30f"
+        }
+      },
+      {
+        "name": "requests",
+        "version": "2.34.2",
+        "metadata_hashes": {
+          "requests-2.34.2.dist-info/METADATA": "8c384ba3e979480faae2859d3c5e6c1276dd2c3616e322e124d52c8cfc556f27",
+          "requests-2.34.2.dist-info/RECORD": "fc8c5216d0e865d815bd04cc240b5adc5d56f6c3dbe9aef3b4ea3b83d735bdfe",
+          "requests-2.34.2.dist-info/WHEEL": "69e6228a0d35958183cc1812f07c565ce837b95eb51bd8a33acba9fa4f68d6c9"
+        }
+      },
+      {
+        "name": "rich",
+        "version": "15.0.0",
+        "metadata_hashes": {
+          "rich-15.0.0.dist-info/METADATA": "fad34fc603fac4481bf81f8dd629492fc302c0ec31909c86644751512afb2e3b",
+          "rich-15.0.0.dist-info/RECORD": "1b725253b1bd316b53169a3a0b35d03d6c81bad9009ddae73d8645fb3cd3f292",
+          "rich-15.0.0.dist-info/WHEEL": "909091253fe0d1a75f009cd3c761943264bcd2b4c92151d109f1b40d080bab7a"
+        }
+      },
+      {
+        "name": "ruff",
+        "version": "0.17.3",
+        "metadata_hashes": {
+          "ruff-0.17.3.dist-info/METADATA": "991aa9fb5b6643ab04bdcdf503cf1ef7900d1f2a328bfea489312b8192e6b582",
+          "ruff-0.17.3.dist-info/RECORD": "ecfff2f7ca4183a55a1bffd4a353b0a6eb1799f57eba37e3cffb8bede779cd89",
+          "ruff-0.17.3.dist-info/WHEEL": "f007a3d16d1ae82cfa6a903723326b4e7c4b4552c0b7ec343a1f120370a89ff7"
+        }
+      },
+      {
+        "name": "safetensors",
+        "version": "0.8.0",
+        "metadata_hashes": {
+          "safetensors-0.8.0.dist-info/METADATA": "597731d1baf7a94219753fa0a74abd1a8a18562d50d98b2e25d91e11e3224d36",
+          "safetensors-0.8.0.dist-info/RECORD": "5104da9df47c2cfd517218e0450554a9045addf1f97b31cc83fda17f1e556625",
+          "safetensors-0.8.0.dist-info/WHEEL": "3944f45cfe532fd1eafba08882c6f99ba04053ca5f70da988f1d319c50d684db"
+        }
+      },
+      {
+        "name": "scikit-learn",
+        "version": "1.7.2",
+        "metadata_hashes": {
+          "scikit_learn-1.7.2.dist-info/METADATA": "a301770d816e5ef5e2a262886115f1e6002637324f3bfe73f92378897dea8c63",
+          "scikit_learn-1.7.2.dist-info/RECORD": "4cfd46d35f76b2fa72fd9912b3a9849444b1fa4b272de92d4e1524ae782e0285",
+          "scikit_learn-1.7.2.dist-info/WHEEL": "e743de01ba6503a3e4234858398a1e69c07d512d51e8482ec9f3a7b1c707d165"
+        }
+      },
+      {
+        "name": "scipy",
+        "version": "1.15.3",
+        "metadata_hashes": {
+          "scipy-1.15.3.dist-info/METADATA": "191610381f06190f11ec2c5cd46f1a7833665d8386d3fe8a710c07ef65acdfd4",
+          "scipy-1.15.3.dist-info/RECORD": "30fd787e3538cc6f3f85a2328d21c31a3152c622713eeb91682df0d2e2093d03",
+          "scipy-1.15.3.dist-info/WHEEL": "e743de01ba6503a3e4234858398a1e69c07d512d51e8482ec9f3a7b1c707d165"
+        }
+      },
+      {
+        "name": "setuptools",
+        "version": "84.2.1",
+        "metadata_hashes": {
+          "setuptools-84.2.1.dist-info/METADATA": "24939b84ead30ff4581918c8d5a95aafd377f6a8afc61f30ea18358a8786bfa4",
+          "setuptools-84.2.1.dist-info/RECORD": "03f770e022ed5af62052917e3441590b97d7f58ee66e514c343861cc38866d47",
+          "setuptools-84.2.1.dist-info/WHEEL": "98e75747d0b7c0c568bfb71263c3d8f970b3a374a6996087bc642be5cb09a1aa",
+          "setuptools/_vendor/autocommand-2.2.2.dist-info/METADATA": "3800d9b91dceea2065a6ed6279383362e97ac38b8e56b9343f404ee531860099",
+          "setuptools/_vendor/autocommand-2.2.2.dist-info/RECORD": "2bee6072cbcec6390c57107c8dfcb0422918a98ecdb5a2cc362187f13d42e96f",
+          "setuptools/_vendor/autocommand-2.2.2.dist-info/WHEEL": "db07a93359e4e034b8785a58ad6d534ea3dca0635f1e184efe2e66e1c3a299ba",
+          "setuptools/_vendor/backports.tarfile-1.2.0.dist-info/METADATA": "8215c54ead77d9dc5a108a25c6bdc72b5999aa6f62c9499a440359412afa5a51",
+          "setuptools/_vendor/backports.tarfile-1.2.0.dist-info/RECORD": "0f69db719b54220d6a4adff8bfb04ac98affea3dc8b54054a1a787a17567f4d1",
+          "setuptools/_vendor/backports.tarfile-1.2.0.dist-info/WHEEL": "189eedfe4581172c1b6a02b97a8f48a14c0b5baa3239e4ca990fbd8871553714",
+          "setuptools/_vendor/importlib_metadata-8.7.1.dist-info/METADATA": "a3e38b9ee4326289d4864704f30e299ee769e2309ce9f4a75f0de1a50ad0a356",
+          "setuptools/_vendor/importlib_metadata-8.7.1.dist-info/RECORD": "52a6b8ee0de15cf7fd99625f43b97cd2e3942ac86f16054ea90de48e66f29355",
+          "setuptools/_vendor/importlib_metadata-8.7.1.dist-info/WHEEL": "ff309ddcdd65ebd02bc724dbf2bcc4a0ff53a5b61792a44548d383e4ebb19d3b",
+          "setuptools/_vendor/jaraco.text-4.0.0.dist-info/METADATA": "5c2fd09012c954f139b10624978d5335a654c34014cd06f6f466ca683dbc9c56",
+          "setuptools/_vendor/jaraco.text-4.0.0.dist-info/RECORD": "63b936c308d0fcbe1390e824567cc007536c32a849adb02278e95f1d4c736c31",
+          "setuptools/_vendor/jaraco.text-4.0.0.dist-info/WHEEL": "5b287efe76740c9628947367d7f84c6b894ceee0de743fd1195c1b9938f222d9",
+          "setuptools/_vendor/jaraco_context-6.1.0.dist-info/METADATA": "0435ebfc52055c5a9974ed20c171b6454383eaf9dbb1508814ba7ad97c59d712",
+          "setuptools/_vendor/jaraco_context-6.1.0.dist-info/RECORD": "4599d876ceb42b7eef03aa39e235c4ebeab6aea2409dbe634496852393d1f837",
+          "setuptools/_vendor/jaraco_context-6.1.0.dist-info/WHEEL": "ff309ddcdd65ebd02bc724dbf2bcc4a0ff53a5b61792a44548d383e4ebb19d3b",
+          "setuptools/_vendor/jaraco_functools-4.4.0.dist-info/METADATA": "2e79da8dc3469924abe3ac8b22a3feb5692a79bf9f47bbc86b6535d618641849",
+          "setuptools/_vendor/jaraco_functools-4.4.0.dist-info/RECORD": "baafd2d6d94c1bde453e4c805ac05511dc53986e0a63b02f674ef0f788bec146",
+          "setuptools/_vendor/jaraco_functools-4.4.0.dist-info/WHEEL": "ff309ddcdd65ebd02bc724dbf2bcc4a0ff53a5b61792a44548d383e4ebb19d3b",
+          "setuptools/_vendor/more_itertools-10.8.0.dist-info/METADATA": "6ab3515145abe58b067f087c867631cf4cf5d653fed81b9642ee12086c3904b8",
+          "setuptools/_vendor/more_itertools-10.8.0.dist-info/RECORD": "9ed1b134c0aa83722f36e99f3918aa9610ce3a0a514d793bbb74a368d441a01d",
+          "setuptools/_vendor/more_itertools-10.8.0.dist-info/WHEEL": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db",
+          "setuptools/_vendor/packaging-26.3.dist-info/METADATA": "70fdb89fc4d4a9a043bf7372b8972bcc883fddff34ab55e9cf80d73875384763",
+          "setuptools/_vendor/packaging-26.3.dist-info/RECORD": "1b8655965b0d83e9a067fd7f84b977bd1e117e0fb9f2874b2572781bdc9e2147",
+          "setuptools/_vendor/packaging-26.3.dist-info/WHEEL": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db",
+          "setuptools/_vendor/platformdirs-4.4.0.dist-info/METADATA": "bbc5216d5f4c77bfbc57227264d52e66bccde71ccf79e75e1a6046d029d30223",
+          "setuptools/_vendor/platformdirs-4.4.0.dist-info/RECORD": "3d0d2f1cc018593c4d8baa2395baf0b1c1c645bbd8c18cd064f49cb4e4c95ea0",
+          "setuptools/_vendor/platformdirs-4.4.0.dist-info/WHEEL": "aad0b0a12256807936d52d4a6f88a1773236ae527564a688bab4e3fe780e8724",
+          "setuptools/_vendor/tomli-2.4.0.dist-info/METADATA": "f5ac0a1f8fba908b4646cd655309e91aad969b6787616ac571ca462a3832ffce",
+          "setuptools/_vendor/tomli-2.4.0.dist-info/RECORD": "225430ce95640e8d4fcdb93cdae2fc38d685aec016d0e293d5fb99a695886fed",
+          "setuptools/_vendor/tomli-2.4.0.dist-info/WHEEL": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db",
+          "setuptools/_vendor/wheel-0.46.3.dist-info/METADATA": "22910aa97ca89cbcc20a019e27fe31360b7929a4bd66ca0d310f99a44f6ccd35",
+          "setuptools/_vendor/wheel-0.46.3.dist-info/RECORD": "b0297c3ada17b8727e15ddd6d1e38c8a90a997f779fcf978996f6fec62ecb702",
+          "setuptools/_vendor/wheel-0.46.3.dist-info/WHEEL": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db",
+          "setuptools/_vendor/zipp-3.23.0.dist-info/METADATA": "bdd67d4d16cf0bf3b893e7d18cd3d2d774adb82f37ed985bc7770c607226b35b",
+          "setuptools/_vendor/zipp-3.23.0.dist-info/RECORD": "3bfab660a24704f84228e4bb1ce1f0e3fa9ff80e5c806352a626b2f460ead836",
+          "setuptools/_vendor/zipp-3.23.0.dist-info/WHEEL": "ff309ddcdd65ebd02bc724dbf2bcc4a0ff53a5b61792a44548d383e4ebb19d3b"
+        }
+      },
+      {
+        "name": "shellingham",
+        "version": "1.5.4",
+        "metadata_hashes": {
+          "shellingham-1.5.4.dist-info/METADATA": "183d80220a37493262795739dd357cc5bb3f49bd390cc9198d5180e5451a07fa",
+          "shellingham-1.5.4.dist-info/RECORD": "2a878ed08ec32adc6b08a9b6a83754cd7c30ffb8a67e26527292456da9ff2fee",
+          "shellingham-1.5.4.dist-info/WHEEL": "89896fe5f5f7e7b3d0c914f6a3ab70d5b37e61c2851472aa07f2f01cee703fe8"
+        }
+      },
+      {
+        "name": "sniffio",
+        "version": "1.3.1",
+        "metadata_hashes": {
+          "sniffio-1.3.1.dist-info/METADATA": "0b318b57098edeccf585e60a889a6b6a7b5c4086f3a9aa62eff76a1d3cee12d9",
+          "sniffio-1.3.1.dist-info/RECORD": "e6c97953661def7ab6dac78f83c86f31e622bee38ff55ea508cb04e1a604d4ff",
+          "sniffio-1.3.1.dist-info/WHEEL": "a2241587fe4f9d033413780f762cf4f5608d9b08870cc6867abfde96a0777283"
+        }
+      },
+      {
+        "name": "sortedcontainers",
+        "version": "2.4.0",
+        "metadata_hashes": {
+          "sortedcontainers-2.4.0.dist-info/METADATA": "eedf115109e215001e904da0882851beae50b03c0b0161a8b9e74b7cfd679473",
+          "sortedcontainers-2.4.0.dist-info/RECORD": "2e764b15bb6fc2e19a0a795409c5da3eae994032a5d9173a4dadc7ef238cab52",
+          "sortedcontainers-2.4.0.dist-info/WHEEL": "9064fbe0b5b245466b2f85602e1ebf835d8879597ff6ef5956169dae05d95046"
+        }
+      },
+      {
+        "name": "statsmodels",
+        "version": "0.15.0",
+        "metadata_hashes": {
+          "statsmodels-0.15.0.dist-info/METADATA": "5c2b2bc90b451ec1d9d87529d25754011b4436f55f2a2956e0fabda34b82a826",
+          "statsmodels-0.15.0.dist-info/RECORD": "cf1d4027c3074592cbb425e3227ace00dec780dee4175f481e52ce2127a89454",
+          "statsmodels-0.15.0.dist-info/WHEEL": "e743de01ba6503a3e4234858398a1e69c07d512d51e8482ec9f3a7b1c707d165"
+        }
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0",
+        "metadata_hashes": {
+          "sympy-1.14.0.dist-info/METADATA": "b756c2fbfd5be05ac5bdb0ebca61f55618f30f633ed92d88a5687429313a7595",
+          "sympy-1.14.0.dist-info/RECORD": "3509b36c8609dd9d9113f218f71329f2c65a4fea503267c9b2aafbd18911fbe2",
+          "sympy-1.14.0.dist-info/WHEEL": "4a63b1614ee9ccd281a804af409ec38d7dd719417dda5ac684c6f747afe28aa2"
+        }
+      },
+      {
+        "name": "threadpoolctl",
+        "version": "3.7.0",
+        "metadata_hashes": {
+          "threadpoolctl-3.7.0.dist-info/METADATA": "09b19e721560cd12246402d44e53c1ede5194b8398ef60822f02cab86ccf8d1f",
+          "threadpoolctl-3.7.0.dist-info/RECORD": "271378a6666651adc5c620731081b466a07024b75d7728b9d61b8335b45d7225",
+          "threadpoolctl-3.7.0.dist-info/WHEEL": "ff23073da055face9f40cc14a28f3735275308cddcf315d6157461a9a7cdfbb6"
+        }
+      },
+      {
+        "name": "tokenizers",
+        "version": "0.23.3",
+        "metadata_hashes": {
+          "tokenizers-0.23.3.dist-info/METADATA": "8ec3972b037a30f856c596f5b40c5045a03dc064eb6d4716e64fe5504f3f1ab9",
+          "tokenizers-0.23.3.dist-info/RECORD": "450ef2bc6554638b7a14db3c9b3e530229cd021eb8f4c73888ac6f5e7d183488",
+          "tokenizers-0.23.3.dist-info/WHEEL": "ec72fe4c6beae3839fa74ca164bfae4482051dc25322aaa4459550db06627733"
+        }
+      },
+      {
+        "name": "tomli",
+        "version": "2.5.0",
+        "metadata_hashes": {
+          "tomli-2.5.0.dist-info/METADATA": "b3ada70cbc0f6b2b79da7d91783e5ac8a310485c454e9bba7af22aa5190daedc",
+          "tomli-2.5.0.dist-info/RECORD": "b21ebbecbfdae90e44eb7fb0a68bbaf34ade8de7b84725eea48dd5d957b54e94",
+          "tomli-2.5.0.dist-info/WHEEL": "547199cfb31450578b25778938b82f94e190e69e750e6c850e3b6d657fa1a30f"
+        }
+      },
+      {
+        "name": "tomli_w",
+        "version": "1.2.0",
+        "metadata_hashes": {
+          "tomli_w-1.2.0.dist-info/METADATA": "66e81ac2e41775b5ebddcfbb9f4ae77158e4c5739fd52d231e14f2fffda9c8de",
+          "tomli_w-1.2.0.dist-info/RECORD": "6758ea1fa917909e7f6f8f313e168e3627f1d480167ff78174dea2d7e1b501d3",
+          "tomli_w-1.2.0.dist-info/WHEEL": "0a950253178741b44de54191407611268acee407fe432fdf1cc72d710f034862"
+        }
+      },
+      {
+        "name": "torch",
+        "version": "2.15.0+cpu",
+        "metadata_hashes": {
+          "torch-2.15.0+cpu.dist-info/METADATA": "79b129cf5cfac786c4f6b07e50b593eba9bcf2507315578b717b338573892878",
+          "torch-2.15.0+cpu.dist-info/RECORD": "34571608179abbd7df725b9b9976755822cd26dc80e0cac67113408ebee10afb",
+          "torch-2.15.0+cpu.dist-info/WHEEL": "29277f1802ee5571ab56d8830266a8cfd72700fa54581410a0a191fe9f27e675"
+        }
+      },
+      {
+        "name": "tqdm",
+        "version": "4.70.1",
+        "metadata_hashes": {
+          "tqdm-4.70.1.dist-info/METADATA": "a5da70b966afea3a759716041bad7187f2ece02c22348cf9e7c0a512bbf15f57",
+          "tqdm-4.70.1.dist-info/RECORD": "fa5f80f3dea2e6afce20a92c18a1ae3f2724451b7ae8736633624e41bc1005a4",
+          "tqdm-4.70.1.dist-info/WHEEL": "61532836a2b3111b7ec23519c09df7c41180c27165fb872a6d8913b566b88ad1"
+        }
+      },
+      {
+        "name": "transformers",
+        "version": "5.22.1",
+        "metadata_hashes": {
+          "transformers-5.22.1.dist-info/METADATA": "161037c2431d5b65d08321c8daa1e72adf3f4d5081b288636362c537a77d43cd",
+          "transformers-5.22.1.dist-info/RECORD": "4426cbfc0edc0917fd10d3e29874a065a1acc733f758c250177cc33dbd510991",
+          "transformers-5.22.1.dist-info/WHEEL": "4a63b1614ee9ccd281a804af409ec38d7dd719417dda5ac684c6f747afe28aa2"
+        }
+      },
+      {
+        "name": "truststore",
+        "version": "0.10.5",
+        "metadata_hashes": {
+          "truststore-0.10.5.dist-info/METADATA": "1fd496f290853214e630d96f7163d2dd916f84ebe634b58aa827d6853e8f8610",
+          "truststore-0.10.5.dist-info/RECORD": "df0d4a94db9cbfa77b6659d958093e75f9b139d3eec5c73f55b91541e5de0a5f",
+          "truststore-0.10.5.dist-info/WHEEL": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db"
+        }
+      },
+      {
+        "name": "typer",
+        "version": "0.27.3",
+        "metadata_hashes": {
+          "typer-0.27.3.dist-info/METADATA": "fc2cbb86c4fd175326b63427e9a3fa13e79364d7333a945414d9c6ac80c0f0e4",
+          "typer-0.27.3.dist-info/RECORD": "38851318251e936c4eeb71005b44b0765468f9e6c21df14602c137841b8070b6",
+          "typer-0.27.3.dist-info/WHEEL": "22e224df06da127147d5cc7be623364750a6962448ddd14b5d36d16a482f8054"
+        }
+      },
+      {
+        "name": "typing-inspection",
+        "version": "0.4.4",
+        "metadata_hashes": {
+          "typing_inspection-0.4.4.dist-info/METADATA": "bad3d9e6342ef6750cf5128ec942327b8bebdce0b6e4d6f67cb15b27ae5118da",
+          "typing_inspection-0.4.4.dist-info/RECORD": "83fc23669db31500d06056b13ecebe4f088f56a81c1ea86e3b68f1de3b8c7d95",
+          "typing_inspection-0.4.4.dist-info/WHEEL": "ccec20e2307acd7da453dd7437e70c6b08e2bc3ead3bc3445af135da37b56d59"
+        }
+      },
+      {
+        "name": "typing_extensions",
+        "version": "4.16.0",
+        "metadata_hashes": {
+          "typing_extensions-4.16.0.dist-info/METADATA": "b05084ca1d50879865178d9fff9fabeab61bdfb1f361bfbde95421ffc8f9be46",
+          "typing_extensions-4.16.0.dist-info/RECORD": "9e07fea845cac76293d927afa7157a14ecba39b318bc8af236b8de530b7656c1",
+          "typing_extensions-4.16.0.dist-info/WHEEL": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db"
+        }
+      },
+      {
+        "name": "tzdata",
+        "version": "2026.6",
+        "metadata_hashes": {
+          "tzdata-2026.6.dist-info/METADATA": "8173da8700dd125e60c9caf7663d02ee3318851ee60d387b2b080f23a74a86a8",
+          "tzdata-2026.6.dist-info/RECORD": "7264b3a15cf0a62ca4fe8429e35ae78fe380d58878647cefc95c42f19210ad1e",
+          "tzdata-2026.6.dist-info/WHEEL": "52f960d9a36510a76296cc85489b75417e667b47846c28d0cd1de765e164bf2e"
+        }
+      },
+      {
+        "name": "urllib3",
+        "version": "2.8.0",
+        "metadata_hashes": {
+          "urllib3-2.8.0.dist-info/METADATA": "10898c620e8007c030e07fa5622b68358a43010025dfbd78a1cb797699de2bb4",
+          "urllib3-2.8.0.dist-info/RECORD": "1753d325c8936a612ecdc947e686ade56b21f591fbb7518330cb0f2f7619c330",
+          "urllib3-2.8.0.dist-info/WHEEL": "ccec20e2307acd7da453dd7437e70c6b08e2bc3ead3bc3445af135da37b56d59"
+        }
+      },
+      {
+        "name": "uv",
+        "version": "0.13.7",
+        "metadata_hashes": {
+          "uv-0.13.7.dist-info/METADATA": "a3d059662855d8b49310947b4fd8887d60eeeca593bdde493e624d6955c7c5da",
+          "uv-0.13.7.dist-info/RECORD": "a44bce01395a133ba75867640b3c725ee0ab9194b970d74936f8a368813f9595",
+          "uv-0.13.7.dist-info/WHEEL": "f007a3d16d1ae82cfa6a903723326b4e7c4b4552c0b7ec343a1f120370a89ff7"
+        }
+      },
+      {
+        "name": "virtualenv",
+        "version": "21.15.2",
+        "metadata_hashes": {
+          "virtualenv-21.15.2.dist-info/METADATA": "5ef9533ed54e80c9398da379b6320b5c7f4a3d80a7df53677a481ee9e7bed791",
+          "virtualenv-21.15.2.dist-info/RECORD": "83fa12930439600c43d3fb8164e9d8909cb1707a618da28e3c90b215fa058cd6",
+          "virtualenv-21.15.2.dist-info/WHEEL": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+        }
+      },
+      {
+        "name": "wheel",
+        "version": "0.48.0",
+        "metadata_hashes": {
+          "wheel-0.48.0.dist-info/METADATA": "e702fede719fefbb8accad64c01c78efe8d7efea27a7dcef3423f83ffaadfc48",
+          "wheel-0.48.0.dist-info/RECORD": "a93108b1cf409995558c47645d2986894530dc626b509de4fcf65a41c49a3852",
+          "wheel-0.48.0.dist-info/WHEEL": "ff23073da055face9f40cc14a28f3735275308cddcf315d6157461a9a7cdfbb6"
+        }
+      },
+      {
+        "name": "wrapt",
+        "version": "2.5.2",
+        "metadata_hashes": {
+          "wrapt-2.5.2.dist-info/METADATA": "3ff687637af9ffe59405f9c67a5e2f0fcbe25a1034fda529843635baf4932626",
+          "wrapt-2.5.2.dist-info/RECORD": "4d39f8fc3675d62c7d876378420d1c8cb1352dbc7cda948ff5c49cad0f5da2d5",
+          "wrapt-2.5.2.dist-info/WHEEL": "b2601f60075ce318a1cf4b08f2b52cc397e708f776ca360504cd2ea7a3a21031"
+        }
+      }
+    ],
+    "runtime_binaries": {
+      "launcher_sha256": "1a7e89fa8025b0518a8859ee22b9aba3b46222b23391e14aed395a502e2ee791",
+      "base_sha256": "3bcdba7ad853f00890f1b8d58c8d673c22c26e60d6e50a8cb580114cee097f79"
+    },
+    "five_local_files": {
+      "src/close_harness.py": "a8b05c3cdd3ab563e6b36f4a8bfd024671f4ebc8251330d5e039d022b19e8b65",
+      "tests/test_harness_closure.py": "bca2d16e3347259ad3a1574bbb84c7269d0e77796db18286c16a4c54d0ce9416",
+      "close_harness.validated.backup.py": "a8b05c3cdd3ab563e6b36f4a8bfd024671f4ebc8251330d5e039d022b19e8b65",
+      "test_harness_closure.validated.backup.py": "bca2d16e3347259ad3a1574bbb84c7269d0e77796db18286c16a4c54d0ce9416",
+      "validated_tpr_auroc_closure.patch": "7827ae8ba281a24df7476c93f47a189a329883aaadb5b7fb85c23f5b344a1e98"
+    },
+    "five_LFS_payloads": {
+      "datasets/hf_red_team_attempts.jsonl": "1b197f9c836ce9a927f7d82f8c48c27439ad713ddcf2958a87faa7f09be2effd",
+      "datasets/jailbreakbench_behaviors.jsonl": "4f3a40e85e5be7314ae8e6cb5dc73f4197eca0e691b67d6a25a915b1a934a850",
+      "datasets/neuralchemy_prompt_injection_core.jsonl": "e7a1b0b9a21032df8b3ffcac1605841324d1266f30fb4d70e6d058af0cde685f",
+      "datasets/notinject.jsonl": "e41959c6cd149a4f921cb70deff86f9aab10bfede0894b958e99980bf71349b8",
+      "datasets/wildjailbreak_eval.jsonl": "2e74645416c7daa3b30ae11cb845a50cc9fe5d0b147e4ddc2ef5b0af23ec88a5"
+    },
+    "refs": {
+      "main": "29645563bd64a67aae2482ab6c87bd5e32fecb11",
+      "origin/main": "9ed55709add0fc45f63847a0394315863faa0876",
+      "origin/science/prospective-evaluation-v1": "1c6fc01edef58cc1565a7c233c7a23722a4d72a1",
+      "origin/science/prospective-collector-v1": "aa6d171d82961aa297808c24ac602076abf47883",
+      "origin/review/independent-collector-security-v1": "355e07d9bb20200df953628d49f20368d6439e54",
+      "origin/fix/prospective-collector-security-v1": "be5827af4345f44e6083ed3b7c84692a7772f113",
+      "origin/review/native-security-architecture-v1": "7431d7b423bc6fc34d1db51c12794742481f8428",
+      "origin/security/ed25519-inprocess-v1": "b3f7819b94e8710cc4df9e7fb8ab87d5b323fc15"
+    }
+  },
+  "independent_raw_dataset_hash": "NOT_AUDITED"
+}

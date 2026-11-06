@@ -1,0 +1,32 @@
+[
+  {
+    "filename": "cryptography-50.0.2-cp311-abi3-win_amd64.whl",
+    "sha256": "7afa5a6602a9f29af1f3a2965f831bae7c9d5d597b7cbb716d41ab3b7d89879c",
+    "bytes": 3824692,
+    "status": "PASS"
+  },
+  {
+    "filename": "cryptography-50.0.2-cp311-abi3-manylinux_2_28_x86_64.whl",
+    "sha256": "4061c0079120205fb760c58acab6443e217307dcf05e3702cf970e0689972856",
+    "bytes": 4753050,
+    "status": "PASS"
+  },
+  {
+    "filename": "cffi-2.1.1-cp312-cp312-win_amd64.whl",
+    "sha256": "f53e442b08449d42821fa4a4fba000095af9f62742a500f978a9f557ec44339a",
+    "bytes": 185919,
+    "status": "PASS"
+  },
+  {
+    "filename": "cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+    "sha256": "c1453022f490d2459a11819d83ad1d586e9ff65a12ac3e705ffebd46d3685dcf",
+    "bytes": 221822,
+    "status": "PASS"
+  },
+  {
+    "filename": "pycparser-3.12-py3-none-any.whl",
+    "sha256": "a076f3f489b39b43ed13563a1dafe42447445bec2e294154ec5c57fcdda4c85e",
+    "bytes": 62600,
+    "status": "PASS"
+  }
+]

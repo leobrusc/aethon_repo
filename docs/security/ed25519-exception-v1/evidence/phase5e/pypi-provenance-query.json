@@ -1,0 +1,35 @@
+[
+  {
+    "filename": "cffi-2.1.1-cp312-cp312-win_amd64.whl",
+    "url": "https://pypi.org/integrity/cffi/2.1.1/cffi-2.1.1-cp312-cp312-win_amd64.whl/provenance",
+    "queried_utc": "2026-11-06T15:52:31.997528+00:00",
+    "http_status": 404,
+    "response_sha256": "1ace272e59ea5286e43eb8afd139ecae70c03dbe6c98dd26d27cd8542f5c6512",
+    "response_json": {
+      "message": "No provenance available for cffi-2.1.1-cp312-cp312-win_amd64.whl"
+    },
+    "qualification": "HTTP404 documented no provenance for this PyPI file at this timestamp, not invalid signature"
+  },
+  {
+    "filename": "cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+    "url": "https://pypi.org/integrity/cffi/2.1.1/cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl/provenance",
+    "queried_utc": "2026-11-06T15:52:32.045422+00:00",
+    "http_status": 404,
+    "response_sha256": "4ecf74b48ee251cedebbab4b5cdcdd7046e27e6e79ab393ae9e0d354b127dd61",
+    "response_json": {
+      "message": "No provenance available for cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl"
+    },
+    "qualification": "HTTP404 documented no provenance for this PyPI file at this timestamp, not invalid signature"
+  },
+  {
+    "filename": "pycparser-3.12-py3-none-any.whl",
+    "url": "https://pypi.org/integrity/pycparser/3.12/pycparser-3.12-py3-none-any.whl/provenance",
+    "queried_utc": "2026-11-06T15:52:32.093065+00:00",
+    "http_status": 404,
+    "response_sha256": "68933999c11f65ba6d25a58975421f8b135c004795ee0f01b75aee8ef9a86a19",
+    "response_json": {
+      "message": "No provenance available for pycparser-3.12-py3-none-any.whl"
+    },
+    "qualification": "HTTP404 documented no provenance for this PyPI file at this timestamp, not invalid signature"
+  }
+]
