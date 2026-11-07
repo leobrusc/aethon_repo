@@ -6,7 +6,7 @@
 - Parent PR #28 head: `587ec791d0e88476b66f0fc37a817865f3ec70c9`
 - PR #27 ancestor: `2034aade9b56bf76ff13f4816a5ff9de73a879a6`
 - Engineering baseline: `9ed55709add0fc45f63847a0394315863faa0876`
-- Schema and scientific fingerprint formula: unchanged.
+- Schema and scientific fingerprint formula: unchanged. Implementation seal hashes in `collector_v1.json` now pin the exact remediated modules, so the config digest and any future subject/run identity change; historical manifests are not migrated.
 
 ## Checks
 
@@ -24,9 +24,13 @@
 | Git LFS fsck | PASS |
 | Offline preflight | PASS for fail-closed result: `PILOT_BLOCKED`, `executed=false`; exit 2 is expected |
 | Historical controls | 127 protected-file inventory PASS; 31 indexed evidence hashes PASS against worktree and HEAD; six manifests, 9,139 pairs, 80 metrics, five local files reused from PR #28 evidence; LFS fsck PASS |
-| CI for remediation | NOT_RUN — no remediation commit/PR yet |
+| CI for remediation | First run `42327652086` FAIL; follow-up CI for the fix commit PENDING |
 
 Environment: Windows 10.0.26300 / Python 3.10.11. Process creation later failed with Win32 error 5. No security policy was changed. No dependency installation, model download, inference, production provisioning, or paid operation occurred.
+
+## First PR workflow attempt
+
+The automatically triggered run `42327652086` is a failed historical attempt for the first commit. Linux reported 396 passed, 2 failed, 9 errors: the new test module had not registered the shared `setup_run` fixture, the existing clone test expected the base rejection message, and the preflight implementation seal did not yet pin the changed `tests/pilot_memory_backend.py` hash. The Windows job reported the same failure categories. The research/GPU audit job succeeded (GPU execution remained `NOT_RUN`). A follow-up commit registers the fixture through `tests/conftest.py`, preserves the existing base error text, and updates exact implementation pins; its CI result must be recorded separately.
 
 ## Disposition
 

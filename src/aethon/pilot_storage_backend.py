@@ -189,7 +189,7 @@ class StorageBackend(ABC, metaclass=_StorageBackendMeta):
         try:
             require_issued_authorization(authorization, parsed["subject"])
         except PermissionError as exc:
-            raise InvalidCapability("Issued authorization rejected") from exc
+            raise InvalidCapability(str(exc)) from exc
         try:
             from aethon.pilot_scientific_manifest import validate_manifest_document
             validate_manifest_document(parsed)

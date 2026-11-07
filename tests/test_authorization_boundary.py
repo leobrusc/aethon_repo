@@ -7,6 +7,7 @@ from aethon.pilot_governance import Authorization
 from aethon.pilot_storage import PrivateRunStore
 from aethon.pilot_storage_backend import InvalidCapability, ResourceBudget, canonical
 from pilot_memory_backend import MemoryBackend
+from test_pilot_collector import setup_run
 
 
 @pytest.mark.parametrize("override", [lambda self, subject: None, lambda self, subject: True])
@@ -32,7 +33,7 @@ def test_equal_dataclass_clone_and_manual_base_instance_cannot_open_run(setup_ru
     assert clone == legitimate and manual == legitimate
     for candidate in (clone, manual):
         backend = MemoryBackend()
-        with pytest.raises(InvalidCapability, match="Issued authorization rejected"):
+        with pytest.raises(InvalidCapability, match="Expired or foreign"):
             backend.open_run(candidate, canonical(setup_run["manifest"]), ResourceBudget())
         assert backend._runs == {} and backend._handles == {}
 
@@ -51,7 +52,7 @@ def test_mutated_issued_authorization_snapshot_is_rejected(setup_run, field, val
     try:
         with pytest.raises(PermissionError, match="Expired or foreign"):
             store.guard()
-        with pytest.raises(PermissionError, match="Issued authorization rejected"):
+        with pytest.raises(PermissionError, match="Expired or foreign"):
             store.backend.read_head(store.run_capability)
     finally:
         object.__setattr__(permission, field, original)

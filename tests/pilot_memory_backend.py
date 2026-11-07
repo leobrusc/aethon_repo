@@ -27,7 +27,7 @@ class MemoryBackend(StorageBackend):
         if type(authorization) is not Authorization or not isinstance(validated, ValidatedRunManifest):
             raise InvalidCapability("Base-validated manifest and issued authorization required")
         try: require_issued_authorization(authorization, validated.document["subject"])
-        except PermissionError as exc: raise InvalidCapability("Issued authorization rejected") from exc
+        except PermissionError as exc: raise InvalidCapability(str(exc)) from exc
         manifest = validated.canonical_bytes
         m = validated.document
         run_id = m["run_id"]
@@ -58,7 +58,7 @@ class MemoryBackend(StorageBackend):
         s, auth = self._handles[cap]
         if digest(s["manifest"]) != s["manifest_sha256"]: raise CorruptCheckpoint("Manifest corruption")
         try: require_issued_authorization(auth, s["subject"])
-        except PermissionError as exc: raise InvalidCapability("Issued authorization rejected") from exc
+        except PermissionError as exc: raise InvalidCapability(str(exc)) from exc
         return s
 
     def _key(self, s, key):
