@@ -27,5 +27,6 @@ Remove the callable module-level registration route from the application boundar
 ## Other dispositions
 
 - SCI-REV-01: no regression observed; independent manifest contract tests passed in CI.
+- The independent review PR CI `42330986567` passed on Linux and Windows (407 tests each) and the research/GPU audit job succeeded; the private-issuer reproducer was separately executed because it is an explicit audit script, not pytest-collected.
 - Native storage: no backend was implemented. Contract remains incomplete for production durability/freshness and interprocess isolation; `NATIVE_CONTRACT_REFINEMENT_REQUIRED`.
 - Operational status remains `SRC-02 NOT_AUTHORIZED`, `DEPENDENCY_APPROVAL_REQUIRED`, `PILOT_BLOCKED`; all eight gates `PENDING`.

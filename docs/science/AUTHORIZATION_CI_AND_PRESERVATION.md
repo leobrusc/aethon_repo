@@ -27,6 +27,10 @@
 - Offline preflight: `PILOT_BLOCKED`, `executed=false`, all eight gates `PENDING`.
 - Local targeted pytest reached 100% progress but hung before the summary/exit status; it is **incomplete**, not reported as PASS. Cross-platform CI evidence is reported separately.
 
+## Review-branch CI
+
+The draft review PR workflow `42330986567` completed successfully on Linux, Windows, and research/GPU audit. Linux and Windows each reported 407 passed with one warning; each CI job verified 127 scientific files, 31 evidence hashes, and the publication guard. The review reproduction is an explicit synthetic script, not a pytest-collected test; its execution result is separately recorded in the independent review. GPU inference remained `NOT_RUN`. This CI result validates the review branch's regression suite, but does not disprove the private-issuer reproduction.
+
 ## Reused historical evidence
 
 Six manifests, 9,139 paired B3/B4 rows, 80 metric values, and five preexisting local files were verified in prior PR #28 evidence and were not recalculated in this review. The five LFS payloads were not separately rehashed here; `git lfs fsck` and prior PR #28 receipts are retained as evidence. No scientific result, dataset, threshold, lock, or environment was changed.
