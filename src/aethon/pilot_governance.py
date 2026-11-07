@@ -13,14 +13,29 @@ import weakref
 from aethon.prospective import GATES, fingerprint
 
 _ISSUED_AUTHORIZATIONS = {}
+_AUTHORIZATION_ISSUER = object()
 
 
-def _record_issued_authorization(value):
+def _authorization_snapshot(value):
+    """Bind every issued field, not just object identity, for this process lifetime."""
+    return fingerprint({name: getattr(value, name) for name in Authorization.__dataclass_fields__})
+
+
+def _record_issued_authorization(value, *, issuer):
     """Track the exact issued object; dataclass value equality is not authority."""
+    if issuer is not _AUTHORIZATION_ISSUER or type(value) is not Authorization:
+        raise PermissionError("Only the gate-checked authorization issuer may register this exact type")
     for identity, reference in tuple(_ISSUED_AUTHORIZATIONS.items()):
-        if reference() is None:
+        if reference[0]() is None:
             _ISSUED_AUTHORIZATIONS.pop(identity, None)
-    _ISSUED_AUTHORIZATIONS[id(value)] = weakref.ref(value)
+    _ISSUED_AUTHORIZATIONS[id(value)] = (weakref.ref(value), _authorization_snapshot(value))
+
+
+def require_issued_authorization(value, subject):
+    """Nonvirtual trust-boundary check; subclasses and duck types never authorize."""
+    if type(value) is not Authorization:
+        raise PermissionError("Exact issued operational Authorization required")
+    Authorization.check(value, subject)
 
 
 KINDS = {
@@ -243,7 +258,9 @@ class Authorization:
 
     def check(self, subject):
         issued = _ISSUED_AUTHORIZATIONS.get(id(self))
-        if (issued is None or issued() is not self or self.subject_sha256 != fingerprint(subject)
+        if (type(self) is not Authorization or issued is None or issued[0]() is not self
+                or issued[1] != _authorization_snapshot(self)
+                or self.subject_sha256 != fingerprint(subject)
                 or datetime.now(timezone.utc) >= utc(self.expires_at)):
             raise PermissionError("Expired or foreign operational authorization")
 
@@ -295,5 +312,5 @@ def authorize(authority, envelopes, subject, launch, technical):
                                report["gates"]["private_storage"]["claims"]["custodian"],
                                report["gates"]["private_storage"]["claims"]["delete_after"],
                                report["gates"]["private_storage"]["claims"]["retention_plan_sha256"])
-    _record_issued_authorization(permission)
+    _record_issued_authorization(permission, issuer=_AUTHORIZATION_ISSUER)
     return permission

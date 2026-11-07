@@ -3,7 +3,7 @@ import base64
 from datetime import datetime, timezone
 import json
 
-from aethon.pilot_governance import canonical, digest, read_external, utc
+from aethon.pilot_governance import canonical, digest, read_external, require_issued_authorization, utc
 from aethon.prospective import fingerprint
 from aethon.pilot_storage import CorruptCheckpoint
 
@@ -19,7 +19,7 @@ class ReviewLedger:
     def __init__(self, store, authority, rubric_bundle_path):
         self.store, self.authority = store, authority
         permission = store.authorization
-        permission.check(store.manifest["subject"])
+        require_issued_authorization(permission, store.manifest["subject"])
         if authority.policy_sha256 != permission.policy_sha256:
             raise PermissionError("Foreign review trust policy")
         if not permission.review_assignment_sha256 or len(permission.reviewer_ids) != 2:
@@ -71,7 +71,7 @@ class ReviewLedger:
                 "rubric_sha256": self.rubrics[rubric_id]}
 
     def _verify(self, envelope, key, phase, *, historical=False, recorded_utc=None):
-        self.store.authorization.check(self.store.manifest["subject"])
+        require_issued_authorization(self.store.authorization, self.store.manifest["subject"])
         self._check_keys()
         payload = envelope["payload"]
         expected = self.binding(key, payload["rubric_id"])

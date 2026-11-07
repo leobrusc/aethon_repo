@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 import json
 import threading
 
-from aethon.pilot_governance import Authorization, canonical, digest
+from aethon.pilot_governance import Authorization, canonical, digest, require_issued_authorization
 from aethon.prospective import fingerprint
 from aethon.pilot_storage_backend import (CorruptCheckpoint, InvalidCapability, InvalidIdentifier,
     JournalHead, MissingObject, OperationId, ResourceBudget, ResourceLimit, RunCapability,
@@ -24,8 +24,10 @@ class MemoryBackend(StorageBackend):
         self._mutex = threading.RLock()
 
     def _open_validated_run(self, authorization, validated, budget):
-        if not isinstance(authorization, Authorization) or not isinstance(validated, ValidatedRunManifest):
+        if type(authorization) is not Authorization or not isinstance(validated, ValidatedRunManifest):
             raise InvalidCapability("Base-validated manifest and issued authorization required")
+        try: require_issued_authorization(authorization, validated.document["subject"])
+        except PermissionError as exc: raise InvalidCapability("Issued authorization rejected") from exc
         manifest = validated.canonical_bytes
         m = validated.document
         run_id = m["run_id"]
@@ -55,7 +57,8 @@ class MemoryBackend(StorageBackend):
             raise InvalidCapability("Foreign, closed or unissued capability")
         s, auth = self._handles[cap]
         if digest(s["manifest"]) != s["manifest_sha256"]: raise CorruptCheckpoint("Manifest corruption")
-        auth.check(s["subject"])
+        try: require_issued_authorization(auth, s["subject"])
+        except PermissionError as exc: raise InvalidCapability("Issued authorization rejected") from exc
         return s
 
     def _key(self, s, key):
