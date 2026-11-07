@@ -23,4 +23,8 @@ and expiration. Closing remains limited to resources owned by the original
 capability and does not issue authority.
 
 No gate, receipt signature, quorum, manifest-v2 field, B0–B4 definition, or
-fingerprint formula changed.
+fingerprint formula changed. The only scientific configuration edit is the
+implementation SHA allowlist in `configs/science/collector_v1.json`: the prior
+governance source digest was replaced by the digest of the refactored module so
+the existing runtime integrity check recognizes the reviewed implementation.
+No generation, model, template, baseline, or protocol field was changed.

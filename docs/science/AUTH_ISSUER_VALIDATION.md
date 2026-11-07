@@ -44,3 +44,12 @@ Linux SUCCESS, and research/GPU audit SUCCESS. Its Linux and Windows jobs each
 reported 407 passed; GPU inference was `NOT_RUN`. That workflow tested the PR
 #30 review HEAD, not this remediation branch, and therefore does not validate
 these changes. Candidate CI must run after publication.
+
+The first candidate CI run `42396923280` found the same 1 failure / 407 passes
+on both Linux and Windows: the preflight test correctly rejected the changed
+governance bytes because the implementation SHA allowlist in
+`collector_v1.json` still named the old file. The research/GPU job succeeded.
+The allowlist was updated to the new source SHA
+`31a4e56d624a86c725443f37c531b565bbda67e2520426cd7fc5703440ff0317`; this is
+an implementation-integrity seal update only. A follow-up candidate CI run is
+required and its result must be recorded before claiming full validation.
