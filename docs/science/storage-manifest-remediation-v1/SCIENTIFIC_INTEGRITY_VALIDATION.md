@@ -12,7 +12,7 @@ This report records the Phase 6C test and preservation results. Synthetic fixtur
 | Adversarial manifest rejection and valid positive cycle | PASS: targeted shared-manifest/preflight/schedule selection, 29 passed; full suite exercised the new contract tests. |
 | Ruff / pip check | PASS: Ruff reported all checks passed; `pip check` reported no broken requirements. Ruff emitted an access-denied cache warning for a nested historical requirements path, but no lint findings. |
 | Publication guard / whitespace / Git LFS fsck | `git diff --check` and `git lfs fsck` PASS. Publication guard final invocation pending. |
-| Offline preflight | Pending final output; must remain `PILOT_BLOCKED`, execution false, all eight gates PENDING. |
+| Offline preflight | PASS for fail-closed behavior: reports `PILOT_BLOCKED`, `executed=false`, and all eight gates `PENDING` (CLI exit 2 is the expected blocked result). |
 | Protected scientific files / indexed evidence | PASS, recalculated: 127 protected files against baseline `544c363c19a08574d30e7e2c064a78ce1bdfb601`; 31 evidence hashes verified in working tree and HEAD. |
 | Historical manifests / B3-B4 pairs / metrics | Prior indexed preservation receipt reused: six manifests, 9,139 pairs, 80 metrics; the current combined historical verifier did not complete within this run. |
 | Five LFS payloads / five preexisting local files | Prior indexed PR #25 preservation receipt reused (five payloads and five local files); `git lfs fsck` rerun PASS. No historical payload or local file was modified. |
