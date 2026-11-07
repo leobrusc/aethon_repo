@@ -20,6 +20,22 @@ Witness checkpoint is `(witness_id, root_id, run_id, sequence, head_hash, manife
 
 Neither option is provisioned or selected operationally. A local file, same-host daemon or witness backed up/restored with the store is not independent. If witness unavailable or trust chain invalid, do not resume automatically. Disaster recovery requires an explicit human-governed reconciliation that records the accepted checkpoint and why; it cannot silently reset the sequence.
 
+## Phase 7C amendment — reconciliation protocol
+
+For local/witness cases, same-Operation-ID query and timeout behavior, use
+`docs/security/src02-contract-remediation-v1/WITNESS_RECONCILIATION.md`. A
+witness operation binds expected and next sequence/hash and uses
+compare-and-advance. A timeout is resolved only by querying the same operation;
+an identical duplicate is idempotent. Local-ahead is eligible for advancement
+only when the exact durable operation receipt proves that next head. Witness
+ahead, same-sequence hash conflict, unexplained local-ahead, policy-epoch
+mismatch or witness unavailability block automatic resume. Sequences are never
+decremented or reset.
+
+No service or ledger is selected. Independent administration, trust roots,
+atomicity, equivocation handling and disaster recovery remain approval
+decisions; abstract tests do not validate them.
+
 ## Key and policy lifecycle
 
 Define pinned witness identity, key rotation overlap, revocation, clock policy, request nonce, TLS/channel authentication, signed response canonicalization, audit retention and backup independence before implementation. Receipt verification is not operational authorization; the eight gates and launch authorization remain separate.

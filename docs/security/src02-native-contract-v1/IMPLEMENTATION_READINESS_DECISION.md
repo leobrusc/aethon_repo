@@ -27,6 +27,18 @@ Before a native prototype: independent contract review; approved platform profil
 
 Before operational use: native adversarial matrix passes on declared profiles; independent code review; verified root/ACL/retention/encryption and witness receipts; immutable approved runtime/SBOM; egress controls; recovery and rollback evidence; all eight operational gates completed; explicit run-specific authorization. Until then `SRC-02 NOT_AUTHORIZED`, `DEPENDENCY_APPROVAL_REQUIRED`, `PILOT_BLOCKED`, eight gates `PENDING`.
 
+## Phase 7C status
+
+The finite abstract model is ready for independent review, but does not close
+native implementation gates. Before a Linux prototype, reviewers must accept
+the transition relation; the platform owner must select a local
+filesystem/kernel profile and one serialized fencing authority that atomically
+binds epoch to head publication. Issuer/trust-anchor/revocation and witness
+operator/consistency decisions and a fault-injection plan covering every
+barrier and uncertain inference boundary are prerequisites. Windows remains a
+separate profile requiring ABI, reparse and metadata durability evidence. See
+`docs/security/src02-contract-remediation-v1/SRC02_FINDING_CLOSURE_MATRIX.md`.
+
 ## Evidence index
 
 SHA-256 index of prior decision/evidence files used for this specification is `EVIDENCE_SHA256SUMS.txt` beside this document. `ARTIFACT_SHA256SUMS.txt` indexes the new documents and abstract model (excluding the index itself). These hashes establish the exact reviewed text, not truth of every upstream assertion. The reference set is listed in `EVIDENCE_REFERENCES.md`; execution results are in `VALIDATION_RESULTS.md`.

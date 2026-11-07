@@ -28,3 +28,19 @@ The scientific manifest remains v2 and its fingerprint formula is unchanged. Sto
 - Failure during recovery: retain lease only while process is known healthy; otherwise OS releases it and new owner obtains a higher fencing token after reconciliation.
 
 No operation may report collection or scientific review complete from a partial, poisoned, or unresolved run. A hash chain detects internal edits but not a coherent restore of the entire store; freshness depends on the independent witness.
+
+## Phase 7C amendment — external-effect state
+
+Each inference slot uses the explicit lifecycle `INTENT_PREPARED`,
+`INTENT_DURABLE`, `DISPATCH_MAY_HAVE_STARTED`, `RESPONSE_OBSERVED`,
+`RESPONSE_DURABLE`, `RESPONSE_COMMITTED`, or `INTERRUPTED_UNKNOWN`, described in
+`docs/security/src02-contract-remediation-v1/DURABLE_INFERENCE_INTENT.md`.
+The conservative dispatch marker is durable before the provider/model call. If
+recovery sees that marker without the exact durable response, it must preserve
+`INTERRUPTED_UNKNOWN`; missing output does not prove non-dispatch. Inference is
+never automatically repeated from that state. Only an intent with no durable
+dispatch marker can prove non-dispatch, and only persistence for the same
+Operation ID, exact bytes and predecessor is retryable.
+
+Object-only or journal-only artifacts remain uncommitted evidence; no scan-based
+completion inference or silent truncation/repair is permitted.

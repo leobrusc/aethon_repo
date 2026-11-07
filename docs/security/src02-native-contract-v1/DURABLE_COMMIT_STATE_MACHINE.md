@@ -33,3 +33,23 @@ Failure before durable intent can be `NOT_COMMITTED` only after proving no side 
 ## Platform qualification
 
 Linux profile must document object-file flush, no-replace publication, containing-directory synchronization, head ordering, mount options and tested filesystem/kernel. Windows profile must document handle-bound no-clobber creation, `FlushFileBuffers`, metadata ordering and tested NTFS/storage stack. If the profile cannot prove directory/namespace persistence or maps an error ambiguously, it cannot return `COMMITTED`.
+
+## Phase 7C amendment — legal state relation
+
+The prior Boolean snapshot classifier is superseded for safety claims by the
+finite action relation in `docs/security/src02-contract-remediation-v1/models/safety_model.py`.
+`COMMITTED` requires legal history and exact run/Operation ID/manifest/response
+binding, durable object, journal and head, publication under the current fencing
+epoch, and the configured witness policy. An impossible snapshot is rejected;
+`COMMIT_UNKNOWN` is never equivalent to success. The original PR #34
+counterexample and source hashes are preserved in the remediation evidence.
+
+Head CAS is the logical publication point only when the same atomic authority
+checks the current fencing token, expected predecessor and revocation epoch.
+The later head durability barrier and (when required) witness acknowledgment
+precede durable acknowledgment. A failure after publication but before those
+barriers is `COMMIT_UNKNOWN`, not `COMMITTED`.
+
+The no-witness profile is a different threat model: local barriers remain
+mandatory, but whole-store rollback is not detected. It cannot be presented as
+equivalent rollback protection.

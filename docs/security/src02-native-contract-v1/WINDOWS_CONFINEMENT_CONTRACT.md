@@ -21,3 +21,16 @@ Cleanup must be handle-bound, identity-checked and restricted to records owned b
 ## Required native fault tests
 
 Test junction/reparse swaps, parent rename/replacement, volume changes, ADS/device/UNC rejection, concurrent opens/share-mode behavior, DACL changes, no-clobber races, cross-volume moves, `FlushFileBuffers` failures, disk full, process crash at every stage, reboot/power-loss evidence on the exact stack, handle closure/reopen, lock owner death, and recovery against a stale witness. Tests on Linux or memory backends do not validate Windows guarantees; native validation is `NOT_RUN`.
+
+## Phase 7C amendment — candidate Windows scope
+
+The candidate profile and fail-closed rules are in
+`docs/security/src02-contract-remediation-v1/WINDOWS_PROFILE_REFINEMENT.md`.
+It narrows a future candidate to serviced Windows 11 Enterprise 26H2 x64 on
+local NTFS, with the exact build and storage stack recorded. It requires
+retained handles, VolumeSerialNumber/FileId, effective principal/DACL checks,
+per-component reparse rejection, explicit share modes, namespace rejection,
+no-clobber publication and fail-closed error mapping. Namespace metadata
+durability and race-free handle-relative traversal remain `NOT_VALIDATED`;
+API documentation is not implementation evidence. No pathname fallback is
+allowed.
