@@ -1,5 +1,6 @@
 """Synthetic adversarial tests for the operational authorization boundary."""
 from dataclasses import replace
+from types import SimpleNamespace
 
 import pytest
 
@@ -8,6 +9,8 @@ from aethon.pilot_storage import PrivateRunStore
 from aethon.pilot_storage_backend import InvalidCapability, ResourceBudget, canonical
 from pilot_memory_backend import MemoryBackend
 from test_pilot_collector import setup_run
+import aethon.pilot_governance as governance
+from aethon.pilot_review import ReviewLedger
 
 
 @pytest.mark.parametrize("override", [lambda self, subject: None, lambda self, subject: True])
@@ -36,6 +39,29 @@ def test_equal_dataclass_clone_and_manual_base_instance_cannot_open_run(setup_ru
         with pytest.raises(InvalidCapability, match="Expired or foreign"):
             backend.open_run(candidate, canonical(setup_run["manifest"]), ResourceBudget())
         assert backend._runs == {} and backend._handles == {}
+
+
+def test_application_api_has_no_direct_issuer_registration_route():
+    subject = {"run_id": "synthetic-unissued"}
+    manual = Authorization("0" * 64, "1" * 64, "2" * 64,
+                           "2099-01-01T00:00:00+00:00", "3" * 64)
+
+    assert not hasattr(governance, "_AUTHORIZATION_ISSUER")
+    assert not hasattr(governance, "_record_issued_authorization")
+    assert not hasattr(governance, "_ISSUED_AUTHORIZATIONS")
+    assert not hasattr(governance, "_make_authorization_api")
+
+    backend = MemoryBackend()
+    with pytest.raises(PermissionError, match="Expired or foreign"):
+        PrivateRunStore(manifest={"subject": subject}, authorization=manual, backend=backend)
+    with pytest.raises(InvalidCapability, match="Expired or foreign"):
+        backend.open_run(manual, canonical({"subject": subject}), ResourceBudget())
+    assert backend._runs == {} and backend._handles == {}
+
+    fake_store = SimpleNamespace(authorization=manual, manifest={"subject": subject})
+    with pytest.raises(PermissionError, match="Expired or foreign"):
+        ReviewLedger(fake_store, authority=None, rubric_bundle_path=None)
+    assert backend._runs == {} and backend._handles == {}
 
 
 @pytest.mark.parametrize("field,value", [

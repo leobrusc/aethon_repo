@@ -12,23 +12,9 @@ import weakref
 
 from aethon.prospective import GATES, fingerprint
 
-_ISSUED_AUTHORIZATIONS = {}
-_AUTHORIZATION_ISSUER = object()
-
-
 def _authorization_snapshot(value):
     """Bind every issued field, not just object identity, for this process lifetime."""
     return fingerprint({name: getattr(value, name) for name in Authorization.__dataclass_fields__})
-
-
-def _record_issued_authorization(value, *, issuer):
-    """Track the exact issued object; dataclass value equality is not authority."""
-    if issuer is not _AUTHORIZATION_ISSUER or type(value) is not Authorization:
-        raise PermissionError("Only the gate-checked authorization issuer may register this exact type")
-    for identity, reference in tuple(_ISSUED_AUTHORIZATIONS.items()):
-        if reference[0]() is None:
-            _ISSUED_AUTHORIZATIONS.pop(identity, None)
-    _ISSUED_AUTHORIZATIONS[id(value)] = (weakref.ref(value), _authorization_snapshot(value))
 
 
 def require_issued_authorization(value, subject):
@@ -257,12 +243,7 @@ class Authorization:
     retention_plan_sha256: str = ""
 
     def check(self, subject):
-        issued = _ISSUED_AUTHORIZATIONS.get(id(self))
-        if (type(self) is not Authorization or issued is None or issued[0]() is not self
-                or issued[1] != _authorization_snapshot(self)
-                or self.subject_sha256 != fingerprint(subject)
-                or datetime.now(timezone.utc) >= utc(self.expires_at)):
-            raise PermissionError("Expired or foreign operational authorization")
+        _CHECK_ISSUED_AUTHORIZATION(self, subject)
 
 
 def verify_gates(authority, envelopes, subject, technical):
@@ -287,30 +268,59 @@ def verify_gates(authority, envelopes, subject, technical):
             "gates": results, "subject_sha256": fingerprint(subject), "executed": False}
 
 
-def authorize(authority, envelopes, subject, launch, technical):
-    """Explicit operator action after all gates; mere receipt presence cannot launch."""
-    report = verify_gates(authority, envelopes, subject, technical)
-    if report["classification"] != "READY_FOR_PILOT_REVIEW" or report["subject_sha256"] != fingerprint(subject):
-        raise PermissionError("Pilot gates incomplete")
-    intent = authority.verify(launch, "launch_intent", subject)
-    operators = set(intent["signers"] + report["gates"]["execution_authorization"]["signers"])
-    reviewers = set(report["gates"]["semantic_review"]["signers"] + report["gates"]["rubric_review"]["signers"])
-    if operators & reviewers:
-        raise PermissionError("Operator must be independent of scientific reviewers")
-    operator_keys = set(intent["key_fingerprints"] + report["gates"]["execution_authorization"]["key_fingerprints"])
-    reviewer_keys = set(report["gates"]["semantic_review"]["key_fingerprints"] + report["gates"]["rubric_review"]["key_fingerprints"])
-    if operator_keys & reviewer_keys: raise PermissionError("Operational/scientific key aliases are not independent")
-    expires = min([v["expires_at"] for v in report["gates"].values()] + [intent["expires_at"]], key=utc)
-    assignment = report["gates"]["reviewer_assignment"]
-    claims = assignment["claims"]
-    identities = claims["reviewer_ids"] + [claims["adjudicator_id"]]
-    permission = Authorization(fingerprint(subject), authority.policy_sha256, fingerprint(report["gates"]), expires, intent["receipt_sha256"],
-                               assignment["receipt_sha256"], report["gates"]["rubric_review"]["claims"]["rubric_bundle_sha256"],
-                               tuple(claims["reviewer_ids"]), claims["adjudicator_id"],
-                               tuple((i, authority.evaluator_key(i)[1]) for i in identities),
-                               report["gates"]["private_storage"]["claims"]["probe_fingerprint"],
-                               report["gates"]["private_storage"]["claims"]["custodian"],
-                               report["gates"]["private_storage"]["claims"]["delete_after"],
-                               report["gates"]["private_storage"]["claims"]["retention_plan_sha256"])
-    _record_issued_authorization(permission, issuer=_AUTHORIZATION_ISSUER)
-    return permission
+def _make_authorization_api():
+    """Create the application issuer and its read-only identity checker.
+
+    The issuance registry is captured by closures rather than exposed as a
+    writable module global. This is API encapsulation only: Python introspection,
+    monkey-patching, or arbitrary code in this interpreter is outside the model.
+    """
+    issued_authorizations = {}
+
+    def check_issued(value, subject):
+        issued = issued_authorizations.get(id(value)) if type(value) is Authorization else None
+        if (issued is None or issued[0]() is not value
+                or issued[1] != _authorization_snapshot(value)
+                or value.subject_sha256 != fingerprint(subject)
+                or datetime.now(timezone.utc) >= utc(value.expires_at)):
+            raise PermissionError("Expired or foreign operational authorization")
+
+    def issue(authority, envelopes, subject, launch, technical):
+        """Explicit operator action after every gate and launch-intent check."""
+        report = verify_gates(authority, envelopes, subject, technical)
+        if report["classification"] != "READY_FOR_PILOT_REVIEW" or report["subject_sha256"] != fingerprint(subject):
+            raise PermissionError("Pilot gates incomplete")
+        intent = authority.verify(launch, "launch_intent", subject)
+        operators = set(intent["signers"] + report["gates"]["execution_authorization"]["signers"])
+        reviewers = set(report["gates"]["semantic_review"]["signers"] + report["gates"]["rubric_review"]["signers"])
+        if operators & reviewers:
+            raise PermissionError("Operator must be independent of scientific reviewers")
+        operator_keys = set(intent["key_fingerprints"] + report["gates"]["execution_authorization"]["key_fingerprints"])
+        reviewer_keys = set(report["gates"]["semantic_review"]["key_fingerprints"] + report["gates"]["rubric_review"]["key_fingerprints"])
+        if operator_keys & reviewer_keys: raise PermissionError("Operational/scientific key aliases are not independent")
+        expires = min([v["expires_at"] for v in report["gates"].values()] + [intent["expires_at"]], key=utc)
+        assignment = report["gates"]["reviewer_assignment"]
+        claims = assignment["claims"]
+        identities = claims["reviewer_ids"] + [claims["adjudicator_id"]]
+        permission = Authorization(fingerprint(subject), authority.policy_sha256, fingerprint(report["gates"]), expires, intent["receipt_sha256"],
+                                   assignment["receipt_sha256"], report["gates"]["rubric_review"]["claims"]["rubric_bundle_sha256"],
+                                   tuple(claims["reviewer_ids"]), claims["adjudicator_id"],
+                                   tuple((i, authority.evaluator_key(i)[1]) for i in identities),
+                                   report["gates"]["private_storage"]["claims"]["probe_fingerprint"],
+                                   report["gates"]["private_storage"]["claims"]["custodian"],
+                                   report["gates"]["private_storage"]["claims"]["delete_after"],
+                                   report["gates"]["private_storage"]["claims"]["retention_plan_sha256"])
+        # Sole registry write: nested in the gate-checked issuance flow.
+        for identity, reference in tuple(issued_authorizations.items()):
+            if reference[0]() is None:
+                issued_authorizations.pop(identity, None)
+        issued_authorizations[id(permission)] = (
+            weakref.ref(permission), _authorization_snapshot(permission)
+        )
+        return permission
+
+    return issue, check_issued
+
+
+authorize, _CHECK_ISSUED_AUTHORIZATION = _make_authorization_api()
+del _make_authorization_api
