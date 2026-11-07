@@ -26,7 +26,7 @@
 | Historical controls | 127 protected-file inventory PASS; 31 indexed evidence hashes PASS against worktree and HEAD; six manifests, 9,139 pairs, 80 metrics, five local files reused from PR #28 evidence; LFS fsck PASS |
 | CI for remediation | `42328753556` PASS — Linux, Windows and research/GPU audit jobs all SUCCESS; GPU execution NOT_RUN |
 
-Environment: Windows 10.0.26300 / Python 3.10.11. Process creation later failed with Win32 error 5. No security policy was changed. No dependency installation, model download, inference, production provisioning, or paid operation occurred.
+Local test environment: Windows 10.0.26300 / Python 3.10.11. Pre-fix pytest attempts did not complete and omitted a traceback; later process creation returned Win32 error 5. No final local pytest pass is claimed. No security policy was changed. No local dependency installation, model download, inference, production provisioning, or paid operation occurred. The PR-triggered CI used its configured isolated dependency bootstrap; it was not treated as local runtime approval.
 
 ## First PR workflow attempt
 
