@@ -5,7 +5,7 @@ import json
 import re
 from typing import ContextManager
 
-from aethon.pilot_governance import Authorization, canonical, digest
+from aethon.pilot_governance import Authorization, canonical, digest, require_issued_authorization
 
 
 class CorruptCheckpoint(ValueError):
@@ -169,8 +169,8 @@ class StorageBackend(ABC, metaclass=_StorageBackendMeta):
     root-object capability, durable commit policy and independent freshness policy.
     """
     def open_run(self, authorization, manifest: bytes, budget: ResourceBudget) -> RunCapability:
-        if not isinstance(authorization, Authorization):
-            raise InvalidCapability("Issued Authorization required")
+        if type(authorization) is not Authorization:
+            raise InvalidCapability("Exact issued Authorization required")
         if not isinstance(budget, ResourceBudget) or type(manifest) is not bytes:
             raise CorruptCheckpoint("Typed manifest and budget required")
         if len(manifest) > budget.manifest_bytes:
@@ -186,7 +186,10 @@ class StorageBackend(ABC, metaclass=_StorageBackendMeta):
             raise
         except Exception as exc:
             raise CorruptCheckpoint("Scientific manifest validation failed") from exc
-        authorization.check(parsed["subject"])
+        try:
+            require_issued_authorization(authorization, parsed["subject"])
+        except PermissionError as exc:
+            raise InvalidCapability(str(exc)) from exc
         try:
             from aethon.pilot_scientific_manifest import validate_manifest_document
             validate_manifest_document(parsed)

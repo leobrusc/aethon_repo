@@ -7,7 +7,7 @@ from datetime import date
 import json
 import re
 
-from aethon.pilot_governance import digest, utc
+from aethon.pilot_governance import digest, require_issued_authorization, utc
 from aethon.pilot_storage_backend import (CorruptCheckpoint, JournalHead, MissingObject,
     OperationId, ResourceBudget, ResourceLimit, StorageBackend, StorageKey, bounded_json, sealed, unseal)
 
@@ -31,7 +31,9 @@ class PrivateRunStore:
             raise PermissionError("Native capability storage unavailable; production writes disabled")
         if root is not None or forbidden is not None or storage_observation is not None or confinement is not None:
             raise PermissionError("Path/observation/confinement bootstrap cannot issue a storage capability")
-        authorization.check(manifest["subject"])
+        if type(manifest) is not dict or not isinstance(manifest.get("subject"), dict):
+            raise PermissionError("Structured manifest subject required")
+        require_issued_authorization(authorization, manifest["subject"])
         manifest = copy.deepcopy(manifest)
         manifest["authorization_provenance"] = {
             "policy_sha256": authorization.policy_sha256, "receipts_sha256": authorization.receipts_sha256,
@@ -63,7 +65,7 @@ class PrivateRunStore:
     def guard(self):
         if self._closed: raise PermissionError("Closed storage facade")
         if self._failed: raise CorruptCheckpoint("Failed recovery; close and independently inspect before retry")
-        self.authorization.check(self.manifest["subject"])
+        require_issued_authorization(self.authorization, self.manifest["subject"])
         if date.fromisoformat(self.manifest["retention"]["delete_after"]) <= date.today(): raise PermissionError("Retention expired")
 
     @contextmanager
