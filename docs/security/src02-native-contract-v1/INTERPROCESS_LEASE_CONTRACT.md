@@ -15,3 +15,19 @@ The OS primitive and its owner-death semantics must be documented for each suppo
 ## Lifecycle and non-goals
 
 Lease release is tied to the backend-owned handle and is idempotent; cleanup never removes another process's lock. Closing a capability cannot grant access or create a run. Threads tests establish only in-process behavior; multiprocess, crash, PID reuse, machine reboot and simultaneous-host tests are separately required. The lease does not defend against an administrator or kernel that can forge process/lock state.
+
+## Phase 7C amendment — atomic fencing gate
+
+The prior “revalidate immediately before publication” wording is insufficient.
+The commit authority must serialize lease transfer and head publication and
+atomically compare `(run_id, expected_sequence, expected_hash, lease_id,
+current_epoch, holder, revocation_epoch)` in the publication transition. A stale
+writer token is rejected without changing the head. The abstract transition and
+epoch-7/epoch-8 counterexample are in
+`docs/security/src02-contract-remediation-v1/ATOMIC_FENCING_PROTOCOL.md`.
+
+An OS lock is only a candidate for exclusion. It is not, by itself, a durable
+fencing token or proof that a stale process cannot use a retained handle after
+transfer. Until a platform demonstrates one serialized authority, do not permit
+lease takeover while the previous writer may still publish. PID, process-start
+time and wall-clock expiration are not fencing authorities.

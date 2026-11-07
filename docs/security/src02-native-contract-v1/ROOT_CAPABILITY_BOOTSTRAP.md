@@ -25,3 +25,18 @@ Precondition: trusted provisioner and trust root are available; the OS process i
 Postcondition on success: the backend owns a handle-bound capability with immutable identity/policy snapshot; caller cannot provide alternate paths; every subsequent operation is scoped to that root object and grant. No storage, root directory, ACL, or service is provisioned by this specification.
 
 Root identity is not access authority by itself. Access authority derives from the held handle plus OS access checks and the independently approved grant. Object identity, permission state, and freshness are separately checked properties.
+
+## Phase 7C amendment — authenticated issuer receipt
+
+The minimum receipt fields, external trust-anchor requirement, effective OS
+principal binding, root/volume/mount identities, policy epoch, expiry and
+revocation freshness are specified in
+`docs/security/src02-contract-remediation-v1/ROOT_BOOTSTRAP_AUTHENTICATION.md`.
+Receipt presence or a caller-provided pathname is not authority. A future
+verifier must authenticate the issuer independently, reject stale/revoked
+epochs, and acquire handles whose exact identities match the receipt before a
+run becomes visible. Revocation racing commit blocks new work; an uncertain
+already-started transaction remains unknown and requires reconciliation.
+
+This is a versioned contract only. No root, issuer key, trust anchor, service,
+revocation source or RootCapability was created or validated.

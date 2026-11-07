@@ -25,3 +25,12 @@ Status vocabulary: `PASS` means the exact supported OS/kernel/filesystem profile
 | T19 | Recovery CPU/time/resource exhaustion | No partial accepted state; bounded incomplete recovery receipt | Both | NOT_RUN |
 
 Synthetic tests can validate pure state transitions and canonical bindings. They cannot prove syscall confinement, NTFS/Linux durability, power-loss semantics, ACL revocation, filesystem quota enforcement, or external witness independence. Native results must include build/runtime identity, filesystem/mount configuration, test harness SHA, fault point, raw logs, run IDs and signed result receipt. No native tests were run in Phase 7A.
+
+## Phase 7C abstract coverage
+
+The standard-library model and tests cover the abstract stale-writer/epoch race,
+crash cuts, uncertain inference retry, required/no-witness completion,
+idempotent same-operation persistence, witness timeout/query and divergence,
+revocation, quota exhaustion, digest mutation and sequence gaps. Exact bounds and
+counts are in `docs/security/src02-contract-remediation-v1/STATE_EXPLORATION_RESULTS.md`.
+This synthetic coverage does not change native rows from `NOT_RUN`.
