@@ -1,8 +1,12 @@
 # Phase 7C validation record
 
 Validation was performed on branch `fix/src02-native-contract-safety-v1`,
-HEAD `c5567fd947f9a776da98cbf0b3ac98e93bac51e7` plus the working changes in
-this review worktree. No CI run exists for these unpushed changes.
+implementation commit `e1821ce83b714cde52ea917f48e7fd1453fc95e5`, based on
+`c5567fd947f9a776da98cbf0b3ac98e93bac51e7`. GitHub Actions run
+`42412776565` tested that implementation commit; Linux, Windows and
+research/GPU-audit jobs all completed successfully. The hosted workflow used
+its configured isolated CI profiles. Local dependency installation was not
+performed. GPU inference remained NOT_RUN.
 
 ## Results
 
