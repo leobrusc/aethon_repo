@@ -9,7 +9,7 @@ import re
 
 from aethon.pilot_governance import digest, utc
 from aethon.pilot_storage_backend import (CorruptCheckpoint, JournalHead, MissingObject,
-    OperationId, ResourceBudget, ResourceLimit, StorageKey, bounded_json, sealed, unseal)
+    OperationId, ResourceBudget, ResourceLimit, StorageBackend, StorageKey, bounded_json, sealed, unseal)
 
 TERMINAL = {"blocked", "completed", "reused", "no_response", "truncated", "inference_error",
             "evaluation_error", "contract_error", "interrupted_unknown", "evaluation_interrupted", "evaluation_pending"}
@@ -27,7 +27,7 @@ class PrivateRunStore:
     """Explicit backend injection only; no native backend or path fallback."""
     def __init__(self, root=None, manifest=None, authorization=None, forbidden=None, storage_observation=None,
                  *, confinement=None, backend=None, budget=None):
-        if backend is None:
+        if not isinstance(backend, StorageBackend):
             raise PermissionError("Native capability storage unavailable; production writes disabled")
         if root is not None or forbidden is not None or storage_observation is not None or confinement is not None:
             raise PermissionError("Path/observation/confinement bootstrap cannot issue a storage capability")
@@ -35,7 +35,14 @@ class PrivateRunStore:
         manifest = copy.deepcopy(manifest)
         manifest["authorization_provenance"] = {
             "policy_sha256": authorization.policy_sha256, "receipts_sha256": authorization.receipts_sha256,
-            "launch_sha256": authorization.launch_sha256, "expires_at": authorization.expires_at}
+            "launch_sha256": authorization.launch_sha256, "expires_at": authorization.expires_at,
+            "storage_custodian": authorization.storage_custodian,
+            "retention_delete_after": authorization.retention_delete_after,
+            "retention_plan_sha256": authorization.retention_plan_sha256}
+        if (manifest["retention"].get("custodian") != authorization.storage_custodian
+                or manifest["retention"].get("delete_after") != authorization.retention_delete_after
+                or not authorization.retention_plan_sha256):
+            raise PermissionError("Manifest retention differs from signed private-storage approval")
         if not manifest["retention"]["custodian"] or date.fromisoformat(manifest["retention"]["delete_after"]) <= date.today():
             raise PermissionError("Concrete unexpired retention policy required")
         self.authorization, self.backend = authorization, backend

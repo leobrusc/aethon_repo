@@ -1,10 +1,11 @@
 """Opaque persistence contract. No filesystem or production backend exists here."""
 from dataclasses import dataclass
+from abc import ABC, ABCMeta, abstractmethod
 import json
 import re
-from typing import ContextManager, Protocol
+from typing import ContextManager
 
-from aethon.pilot_governance import canonical, digest
+from aethon.pilot_governance import Authorization, canonical, digest
 
 
 class CorruptCheckpoint(ValueError):
@@ -130,19 +131,104 @@ def unseal(raw):
         raise CorruptCheckpoint("Invalid checkpoint envelope") from exc
 
 
-class StorageBackend(Protocol):
-    """Backend owns ALL persistence, locking, recovery and owned cleanup.
+_VALIDATED_MANIFEST_SEAL = object()
 
-    Native implementations must bind an independently issued root capability and
-    authorization to the complete immutable manifest/budget/expiry at open_run.
-    No path, arbitrary object name, lease flag or receipt boolean is accepted.
-    read_head returns a bounded consistent verified snapshot, including recovery.
-    Idempotent operation lookup precedes CAS; mismatched retries must collide.
+
+class ValidatedRunManifest:
+    """Immutable proof object created only by StorageBackend.open_run validation."""
+    __slots__ = ("_canonical_bytes",)
+
+    def __init__(self, canonical_bytes: bytes, *, _seal=None):
+        if _seal is not _VALIDATED_MANIFEST_SEAL or type(canonical_bytes) is not bytes:
+            raise TypeError("ValidatedRunManifest is issued only by the base backend validator")
+        object.__setattr__(self, "_canonical_bytes", canonical_bytes)
+
+    def __setattr__(self, name, value):
+        raise AttributeError("ValidatedRunManifest is immutable")
+
+    @property
+    def canonical_bytes(self): return self._canonical_bytes
+
+    @property
+    def document(self): return json.loads(self._canonical_bytes)
+
+
+class _StorageBackendMeta(ABCMeta):
+    def __new__(metaclass, name, bases, namespace, **kwargs):
+        if any(isinstance(base, _StorageBackendMeta) for base in bases) and "open_run" in namespace:
+            raise TypeError("StorageBackend.open_run is final; implement _open_validated_run")
+        return super().__new__(metaclass, name, bases, namespace, **kwargs)
+
+
+class StorageBackend(ABC, metaclass=_StorageBackendMeta):
+    """Template-method backend: validation is mandatory before capability minting.
+
+    Subclasses implement `_open_validated_run`; overriding `open_run` is rejected.
+    This is an application contract, not protection from hostile Python reflection.
+    Native implementations must use this validator and additionally bind a trusted
+    root-object capability, durable commit policy and independent freshness policy.
     """
-    def open_run(self, authorization, manifest: bytes, budget: ResourceBudget) -> RunCapability: ...
+    def open_run(self, authorization, manifest: bytes, budget: ResourceBudget) -> RunCapability:
+        if not isinstance(authorization, Authorization):
+            raise InvalidCapability("Issued Authorization required")
+        if not isinstance(budget, ResourceBudget) or type(manifest) is not bytes:
+            raise CorruptCheckpoint("Typed manifest and budget required")
+        if len(manifest) > budget.manifest_bytes:
+            raise ResourceLimit("Manifest byte budget exceeded")
+        try:
+            parsed = json.loads(manifest)
+            if canonical(parsed) != manifest:
+                raise CorruptCheckpoint("Canonical manifest bytes required")
+            bounded_json(parsed, budget.manifest_bytes)
+            if not isinstance(parsed, dict) or not isinstance(parsed.get("subject"), dict):
+                raise CorruptCheckpoint("Structured authorized subject required")
+        except CorruptCheckpoint:
+            raise
+        except Exception as exc:
+            raise CorruptCheckpoint("Scientific manifest validation failed") from exc
+        authorization.check(parsed["subject"])
+        try:
+            from aethon.pilot_scientific_manifest import validate_manifest_document
+            validate_manifest_document(parsed)
+        except CorruptCheckpoint:
+            raise
+        except Exception as exc:
+            raise CorruptCheckpoint("Scientific manifest validation failed") from exc
+        expected = {"policy_sha256": authorization.policy_sha256,
+                    "receipts_sha256": authorization.receipts_sha256,
+                    "launch_sha256": authorization.launch_sha256,
+                    "expires_at": authorization.expires_at,
+                    "storage_custodian": authorization.storage_custodian,
+                    "retention_delete_after": authorization.retention_delete_after,
+                    "retention_plan_sha256": authorization.retention_plan_sha256}
+        if parsed["authorization_provenance"] != expected:
+            raise CorruptCheckpoint("Authorization provenance mismatch")
+        if (parsed["retention"].get("custodian") != authorization.storage_custodian
+                or parsed["retention"].get("delete_after") != authorization.retention_delete_after
+                or not authorization.retention_plan_sha256):
+            raise CorruptCheckpoint("Retention differs from signed storage approval")
+        validated = ValidatedRunManifest(manifest, _seal=_VALIDATED_MANIFEST_SEAL)
+        return self._open_validated_run(authorization, validated, budget)
+
+    @abstractmethod
+    def _open_validated_run(self, authorization, manifest: ValidatedRunManifest,
+                            budget: ResourceBudget) -> RunCapability: ...
+
+    @abstractmethod
     def put_if_absent(self, run: RunCapability, key: StorageKey, raw: bytes, operation: OperationId) -> WriteReceipt: ...
+
+    @abstractmethod
     def get_verified(self, run: RunCapability, key: StorageKey) -> bytes | None: ...
-    def append_event(self, run: RunCapability, sequence: int, previous: str | None, event: bytes, operation: OperationId) -> WriteReceipt: ...
+
+    @abstractmethod
+    def append_event(self, run: RunCapability, sequence: int, previous: str | None,
+                     event: bytes, operation: OperationId) -> WriteReceipt: ...
+
+    @abstractmethod
     def read_head(self, run: RunCapability) -> JournalHead: ...
+
+    @abstractmethod
     def writer(self, run: RunCapability) -> ContextManager[None]: ...
+
+    @abstractmethod
     def close(self, run: RunCapability) -> None: ...

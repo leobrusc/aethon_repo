@@ -7,57 +7,29 @@ from contextlib import contextmanager
 from dataclasses import asdict
 from datetime import datetime, timezone
 import json
-import re
 import threading
 
 from aethon.pilot_governance import Authorization, canonical, digest
-from aethon.prospective import CONDITIONS, case_identity, fingerprint
+from aethon.prospective import fingerprint
 from aethon.pilot_storage_backend import (CorruptCheckpoint, InvalidCapability, InvalidIdentifier,
     JournalHead, MissingObject, OperationId, ResourceBudget, ResourceLimit, RunCapability,
-    StaleHead, StorageCollision, StorageInterrupted, StorageKey, WriteReceipt, WriterBusy,
+    StaleHead, StorageBackend, StorageCollision, StorageInterrupted, StorageKey,
+    ValidatedRunManifest, WriteReceipt, WriterBusy,
     bounded_json, sealed, unseal)
 
 
-class MemoryBackend:
+class MemoryBackend(StorageBackend):
     def __init__(self):
         self._runs, self._handles, self._closed, self._faults = {}, {}, set(), {}
         self._mutex = threading.RLock()
 
-    def open_run(self, authorization, manifest, budget=ResourceBudget()):
-        if not isinstance(authorization, Authorization): raise InvalidCapability("Issued operational authorization required")
-        if not isinstance(budget, ResourceBudget) or type(manifest) is not bytes:
-            raise CorruptCheckpoint("Typed manifest/budget required")
-        try: m = json.loads(manifest)
-        except (ValueError,UnicodeError,RecursionError) as exc: raise CorruptCheckpoint("Invalid manifest JSON") from exc
-        if (not isinstance(m,dict) or m.get('schema') != 'aethon.pilot-run.v1' or not isinstance(m.get('subject'),dict)
-                or not isinstance(m.get('slots'),list) or not isinstance(m.get('config'),dict)
-                or not isinstance(m.get('schedule'),list) or not isinstance(m.get('run_fingerprint'),str)):
-            raise CorruptCheckpoint("Versioned structured manifest required")
-        if bounded_json(m, budget.manifest_bytes) != manifest: raise CorruptCheckpoint("Noncanonical manifest")
-        authorization.check(m["subject"])
+    def _open_validated_run(self, authorization, validated, budget):
+        if not isinstance(authorization, Authorization) or not isinstance(validated, ValidatedRunManifest):
+            raise InvalidCapability("Base-validated manifest and issued authorization required")
+        manifest = validated.canonical_bytes
+        m = validated.document
         run_id = m["run_id"]
-        if not isinstance(run_id, str) or re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,63}", run_id) is None:
-            raise InvalidIdentifier("Invalid run identity")
-        if run_id != m["subject"]["run_id"] or re.fullmatch(r"[a-f0-9]{64}", m["run_fingerprint"]) is None:
-            raise CorruptCheckpoint("Run subject/fingerprint mismatch")
         slots = m["slots"]
-        if len(slots) != 120 or len({s["slot_id"] for s in slots}) != 120:
-            raise CorruptCheckpoint("120 unique slots required")
-        for s in slots:
-            StorageKey("checkpoint", s["slot_id"], "response")
-            StorageKey("checkpoint", s["sample_id"], "request")
-            if (s['condition'] not in CONDITIONS or type(s['replicate']) is not int or s['replicate'] != 0 or s['state'] != 'pending'
-                    or type(s['label']) is not int or s['label'] not in (0,1)
-                    or s['slot_id'] != case_identity(s['sample_id'],m['config']['revision'],s['condition'],0,m['subject']['protocol_sha256'])
-                    or s['fingerprint'] != fingerprint([m['subject'],s['sample_id'],s['condition']])):
-                raise CorruptCheckpoint("Frozen slot identity mismatch")
-        if (m['subject']['protocol_sha256'] != fingerprint(m['config'])
-                or len({s['sample_id'] for s in slots}) != 24
-                or any({s['condition'] for s in slots if s['sample_id']==sample} != set(CONDITIONS)
-                       for sample in {s['sample_id'] for s in slots})):
-            raise CorruptCheckpoint("Full configuration or B0-B4 matrix mismatch")
-        if len(m["schedule"]) != 120 or set(m["schedule"]) != {s["slot_id"] for s in slots}:
-            raise CorruptCheckpoint("Complete unique schedule required")
         binding = digest(canonical([m, asdict(budget)]))
         if len(manifest) > budget.total_bytes: raise ResourceLimit("Manifest total budget")
         with self._mutex:

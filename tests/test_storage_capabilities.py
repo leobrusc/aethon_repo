@@ -191,7 +191,7 @@ def test_malformed_120_slot_manifest_never_opens(setup_run,change):
 def test_fake_authorization_never_mints_backend_capability(setup_run):
     class Fake:
         def check(self,*a):pass
-    with pytest.raises(InvalidCapability):MemoryBackend().open_run(Fake(),canonical(setup_run['manifest']))
+    with pytest.raises(InvalidCapability):MemoryBackend().open_run(Fake(),canonical(setup_run['manifest']),ResourceBudget())
 
 
 def test_expired_authorization_still_allows_owned_cleanup(setup_run,monkeypatch):

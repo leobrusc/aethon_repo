@@ -4,7 +4,6 @@ from __future__ import annotations
 from contextlib import contextmanager, redirect_stderr, redirect_stdout
 import copy
 from dataclasses import asdict
-import random
 import io
 import socket
 import subprocess
@@ -12,10 +11,8 @@ import time
 
 from aethon.generation import GenerationResult
 from aethon.pilot_storage import TERMINAL, CorruptCheckpoint
-from aethon.prospective import CONDITIONS, case_identity, fingerprint, sample_identity
-
-FROZEN_FAMILIES = ("instruction-override", "synthetic-disclosure", "answer-contamination")
-
+from aethon.prospective import CONDITIONS, fingerprint
+from aethon.pilot_scientific_manifest import FROZEN_FAMILIES, build_manifest, validate_inventory
 
 class ContractError(ValueError):
     pass
@@ -40,68 +37,9 @@ def no_external_calls():
         for obj, name, value in originals: setattr(obj, name, value)
 
 
-def validate_inventory(rows):
-    if len(rows) != 24 or any(type(r.get("label")) is not int or r["label"] not in (0, 1) for r in rows):
-        raise ValueError("24 distinct cases with integer binary labels required")
-    output, sources, scenarios, groups = [], set(), set(), {}
-    for row in rows:
-        required = ["namespace", "source_id", "source_row_id", "scenario_id", "pair_id", "family_id",
-                    "system_prompt", "prompt_text", "task_rubric_id", "legitimate_objective"]
-        if any(not isinstance(row.get(k), str) or not row[k].strip() for k in required):
-            raise ValueError("Incomplete inventory provenance/task")
-        if row["label"] and (not row.get("attack_objective") or not row.get("attack_rubric_id")):
-            raise ValueError("Attack objective and rubric required")
-        source = (row["namespace"], row["source_id"], row["source_row_id"])
-        if source in sources or row["scenario_id"] in scenarios: raise ValueError("Duplicate source/scenario identity")
-        sources.add(source); scenarios.add(row["scenario_id"])
-        ids = sample_identity(row["namespace"], row["source_id"], row["source_row_id"], row["prompt_text"])
-        if "sample_id" in row and row["sample_id"] != ids["sample_id"]: raise ValueError("Sample ID collision")
-        output.append({**row, **ids})
-        groups.setdefault(row["pair_id"], []).append(row)
-    if len({r["sample_id"] for r in output}) != 24 or len(groups) != 12:
-        raise ValueError("Twelve unique task pairs required")
-    for pair in groups.values():
-        if len(pair) != 2 or sorted(r["label"] for r in pair) != [0, 1] or len({r["family_id"] for r in pair}) != 1:
-            raise ValueError("Each pair needs one attack/clean control in the same family")
-        if len({(r["system_prompt"], r["legitimate_objective"], r["task_rubric_id"]) for r in pair}) != 1:
-            raise ValueError("Paired task context changed")
-    counts = {family: sum(pair[0]["family_id"] == family for pair in groups.values()) for family in FROZEN_FAMILIES}
-    if set(r["family_id"] for r in rows) != set(FROZEN_FAMILIES) or set(counts.values()) != {4}:
-        raise ValueError("Exactly four pairs per frozen family required")
-    return sorted(output, key=lambda r: r["sample_id"])
-
-
-def make_manifest(rows, config, subject, retention):
-    rows = validate_inventory(rows)
-    if subject["protocol_sha256"] != fingerprint(config): raise ValueError("Unbound collector configuration")
-    slots = []
-    protocol = subject["protocol_sha256"]
-    for row in rows:
-        for condition in CONDITIONS:
-            key = case_identity(row["sample_id"], config["revision"], condition, 0, protocol)
-            slots.append({"slot_id": key, "sample_id": row["sample_id"], "scenario_id": row["scenario_id"],
-                          "namespace": row["namespace"], "source_id": row["source_id"], "source_row_id": row["source_row_id"],
-                          "pair_id": row["pair_id"], "family_id": row["family_id"], "label": row["label"],
-                          "condition": condition, "replicate": 0, "state": "pending",
-                          "fingerprint": fingerprint([subject, row["sample_id"], condition]),
-                          "expected_generation_metadata": config["generation"], "generation_metadata": None, "response_ref": None,
-                          "evaluation_ref": None, "decision": None, "reason": "not_attempted", "attempted": False})
-    by_key = {(s["sample_id"], s["condition"]): s["slot_id"] for s in slots}
-    rng = random.Random(config["generation"]["seed"])
-    pairs = sorted({r["pair_id"] for r in rows}); rng.shuffle(pairs)
-    order = []
-    for pair in pairs:
-        for row in sorted((r for r in rows if r["pair_id"] == pair), key=lambda r: r["sample_id"]):
-            arms = list(CONDITIONS); rng.shuffle(arms)
-            # Explicit topological dependency, recorded in the immutable schedule.
-            arms.remove("B4"); arms.insert(arms.index("B3") + 1, "B4")
-            order.extend(by_key[(row["sample_id"], arm)] for arm in arms)
-    return {"schema": "aethon.pilot-run.v1", "run_id": subject["run_id"], "subject": subject,
-            "config": config, "retention": retention, "inventory_sha256": fingerprint(rows),
-            "review_rubrics": {r["sample_id"]: r["attack_rubric_id"] if r["label"] else r["task_rubric_id"] for r in rows},
-            "slots": slots, "schedule": order, "schedule_policy": "seeded_pairs_arms_b4_after_b3",
-            "provenance": {"baseline": config["baseline"], "code_commit": subject["code_commit"]},
-            "run_fingerprint": fingerprint([subject, config, rows, retention, order])}
+def make_manifest(rows, config, subject, retention, inventory_raw: bytes):
+    """Build the versioned, source-authenticated manifest through shared validation."""
+    return build_manifest(rows, config, subject, retention, inventory_raw)
 
 
 def check_result(result, request, config, decoder):
