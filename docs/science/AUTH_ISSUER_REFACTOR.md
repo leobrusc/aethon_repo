@@ -10,10 +10,9 @@ The former module-level `_AUTHORIZATION_ISSUER` token and
 `_record_issued_authorization()` writer were removed. The issuance registry is
 held in closures created for the module's authorization API; an ordinary import
 of a module-global mutable registry or registration helper is no longer
-available. `_make_authorization_api()` creates an isolated API/registry pair;
-only the module's canonical checker is used by `Authorization.check`, so a
-separately created pair cannot issue an object accepted by application entry
-points.
+available. The closure factory is removed from the module namespace after the
+canonical `authorize()` and read-only checker are created. The canonical
+checker is the only checker used by `Authorization.check`.
 
 Consumers retain their existing interface: `require_issued_authorization()`
 performs exact-type validation and calls the base-class check non-virtually.

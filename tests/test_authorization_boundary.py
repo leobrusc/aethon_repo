@@ -49,6 +49,7 @@ def test_application_api_has_no_direct_issuer_registration_route():
     assert not hasattr(governance, "_AUTHORIZATION_ISSUER")
     assert not hasattr(governance, "_record_issued_authorization")
     assert not hasattr(governance, "_ISSUED_AUTHORIZATIONS")
+    assert not hasattr(governance, "_make_authorization_api")
 
     backend = MemoryBackend()
     with pytest.raises(PermissionError, match="Expired or foreign"):

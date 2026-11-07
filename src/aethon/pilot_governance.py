@@ -323,3 +323,4 @@ def _make_authorization_api():
 
 
 authorize, _CHECK_ISSUED_AUTHORIZATION = _make_authorization_api()
+del _make_authorization_api
