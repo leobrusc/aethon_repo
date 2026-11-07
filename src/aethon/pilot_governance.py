@@ -8,10 +8,19 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import weakref
 
 from aethon.prospective import GATES, fingerprint
 
-_ISSUED_AUTHORIZATIONS = set()
+_ISSUED_AUTHORIZATIONS = {}
+
+
+def _record_issued_authorization(value):
+    """Track the exact issued object; dataclass value equality is not authority."""
+    for identity, reference in tuple(_ISSUED_AUTHORIZATIONS.items()):
+        if reference() is None:
+            _ISSUED_AUTHORIZATIONS.pop(identity, None)
+    _ISSUED_AUTHORIZATIONS[id(value)] = weakref.ref(value)
 
 
 KINDS = {
@@ -228,9 +237,14 @@ class Authorization:
     adjudicator_id: str = ""
     evaluator_keys: tuple = ()
     storage_probe_fingerprint: str = ""
+    storage_custodian: str = ""
+    retention_delete_after: str = ""
+    retention_plan_sha256: str = ""
 
     def check(self, subject):
-        if self not in _ISSUED_AUTHORIZATIONS or self.subject_sha256 != fingerprint(subject) or datetime.now(timezone.utc) >= utc(self.expires_at):
+        issued = _ISSUED_AUTHORIZATIONS.get(id(self))
+        if (issued is None or issued() is not self or self.subject_sha256 != fingerprint(subject)
+                or datetime.now(timezone.utc) >= utc(self.expires_at)):
             raise PermissionError("Expired or foreign operational authorization")
 
 
@@ -277,6 +291,9 @@ def authorize(authority, envelopes, subject, launch, technical):
                                assignment["receipt_sha256"], report["gates"]["rubric_review"]["claims"]["rubric_bundle_sha256"],
                                tuple(claims["reviewer_ids"]), claims["adjudicator_id"],
                                tuple((i, authority.evaluator_key(i)[1]) for i in identities),
-                               report["gates"]["private_storage"]["claims"]["probe_fingerprint"])
-    _ISSUED_AUTHORIZATIONS.add(permission)
+                               report["gates"]["private_storage"]["claims"]["probe_fingerprint"],
+                               report["gates"]["private_storage"]["claims"]["custodian"],
+                               report["gates"]["private_storage"]["claims"]["delete_after"],
+                               report["gates"]["private_storage"]["claims"]["retention_plan_sha256"])
+    _record_issued_authorization(permission)
     return permission

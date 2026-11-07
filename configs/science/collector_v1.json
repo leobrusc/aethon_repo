@@ -33,16 +33,16 @@
   "detector_sha256": "21b715a1f1522475c6d20463bffaba21b853f1260159718d0a00f90efaf58080",
   "implementation_files": {
     "src/aethon/pilot_collector.py": [
-      "35eda66418ebe695b2ed8b055dc5dd3e79550111093ac64058ce67c503b27c71"
+      "90d68efb84f15ed01afeb1b5bbe4a5b33ad2384b79c24d642f1800898fe6ed38"
     ],
     "src/aethon/pilot_governance.py": [
-      "4d1d13371c604c6b6cceac9d8847817e8a3a9f9e62b3f3c69d2a8c92cac4f094"
+      "d964aca61d7aa62109da202d53fdf03fd0e6d4bad35ced0ca7facb34ce280061"
     ],
     "src/aethon/pilot_local.py": [
       "ddbe1c057acf545f151a26cabff8f3cf7790e554f3de9695a160baaa4bddac21"
     ],
     "src/aethon/pilot_runtime.py": [
-      "95414771d46ccac0aea4ac4342bba2508f33b6148eace7dba078a265097cab2d"
+      "38dafa3568cd780303958fac0f59187b6b11eb2e3ad2da924da86e05d0a2cab1"
     ],
     "src/aethon/pilot_storage.py": [
       "3e8106c862ba751fb21e2001180017d245fee5d1ab10e6e9c6d584e31a30dbd4"
@@ -51,7 +51,7 @@
       "3bb318171c1307fb8a3f82e52d983d23042455097b877b2d9bfcb24ed84d6345"
     ],
     "tests/test_pilot_collector.py": [
-      "9814d3905c470dbb6320155de0b9a135b4bdae5ff6ba820010c6aecad9a90010"
+      "909e365932e5050d65afa9e649fe25a9c1a1854ef05a01c2284b147edf08d2b1"
     ],
     "tests/pilot_network_guard.py": [
       "818024308128f1bcf700ce81056a41c59c0842335ffc91fb6a4ba5d33889cf39"
@@ -69,19 +69,25 @@
       "88ab965a78593cf1ee5be0587dbb34f77e35aadc9c5f6c3b357cd1c65bc597a9"
     ],
     "src/aethon/pilot_storage_backend.py": [
-      "02f16423d4f6a83f7b42faf10963724816d9fdbcaf8f6840b87d18bd0773937d"
+      "2edff4b0331a497540700a46bb8a0bc558f689ae9f2586a3b0b8012187ff8514"
     ],
     "src/aethon/pilot_storage_facade.py": [
-      "2d51d7ba02f65a294e7aaf421515987f9ec30ef6e85c43ef262c8fef8ac6ee96"
+      "90ebd1747e81f06a08fc5ff0ddce5401a5c8e65e216c99013526f88489271107"
     ],
     "src/aethon/pilot_storage_probe.py": [
       "70f10653a9d2a20fa769e21110fa02b3fb24fcd4f0109e9d0d5b767a6d253c71"
     ],
     "tests/pilot_memory_backend.py": [
-      "b7401d0a68ded77d40f2f5cdcfc7898aba53fedfab6cb3b83150095b3619c581"
+      "834a9abb33f12029898cf73bf2adeabc24db4120efe85429016fbdc9785d15c4"
     ],
     "tests/test_storage_capabilities.py": [
-      "da09116ca37b8a6d45cd306668a35d98491c8d0da1665ec3a453ff6f56d3cd87"
+      "15ba7bf70f95852cb7fe3e521c5ec10f13e6f389bda754ca4794cc48cc42576b"
+    ],
+    "src/aethon/pilot_scientific_manifest.py": [
+      "44d50016c35a59e14a5eaa05b9003acf4c675e30d68c044fceb9b0a5993c7237"
+    ],
+    "tests/test_scientific_manifest_contract.py": [
+      "ca74a1b94bb10ac7c474a9290e8259c4f7040994d98c4ce966dd7c6088b6154c"
     ]
   },
   "gate_receipts": {

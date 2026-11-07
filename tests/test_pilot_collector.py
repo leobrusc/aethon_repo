@@ -139,8 +139,9 @@ def setup_run(tmp_path):
                              "eos_token_ids": [128001, 128008, 128009]},
               "effective_model_generation_config_sha256": fingerprint({"fixture": "synthetic-generation-config"})}
     rows = synthetic_rows()
+    inventory_raw = canonical({"schema": "aethon.private-inventory.v1", "rows": rows})
     subject = {"run_id": "synthetic-run", "baseline": BASELINE, "code_commit": "synthetic-test-only",
-               "protocol_sha256": fingerprint(config), "inventory_sha256": fingerprint(rows),
+               "protocol_sha256": fingerprint(config), "inventory_sha256": digest(inventory_raw),
                "storage_root_sha256": fingerprint(str(private.resolve())), "environment_sha256": proof_sha,
                "asset_set_sha256": proof_sha}
     observation = {"status": "PASS", "probe_fingerprint": "pending",
@@ -190,10 +191,10 @@ def setup_run(tmp_path):
     launch = receipt("launch_intent")
     permission = authorize(authority, envelopes, subject, launch, technical)
     retention = {"custodian": "SYNTHETIC-CUSTODIAN", "delete_after": "2099-01-01"}
-    manifest = make_manifest(rows, config, subject, retention)
+    manifest = make_manifest(rows, config, subject, retention, inventory_raw)
     backend = MemoryBackend()
     def store(): return PrivateRunStore(manifest=manifest, authorization=permission, backend=backend)
-    return dict(rows=rows, config=config, subject=subject, manifest=manifest, permission=permission, store=store,
+    return dict(rows=rows, inventory_raw=inventory_raw, config=config, subject=subject, manifest=manifest, permission=permission, store=store,
                 private=private, repo=repo, backend=backend, technical=technical, authority=authority, envelopes=envelopes,
                 launch=launch, receipt=receipt, policy_path=policy_path, observation=observation, rubric_path=rubric_path, keys=keys)
 
@@ -216,7 +217,7 @@ def test_complete_120_slots_and_idempotence(setup_run):
 
 
 def test_order_independent_inventory_and_deterministic_schedule(setup_run):
-    manifest = make_manifest(list(reversed(setup_run["rows"])), setup_run["config"], setup_run["subject"], setup_run["manifest"]["retention"])
+    manifest = make_manifest(list(reversed(setup_run["rows"])), setup_run["config"], setup_run["subject"], setup_run["manifest"]["retention"], setup_run["inventory_raw"])
     assert manifest == setup_run["manifest"]
     assert len(set(manifest["schedule"])) == 120
 
@@ -376,7 +377,7 @@ def test_valid_checkpoint_copied_from_another_run_is_rejected(setup_run):
     f["observation"]["probe_fingerprint"] = fingerprint(f["observation"]["observation"])
     envelopes = {gate: f["receipt"](gate) for gate in f["envelopes"]}
     permission = authorize(f["authority"], envelopes, f["subject"], f["receipt"]("launch_intent"), f["technical"])
-    manifest = make_manifest(f["rows"], f["config"], f["subject"], f["manifest"]["retention"])
+    manifest = make_manifest(f["rows"], f["config"], f["subject"], f["manifest"]["retention"], f["inventory_raw"])
     second = PrivateRunStore(manifest=manifest, authorization=permission, backend=f["backend"])
     a=f["backend"].inspect(first.run_capability)["objects"];b=f["backend"].inspect(second.run_capability)["objects"]
     for key,value in a.items(): b[key]=value

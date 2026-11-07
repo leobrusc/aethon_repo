@@ -99,7 +99,7 @@ def inspect_runtime(root, *, inventory_path=None, private_root=None, run_id=None
         except (ValueError, KeyError, OSError):
             technical[gate] = {"status": "PENDING"}
     report = verify_gates(authority, envelope_data, subject, technical)
-    return report, {"config": config, "subject": subject, "rows": rows, "authority": authority,
+    return report, {"config": config, "subject": subject, "rows": rows, "inventory_raw": raw, "authority": authority,
                     "envelopes": envelope_data, "technical": technical, "forbidden": forbidden}
 
 
