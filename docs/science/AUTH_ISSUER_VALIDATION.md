@@ -18,9 +18,9 @@ Record each local command and its actual result here before publication:
 |---|---|---|
 | Historical PR #29 reproduction | PASS (vulnerability reproduced) | Synthetic only; not a fix test |
 | Corrected unchanged proof | REJECTED as expected | Import fails because removed issuer token no longer exists |
-| Direct API negative pytest | Test body PASS marker; runner incomplete | `. [100%]` printed, but Windows pytest process did not exit; interrupted with exit 1, so suite result is not PASS |
-| Legitimate lifecycle pytest | Test body PASS marker; runner incomplete | `. [100%]` printed, but Windows pytest process did not exit; interrupted with exit 1, so suite result is not PASS |
-| Full pytest / focused aggregate | NOT_RUN / INCOMPLETE | Initial multi-file run had message-matcher failures in the newly added test, corrected; aggregate runner stalled before summary |
+| Direct API negative pytest (local) | Test body PASS marker; runner incomplete | `. [100%]` printed, but Windows pytest process did not exit; interrupted with exit 1; authoritative clean result is candidate CI |
+| Legitimate lifecycle pytest (local) | Test body PASS marker; runner incomplete | `. [100%]` printed, but Windows pytest process did not exit; interrupted with exit 1; authoritative clean result is candidate CI |
+| Full pytest candidate CI | PASS | Final candidate CI run `42397370217`; Linux and Windows each report 408 passed, 1 warning |
 | Ruff | PASS | `python -m ruff check --no-cache src/aethon/pilot_governance.py tests/test_authorization_boundary.py` |
 | pip check | PASS | `No broken requirements found` |
 | Publication guard | PASS | `scripts/repository_guard.py --base b8104f5a7e5970018b9c1e58b83e2eab0009b056` |
@@ -32,10 +32,25 @@ Record each local command and its actual result here before publication:
 | Five local files | PRESERVED | Root checkout's pre-existing modified/untracked files were not touched |
 | Offline preflight | NOT_RUN | Not needed to validate this API-only change; eight gates remain pending |
 
-The synthetic lifecycle test emitted its pass marker, but did not yield a clean
-pytest exit and therefore requires an independent CI rerun. Do not infer a full
-suite pass from that marker or historical CI. Production storage remains
-unauthorized; `PILOT_BLOCKED` and all eight gates `PENDING` remain unchanged.
+The synthetic lifecycle test emitted its pass marker locally without a clean
+pytest exit; the final candidate CI provides the clean full-suite evidence.
+Production storage remains unauthorized; `PILOT_BLOCKED` and all eight gates
+`PENDING` remain unchanged.
+
+## Candidate CI
+
+Final candidate run `42397370217` tested implementation commit
+`5467c9310ecac9f4b696303d1d2159fa2712293f` and completed successfully:
+
+- Linux: SUCCESS, 408 passed, 1 warning.
+- Windows: SUCCESS, 408 passed, 1 warning.
+- Research/GPU audit: SUCCESS; GPU inference `NOT_RUN`.
+
+The first candidate run `42396923280` failed on Linux and Windows with 407
+passes and one failure each because the integrity seal for
+`pilot_governance.py` had not yet been updated. That failure was preserved; the
+corrected implementation-hash allowlist was included before the successful
+final run. The workflow checks scientific preservation and publication guards.
 
 ## Parent-review CI (not this candidate)
 
@@ -43,13 +58,4 @@ PR #30 workflow `42330986567` was checked independently: Windows SUCCESS,
 Linux SUCCESS, and research/GPU audit SUCCESS. Its Linux and Windows jobs each
 reported 407 passed; GPU inference was `NOT_RUN`. That workflow tested the PR
 #30 review HEAD, not this remediation branch, and therefore does not validate
-these changes. Candidate CI must run after publication.
-
-The first candidate CI run `42396923280` found the same 1 failure / 407 passes
-on both Linux and Windows: the preflight test correctly rejected the changed
-governance bytes because the implementation SHA allowlist in
-`collector_v1.json` still named the old file. The research/GPU job succeeded.
-The allowlist was updated to the new source SHA
-`31a4e56d624a86c725443f37c531b565bbda67e2520426cd7fc5703440ff0317`; this is
-an implementation-integrity seal update only. A follow-up candidate CI run is
-required and its result must be recorded before claiming full validation.
+these changes. Candidate CI is reported above.
