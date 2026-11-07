@@ -20,7 +20,7 @@ Record each local command and its actual result here before publication:
 | Corrected unchanged proof | REJECTED as expected | Import fails because removed issuer token no longer exists |
 | Direct API negative pytest (local) | Test body PASS marker; runner incomplete | `. [100%]` printed, but Windows pytest process did not exit; interrupted with exit 1; authoritative clean result is candidate CI |
 | Legitimate lifecycle pytest (local) | Test body PASS marker; runner incomplete | `. [100%]` printed, but Windows pytest process did not exit; interrupted with exit 1; authoritative clean result is candidate CI |
-| Full pytest candidate CI | PASS | Final candidate CI run `42397370217`; Linux and Windows each report 408 passed, 1 warning |
+| Full pytest candidate CI | PASS | Latest code CI run `42398791189` on implementation commit `803451e2045e73de103e8f4ddd8c2ea47d06a9a6`; Linux and Windows each report 408 passed, 1 warning |
 | Ruff | PASS | `python -m ruff check --no-cache src/aethon/pilot_governance.py tests/test_authorization_boundary.py` |
 | pip check | PASS | `No broken requirements found` |
 | Publication guard | PASS | `scripts/repository_guard.py --base b8104f5a7e5970018b9c1e58b83e2eab0009b056` |
@@ -39,18 +39,22 @@ Production storage remains unauthorized; `PILOT_BLOCKED` and all eight gates
 
 ## Candidate CI
 
-Final candidate run `42397370217` tested implementation commit
-`5467c9310ecac9f4b696303d1d2159fa2712293f` and completed successfully:
+Latest code run `42398791189` tested implementation commit
+`803451e2045e73de103e8f4ddd8c2ea47d06a9a6` and completed successfully:
 
 - Linux: SUCCESS, 408 passed, 1 warning.
 - Windows: SUCCESS, 408 passed, 1 warning.
 - Research/GPU audit: SUCCESS; GPU inference `NOT_RUN`.
 
-The first candidate run `42396923280` failed on Linux and Windows with 407
-passes and one failure each because the integrity seal for
-`pilot_governance.py` had not yet been updated. That failure was preserved; the
-corrected implementation-hash allowlist was included before the successful
-final run. The workflow checks scientific preservation and publication guards.
+The successful predecessor run `42397370217` tested commit `5467c931` after
+updating the implementation seal. Commit `803451e` then removed the closure
+factory name from the module namespace and updated the seal to
+`a50ff66acdde02045dce308b522d7224805c26bf96428a9ad59e3335b12425c6`; the
+latest successful run includes that change. The first candidate run
+`42396923280` failed on Linux and Windows with 407 passes and one failure each
+because the implementation seal still named the old governance source. That
+failure is preserved. The workflow checks scientific preservation and
+publication guards.
 
 ## Parent-review CI (not this candidate)
 
