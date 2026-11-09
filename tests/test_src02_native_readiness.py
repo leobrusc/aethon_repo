@@ -108,6 +108,7 @@ def test_duplicate_json_keys_rejected(tmp_path):
         checker.load_manifest(path)
 
 
-def test_no_mutation_of_scientific_assets(proposal):
-    assert checker.assess(proposal)["authorized"] is False
-    assert "file" not in json.dumps(checker.assess(proposal)).lower() or True
+def test_valid_design_remains_non_authorizing(proposal):
+    verdict = checker.assess(proposal)
+    assert verdict["status"] == "DESIGN_ONLY_BLOCKED"
+    assert not any((verdict["authorized"], verdict["native_execution"], verdict["pilot_execution"]))
