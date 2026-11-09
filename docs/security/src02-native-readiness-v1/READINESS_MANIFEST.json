@@ -1,0 +1,64 @@
+{
+  "schema": "aethon.src02.native-readiness.v1",
+  "baseline": {
+    "pr": 41,
+    "head_sha": "e7f15000b682b0cb7824c71fc55daf6f9a2129c9",
+    "scope": "DESIGN_ONLY"
+  },
+  "decisions": {
+    "root_bootstrap": {
+      "status": "PROPOSED_NOT_APPROVED",
+      "candidate": "independent_signed_root_bootstrap_receipt_v1"
+    },
+    "freshness_witness": {
+      "status": "PROPOSED_NOT_APPROVED",
+      "candidate": "independent_linearizable_compare_and_advance_service"
+    },
+    "linux_native_profile": {
+      "status": "PROPOSED_NOT_APPROVED",
+      "candidate": "linux_x86_64_single_host_local_ext4"
+    },
+    "lease_commit_authority": {
+      "status": "PENDING",
+      "candidate": "single_serialized_epoch_and_head_authority"
+    },
+    "dependency_review": {
+      "status": "PENDING"
+    },
+    "independent_design_review": {
+      "status": "PENDING"
+    }
+  },
+  "evidence": {
+    "signed_bootstrap_receipt": "NOT_RUN",
+    "independent_trust_anchor": "NOT_PROVISIONED",
+    "revocation_service": "NOT_PROVISIONED",
+    "witness_service": "NOT_PROVISIONED",
+    "witness_fault_tests": "NOT_RUN",
+    "linux_syscall_profile": "NOT_VALIDATED",
+    "linux_power_loss_matrix": "NOT_RUN",
+    "native_fencing_fault_tests": "NOT_RUN",
+    "native_contract_review": "PENDING"
+  },
+  "operational": {
+    "src02": "NOT_AUTHORIZED",
+    "dependencies": "DEPENDENCY_APPROVAL_REQUIRED",
+    "pilot": "PILOT_BLOCKED",
+    "gates": {
+      "independent_inventory": "PENDING",
+      "semantic_review": "PENDING",
+      "rubric_review": "PENDING",
+      "reviewer_assignment": "PENDING",
+      "private_storage": "PENDING",
+      "model_assets": "PENDING",
+      "hardware_check": "PENDING",
+      "execution_authorization": "PENDING"
+    }
+  },
+  "assets": {
+    "native_backend": "NOT_IMPLEMENTED",
+    "root": "NOT_PROVISIONED",
+    "witness": "NOT_PROVISIONED",
+    "gpu_inference": "NOT_RUN"
+  }
+}
