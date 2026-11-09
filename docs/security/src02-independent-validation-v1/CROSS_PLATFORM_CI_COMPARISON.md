@@ -8,6 +8,7 @@ Both requested GitHub Actions runs completed all three jobs successfully.
 |---|---|---|---|---|---|
 | `42412776565` | Merge ref `35a3b266d55292be6f86a74d8855ed400a48a41b`, containing implementation `e1821ce83b714cde52ea917f48e7fd1453fc95e5` on base #34 | SUCCESS | SUCCESS | SUCCESS | 432 passed on each OS |
 | `42413419166` | Merge ref `4c17071...`, containing PR #35 HEAD `f49f1ce6481719fc6696a08769cbb7cfde46dfb9` on base #34 | SUCCESS | SUCCESS | SUCCESS | 432 passed on each OS |
+| `42537811989` | PR #36 review commit `0ade477f0560fc2d6f883df908f7b5bccc616926` | SUCCESS | SUCCESS | SUCCESS | All three jobs completed successfully; GPU inference `NOT_RUN` |
 
 The second run tests the requested final PR HEAD, not merely the earlier implementation commit. Runners were Ubuntu 24.04 and Windows Server 2025. GPU inference was `NOT_RUN`. The workflow used LFS checkout/fetch and reports the repository inventory check passing for 127 files against base `544c363c19a08574d30e7e2c064a78ce1bdfb601`.
 
