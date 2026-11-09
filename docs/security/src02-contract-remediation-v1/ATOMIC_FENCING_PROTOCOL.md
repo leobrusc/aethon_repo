@@ -47,3 +47,13 @@ expiry alone never transfers authority. Multi-host operation is unsupported.
 Native race, crash, PID reuse, process restart, stale descriptor/handle and
 lock-object replacement tests remain required before an implementation can
 claim this contract.
+
+## Phase 7E model state
+
+The abstract model now retains lease IDs, holder, epoch, authority identity and
+state, transfer serial/ID, prepared publication snapshots, expected head, and
+revocation epoch. Transfer and publication are represented as transitions of
+the same abstract serializer; publication atomically compares the saved token
+with current lease/head/authority state. A prepared A/epoch-7 token is rejected
+after B receives epoch 8. This is model behavior only and does not validate an
+OS primitive or native backend. See `docs/security/src02-safety-closure-v1/ATOMIC_LEASE_AUTHORITY.md`.
