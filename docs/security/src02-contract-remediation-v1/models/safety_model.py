@@ -172,6 +172,8 @@ class State:
     witness_response_fresh: bool = False
     witness_response_revocation_valid: bool = False
     witness_response_valid: bool = False
+    # Frozen verification-time claim tuple. Reconciliation cannot rely on a stale boolean.
+    witness_verified_binding: tuple[object, ...] | None = None
     ack: bool = False
     revoked: bool = False
     quota: bool = False
@@ -192,6 +194,73 @@ def _response_hash(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def _witness_claims(s: State) -> tuple[object, ...]:
+    """Exact evidence and request bindings certified at verification time.
+
+    This is an abstract immutable snapshot, NOT a cryptographic authenticator.
+    """
+    return (
+        s.witness_identity, s.run_id, s.operation_id, s.policy_epoch,
+        s.revocation_epoch, s.witness_op, s.witness_expected, s.witness_next,
+        s.witness_query_run_id, s.witness_query_operation_id,
+        s.witness_query_policy_epoch, s.witness_query_revocation_epoch,
+        s.witness_response_signer, s.witness_response_signature_valid,
+        s.witness_response_fresh, s.witness_response_revocation_valid,
+        s.witness_response_run_id, s.witness_response_operation_id,
+        s.witness_response_policy_epoch, s.witness_response_revocation_epoch,
+        s.witness_response_sequence, s.witness_response_head,
+        s.witness_response_committed_op,
+    )
+
+
+def _bind_witness_evidence(s: State) -> State:
+    """Capture the exact fields accepted by the trusted abstract verifier."""
+    return replace(s, witness_verified_binding=_witness_claims(s))
+
+
+def _check_witness_evidence(s: State) -> None:
+    """Reject changed claims at every use, including after acknowledgment.
+
+    Recheck stable claims and original query binding without requiring the
+    remote service to remain online after a previously valid commit.
+    """
+    if not s.witness_response_valid:
+        return
+    if s.witness_verified_binding is None or s.witness_verified_binding != _witness_claims(s):
+        raise Reject("witness verified evidence was altered after validation")
+    if (not s.witness_response_signature_valid or not s.witness_response_fresh
+            or not s.witness_response_revocation_valid
+            or s.witness_response_signer != s.witness_identity):
+        raise Reject("witness authenticated signer, signature, freshness or revocation invalid")
+    if (s.witness_response_run_id, s.witness_response_operation_id,
+            s.witness_response_policy_epoch, s.witness_response_revocation_epoch) != (
+            s.run_id, s.operation_id, s.policy_epoch, s.revocation_epoch):
+        raise Reject("witness evidence run/operation/policy/revocation mismatch")
+    direct_advance = "witness_advance_result" in s.history and s.witness_query_run_id is None
+    if not direct_advance and (
+            s.witness_query_run_id, s.witness_query_operation_id,
+            s.witness_query_policy_epoch, s.witness_query_revocation_epoch) != (
+            s.run_id, s.operation_id, s.policy_epoch, s.revocation_epoch):
+        raise Reject("witness evidence is not bound to its authenticated request")
+    pair = (s.witness_response_sequence, s.witness_response_head)
+    permitted = {(s.sequence, s.head)}
+    if s.witness_expected is not None:
+        permitted.add(s.witness_expected)
+    if s.witness_next is not None:
+        permitted.add(s.witness_next)
+    if pair not in permitted:
+        raise Reject("witness evidence sequence/head inconsistent with commit")
+    if s.witness_next is not None and pair == s.witness_next:
+        if s.witness_response_committed_op != s.operation_id:
+            raise Reject("witness evidence committed operation mismatch")
+    if s.witness_expected is not None and pair == s.witness_expected:
+        if s.witness_response_committed_op not in (None, s.operation_id):
+            raise Reject("witness predecessor operation mismatch")
+    if s.witness_ack and (pair != (s.sequence, s.head)
+                          or s.witness_response_committed_op != s.operation_id):
+        raise Reject("witness acknowledged response does not bind committed head")
+
+
 def validate(s: State) -> None:
     required = (s.run_id, s.slot_id, s.operation_id, s.manifest_digest, s.config_digest,
                 s.authority_id, s.commit_authority_id)
@@ -204,6 +273,7 @@ def validate(s: State) -> None:
         raise Reject("run/slot/operation/manifest/configuration binding changed")
     if s.commit_authority_id != s.authority_id:
         raise Reject("commit authority identity changed")
+    _check_witness_evidence(s)
 
     if s.operation is not Operation.INFERENCE and any((
         s.infer is not Infer.NONE, s.intent_durable, s.dispatch_authorized,
@@ -610,7 +680,7 @@ def apply(s: State, action: str, *, writer: str | None = None,
             if (s.witness_sequence, s.witness_head) != s.witness_next:
                 raise Reject("idempotent witness result conflicts with recorded next tuple")
             seq, head = s.witness_next
-            return step(s, "witness_advance_result", witness_ack=True, witness=Witness.MATCH,
+            result = step(s, "witness_advance_result", witness_ack=True, witness=Witness.MATCH,
                         witness_query=WitnessQuery.RECONCILED, witness_response_valid=True,
                         witness_response_run_id=s.run_id,
                         witness_response_operation_id=s.operation_id,
@@ -621,10 +691,11 @@ def apply(s: State, action: str, *, writer: str | None = None,
                         witness_response_signer=s.witness_identity,
                         witness_response_signature_valid=True, witness_response_fresh=True,
                         witness_response_revocation_valid=True)
+            return _bind_witness_evidence(result)
         if (s.witness_sequence, s.witness_head) != s.witness_expected:
             raise Reject("witness expected-state compare failed")
         seq, head = s.witness_next
-        return step(s, "witness_advance_result", witness_sequence=seq, witness_head=head,
+        result = step(s, "witness_advance_result", witness_sequence=seq, witness_head=head,
                     witness_policy_epoch=s.policy_epoch, witness_revocation_epoch=s.revocation_epoch,
                     witness_committed_op=s.witness_op, witness_ack=True, witness=Witness.MATCH,
                     witness_query=WitnessQuery.RECONCILED, witness_response_valid=True,
@@ -637,6 +708,7 @@ def apply(s: State, action: str, *, writer: str | None = None,
                     witness_response_signer=s.witness_identity,
                     witness_response_signature_valid=True, witness_response_fresh=True,
                     witness_response_revocation_valid=True)
+        return _bind_witness_evidence(result)
     if action == "witness_timeout_before_commit":
         if not s.witness_op or s.witness_committed_op == s.witness_op:
             raise Reject("no pending witness operation")
@@ -732,8 +804,9 @@ def apply(s: State, action: str, *, writer: str | None = None,
                 raise Reject("witness next head lacks exact Operation ID result")
         if pair == s.witness_expected and s.witness_response_committed_op not in (None, s.operation_id):
             raise Reject("witness predecessor reports conflicting operation result")
-        return step(s, action, witness_query=WitnessQuery.VALIDATED,
-                    witness_response_valid=True)
+        verified = step(s, action, witness_query=WitnessQuery.VALIDATED,
+                        witness_response_valid=True)
+        return _bind_witness_evidence(verified)
     if action == "witness_reconcile":
         if s.witness_query is not WitnessQuery.VALIDATED or not s.witness_response_valid:
             raise Reject("reconciliation requires validated authenticated witness evidence")
