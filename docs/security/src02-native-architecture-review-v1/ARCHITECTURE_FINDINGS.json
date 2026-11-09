@@ -1,0 +1,101 @@
+{
+  "schema": "aethon.src02.independent-architecture-review.v1",
+  "reviewed": {
+    "pr": 42,
+    "head": "bf28e2f93bf94f71dda995505813cdc0d0537fb7",
+    "review_of": "design-only bootstrap witness linux profile and commit fencing",
+    "scope": "ADVERSARIAL_TECHNICAL_REVIEW_NOT_ORGANIZATIONAL_SIGNOFF"
+  },
+  "disposition": "REVIEW_COMPLETE_WITH_BLOCKERS",
+  "native_implementation": "NOT_AUTHORIZED",
+  "linux_fixture_prototype": "NOT_AUTHORIZED",
+  "human_independent_signoff": "PENDING",
+  "findings": [
+    {
+      "id": "ARCH-REV-01",
+      "severity": "HIGH",
+      "area": "root_bootstrap",
+      "status": "OPEN_DECISION",
+      "issue": "No selected/provisioned independent issuer, trust anchor, OS principal/custodian or revocation authority; source receipt is not an authority.",
+      "required_evidence": [
+        "issuer custody and trust-anchor verification",
+        "OS principal/root ancestor identity under restart",
+        "signed receipt and revocation negative tests"
+      ],
+      "legacy": "SRC2-REV-05 PARTIAL"
+    },
+    {
+      "id": "ARCH-REV-02",
+      "severity": "HIGH",
+      "area": "freshness_witness",
+      "status": "OPEN_DECISION",
+      "issue": "Candidate compare-and-advance service lacks selected separate operator, linearizable state store, key governance and verifiable disaster-recovery proof.",
+      "required_evidence": [
+        "separate admin/storage and backup domains",
+        "atomic per-run CAS and equivocation tests",
+        "authenticated current query/timeout/replay tests"
+      ],
+      "legacy": "SRC2-REV-04 CLOSED_SPEC_MODEL only"
+    },
+    {
+      "id": "ARCH-REV-03",
+      "severity": "CRITICAL",
+      "area": "lease_commit_authority",
+      "status": "REMEDIATION_REQUIRED",
+      "issue": "No concrete single serialization point couples current fencing epoch/holder and expected-head publication; check-then-rename and OFD locks alone are insufficient.",
+      "required_evidence": [
+        "choose and review atomic authority protocol",
+        "epoch-7 to epoch-8 stale-writer counterexample rejected",
+        "crash/restart and retained-descriptor adversarial tests"
+      ],
+      "legacy": "SRC2-REV-02 CLOSED_SPEC_MODEL only"
+    },
+    {
+      "id": "ARCH-REV-04",
+      "severity": "HIGH",
+      "area": "linux_profile",
+      "status": "OPEN_DECISION",
+      "issue": "Candidate ext4 lacks exact kernel/build/mount/block-device/cache profile and measured file/directory/head durability.",
+      "required_evidence": [
+        "fixed allowlist and unsupported error mapping",
+        "openat2 no-xdev race tests",
+        "file+directory fsync, no-replace, crash/power-loss test results"
+      ],
+      "legacy": "NATIVE T01-T19 NOT_RUN"
+    },
+    {
+      "id": "ARCH-REV-05",
+      "severity": "HIGH",
+      "area": "approval_boundary",
+      "status": "OPEN_DECISION",
+      "issue": "No independent human/organizational sign-off, dependency grant or separately authorized fixture-only prototype release.",
+      "required_evidence": [
+        "named owners and signed reviews",
+        "dependency chain approval",
+        "separately issued fixture-only prototype authorization"
+      ],
+      "legacy": "SRC-02 NOT_AUTHORIZED"
+    },
+    {
+      "id": "ARCH-REV-06",
+      "severity": "MEDIUM",
+      "area": "operational_guard",
+      "status": "INFORMATIONAL",
+      "issue": "Existing Python readiness checker is a design-only linter; its exit code 0 means DESIGN_ONLY_BLOCKED, not operational readiness.",
+      "required_evidence": [
+        "distinct signed future approval artifact and verifier",
+        "no CI step treats linter success as permission"
+      ],
+      "legacy": "PILOT_BLOCKED"
+    }
+  ],
+  "preserved": {
+    "src02": "NOT_AUTHORIZED",
+    "dependencies": "DEPENDENCY_APPROVAL_REQUIRED",
+    "pilot": "PILOT_BLOCKED",
+    "eight_gates": "PENDING",
+    "native_tests": "NOT_RUN",
+    "root": "NOT_PROVISIONED",
+    "witness": "NOT_PROVISIONED"
+  }
+}
