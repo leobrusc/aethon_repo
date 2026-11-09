@@ -35,7 +35,7 @@ Independently challenge (1) whether response provenance and digest binding are s
 | Repository publication guard | PASS |
 | `git diff --check` | PASS |
 | Offline preflight | `PILOT_BLOCKED`, `executed=false`, all eight gates PENDING (expected fail-closed result) |
-| GitHub Actions for this remediation branch | NOT_RUN pending publication |
+| GitHub Actions run `42542931617` on implementation commit `eb3544fed208d5ab9e6e92aeedcdc0fd64184fff` | PASS — Linux, Windows, and research/GPU audit jobs SUCCESS; GPU inference NOT_RUN |
 
 The independent historical reproduction remains excluded from default test
 collection and byte-preserved in the parent Git object. Its prior vulnerable
