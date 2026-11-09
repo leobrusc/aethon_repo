@@ -139,10 +139,18 @@ def test_review_documents_are_separate_from_base_adr_files():
         "COMMIT_FENCING_AUTHORITY_REVIEW.md",
         "IMPLEMENTATION_GATE_AND_FINAL_DISPOSITION.md",
     )
+    decisions = {
+        "INDEPENDENT_ARCHITECTURE_REVIEW.md": "REVIEW_COMPLETE_WITH_BLOCKERS",
+        "ROOT_BOOTSTRAP_REVIEW.md": "OPEN_DECISION",
+        "WITNESS_INDEPENDENCE_REVIEW.md": "OPEN_DECISION",
+        "LINUX_PROFILE_REVIEW.md": "REVISE_AND_QUALIFY_PLATFORM",
+        "COMMIT_FENCING_AUTHORITY_REVIEW.md": "BLOCKING_CONCRETE_PROTOCOL_REQUIRED",
+        "IMPLEMENTATION_GATE_AND_FINAL_DISPOSITION.md": "REVIEW_COMPLETE_WITH_BLOCKERS",
+    }
     for filename in expected:
         body = (REVIEW / filename).read_text(encoding="utf-8")
         assert len(body) > 100
-        assert "NOT" in body or "PENDING" in body or "BLOCK" in body
+        assert decisions[filename] in body
     for filename in (
         "ADR-001_ROOT_BOOTSTRAP.md",
         "ADR-002_FRESHNESS_WITNESS.md",
