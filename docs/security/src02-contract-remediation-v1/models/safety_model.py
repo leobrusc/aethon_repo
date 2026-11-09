@@ -142,6 +142,8 @@ class State:
     publish_revocation_epoch: int | None = None
     publish_lease_transfer_serial: int = 0
     witness_required: bool = True
+    # Immutable launch-grant witness policy bound at initial State construction.
+    bound_witness_required: bool | None = None
     policy_epoch: int = 1
     witness_identity: str = "witness-fixture"
     witness: Witness = Witness.MATCH
@@ -181,6 +183,12 @@ class State:
     recovery_status: Recovery = Recovery.CLEAN
     history: tuple[str, ...] = field(default=(), compare=False, hash=False)
 
+    def __post_init__(self) -> None:
+        # A newly constructed fixture fixes its witness policy. dataclasses.replace
+        # retains this field, so changing only the policy flag is rejected.
+        if self.bound_witness_required is None:
+            object.__setattr__(self, "bound_witness_required", self.witness_required)
+
 
 class Reject(ValueError):
     pass
@@ -200,7 +208,8 @@ def _witness_claims(s: State) -> tuple[object, ...]:
     This is an abstract immutable snapshot, NOT a cryptographic authenticator.
     """
     return (
-        s.witness_identity, s.run_id, s.operation_id, s.policy_epoch,
+        s.witness_identity, s.run_id, s.operation_id, s.witness_required,
+        s.bound_witness_required, s.policy_epoch,
         s.revocation_epoch, s.witness_op, s.witness_expected, s.witness_next,
         s.witness_query_run_id, s.witness_query_operation_id,
         s.witness_query_policy_epoch, s.witness_query_revocation_epoch,
@@ -273,6 +282,8 @@ def validate(s: State) -> None:
         raise Reject("run/slot/operation/manifest/configuration binding changed")
     if s.commit_authority_id != s.authority_id:
         raise Reject("commit authority identity changed")
+    if s.witness_required is not s.bound_witness_required:
+        raise Reject("witness policy differs from immutable launch-grant binding")
     _check_witness_evidence(s)
 
     if s.operation is not Operation.INFERENCE and any((
