@@ -31,3 +31,13 @@ The abstract model verifies the idempotent same-operation path and blocks
 unavailable, ahead, behind and same-sequence-conflicting states. It does not
 validate a deployed witness, PKI, network protocol or administrative
 independence.
+
+## Phase 7E correction
+
+The PR #36 review demonstrated that the prior abstract `witness_query` could
+clear a block without a remote response. The current relation supersedes that
+behavior: query is separate from response receipt, abstract authentication,
+freshness/binding validation, and reconciliation. `UNAVAILABLE` remains
+blocked; only the validated proof transition can reconcile. The model's
+signature-valid and freshness results remain trusted abstractions, not deployed
+cryptographic validation. See `docs/security/src02-safety-closure-v1/AUTHENTICATED_WITNESS_RECONCILIATION.md`.

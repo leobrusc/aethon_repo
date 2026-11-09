@@ -65,3 +65,18 @@ locking, witness independence, or liveness. Its single-run/one-operation state
 space and finite exploration bounds are recorded in `STATE_EXPLORATION_RESULTS.md`.
 The implementation gate remains closed pending independent review and native
 fault-injection plans.
+
+## Phase 7E superseding addendum
+
+The independent PR #36 review found additional accepted traces: commit without
+dispatch/observed response and recovery reconciliation without a valid remote
+witness response. Phase 7E changes the transition relation to reject these
+traces and adds explicit run/slot/op/manifest/config response binding, observed
+continuation SHA-256 verification, durable-response gating, separate witness
+response/authentication/freshness/reconciliation states, and lease ID/authority serialization state. The Phase 7C
+counts above are historical only; current bounds and results are recorded in
+`docs/security/src02-safety-closure-v1/BOUNDED_STATE_EXPLORATION.md`.
+
+The witness signature/freshness checks are abstract trusted outcomes, not a
+cryptographic or deployed service implementation. SRC2-REV-05/06 remain partial;
+native SRC-02 remains NOT_AUTHORIZED pending independent review.

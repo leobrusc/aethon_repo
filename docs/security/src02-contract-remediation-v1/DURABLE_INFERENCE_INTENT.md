@@ -36,3 +36,16 @@ Any crash, timeout, I/O failure, quota exhaustion or uncertain response after
 dispatch blocks scientific completion. No automatic inference retry or ASR
 denominator exclusion is permitted. This is a specification-level rule; native
 crash and durability tests remain `NOT_RUN`.
+
+## Phase 7E response-provenance refinement
+
+The current model inserts `DISPATCH_AUTHORIZED` and `RESPONSE_VERIFIED` between
+the corresponding intent/dispatch and response/durable states. The dispatch
+authorization and observed continuation bind run, slot, Operation ID, manifest,
+and configuration. Empty continuations are rejected; the abstract verifier
+recomputes SHA-256 over the exact synthetic bytes. `persist_object` now rejects
+any inference result without dispatch marker, observed and verified response,
+and response durability. A dispatch-uncertain crash becomes
+`INTERRUPTED_UNKNOWN`, and only same-operation persistence retry is permitted
+after a durable response. See `docs/security/src02-safety-closure-v1/` for the
+Phase 7E contract and limits.

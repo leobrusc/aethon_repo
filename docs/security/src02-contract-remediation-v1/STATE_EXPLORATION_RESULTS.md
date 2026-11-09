@@ -48,3 +48,14 @@ cryptographic identity, or a malicious kernel/host. Liveness is not established;
 blocking on unavailable witness, conflicts or uncertain inference is intentional.
 The next step is independent review of this transition relation, then a separately
 authorized platform prototype only after remaining implementation gates close.
+
+## Phase 7E superseding exploration
+
+The table above records the PR #35/Phase 7C relation and must not be cited as a
+result for the changed Phase 7E state schema. Phase 7E uses depth 6 and a
+100,000-state ceiling; it reached 11,898 quotient states, examined 27,902
+accepted transitions and 177,911 rejected attempts, and checked 15,345 history
+aliases with zero action-frontier mismatches. Details and limits are in
+`docs/security/src02-safety-closure-v1/BOUNDED_STATE_EXPLORATION.md`. This is
+bounded synthetic model checking only; witness authentication remains an
+abstract trusted event, and native safety is NOT_VALIDATED.
