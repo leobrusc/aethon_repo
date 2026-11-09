@@ -5,7 +5,6 @@ These tests never open a native storage root, provision a witness, or authorize 
 from __future__ import annotations
 
 import copy
-import json
 import importlib.util
 import sys
 from pathlib import Path
