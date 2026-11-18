@@ -614,13 +614,23 @@ Future CI/CD integration should run formatting/linting, unit tests, mocked integ
 - Improve device selection, cache configuration, and quantized local-model execution.
 - Add result aggregation tables and statistically grounded benchmark reports.
 
-## Authors
+## Preprint
 
-**Leonardo Bruscagini**
+Available in ArXiv at 
 
-Research and engineering lead for the Aethon framework.
+## Citation
 
-Contributions, issue reports, and reproducibility improvements are welcome through the repository's standard pull request workflow.
+```bibtex
+@inproceedings{delima2026aethon,
+  title = {AETHON: Deterministic Pre-Inference Defense for LLM Prompt Injection},
+  author = {de Lima, Leonardo B. and Valverde-Rebaza, Jorge and Barreto, A. and Iano, Y.},
+  booktitle = {Proceedings of the 12th Brazilian Technology Symposium (BTSym 2026): Emerging Trends and Challenges in Technology},
+  series = {Smart Innovation, Systems and Technologies},
+  year = {2026},
+  publisher = {Springer Nature},
+  note = {To be published},
+}
+```
 
 ## License
 
